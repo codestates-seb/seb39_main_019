@@ -1,5 +1,6 @@
 package com.dangProject.member.domain;
 
+import com.dangProject.member.region.RegionName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,17 +17,24 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(unique = true, nullable = false, length = 150)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(unique = true, nullable = false, length = 50)
     private String nickname;
 
     @Lob
     private String defaultIcon;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(length = 20, nullable = false)
+    @Column(length = 30, nullable = false)
     private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(length = 30, nullable = false)
     private RegionName guName;
 
     public enum MemberStatus {
