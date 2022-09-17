@@ -37,6 +37,7 @@ public class Member {
     @Column(length = 30, nullable = false)
     private RegionName guName;
 
+
     public enum MemberStatus {
         MEMBER_ACTIVE("활동중"),
         MEMBER_SLEEP("휴면 상태"),
