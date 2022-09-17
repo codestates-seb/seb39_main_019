@@ -1,7 +1,6 @@
 package com.dangProject.member.region;
 
-import com.dangProject.commonDto.EnumModel;
-import lombok.Getter;
+import com.dangProject.common.EnumModel;
 
 public enum RegionName implements EnumModel {
 

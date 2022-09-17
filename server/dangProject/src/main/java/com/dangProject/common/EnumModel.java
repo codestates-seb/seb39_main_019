@@ -1,4 +1,4 @@
-package com.dangProject.commonDto;
+package com.dangProject.common;
 
 public interface EnumModel {
     String getKey();
