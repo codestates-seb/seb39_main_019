@@ -1,4 +1,5 @@
 export const lightTheme = {
+
   bgColor : '#fff', // 기본 백그라운드
   textColor: '#2d2d2d', // 기본 텍스트 색
   HeaderColor: '#fff', // 헤더 배경
@@ -10,4 +11,5 @@ export const darkTheme = {
   textColor : '#fff',
   HeaderColor:'#202124',
   HeLogoColor:'#ffffff',
+
 }
