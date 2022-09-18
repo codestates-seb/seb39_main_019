@@ -1,10 +1,10 @@
 import React from 'react'
+import useStore from './store/globalStore';
 import RouteModule from './routes'
-
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import GlobalStyle from './assets/style/GlobalStyle';
 import { ThemeProvider } from 'styled-components'
 import {darkTheme,lightTheme} from './assets/style/Theme'
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import useStore from './store/globalStore';
 
 function App() {
