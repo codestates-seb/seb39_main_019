@@ -1,20 +1,20 @@
 import Login from '../page/Login'
-import SignUp from '../page/Signup'
+import Signup from '../page/Signup'
 import Main from '../page/Main'
 
 const RouteModule = [
   {
     path:"/signup",
-    element:<SignUp/>
+    element: <Signup/>
   },
   {
     path:"/login",
-    element:<Login/>
-  }, 
+    element: <Login/>
+  },
   {
     path:"/",
-    element:<Main/>
-  }
+    element: <Main/>
+  },
 ]
 
 export default RouteModule;
