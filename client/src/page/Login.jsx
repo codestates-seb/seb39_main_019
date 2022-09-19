@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { postLogin } from "../api/utils";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const emailRef = useRef();
 
-  const id = "MyInput";
-  const placeholder = "MyInput";
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    await postLogin(email, password);
+  };
 
   return (
     <div>
@@ -20,16 +28,32 @@ const Login = () => {
           </Link>
         </HeaderLogo>
         <InputForm>
-          <div className='group'>
-            <label htmlFor='email'>이메일</label>
-            <input type='email' id='email'></input>
-          </div>
-          <div className='group'>
-            <label htmlFor='password'>비밀번호</label>
-            <input type='password' id='password'></input>
-          </div>
-          <button className='btn'>로그인</button>
-          <button className='btn'>회원가입</button>
+          <form onSubmit={submitHandler}>
+            <div className='group'>
+              <label htmlFor='email'>이메일</label>
+              <input
+                type='email'
+                id='email'
+                ref={emailRef}
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                required
+              ></input>
+            </div>
+            <div className='group'>
+              <label htmlFor='password'>비밀번호</label>
+              <input
+                type='password'
+                id='password'
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                required
+                autoComplete='off'
+              ></input>
+            </div>
+            <button className='btn'>로그인</button>
+            {/* <button className='btn'>회원가입</button> */}
+          </form>
         </InputForm>
       </LoginContainer>
     </div>
@@ -95,8 +119,6 @@ const InputForm = styled.div`
     color: #999;
     font-size: 18px;
     font-weight: normal;
-    /* position: absolute; */
-    /* pointer-events: none; */
   }
 
   button {
