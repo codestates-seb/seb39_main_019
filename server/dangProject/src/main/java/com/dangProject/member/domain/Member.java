@@ -26,16 +26,16 @@ public class Member {
     @Column(unique = true, nullable = false, length = 50)
     private String nickname;
 
-    @Lob
-    private String defaultIcon;
+//    @Lob
+//    private String defaultIcon;
 
     @Enumerated(value = EnumType.STRING)
     @Column(length = 30, nullable = false)
     private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
 
-    @Enumerated(value = EnumType.STRING)
+/*    @Enumerated(value = EnumType.STRING)
     @Column(length = 30, nullable = false)
-    private RegionName guName;
+    private RegionName guName;*/
 
 
     public enum MemberStatus {
