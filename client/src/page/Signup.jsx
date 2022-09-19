@@ -140,6 +140,10 @@ const InputForm = styled.div`
     margin-bottom: 50px;
     color: black;
   }
+  p {
+    font-size: 0.9rem;
+    color: red;
+  }
   .group {
     margin-bottom: 30px;
   }

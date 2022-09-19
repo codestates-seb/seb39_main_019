@@ -3,6 +3,11 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { postLogin } from "../api/utils";
+import google from "../assets/imgs/googlebtn.png";
+import kakao from "../assets/imgs/kakaobtn.png";
+import { ReactComponent as Google } from "../assets/imgs/Google.svg";
+import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
+import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -58,6 +63,26 @@ const Login = () => {
               <button className='btn'>회원가입</button>
             </Link>
           </form>
+          <section>
+            <div class='diveder'>
+              <hr />
+              <span>Or</span>
+              <hr />
+            </div>
+            {/* <img src={kakao}></img>
+            <img src={google}></img> */}
+            <div className='social_btn'>
+              <button className='social'>
+                <Kakao />
+              </button>
+              <button className='social'>
+                <Naver />
+              </button>
+              <button className='social'>
+                <Google />
+              </button>
+            </div>
+          </section>
         </InputForm>
       </LoginContainer>
     </div>
@@ -155,4 +180,46 @@ const InputForm = styled.div`
   .btn:hover {
     background: #2f6b01c5;
   }
+section{
+  .diveder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    hr {
+      width: 100%;
+      border: none;
+      height: 0.5px;
+      background-color: #979797;
+    }
+    span {
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 0px 16px;
+    }
+  }
+
+  svg {
+        pointer-events: none;
+    }
+
+    .social_btn{
+      display: flex;
+ 
+  /* border: 1px solid black; */
+  
+}
+.social{
+  background-color:#fafafa;
+margin: 0;
+border-bottom: 0px ;
+/* border: 1px solid black; */
+margin: 05px;
+}
+}
+
 `;
