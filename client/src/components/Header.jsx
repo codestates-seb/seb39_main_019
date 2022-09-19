@@ -32,7 +32,7 @@ const {isDark} = useStore()
 export default Header
 
 const HeaderCotainer = styled.div`
-height: 60px;
+height: 85px;
 background-color: ${(props)=>props.theme.HeaderColor};
 box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `
@@ -52,7 +52,7 @@ flex: 1;
   & span{
     font-family: yg_jalnan;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 24px;
     color: ${(props)=>props.theme.HeLogoColor};
     cursor: pointer;
   }
@@ -64,6 +64,7 @@ const HeaderSerch = styled.div`
   & input{
     width: 70%;
     padding: 5px;
+    text-indent: 15px;
     background-color: ${(props)=>props.theme.HeaderColor};
     border: none;
     border-bottom: 1px solid ${(props)=>props.theme.textColor};
