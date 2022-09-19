@@ -15,6 +15,7 @@ const Login = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    console.log(email, password);
     await postLogin(email, password);
   };
 
@@ -28,6 +29,7 @@ const Login = () => {
           </Link>
         </HeaderLogo>
         <InputForm>
+          <h1>로그인</h1>
           <form onSubmit={submitHandler}>
             <div className='group'>
               <label htmlFor='email'>이메일</label>
@@ -36,7 +38,7 @@ const Login = () => {
                 id='email'
                 ref={emailRef}
                 onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                // value={email}
                 required
               ></input>
             </div>
@@ -46,13 +48,15 @@ const Login = () => {
                 type='password'
                 id='password'
                 onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                // value={password}
                 required
                 autoComplete='off'
               ></input>
             </div>
             <button className='btn'>로그인</button>
-            {/* <button className='btn'>회원가입</button> */}
+            <Link to={"/signup"}>
+              <button className='btn'>회원가입</button>
+            </Link>
           </form>
         </InputForm>
       </LoginContainer>
@@ -95,6 +99,10 @@ const InputForm = styled.div`
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
+  h1 {
+    margin-bottom: 50px;
+    color: black;
+  }
   .group {
     margin-bottom: 30px;
   }
@@ -126,7 +134,7 @@ const InputForm = styled.div`
     display: inline-block;
     padding: 12px 24px;
     margin: 0.3em 0 1em 0;
-    width: 90%;
+    width: 100%;
     color: #fff;
     font-size: 16px;
     line-height: 20px;
