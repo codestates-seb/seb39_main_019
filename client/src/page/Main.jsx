@@ -6,6 +6,7 @@ import Filter from '../components/Main/Filter'
 
 
 const Main = () => {
+
  return (
    <Layout child={
      <MainContainer>

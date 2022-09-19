@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
   font-family:'Pretendard_Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff');
 }
+
 @font-face {
     font-family: 'yg_jalnan';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff%27') format('woff');
@@ -30,7 +31,9 @@ html{
   background-color: ${(props)=>props.theme.bgColor};
   color: ${(props)=> props.theme.textColor};
   font-family: 'S_CoreDream_3Light';
+
   transition: 0.3s;
+
 }
 ol,ul,li{
   list-style: none;
