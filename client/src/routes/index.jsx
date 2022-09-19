@@ -1,6 +1,7 @@
 import Login from '../page/Login'
 import Signup from '../page/Signup'
 import Main from '../page/Main'
+import Post from '../page/Post'
 
 const RouteModule = [
   {
@@ -15,6 +16,10 @@ const RouteModule = [
     path:"/",
     element: <Main/>
   },
+  {
+    path:"/post",
+    element: <Post/>
+  }
 ]
 
 export default RouteModule;
