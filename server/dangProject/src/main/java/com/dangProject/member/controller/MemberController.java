@@ -18,7 +18,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/api/member/{id}")
-    public ResponseEntity<MemberResponse> retrieveMember(@PathVariable Long id) {
+    public ResponseEntity<MemberResponse> findMember(@PathVariable Long id) {
         SecurityContextHolder.getContext().getAuthentication().getAuthorities().forEach(System.out::println);
         return ResponseEntity.ok(memberService.retrieveMember(id));
     }
