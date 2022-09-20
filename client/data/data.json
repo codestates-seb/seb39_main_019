@@ -11,6 +11,18 @@
       "email": "happy@haapy.com",
       "password": "123",
       "id": 2
+    },
+    {
+      "nickname": "",
+      "email": "",
+      "password": "",
+      "id": 3
+    },
+    {
+      "nickname": "",
+      "email": "",
+      "password": "",
+      "id": 4
     }
   ],
   "login": [
