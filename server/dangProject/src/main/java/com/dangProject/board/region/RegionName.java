@@ -1,4 +1,4 @@
-package com.dangProject.member.region;
+package com.dangProject.board.region;
 
 import com.dangProject.common.EnumModel;
 

@@ -1,6 +1,5 @@
 package com.dangProject.member.domain;
 
-import com.dangProject.member.region.RegionName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
