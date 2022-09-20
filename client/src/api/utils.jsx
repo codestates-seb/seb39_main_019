@@ -1,14 +1,30 @@
 import instance from "./core/default";
+import axios from "axios";
+// const getbody = () => {
+//   return instance({ url: "login" });
+// };
 
 const postLogin = (email, password) => {
-  instance({
+  axios({
     method: "post",
-    url: "api/auth/login",
+    url: "http://localhost:3001/login",
     data: {
-      email: email,
-      password: password,
+      email,
+      password,
     },
   });
 };
 
-export { postLogin };
+const postRegister = (nickname, regiEmail, regiPassword) => {
+  axios({
+    method: "post",
+    url: "http://localhost:3001/signup",
+    data: {
+      nickname: nickname,
+      email: regiEmail,
+      password: regiPassword,
+    },
+  });
+};
+
+export { postLogin, postRegister };

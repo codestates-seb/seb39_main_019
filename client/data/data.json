@@ -1,51 +1,32 @@
 {
-  "/api/auth/signup": [
+  "signup": [
     {
       "email": "hi@gmail.com",
       "password": "hi001",
-      "chPassword": "hi001",
       "nickname": "빵순이",
-      "guName": "강남구"
+      "id": 1
+    },
+    {
+      "nickname": "해피",
+      "email": "happy@haapy.com",
+      "password": "123",
+      "id": 2
     }
   ],
-  "/api/auth/login": [
+  "login": [
     {
       "email": "hgd@gmail.com",
-      "password": "hgd001"
+      "password": "hgd001",
+      "id": 1
     }
   ],
-  "/v1/members/info": [
+  "info": [
     {
       "nickname": "빵순이",
       "guName": "송파구"
     }
   ],
-  "/v1/dogs": [
-    {
-      "name": "빵순이",
-      "age": 2021,
-      "gender": "암컷",
-      "breed": "시고르믹스",
-      "size": "대형견"
-    }
-  ],
-  "/v1/dog/info": [
-    {
-      "name": "빵순이",
-      "age": 2021,
-      "gender": "암컷",
-      "breed": "시고르믹스",
-      "size": "대형견"
-    }
-  ],
-  "/v1/posts": [
-    {
-      "title": "빵순이",
-      "content": "암컷",
-      "breed": "시고르믹스"
-    }
-  ],
-  "/v1/dog/info/": [
+  "dogs": [
     {
       "name": "빵순이",
       "age": 2021,

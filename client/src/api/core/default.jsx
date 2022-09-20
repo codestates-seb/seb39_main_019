@@ -8,12 +8,12 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    config.headers["Content-Type"] = "application/json; charset=utf-8";
-    config.headers["Authorization"] = "토큰 값";
+    config.headers["Content-Type"] = "application/json; charset=UTF-8;";
+    config.headers["Authorization"] = "토큰값";
     return config;
   },
   (error) => {
-    console.log(error);
+    return Promise.reject(error);
   }
 );
 
@@ -24,6 +24,15 @@ instance.interceptors.response.use(
   },
   (error) => {
     console.log(error);
+    // if (error?.response) {
+    //   console.log("No Server Response", error.response);
+    // } else if (error.response.status === 400) {
+    //   console.log("Missing Email or Password");
+    // } else if (error.response.status === 401) {
+    //   console.log("Inauthorized");
+    // } else {
+    //   console.log("Login Failed");
+    // }
   }
 );
 
