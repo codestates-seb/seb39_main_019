@@ -16,9 +16,8 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    console.log(email, password);
     await postLogin(email, password);
   };
 
@@ -183,7 +182,7 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: black
+    color: black;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;

@@ -12,7 +12,7 @@ const Slide = ({img}) => {
 export default Slide
 
 const IMG = styled.div`
-  width: 100vw;
+  width: 100%;
 
 & div{
   display: block;

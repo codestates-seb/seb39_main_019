@@ -46,8 +46,6 @@ const Filters = styled.div`
     font-size: 18px;
     border: none;
     border-radius:10px;
-   
-    
     &:hover{
       background-color: ${(props)=>props.theme.HeLogoColor};
       color: ${(props)=>props.theme.HeaderColor}

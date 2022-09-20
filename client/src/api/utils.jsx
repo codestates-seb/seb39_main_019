@@ -1,16 +1,19 @@
 import instance from "./core/default";
 import axios from "axios";
+
 // const getbody = () => {
 //   return instance({ url: "login" });
 // };
 
+
 const postLogin = (email, password) => {
   axios({
     method: "post",
-    url: "http://localhost:3001/login",
+
+    url: "http://localhost:3001/user",
     data: {
-      email,
-      password,
+      "email": email,
+      "password": password
     },
   });
 };
