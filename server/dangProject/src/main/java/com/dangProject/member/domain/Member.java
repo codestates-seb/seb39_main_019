@@ -1,19 +1,18 @@
 package com.dangProject.member.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.dangProject.audit.BaseTime;
+import lombok.*;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Member {
+public class Member extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private long id;
 
     @Column(unique = true, nullable = false, length = 150)
@@ -25,16 +24,26 @@ public class Member {
     @Column(unique = true, nullable = false, length = 50)
     private String nickname;
 
-//    @Lob
-//    private String defaultIcon;
-
     @Enumerated(value = EnumType.STRING)
     @Column(length = 30, nullable = false)
-    private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
+    private MemberStatus memberStatus;
 
-/*    @Enumerated(value = EnumType.STRING)
-    @Column(length = 30, nullable = false)
-    private RegionName guName;*/
+    @Enumerated(value = EnumType.STRING)
+    private MemberType type;
+
+    @Enumerated(value = EnumType.STRING)
+    private MemberRole role;
+
+
+    @Builder
+    public Member(String email, String password, String nickname, MemberStatus memberStatus, MemberType type, MemberRole role) {
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.memberStatus = memberStatus;
+        this.type = type;
+        this.role = role;
+    }
 
 
     public enum MemberStatus {
