@@ -33,10 +33,6 @@ const Signup = () => {
   const regiSubmitHandler = async (e) => {
     e.preventDefault();
     await postRegister(nickname, regiEmail, regiPassword);
-    setNickname("");
-    setRegiEmail("");
-    setRegiPassword("");
-    setMatchRegiPassword("");
   };
 
   return (

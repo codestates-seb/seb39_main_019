@@ -16,7 +16,7 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     await postLogin(email, password);
   };
@@ -72,12 +72,14 @@ const Login = () => {
               <button className='social'>
                 <Kakao />
               </button>
-              <button className='social'>
+              {/* <button className='social'>
                 <Naver />
-              </button>
-              <button className='social'>
-                <Google />
-              </button>
+              </button> */}
+              <div className='g_btn'>
+                <button className='social googlebtn'>
+                  <Google />
+                </button>
+              </div>
             </div>
           </section>
         </InputForm>
@@ -177,46 +179,60 @@ const InputForm = styled.div`
   .btn:hover {
     background: #2f6b01c5;
   }
-section{
-  .diveder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-
-    hr {
+  section {
+    .diveder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: black;
       width: 100%;
-      border: none;
-      height: 0.5px;
-      background-color: #979797;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      hr {
+        width: 100%;
+        border: none;
+        height: 0.5px;
+        background-color: #979797;
+      }
+      span {
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 0px 16px;
+      }
     }
-    span {
-      text-transform: uppercase;
-      font-weight: 600;
-      margin: 0px 16px;
+
+    svg {
+      pointer-events: none;
+    }
+
+    .social_btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      /* border: 1px solid black; */
+    }
+    .social {
+      background-color: #fafafa;
+      margin: 0;
+      border-bottom: 0px;
+      /* border: 1px solid black; */
+      /* margin: 05px; */
+      padding: ;
+    }
+    .googlebtn {
+      width: 48px;
+      height: 48px;
+      /* border: 1px solid red; */
+      background-color: white;
+      border-radius: 50%;
+      position: relative;
+      bottom: -12px;
+      display: block;
+      margin: -9px;
+    }
+    .g_btn {
+      padding: 12px 24px;
     }
   }
-
-  svg {
-        pointer-events: none;
-    }
-
-    .social_btn{
-      display: flex;
- 
-  /* border: 1px solid black; */
-  
-}
-.social{
-  background-color:#fafafa;
-margin: 0;
-border-bottom: 0px ;
-/* border: 1px solid black; */
-margin: 05px;
-}
-}
-
 `;
