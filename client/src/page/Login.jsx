@@ -3,6 +3,9 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { postLogin } from "../api/utils";
+import { ReactComponent as Google } from "../assets/imgs/Google.svg";
+import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
+import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +18,7 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    postLogin(email, password);
+    await postLogin(email, password);
   };
 
   return (
@@ -28,6 +31,7 @@ const Login = () => {
           </Link>
         </HeaderLogo>
         <InputForm>
+          <h1>로그인</h1>
           <form onSubmit={submitHandler}>
             <div className='group'>
               <label htmlFor='email'>이메일</label>
@@ -36,7 +40,7 @@ const Login = () => {
                 id='email'
                 ref={emailRef}
                 onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                // value={email}
                 required
               ></input>
             </div>
@@ -46,14 +50,36 @@ const Login = () => {
                 type='password'
                 id='password'
                 onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                // value={password}
                 required
                 autoComplete='off'
               ></input>
             </div>
             <button className='btn'>로그인</button>
-            {/* <button className='btn'>회원가입</button> */}
+            <Link to={"/signup"}>
+              <button className='btn'>회원가입</button>
+            </Link>
           </form>
+          <section>
+            <div className='diveder'>
+              <hr />
+              <span>Or</span>
+              <hr />
+            </div>
+            {/* <img src={kakao}></img>
+            <img src={google}></img> */}
+            <div className='social_btn'>
+              <button className='social'>
+                <Kakao />
+              </button>
+              <button className='social'>
+                <Naver />
+              </button>
+              <button className='social'>
+                <Google />
+              </button>
+            </div>
+          </section>
         </InputForm>
       </LoginContainer>
     </div>
@@ -95,6 +121,10 @@ const InputForm = styled.div`
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
+  h1 {
+    margin-bottom: 50px;
+    color: black;
+  }
   .group {
     margin-bottom: 30px;
   }
@@ -126,7 +156,7 @@ const InputForm = styled.div`
     display: inline-block;
     padding: 12px 24px;
     margin: 0.3em 0 1em 0;
-    width: 90%;
+    width: 100%;
     color: #fff;
     font-size: 16px;
     line-height: 20px;
@@ -147,4 +177,46 @@ const InputForm = styled.div`
   .btn:hover {
     background: #2f6b01c5;
   }
+section{
+  .diveder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    hr {
+      width: 100%;
+      border: none;
+      height: 0.5px;
+      background-color: #979797;
+    }
+    span {
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 0px 16px;
+    }
+  }
+
+  svg {
+        pointer-events: none;
+    }
+
+    .social_btn{
+      display: flex;
+ 
+  /* border: 1px solid black; */
+  
+}
+.social{
+  background-color:#fafafa;
+margin: 0;
+border-bottom: 0px ;
+/* border: 1px solid black; */
+margin: 05px;
+}
+}
+
 `;
