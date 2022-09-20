@@ -7,16 +7,10 @@
       "id": 1
     },
     {
-      "nickname": "이선민",
-      "email": "test@test.com",
+      "nickname": "해피",
+      "email": "happy@haapy.com",
       "password": "123",
       "id": 2
-    },
-    {
-      "nickname": "이선민",
-      "email": "test@test.com",
-      "password": "asdf",
-      "id": 3
     }
   ],
   "login": [
@@ -24,11 +18,6 @@
       "email": "hgd@gmail.com",
       "password": "hgd001",
       "id": 1
-    },
-    {
-      "email": "test@test.comdfdssf",
-      "password": "asdf1234",
-      "id": 2
     }
   ],
   "info": [

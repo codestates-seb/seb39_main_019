@@ -3,8 +3,6 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { postLogin } from "../api/utils";
-import google from "../assets/imgs/googlebtn.png";
-import kakao from "../assets/imgs/kakaobtn.png";
 import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
@@ -64,7 +62,7 @@ const Login = () => {
             </Link>
           </form>
           <section>
-            <div class='diveder'>
+            <div className='diveder'>
               <hr />
               <span>Or</span>
               <hr />

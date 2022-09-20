@@ -33,6 +33,10 @@ const Signup = () => {
   const regiSubmitHandler = async (e) => {
     e.preventDefault();
     await postRegister(nickname, regiEmail, regiPassword);
+    setNickname("");
+    setRegiEmail("");
+    setRegiPassword("");
+    setMatchRegiPassword("");
   };
 
   return (
@@ -99,7 +103,7 @@ const Signup = () => {
                 }
               >
                 <FontAwesomeIcon icon={faInfoCircle} />
-                Must match the first password input field.
+                비밀번호와 일치하지 않습니다.
               </p>
             </div>
             <button className='btn' disabled={!validMatch ? true : false}>
