@@ -1,12 +1,13 @@
 import instance from "./core/default";
+import axios from "axios";
 
 const postLogin = (email, password) => {
-  instance({
+  axios({
     method: "post",
-    url: "api/auth/login",
+    url: "http://localhost:3001/user",
     data: {
-      email: email,
-      password: password,
+      "email": email,
+      "password": password
     },
   });
 };

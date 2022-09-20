@@ -13,9 +13,9 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    await postLogin(email, password);
+    postLogin(email, password);
   };
 
   return (
