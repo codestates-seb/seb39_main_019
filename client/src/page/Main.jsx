@@ -3,10 +3,9 @@ import Layout from '../components/Layout/Layout'
 import styled from 'styled-components'
 import Slider from '../components/Carousel/Slider'
 import Filter from '../components/Main/Filter'
-
+import CardPart from '../components/Main/CardPart'
 
 const Main = () => {
-
  return (
    <Layout child={
      <MainContainer>
@@ -15,7 +14,7 @@ const Main = () => {
        </CarouselPart>
        <MainPart>
          <Filter/>
-        카드섹션 파트입니다.
+         <CardPart/>
        </MainPart>
      </MainContainer>
    }/>
@@ -26,6 +25,9 @@ export default Main
 
 const MainContainer = styled.div`
 width: 100%;
+display: flex;
+flex-direction: column;
+padding-top: 60px;
 `
 const CarouselPart = styled.div`
 width: 100%;

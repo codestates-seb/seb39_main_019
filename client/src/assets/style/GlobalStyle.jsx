@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
 const GlobalStyle = createGlobalStyle`
 
 @font-face {
@@ -28,8 +27,8 @@ body,
 html{
   width: 100%;
   height: 100%;
-  background-color: ${(props)=>props.theme.bgColor};
-  color: ${(props)=> props.theme.textColor};
+  background-color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
   font-family: 'S_CoreDream_3Light';
 
   transition: 0.3s;
@@ -49,8 +48,29 @@ button{
   cursor: pointer;
 }
 
-`
+.instructions > svg {
+    margin-right: 0.25rem;
+}
 
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
 
+.hide {
+    display: none;
+}
 
-export default GlobalStyle
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+`;
+
+export default GlobalStyle;
