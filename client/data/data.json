@@ -1,30 +1,4 @@
 {
-  "main": [
-    {
-      "id": 1,
-      "title": "대공원에서 같이 산책하실분",
-      "location": "강남구",
-      "name": "빵순이언니"
-    },
-    {
-      "id": 2,
-      "title": "대공원에서 같이 산책하실분",
-      "location": "강남구",
-      "name": "빵순이언니"
-    },
-    {
-      "id": 3,
-      "title": "대공원에서 같이 산책하실분",
-      "location": "강남구",
-      "name": "빵순이언니"
-    },
-    {
-      "id": 4,
-      "title": "대공원에서 같이 산책하실분",
-      "location": "강남구",
-      "name": "빵순이언니"
-    }
-  ],
   "user": [
     {
       "id": 1,
@@ -33,9 +7,22 @@
       "password": "123123"
     },
     {
-      "email": "test@test.com",
-      "password": "123123",
-      "id": 2
+      "id": 2,
+      "name": "영웅님",
+      "email": "hollis97@naver.com",
+      "password": "123123"
+    },
+    {
+      "id": 3,
+      "name": "영웅님",
+      "email": "hollis97@naver.com",
+      "password": "123123"
+    },
+    {
+      "id": 4,
+      "name": "영웅님",
+      "email": "hollis97@naver.com",
+      "password": "123123"
     }
   ],
   "signup": [
@@ -57,35 +44,60 @@
       "id": 1,
       "title": "대공원에서 같이 산책하실분",
       "body": "새벽 1시쯤 만나서 산책해요~!",
-      "location": "강남구"
+      "location": "강남구",
+      "personality": "# 활발함",
+      "size": "# 대형견",
+      "picture": "urlasdasdasdawd"
     },
     {
       "id": 2,
       "title": "대공원에서 같이 산책하실분",
       "body": "새벽 1시쯤 만나서 산책해요~!",
-      "location": "강남구"
+      "location": "강남구",
+      "personality": "# 애교많음",
+      "size": "# 소형견"
     },
     {
       "id": 3,
       "title": "대공원에서 같이 산책하실분",
       "body": "새벽 1시쯤 만나서 산책해요~!",
-      "location": "강남구"
+      "location": "강남구",
+      "personality": "# 겁많음",
+      "size": "# 소형견"
     },
     {
       "id": 4,
       "title": "대공원에서 같이 산책하실분",
       "body": "새벽 1시쯤 만나서 산책해요~!",
-      "location": "강남구"
+      "location": "강남구",
+      "personality": "# 소심함",
+      "size": "# 중형견"
+    },
+    {
+      "title": "아찌,민트,초코,호밀이랑~ 산책하실분 나는 민우쓰",
+      "body": "빨리와~!",
+      "location": "김포시",
+      "personality": "# 활발함",
+      "size": "# 소형견",
+      "id": 5
+    },
+    {
+      "title": "빵순이 산책할사람",
+      "body": "저녁 7시 어디어디서 만나요!",
+      "location": "군산구",
+      "personality": "# 활발함",
+      "size": "# 중형견",
+      "id": 6
     }
   ],
   "animal": [
     {
       "id": 1,
       "name": "꼬미",
+      "kind": "폼피츠",
       "age": 2,
       "sex": "# 암컷",
-      "kind": "폼피츠",
-      "big": "# 소형견"
+      "size": "# 소형견"
     }
   ]
 }

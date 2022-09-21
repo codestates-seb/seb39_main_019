@@ -20,6 +20,7 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
+
   const submitHandler = async (e) => {
     e.preventDefault();
     await postLogin(email, password);
@@ -226,7 +227,6 @@ const InputForm = styled.div`
       border-bottom: 0px;
       /* border: 1px solid black; */
       /* margin: 05px; */
-      padding: ;
     }
     .googlebtn {
       width: 48px;

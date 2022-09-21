@@ -1,16 +1,47 @@
-import React from 'react'
+import React,{useRef} from 'react'
+import { useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
 import styled from 'styled-components'
 import ImgLode from '../components/Post/ImgLode'
 import AnimalInfo from '../components/Post/AnimalInfo'
+import useStore from '../store/post'
+import axios from 'axios'
 
 const Post = () => {
+  const {location,personality,size,title,body,setTitle,setBody} = useStore()
+  const titleRef = useRef()
+  const bodyRef = useRef()
+  const navigate = useNavigate()
+
+  const onSubmit = () => {
+  if(title.length===0){
+    return titleRef.current.focus()
+  }
+  
+  return axios({
+    url:'http://localhost:3001/content',
+    method:'post',
+    data:{
+      title:title,
+      body:body,
+      location:location,
+      personality:personality,
+      size:size,
+    }
+  })
+  .then(()=>{
+    navigate('/main')
+    setBody('')
+    setTitle('')
+  })
+  }
+
   return (
     <Layout child={
       <PostContainer>
         <PostInner>
           <InnerTop>
-            <input placeholder='제목을 입력해 주세요!' />
+            <input ref={titleRef} onChange={(e)=>setTitle(e.target.value)} placeholder='제목을 입력해 주세요!' />
           </InnerTop>
           <InnerMid>
             <MidLeft>
@@ -21,10 +52,11 @@ const Post = () => {
             </MidRight>
           </InnerMid>
           <InnerBottom>
-            <input placeholder='본문을 입력해 주세요!'></input>
+            <input ref={bodyRef} onChange={(e)=>setBody(e.target.value)} placeholder='본문을 입력해 주세요!'></input>
           </InnerBottom>
         </PostInner>
-        <button className='button'>등록하기</button>
+        <button onClick={onSubmit} className='button'>등록하기</button>
+        <button className='button' onClick={()=>navigate('/main')}>취소</button>
       </PostContainer>
     }/>
   )
@@ -39,6 +71,7 @@ const PostContainer = styled.div`
   text-align: center;
   .button{
     margin-top: 20px;
+    margin-right: 15px;
     padding: 5px 30px;
     line-height: 30px;
     font-size: 18px;
@@ -50,7 +83,6 @@ const PostContainer = styled.div`
       background-color: ${(props)=>props.theme.HeLogoColor};
       color: ${(props)=>props.theme.HeaderColor}
     }
-  
 }
 `
 const PostInner = styled.div`
@@ -61,12 +93,11 @@ const PostInner = styled.div`
   color: ${(props)=>props.theme.textColor}; 
   background-color: ${(props)=>props.theme.HeaderColor};
 
-
 `
 const InnerTop = styled.div`
   & input {
     width: 100%;
-    padding: 10px 0;
+    padding: 15px 0;
     font-size: 20px;
     text-indent: 20px;
     border:none;
