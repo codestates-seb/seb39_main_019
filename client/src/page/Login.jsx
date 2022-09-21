@@ -7,10 +7,14 @@ import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 
+import useAuthStore from "../store/authStore";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef();
+
+  const { token } = useAuthStore();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -19,6 +23,9 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     await postLogin(email, password);
+    // await signIn(email, password);
+    //≈setToken("hihhihi");
+    // console.log(token);
   };
 
   return (
@@ -96,6 +103,7 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding-top: 60px;
 `;
 
 const HeaderLogo = styled.div`
@@ -227,7 +235,7 @@ const InputForm = styled.div`
       background-color: white;
       border-radius: 50%;
       position: relative;
-      bottom: -12px;
+      bottom: -10px;
       display: block;
       margin: -9px;
     }

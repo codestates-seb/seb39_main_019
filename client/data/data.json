@@ -31,6 +31,11 @@
       "name": "영웅님",
       "email": "hollis97@naver.com",
       "password": "123123"
+    },
+    {
+      "email": "test@test.com",
+      "password": "123123",
+      "id": 2
     }
   ],
   "signup": [
@@ -39,6 +44,12 @@
       "name": "영웅님",
       "email": "hollis97@naver.com",
       "password": "123123"
+    },
+    {
+      "nickname": "이선민",
+      "email": "test@test.com",
+      "password": "12",
+      "id": 2
     }
   ],
   "content": [

@@ -5,6 +5,17 @@ import axios from "axios";
 //   return instance({ url: "login" });
 // };
 
+const postLogin2 = (email, password) => {
+  instance({
+    method: "post",
+    url: "http://localhost:3001/user",
+    data: {
+      email: email,
+      password: password,
+    },
+  });
+};
+
 const postLogin = (email, password) => {
   axios({
     method: "post",
@@ -13,6 +24,9 @@ const postLogin = (email, password) => {
       email: email,
       password: password,
     },
+  }).then((response) => {
+    console.log(response);
+    localStorage.setItem("token", response.data);
   });
 };
 
