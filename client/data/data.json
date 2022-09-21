@@ -28,30 +28,31 @@
   "user": [
     {
       "id": 1,
-      "name":"영웅님",
+      "name": "영웅님",
       "email": "hollis97@naver.com",
       "password": "123123"
     },
     {
-      "id": 2,
-      "name":"영웅님",
-      "email": "hollis97@naver.com",
-      "password": "123123"
-    },
-    {
-      "id": 3,
-      "name":"영웅님",
-      "email": "hollis97@naver.com",
-      "password": "123123"
-    },
-    {
-      "id": 4,
-      "name":"영웅님",
-      "email": "hollis97@naver.com",
-      "password": "123123"
+      "email": "test@test.com",
+      "password": "123123",
+      "id": 2
     }
   ],
-  "content":[
+  "signup": [
+    {
+      "id": 1,
+      "name": "영웅님",
+      "email": "hollis97@naver.com",
+      "password": "123123"
+    },
+    {
+      "nickname": "이선민",
+      "email": "test@test.com",
+      "password": "12",
+      "id": 2
+    }
+  ],
+  "content": [
     {
       "id": 1,
       "title": "대공원에서 같이 산책하실분",
@@ -77,14 +78,14 @@
       "location": "강남구"
     }
   ],
-  "animal":[
+  "animal": [
     {
-      "id":1,
-      "name":"꼬미",
-      "age":2,
-      "sex":"# 암컷",
-      "kind":"폼피츠",
-      "big":"# 소형견"
+      "id": 1,
+      "name": "꼬미",
+      "age": 2,
+      "sex": "# 암컷",
+      "kind": "폼피츠",
+      "big": "# 소형견"
     }
   ]
 }

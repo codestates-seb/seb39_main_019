@@ -32,11 +32,9 @@ const Signup = () => {
 
   const regiSubmitHandler = async (e) => {
     e.preventDefault();
+
+    const auth = getAuth();
     await postRegister(nickname, regiEmail, regiPassword);
-    setNickname("");
-    setRegiEmail("");
-    setRegiPassword("");
-    setMatchRegiPassword("");
   };
 
   return (
@@ -54,6 +52,7 @@ const Signup = () => {
                 ref={nicknameRef}
                 onChange={(e) => setNickname(e.target.value)}
                 required
+                value={nickname}
               ></input>
             </div>
             <div className='group'>
@@ -63,6 +62,7 @@ const Signup = () => {
                 id='email'
                 onChange={(e) => setRegiEmail(e.target.value)}
                 required
+                value={regiEmail}
               ></input>
             </div>
             <div className='group'>
@@ -70,12 +70,13 @@ const Signup = () => {
               <input
                 type='password'
                 id='password'
+                value={regiPassword}
                 onChange={(e) => setRegiPassword(e.target.value)}
                 required
               ></input>
             </div>
             <div className='group'>
-              <label htmlFor='password'>
+              <label htmlFor='checkpassword'>
                 비밀번호 확인
                 <FontAwesomeIcon
                   icon={faCheck}
@@ -90,7 +91,7 @@ const Signup = () => {
               </label>
               <input
                 type='password'
-                id='password'
+                id='checkpassword'
                 onChange={(e) => setMatchRegiPassword(e.target.value)}
                 required
                 onFocus={() => setMatchFocus(true)}
