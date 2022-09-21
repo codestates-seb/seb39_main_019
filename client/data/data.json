@@ -23,6 +23,36 @@
       "name": "영웅님",
       "email": "hollis97@naver.com",
       "password": "123123"
+    },
+    {
+      "email": "test@test.com",
+      "password": "12121212",
+      "id": 5
+    },
+    {
+      "email": "test@test.com",
+      "password": "12121212",
+      "id": 6
+    },
+    {
+      "email": "test@test.com",
+      "password": "12121212",
+      "id": 7
+    },
+    {
+      "email": "test@test.com",
+      "password": "12121212",
+      "id": 8
+    },
+    {
+      "email": "test@test.com",
+      "password": "12121212",
+      "id": 9
+    },
+    {
+      "email": "test@test.com",
+      "password": "232323",
+      "id": 10
     }
   ],
   "signup": [

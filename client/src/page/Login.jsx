@@ -34,6 +34,7 @@ const Login = () => {
   const kakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
   };
+  console.log(token);
 
   return (
     <div>
