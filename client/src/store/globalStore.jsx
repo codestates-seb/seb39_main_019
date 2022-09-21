@@ -1,7 +1,9 @@
 import create from "zustand";
 import axios from "axios";
 
-const useStore = create((set)=>({
+const useStore = create((set) => ({
+
+
 
   isLight : true,
   setIsLight : () => set((state)=>({isLight: !state.isLight}))
@@ -10,3 +12,4 @@ const useStore = create((set)=>({
 
 
 export default useStore
+

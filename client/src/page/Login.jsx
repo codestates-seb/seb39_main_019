@@ -7,18 +7,26 @@ import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 
+import useAuthStore from "../store/authStore";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef();
 
+  const { token } = useAuthStore();
+
   useEffect(() => {
     emailRef.current.focus();
   }, []);
 
-  const submitHandler = async(e) => {
+
+  const submitHandler = async (e) => {
     e.preventDefault();
     await postLogin(email, password);
+    // await signIn(email, password);
+    //≈setToken("hihhihi");
+    // console.log(token);
   };
 
   return (
@@ -72,12 +80,14 @@ const Login = () => {
               <button className='social'>
                 <Kakao />
               </button>
-              <button className='social'>
+              {/* <button className='social'>
                 <Naver />
-              </button>
-              <button className='social'>
-                <Google />
-              </button>
+              </button> */}
+              <div className='g_btn'>
+                <button className='social googlebtn'>
+                  <Google />
+                </button>
+              </div>
             </div>
           </section>
         </InputForm>
@@ -94,7 +104,7 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding-top: 120px;
+  padding-top: 60px;
 `;
 
 const HeaderLogo = styled.div`
@@ -178,46 +188,59 @@ const InputForm = styled.div`
   .btn:hover {
     background: #2f6b01c5;
   }
-section{
-  .diveder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-
-    hr {
+  section {
+    .diveder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: black;
       width: 100%;
-      border: none;
-      height: 0.5px;
-      background-color: #979797;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      hr {
+        width: 100%;
+        border: none;
+        height: 0.5px;
+        background-color: #979797;
+      }
+      span {
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 0px 16px;
+      }
     }
-    span {
-      text-transform: uppercase;
-      font-weight: 600;
-      margin: 0px 16px;
+
+    svg {
+      pointer-events: none;
+    }
+
+    .social_btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      /* border: 1px solid black; */
+    }
+    .social {
+      background-color: #fafafa;
+      margin: 0;
+      border-bottom: 0px;
+      /* border: 1px solid black; */
+      /* margin: 05px; */
+    }
+    .googlebtn {
+      width: 48px;
+      height: 48px;
+      /* border: 1px solid red; */
+      background-color: white;
+      border-radius: 50%;
+      position: relative;
+      bottom: -10px;
+      display: block;
+      margin: -9px;
+    }
+    .g_btn {
+      padding: 12px 24px;
     }
   }
-
-  svg {
-        pointer-events: none;
-    }
-
-    .social_btn{
-      display: flex;
- 
-  /* border: 1px solid black; */
-  
-}
-.social{
-  background-color:#fafafa;
-margin: 0;
-border-bottom: 0px ;
-/* border: 1px solid black; */
-margin: 05px;
-}
-}
-
 `;

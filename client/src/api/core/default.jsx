@@ -6,14 +6,28 @@ const instance = axios.create({
   // baseURL: process.env.REACT_APP_DB_HOST,
 });
 
+let token = localStorage.getItem("token")
+  ? localStorage.getItem("token")
+  : null;
+
 instance.interceptors.request.use(
-  (config) => {
-    config.headers["Content-Type"] = "application/json; charset=UTF-8;";
-    config.headers["Authorization"] = "토큰값";
+  async (config) => {
+    config.headers["Content-Type"] = "application/json; charset=utf-8";
+    config.headers["Authorization"] = `Bearer ${tokens?.access}`;
+
+    if (token.length === 0) return config;
+    const response = await axios.post(`${baseURL}/api/token/refresh/`, {
+      refresh: token.refresh,
+    });
+    localStorage.setItem("token", JSON.stringify(response.data));
+
+    setAuthTokens(response.data);
+
+    config.headers.Authorization = `Bearer ${response.data.access}`;
     return config;
   },
   (error) => {
-    return Promise.reject(error);
+    console.log(error);
   }
 );
 
