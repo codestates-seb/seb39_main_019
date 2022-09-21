@@ -2,6 +2,7 @@ import Login from '../page/Login'
 import Signup from '../page/Signup'
 import Main from '../page/Main'
 import Post from '../page/Post'
+import Randing from '../page/Randing'
 
 const RouteModule = [
   {
@@ -13,12 +14,16 @@ const RouteModule = [
     element: <Login/>
   },
   {
-    path:"/",
+    path:"/main",
     element: <Main/>
   },
   {
     path:"/post",
     element: <Post/>
+  },
+  {
+    path:"/",
+    element: <Randing/>
   }
 ]
 

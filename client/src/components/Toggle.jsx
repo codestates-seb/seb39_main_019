@@ -12,7 +12,7 @@ const ToggleContainer = styled.div`
     width: 50px;
     height: 24px;
     border-radius: 30px;
-    background-color: #47a300c5;
+    background-color: #3cd5aec5;
     transition: 0.5s;
     // TODO : .toggle--checked 클래스가 활성화 되었을 경우의 CSS를 구현합니다.
     &.toggle--checked {
@@ -42,9 +42,16 @@ const ToggleContainer = styled.div`
 `;
 
 export const Toggle = () => {
-  const { isDark, setIsDark } = useStore();
+  const { isLight, setIsLight } = useStore();
+
   const toggleHandler = () => {
-    setIsDark();
+     if(isLight===true){
+      setIsLight()
+       localStorage.setItem('theme','dark')
+     }else{
+      setIsLight()
+       localStorage.setItem('theme','light')
+     }
   };
 
   return (
@@ -52,12 +59,12 @@ export const Toggle = () => {
       <ToggleContainer onClick={toggleHandler}>
         <div
           className={
-            !isDark ? "toggle-container" : "toggle-container toggle--checked"
+            !isLight ?   "toggle-container toggle--checked":"toggle-container" 
           }
         />
         <div
           className={
-            !isDark ? "toggle-circle" : "toggle-circle toggle--checked"
+            !isLight ?   "toggle-circle toggle--checked" :"toggle-circle" 
           }
         ></div>
       </ToggleContainer>

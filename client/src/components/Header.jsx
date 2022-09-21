@@ -8,17 +8,17 @@ import useStore from '../store/globalStore'
 
 
 const Header = () => {
-const {isDark} = useStore()
+const {isLight} = useStore()
 
   return (
     <HeaderCotainer>
       <HeaderWrap>
         <HeaderLogo>
-         <Link to={'/'}><span>Puppy Buddy</span></Link> 
+         <Link to={'/main'}><span>Puppy Buddy</span></Link> 
         </HeaderLogo>
         <HeaderSerch>
-          <input/>
-          {isDark?<WhiteSerch/>:<BlackSerch/>}
+          <input placeholder='검색어를 입력해 주세요!'/>
+          {isLight?<BlackSerch/>:<WhiteSerch/>}
         </HeaderSerch>
         <HeaderButton>
           <Link to={'/login'}><button>로그인</button></Link>
@@ -51,9 +51,9 @@ align-items: center;
 
 const HeaderLogo = styled.div`
 padding-left: 20px;
-flex: 1;
+flex: 2;
   & span{
-    font-family: yg_jalnan;
+    /* font-family: yg_jalnan; */
     font-weight: 700;
     font-size: 24px;
     color: ${(props)=>props.theme.HeLogoColor};
@@ -63,24 +63,30 @@ flex: 1;
 
 const HeaderSerch = styled.div`
   position: relative;
-  flex: 5;
+  flex: 6;
   & input{
-    width: 70%;
-    padding: 5px;
-    text-indent: 15px;
-    background-color: ${(props)=>props.theme.HeaderColor};
+    width: 90%;
+    padding: 10px;
+    text-indent: 30px;
+    background-color: ${(props) => props.theme.bgColor};
     border: none;
-    border-bottom: 1px solid ${(props)=>props.theme.textColor};
+    border-radius: 10px;
+    font-size: 18px;
+    color: ${(props) => props.theme.textColor};
+    &::placeholder{
+      color:rgba(155,162,168,0.55);
+    }
+    &:focus {outline: none;}
   }
   & svg{
     position: absolute;
-    left: 0;
-    top: 3px;
+    left: 10px;
+    top: 12px;
   }
 
 `
 const HeaderButton = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
   & button{
@@ -92,6 +98,7 @@ const HeaderButton = styled.div`
     font-size: 18px;
     border: none;
     border-radius:30px;
+    white-space:nowrap;
     &:hover{
       background-color: ${(props)=>props.theme.HeLogoColor};
       color: ${(props)=>props.theme.HeaderColor}

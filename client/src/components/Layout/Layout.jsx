@@ -1,10 +1,11 @@
 import React from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
+import styled from 'styled-components'
 
 const Layout = ({child}) => {
   return (
-    <div>
+    <LayoutWrap>
       <div className='layout top'>
         <Header/>
       </div>
@@ -12,8 +13,12 @@ const Layout = ({child}) => {
       <div className='layout bottom'>
         <Footer/>
       </div>
-    </div>
+    </LayoutWrap>
   )
 }
 
 export default Layout
+
+const LayoutWrap = styled.div`
+  
+`

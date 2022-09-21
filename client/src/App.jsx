@@ -7,11 +7,21 @@ import { darkTheme, lightTheme } from "./assets/style/Theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const { isDark } = useStore();
+  const { isLight,setIsLight } = useStore();
+  const theme = isLight === false?  darkTheme :lightTheme 
+  
+  React.useEffect(()=>{
+    if(localStorage.getItem('theme')==='light'){
+      return
+    }else{
+      setIsLight()
+    }
+  },[])
+   
 
   return (
     <BrowserRouter>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Routes>
           {RouteModule.map((route, idx) => (

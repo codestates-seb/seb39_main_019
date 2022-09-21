@@ -16,7 +16,7 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault();
     await postLogin(email, password);
   };
@@ -94,6 +94,7 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding-top: 120px;
 `;
 
 const HeaderLogo = styled.div`
