@@ -23,15 +23,15 @@ const KakaoLogin = () => {
   //     .then((res) => res.json())
   //     .then((data) => {
   //       if (data) {
-  //         sessionStorage.setItem("token", response.data.access_token);
-  //         localStorage.setItem("token", response.data.refresh_token);
+  //         sessionStorage.setItem("token", data.access_token);
+  //         localStorage.setItem("token", data.refresh_token);
   //       } else {
   //         navigate("/");
   //       }
   //     });
   // };
 
-  //1 인가데이터만 보내기
+  // //1 인가데이터만 보내기
   const getKakaoToken = () => {
     axios({
       method: "post",
@@ -49,13 +49,13 @@ const KakaoLogin = () => {
     });
   };
 
-  const postKakaoToken = () => {
-    axios({
-      method: "post",
-      url: `백엔드 엔드포인트추가`,
-      data: `${KAKAO_CODE}`,
-    });
-  };
+  // const postKakaoToken = () => {
+  //   axios({
+  //     method: "post",
+  //     url: `백엔드 엔드포인트추가`,
+  //     data: `${KAKAO_CODE}`,
+  //   });
+  // };
 
   //2 토큰보내기
   const getKakaoToken2 = () => {
@@ -83,7 +83,7 @@ const KakaoLogin = () => {
   useEffect(() => {
     if (!location.search) return;
     getKakaoToken();
-    postKakaoToken();
+    // postKakaoToken();
   }, []);
 
   return (
