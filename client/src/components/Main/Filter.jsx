@@ -24,7 +24,7 @@ const Filter = () => {
           <button className={currentTab===idx? 'buttonFocus':'button'} onClick={handleFilter} key={idx}>{it}</button>
         ))}
         </Filters>
-        <Link to={'/post'}><button className='button'>글 작성하기</button></Link>
+        <Link to={'/post'}><button>글 작성하기</button></Link>
       </FilterBox>
     </FilterContainer>
   )
@@ -33,7 +33,8 @@ const Filter = () => {
 export default Filter
 
 const FilterContainer = styled.div`
-button{
+padding: 40px 0; 
+  button{
     padding: 10px 15px;
     margin-right: 10px;
     line-height: 30px;
@@ -49,15 +50,15 @@ button{
       transform: scale(1.05);
     }
   }
-    padding: 40px 0;
   
 `
 const FilterBox = styled.div`
   display: flex;
   justify-content: space-between;
-`
 
+`
 const Filters = styled.div`
+
   button{
     padding: 10px 15px;
     margin-right: 10px;
@@ -73,9 +74,5 @@ const Filters = styled.div`
   .button{
       color: ${(props)=>props.theme.textColor}; 
       background-color: ${(props)=>props.theme.HeaderColor};
-    }
-    .buttonFocus{
-      background-color: ${(props)=>props.theme.HeLogoColor};
-      color: ${(props)=>props.theme.HeaderColor}
     }
 `

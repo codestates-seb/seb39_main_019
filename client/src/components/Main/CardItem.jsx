@@ -1,17 +1,19 @@
+import { faRuler } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import React from 'react'
 import styled from 'styled-components'
 
 const CardItem = ({title,location,id,personality,size}) => {
 
-
+const img = 'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG'
 
   return (
     <ItemContainer>
       <ItemInner>
         <ImgBox>
           {/* <img src="https://via.placeholder.com/240x220"/> */}
-          <img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG"/>
+          {/* <img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG"/> */}
+          <div style={{backgroundImage: `url(${img})`}}/>       
         </ImgBox>
         <TextBox>
           <Title>
@@ -52,11 +54,17 @@ const ItemInner = styled.div`
 
 `
 const ImgBox =styled.div`
-  & img{
+  & div{
     width: 240px;
     height: 220px;
-    object-fit: cover;
-    border-radius: 5px;
+    /* object-fit: cover; */
+    border-radius: 5px; 
+    /* width: 100%;
+    height: 28vh; */
+     background-image: url("image-url");
+    background-repeat: no-repeat; // background-image가 컨테이너를 가득 채우지 못할 경우에도 반복하지 않는다.
+    background-size: cover; // 사이즈가 container에 맞지 않아도 꽉 차도록 채운다. 
+    background-position: center; // background-image가 컨테이너에 가운데로 오도록 한다.  
   }
 `
 const TextBox = styled.div`

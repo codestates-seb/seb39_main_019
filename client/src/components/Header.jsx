@@ -41,23 +41,30 @@ box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 
 `
 
 const HeaderWrap = styled.div`
+width: 100%;
 max-width: 1280px;
 margin: 0 auto;
 height: 100%;
 display: flex;
 justify-content: space-between;
 align-items: center;
+
 `
 
 const HeaderLogo = styled.div`
 padding-left: 20px;
 flex: 2;
+margin-right: 20px;
   & span{
     /* font-family: yg_jalnan; */
     font-weight: 700;
     font-size: 24px;
     color: ${(props)=>props.theme.HeLogoColor};
     cursor: pointer;
+    white-space: nowrap;
+  }
+  @media screen and (max-width: 610px) {
+     flex: 5;
   }
 `
 
@@ -83,12 +90,19 @@ const HeaderSerch = styled.div`
     left: 10px;
     top: 12px;
   }
-
+  @media screen and (max-width: 610px) {
+     display: none;
+  }
 `
 const HeaderButton = styled.div`
-  flex: 2;
+  flex: 1.5;
   display: flex;
   align-items: center;
+  padding-right: 5px;
+  @media screen and (max-width: 610px) {
+     padding-right: 10px;
+  }
+
   & button{
     padding: 5px 10px;
     color: ${(props)=>props.theme.textColor};
