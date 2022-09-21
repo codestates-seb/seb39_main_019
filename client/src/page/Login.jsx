@@ -8,6 +8,7 @@ import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 
 import useAuthStore from "../store/authStore";
+import { REST_API_KEY, REDIRECT_URI } from "../secretData";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,13 +21,18 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-
   const submitHandler = async (e) => {
     e.preventDefault();
     await postLogin(email, password);
     // await signIn(email, password);
     //≈setToken("hihhihi");
     // console.log(token);
+  };
+
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+
+  const kakaoLogin = () => {
+    window.location.href = KAKAO_AUTH_URL;
   };
 
   return (
@@ -77,7 +83,7 @@ const Login = () => {
             {/* <img src={kakao}></img>
             <img src={google}></img> */}
             <div className='social_btn'>
-              <button className='social'>
+              <button className='social' onClick={kakaoLogin}>
                 <Kakao />
               </button>
               {/* <button className='social'>

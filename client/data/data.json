@@ -88,6 +88,14 @@
       "personality": "# 활발함",
       "size": "# 중형견",
       "id": 6
+    },
+    {
+      "title": "ㅈㄷㄱㅈㄷ",
+      "body": "ㅈㄷㄱㅈㄷㄱ",
+      "location": "ㄴㅇㅁㄹㄴ",
+      "personality": "# 겁많음",
+      "size": "# 소형견",
+      "id": 7
     }
   ],
   "animal": [
