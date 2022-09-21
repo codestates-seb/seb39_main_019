@@ -8,7 +8,8 @@ import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 
 import useAuthStore from "../store/authStore";
-import { REST_API_KEY, REDIRECT_URI } from "../secretData";
+import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
+import { gapi } from "gapi-script";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -34,7 +35,16 @@ const Login = () => {
   const kakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
   };
-  console.log(token);
+
+  const googleLogin = () => {
+    function start() {
+      gapi.auth2.init({
+        clientId: GOOGLE_CLIENT_ID,
+        scope: "email",
+      });
+    }
+    gapi.load("client:auth2", start);
+  };
 
   return (
     <div>
@@ -91,7 +101,7 @@ const Login = () => {
                 <Naver />
               </button> */}
               <div className='g_btn'>
-                <button className='social googlebtn'>
+                <button className='social googlebtn' onClick={googleLogin}>
                   <Google />
                 </button>
               </div>
@@ -238,7 +248,7 @@ const InputForm = styled.div`
     .googlebtn {
       width: 48px;
       height: 48px;
-      /* border: 1px solid red; */
+      border: 1px solid #f5f1f1;
       background-color: white;
       border-radius: 50%;
       position: relative;

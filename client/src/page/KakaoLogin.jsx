@@ -14,43 +14,77 @@ const KakaoLogin = () => {
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
 
-  const getKakaoToken = () => {
-    fetch(`https://kauth.kakao.com/oauth/token`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.access_token) {
-          localStorage.setItem("token", data.access_token);
-        } else {
-          navigate("/");
-        }
-      });
-  };
-
   // const getKakaoToken = () => {
-  //   axios({
-  //     method: "post",
+  //   fetch(`https://kauth.kakao.com/oauth/token`, {
+  //     method: "POST",
   //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //     url: `https://kauth.kakao.com/oauth/token`,
-  //     data: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
-  //   }).then((response) => {
-  //     console.log(response);
-  //     if (response.data) {
-  //       sessionStorage.setItem("token", response.data.access_token);
-  //       localStorage.setItem("token", response.data.refresh_token);
-  //     } else {
-  //       navigate("/");
-  //     }
-  //   });
+  //     body: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data) {
+  //         sessionStorage.setItem("token", response.data.access_token);
+  //         localStorage.setItem("token", response.data.refresh_token);
+  //       } else {
+  //         navigate("/");
+  //       }
+  //     });
   // };
 
-  // useEffect(() => {
-  //   if (!location.search) return;
-  //   getKakaoToken();
-  // }, []);
+  //1 인가데이터만 보내기
+  const getKakaoToken = () => {
+    axios({
+      method: "post",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      url: `https://kauth.kakao.com/oauth/token`,
+      data: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
+    }).then((response) => {
+      console.log(response);
+      if (response.data) {
+        sessionStorage.setItem("token", response.data.access_token);
+        localStorage.setItem("token", response.data.refresh_token);
+      } else {
+        navigate("/");
+      }
+    });
+  };
+
+  const postKakaoToken = () => {
+    axios({
+      method: "post",
+      url: `백엔드 엔드포인트추가`,
+      data: `${KAKAO_CODE}`,
+    });
+  };
+
+  //2 토큰보내기
+  const getKakaoToken2 = () => {
+    axios({
+      method: "post",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      url: `https://kauth.kakao.com/oauth/token`,
+      data: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
+    }).then((response) => {
+      console.log(response);
+      if (response.data) {
+        const kakaoAccessToken = response.data.access_token;
+        const kakaoRefreshToken = response.data.refresh_token;
+
+        axios.post("백엔드 엔드포인트", {
+          kakaoAccessToken,
+          kakaoRefreshToken,
+        });
+      } else {
+        navigate("/");
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (!location.search) return;
+    getKakaoToken();
+    postKakaoToken();
+  }, []);
 
   return (
     <SocialModalContainer>
