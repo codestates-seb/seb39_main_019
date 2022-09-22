@@ -139,14 +139,15 @@ const SocialSuccess = () => {
     xhr.send("");
   };
 
-  // const apiHandler = () => {
+  // const apiHandler = (e) => {
+  //   e.preventDefault();
   //   axios({
-  //     method: "POST",
-  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc`,
+  //     method: "GET",
+  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc/animalInfo`,
   //     data: {
-  //       dog_reg_no: regiNumber,
-  //       owner_nm: ppOwner,
-  //       serviceKey: PUPPY_API_KEY,
+  //       dog_reg_no: `${regiNumber}`,
+  //       owner_nm: `${ppOwner}`,
+  //       serviceKey: `${PUPPY_API_KEY}`,
   //     },
   //   }).then((response) => {
   //     console.log("hi");
@@ -154,10 +155,11 @@ const SocialSuccess = () => {
   //   });
   // };
 
-  // const apiHandler = () => {
+  // const apiHandler = (e) => {
+  //   e.preventDefault();
   //   axios({
-  //     method: "POST",
-  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc`,
+  //     method: "GET",
+  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc/animalInfo`,
   //     data: `dog_reg_no=${regiNumber}&owner_nm=${ppOwner}&serviceKey=${PUPPY_API_KEY}`,
   //   }).then((response) => {
   //     console.log("hi");

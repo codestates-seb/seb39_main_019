@@ -25,3 +25,12 @@ dist-ssr
 
 #key
 secretData.js
+
+# production
+/build
+
+#env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
