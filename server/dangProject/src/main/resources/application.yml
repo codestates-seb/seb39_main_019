@@ -17,6 +17,13 @@ spring:
       hibernate:
         format_sql: true
       #show-sql: true
+  redis:
+    port: 6379
+    host: localhost
+
+#jwt:
+#  header:
+#  secret:
 
 logging:
   level:
@@ -33,3 +40,4 @@ server:
       charset: UTF-8
       #enabled: true
       force-response: true
+
