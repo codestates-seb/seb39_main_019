@@ -14,9 +14,4 @@ public class DangProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DangProjectApplication.class, args);
 	}
-
-	@Bean
-	public PasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
-	}
 }

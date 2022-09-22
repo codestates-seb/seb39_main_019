@@ -12,18 +12,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder encoder;
-
-    public MemberResponse retrieveMember(Long id) {
-        return memberRepository.findById(id)
-                .map(MemberResponse::of)
-                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-    }
 
     public MemberResponse register(MemberPostDto request) {
         Member newMember = Member.builder()
@@ -39,9 +36,31 @@ public class MemberService {
         return MemberResponse.of(createdMember);
     }
 
+    //회원 아이디 조회
+    public MemberResponse findMember(Long id) {
+        return memberRepository.findById(id)
+                .map(MemberResponse::of)
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+    }
+
+    //회원 목록 조회
+    public List<MemberResponse> findAllMembers() {
+       return memberRepository.findAll().stream()
+                .map(member -> MemberResponse.of(member))
+                .collect(Collectors.toList());
+    }
+
+    //회원 정보 검증
     public Member validate(String email, String password) throws RuntimeException {
         return memberRepository.findByEmail(email)
                 .filter(member -> encoder.matches(password, member.getPassword()))
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
+
+    //회원 탈퇴
+    public void delete(Long id) {
+        memberRepository.findById(id);
+        memberRepository.deleteById(id);
+    }
+
 }
