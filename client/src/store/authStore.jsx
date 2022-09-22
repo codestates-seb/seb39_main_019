@@ -16,6 +16,9 @@ const useAuthStore = create(
     // setToken: (value) => set((state) => ({ token: value })),
     // setToken: (input) => set(() => ({ token: input })),
     // setAddTodo: (input) => set((state) => ({ ...state.addTodo, input })),
+
+    ppAuth: "",
+    setPpAuth: (input) => set(() => ({ ppAuth: input })),
   }))
 );
 

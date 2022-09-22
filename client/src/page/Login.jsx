@@ -58,8 +58,8 @@ const Login = () => {
     };
     // 로그인 성공 후 실행하기 원하는 코드 작성.
     console.log(res);
-    console.log(profile);
-    console.log(userdata);
+    // console.log(profile);
+    // console.log(userdata);
     sessionStorage.setItem("token", res.accessToken);
     axios({
       method: "post",
