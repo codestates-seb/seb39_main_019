@@ -48,6 +48,11 @@ const ItemContainer = styled.div`
   &:hover{
       transform: scale(1.07);
     }
+    @media screen and (max-width:880px){
+    transition: 0s !important;
+    width:370px;
+    height: 430px;
+  }
 `
 const ItemInner = styled.div`
   padding: 20px;
@@ -65,7 +70,11 @@ const ImgBox =styled.div`
     background-repeat: no-repeat; // background-image가 컨테이너를 가득 채우지 못할 경우에도 반복하지 않는다.
     background-size: cover; // 사이즈가 container에 맞지 않아도 꽉 차도록 채운다. 
     background-position: center; // background-image가 컨테이너에 가운데로 오도록 한다.  
+    @media screen and (max-width:880px){
+    width:330px;
+    height: 330px;
   }
+ }
 `
 const TextBox = styled.div`
   margin-top: 10px;

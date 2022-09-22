@@ -45,4 +45,13 @@ const CardContainer = styled.div`
   grid-template-columns: repeat(4,1fr);
   gap: 20px;
   row-gap: 60px;
+  @media screen and (max-width:1160px){
+    grid-template-columns: repeat(3, minmax(100px ,auto));
+  }
+  @media screen and (max-width:880px){
+    grid-template-columns: repeat(2, minmax(100px ,auto));
+  }
+  @media screen and (max-width:750px){
+    grid-template-columns: repeat(1, minmax(240px ,auto));
+  }
 `

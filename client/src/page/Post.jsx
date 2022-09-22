@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+ import React,{useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
 import styled from 'styled-components'
@@ -6,7 +6,7 @@ import ImgLode from '../components/Post/ImgLode'
 import AnimalInfo from '../components/Post/AnimalInfo'
 import useStore from '../store/post'
 import axios from 'axios'
-
+  
 const Post = () => {
   const {location,personality,size,title,body,setTitle,setBody} = useStore()
   const titleRef = useRef()

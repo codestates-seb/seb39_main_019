@@ -44,6 +44,7 @@ padding: 40px 0;
     color: ${(props)=>props.theme.HeaderColor}; 
     background-color: ${(props)=>props.theme.HeLogoColor};
     transition: 0.3s;
+    white-space: nowrap;
     &:hover{
       background-color: ${(props)=>props.theme.HeaderColor};
       color: ${(props)=>props.theme.textColor};

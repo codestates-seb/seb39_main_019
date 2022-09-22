@@ -8,6 +8,9 @@ const AnimalInfo = () => {
 
 
 
+
+
+
   return (
     <AnimalContainer>
       <div>My Animal</div>
