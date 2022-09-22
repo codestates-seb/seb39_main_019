@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
-
+ 
 const Signup = () => {
   const [nickname, setNickname] = useState("");
   const [regiEmail, setRegiEmail] = useState("");
@@ -33,7 +33,7 @@ const Signup = () => {
   const regiSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const auth = getAuth();
+    const auth =  getAuth();
     await postRegister(nickname, regiEmail, regiPassword);
   };
 

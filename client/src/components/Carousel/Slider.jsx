@@ -45,6 +45,9 @@ const Container = styled.div`
   width: 100%;
   height: 700px;
   overflow: hidden;
+  @media screen and (max-width: 610px) {
+     height: 400px;
+  }
 `
 
 const SliderContinaer = styled.div`
