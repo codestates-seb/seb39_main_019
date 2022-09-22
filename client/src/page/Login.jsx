@@ -6,15 +6,19 @@ import { postLogin } from "../api/utils";
 import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
+import axios from "axios";
 
 import useAuthStore from "../store/authStore";
-import { REST_API_KEY, REDIRECT_URI } from "../secretData";
+import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
+import { gapi } from "gapi-script";
+import GoogleLogin from "react-google-login";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef();
-
+  const navigate = useNavigate();
   const { token } = useAuthStore();
 
   useEffect(() => {
@@ -34,7 +38,41 @@ const Login = () => {
   const kakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
   };
-  console.log(token);
+
+  useEffect(() => {
+    function start() {
+      gapi.auth2.init({
+        clientId: GOOGLE_CLIENT_ID,
+        scope: "email",
+      });
+    }
+    gapi.load("client:auth2", start);
+  }, []);
+
+  const onSuccess = (res) => {
+    const profile = res.getBasicProfile();
+    const userdata = {
+      email: profile.getEmail(),
+      image: profile.getImageUrl(),
+      name: profile.getName(),
+    };
+    // 로그인 성공 후 실행하기 원하는 코드 작성.
+    console.log(res);
+    // console.log(profile);
+    // console.log(userdata);
+    sessionStorage.setItem("token", res.accessToken);
+    axios({
+      method: "post",
+      url: `백엔드 구글 엔드포인트추가`,
+      data: res.accessToken,
+    });
+    navigate("/socialsuccess");
+  };
+
+  const onFailure = (res) => {
+    // alert("구글 로그인에 실패하였습니다");
+    console.log("err", res);
+  };
 
   return (
     <div>
@@ -78,23 +116,26 @@ const Login = () => {
           <section>
             <div className='diveder'>
               <hr />
-              <span>Or</span>
+              <span>OR</span>
               <hr />
             </div>
             {/* <img src={kakao}></img>
             <img src={google}></img> */}
             <div className='social_btn'>
-              <button className='social' onClick={kakaoLogin}>
+              <button className='kakaoBtn' onClick={kakaoLogin}>
                 <Kakao />
               </button>
               {/* <button className='social'>
                 <Naver />
               </button> */}
-              <div className='g_btn'>
-                <button className='social googlebtn'>
-                  <Google />
-                </button>
-              </div>
+              <GoogleLogin
+                className='googleBtn'
+                clientId={GOOGLE_CLIENT_ID}
+                buttonText='' // 버튼에 뜨는 텍스트
+                onSuccess={onSuccess}
+                onFailure={onFailure}
+                // cookiePolicy={"single_host_origin"}
+              />
             </div>
           </section>
         </InputForm>
@@ -112,14 +153,18 @@ const LoginContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   padding-top: 60px;
+  width: 100%;
+  max-width: 100%;
 `;
 
 const HeaderLogo = styled.div`
-  padding-left: 20px;
+  /* padding-left: 20px; */
+  margin-bottom: 20px;
+
   & span {
-    font-family: yg_jalnan;
+    /* font-family: yg_jalnan; */
     font-weight: 700;
-    font-size: 22px;
+    font-size: 35px;
     color: ${(props) => props.theme.HeLogoColor};
     cursor: pointer;
   }
@@ -130,10 +175,8 @@ const InputForm = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 380px;
-  margin: 4em auto;
-  padding: 3em 2em 2em 2em;
+  padding: 48px 32px 32px 32px;
   background: #fafafa;
   border: 1px solid #ebebeb;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
@@ -170,22 +213,21 @@ const InputForm = styled.div`
   }
 
   button {
-    position: relative;
-    display: inline-block;
     padding: 12px 24px;
-    margin: 0.3em 0 1em 0;
+    margin: 2px 0 20px 0;
     width: 100%;
-    color: #fff;
-    font-size: 16px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
     line-height: 20px;
     -webkit-font-smoothing: antialiased;
     text-align: center;
     letter-spacing: 1px;
     border: 0;
-    border-bottom: 2px solid #4db101c5;
-    cursor: pointer;
+    border-bottom: 2px solid #2fa88ac5;
     transition: all 0.15s ease;
-    background: #47a300c5;
+    background: #3cd5aec5;
+    border-radius: 5px;
     text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
   }
   .btn:focus {
@@ -193,9 +235,14 @@ const InputForm = styled.div`
   }
 
   .btn:hover {
-    background: #2f6b01c5;
+    background: #2fa88ac5;
   }
+
   section {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
     .diveder {
       display: flex;
       align-items: center;
@@ -225,29 +272,33 @@ const InputForm = styled.div`
     .social_btn {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      /* border: 1px solid black; */
+      justify-content: space-evenly;
     }
-    .social {
+    .kakaoBtn {
       background-color: #fafafa;
       margin: 0;
       border-bottom: 0px;
-      /* border: 1px solid black; */
-      /* margin: 05px; */
-    }
-    .googlebtn {
+      padding: 0px 0px;
       width: 48px;
       height: 48px;
-      /* border: 1px solid red; */
-      background-color: white;
-      border-radius: 50%;
-      position: relative;
-      bottom: -10px;
-      display: block;
-      margin: -9px;
     }
-    .g_btn {
-      padding: 12px 24px;
+    .googleBtn {
+      margin: 0px 0px;
+      width: 48px;
+      height: 48px;
+      border-radius: 100% !important;
+
+      & div {
+        width: 48px;
+        height: 48px;
+        border-radius: 100% !important;
+
+        & svg {
+          /* width: 20px;
+          height: 50px; */
+          margin: 5px 1px 0px 5px;
+        }
+      }
     }
   }
 `;

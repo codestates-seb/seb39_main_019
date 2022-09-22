@@ -3,7 +3,8 @@ import Signup from "../page/Signup";
 import Main from "../page/Main";
 import Post from "../page/Post";
 import Randing from "../page/Randing";
-import KakaoLogin from "../page/KakaoLogin";
+import SocialSuccess from "../page/SocialSuccess";
+import PuppyAuthentication from "../page/PuppyAuthentication";
 
 const RouteModule = [
   {
@@ -27,8 +28,12 @@ const RouteModule = [
     element: <Randing />,
   },
   {
-    path: "/kakaologin",
-    element: <KakaoLogin />,
+    path: "/socialsuccess",
+    element: <SocialSuccess />,
+  },
+  {
+    path: "/puppyauthentication",
+    element: <PuppyAuthentication />,
   },
 ];
 

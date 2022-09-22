@@ -5,10 +5,11 @@ import axios from "axios";
 //   return instance({ url: "login" });
 // };
 
+//서버 테스트용
 const postLogin2 = (email, password) => {
   instance({
     method: "post",
-    url: "http://localhost:3001/user",
+    url: "/api/auth/login",
     data: {
       email: email,
       password: password,
@@ -27,6 +28,19 @@ const postLogin = (email, password) => {
   }).then((response) => {
     console.log(response);
     localStorage.setItem("token", response.data);
+  });
+};
+
+//서버 테스트용
+const postRegister1 = (nickname, regiEmail, regiPassword) => {
+  instance({
+    method: "post",
+    url: "/api/auth/signup",
+    data: {
+      nickname: nickname,
+      email: regiEmail,
+      password: regiPassword,
+    },
   });
 };
 
