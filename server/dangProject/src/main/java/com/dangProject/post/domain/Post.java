@@ -1,16 +1,14 @@
-package com.dangProject.board.domain;
+package com.dangProject.post.domain;
 
 import com.dangProject.audit.BaseTime;
-import com.dangProject.board.option.Personality;
-import com.dangProject.board.option.Size;
-import com.dangProject.file.File;
+import com.dangProject.post.option.Personality;
+import com.dangProject.post.option.Size;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
