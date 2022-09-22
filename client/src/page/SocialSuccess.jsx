@@ -6,10 +6,10 @@ import styled from "styled-components";
 import Signup from "./Signup";
 import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-//이 페이지는 아마도 메인에 있어야할지도...?
 
-const KakaoLogin = () => {
+const SocialSuccess = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
@@ -86,11 +86,18 @@ const KakaoLogin = () => {
     // postKakaoToken();
   }, []);
 
+  // setTimeout(() => {
+  //   // console.log("hi");
+  //   navigate("/socialsuccess");
+  // }, 3000);안됌
+
   return (
     <SocialModalContainer>
-      <div className='modalHeader'>
-        <h2>PuppyBuddy</h2>
-      </div>
+      <HeaderLogo>
+          <Link to={"/"}>
+            <span>Puppy Buddy</span>
+          </Link>
+        </HeaderLogo>
       <div className='modalMain'>
         축하드려요! 가입되었습니다. PuppyBuddy에서 행복한 하루되세요!
       </div>
@@ -98,7 +105,7 @@ const KakaoLogin = () => {
   );
 };
 
-export default KakaoLogin;
+export default SocialSuccess;
 
 const SocialModalContainer = styled.div`
   display: flex;
@@ -107,10 +114,18 @@ const SocialModalContainer = styled.div`
   align-items: center;
   height: 100vh;
 
-  .modalHeader {
-    margin: 10px;
-  }
-  .modalMain {
-    margin: 10px;
+  
+  
+`;
+
+const HeaderLogo = styled.div`
+  /* padding-left: 20px; */
+margin-bottom: 20px;
+  & span {
+    /* font-family: yg_jalnan; */
+    font-weight: 700;
+    font-size: 35px;
+    color: ${(props) => props.theme.HeLogoColor};
+    cursor: pointer;
   }
 `;

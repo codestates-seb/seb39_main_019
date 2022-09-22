@@ -6,6 +6,7 @@ import { postLogin } from "../api/utils";
 import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
+import axios from "axios";
 
 import useAuthStore from "../store/authStore";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
@@ -60,7 +61,12 @@ const Login = () => {
     console.log(profile);
     console.log(userdata);
     sessionStorage.setItem("token", res.accessToken);
-    navigate("/kakaologin");
+    axios({
+      method: "post",
+      url: `백엔드 구글 엔드포인트추가`,
+      data: res.accessToken,
+    });
+    navigate("/socialsuccess");
   };
 
   const onFailure = (res) => {
@@ -152,12 +158,13 @@ const LoginContainer = styled.div`
 `;
 
 const HeaderLogo = styled.div`
-  padding-left: 20px;
+  /* padding-left: 20px; */
+  margin-bottom: 20px;
 
   & span {
     /* font-family: yg_jalnan; */
     font-weight: 700;
-    font-size: 24px;
+    font-size: 35px;
     color: ${(props) => props.theme.HeLogoColor};
     cursor: pointer;
   }
@@ -169,8 +176,7 @@ const InputForm = styled.div`
   justify-content: center;
   align-items: center;
   width: 380px;
-  margin: 4em auto;
-  padding: 3em 2em 2em 2em;
+  padding: 48px 32px 32px 32px;
   background: #fafafa;
   border: 1px solid #ebebeb;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
@@ -207,20 +213,18 @@ const InputForm = styled.div`
   }
 
   button {
-    position: relative;
-    display: inline-block;
     padding: 12px 24px;
-    margin: 0.3em 0 1em 0;
+    margin: 2px 0 20px 0;
     width: 100%;
-    color: #fff;
-    font-size: 16px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
     line-height: 20px;
     -webkit-font-smoothing: antialiased;
     text-align: center;
     letter-spacing: 1px;
     border: 0;
     border-bottom: 2px solid #2fa88ac5;
-    cursor: pointer;
     transition: all 0.15s ease;
     background: #3cd5aec5;
     border-radius: 5px;
