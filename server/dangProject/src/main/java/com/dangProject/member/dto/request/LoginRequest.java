@@ -3,10 +3,9 @@ package com.dangProject.member.dto.request;
 import lombok.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDto {
+public class LoginRequest {
 
     private String email;
     private String password;
