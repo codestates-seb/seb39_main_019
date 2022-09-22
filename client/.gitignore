@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 #key
-/src/secretData.js
+client/src/secretData.js
