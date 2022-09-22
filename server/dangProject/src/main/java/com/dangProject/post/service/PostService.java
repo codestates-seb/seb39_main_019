@@ -1,9 +1,9 @@
-package com.dangProject.board.service;
+package com.dangProject.post.service;
 
-import com.dangProject.board.domain.Post;
-import com.dangProject.board.dto.PostRequestDto;
-import com.dangProject.board.dto.PostResponseDto;
-import com.dangProject.board.repository.PostRepository;
+import com.dangProject.post.domain.Post;
+import com.dangProject.post.dto.PostRequestDto;
+import com.dangProject.post.dto.PostResponseDto;
+import com.dangProject.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
