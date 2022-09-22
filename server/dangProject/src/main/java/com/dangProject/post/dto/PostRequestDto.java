@@ -1,9 +1,8 @@
-package com.dangProject.board.dto;
+package com.dangProject.post.dto;
 
-import com.dangProject.audit.BaseTime;
-import com.dangProject.board.domain.Post;
-import com.dangProject.board.option.Personality;
-import com.dangProject.board.option.Size;
+import com.dangProject.post.domain.Post;
+import com.dangProject.post.option.Personality;
+import com.dangProject.post.option.Size;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

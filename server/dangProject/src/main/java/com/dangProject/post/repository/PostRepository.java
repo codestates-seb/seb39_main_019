@@ -1,6 +1,6 @@
-package com.dangProject.board.repository;
+package com.dangProject.post.repository;
 
-import com.dangProject.board.domain.Post;
+import com.dangProject.post.domain.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

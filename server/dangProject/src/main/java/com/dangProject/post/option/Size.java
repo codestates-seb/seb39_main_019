@@ -1,4 +1,4 @@
-package com.dangProject.board.option;
+package com.dangProject.post.option;
 
 import com.dangProject.common.EnumModel;
 

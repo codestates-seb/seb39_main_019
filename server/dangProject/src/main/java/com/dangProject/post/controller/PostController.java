@@ -1,8 +1,8 @@
-package com.dangProject.board.controller;
+package com.dangProject.post.controller;
 
-import com.dangProject.board.dto.PostRequestDto;
-import com.dangProject.board.dto.PostResponseDto;
-import com.dangProject.board.service.PostService;
+import com.dangProject.post.dto.PostRequestDto;
+import com.dangProject.post.dto.PostResponseDto;
+import com.dangProject.post.service.PostService;
 import com.dangProject.commondto.MultipleResponseDto;
 import com.dangProject.commondto.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
