@@ -53,6 +53,8 @@ const postRegister = (nickname, regiEmail, regiPassword) => {
       email: regiEmail,
       password: regiPassword,
     },
+  }).then(() => {
+    setSuccess(true);
   });
 };
 

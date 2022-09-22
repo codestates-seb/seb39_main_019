@@ -8,9 +8,11 @@ import {
   faTimes,
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import Login from "./Login";
+import axios from "axios";
 
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
- 
+// const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
+
 const Signup = () => {
   const [nickname, setNickname] = useState("");
   const [regiEmail, setRegiEmail] = useState("");
@@ -18,6 +20,7 @@ const Signup = () => {
   const [matchRegiPassword, setMatchRegiPassword] = useState("");
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const nicknameRef = useRef();
 
@@ -33,87 +36,106 @@ const Signup = () => {
   const regiSubmitHandler = async (e) => {
     e.preventDefault();
 
-    const auth =  getAuth();
-    await postRegister(nickname, regiEmail, regiPassword);
+    // await postRegister(nickname, regiEmail, regiPassword);
+
+    await axios({
+      method: "post",
+      url: "http://localhost:3001/signup",
+      data: {
+        nickname: nickname,
+        email: regiEmail,
+        password: regiPassword,
+      },
+    }).then(() => {
+      setSuccess(true);
+    });
   };
 
   return (
-    <div>
-      <Header />
-      <SignupContainer>
-        <InputForm>
-          <h1>회원가입</h1>
-          <form onSubmit={regiSubmitHandler}>
-            <div className='group'>
-              <label htmlFor='nickname'>닉네임</label>
-              <input
-                type='text'
-                id='nickname'
-                ref={nicknameRef}
-                onChange={(e) => setNickname(e.target.value)}
-                required
-                value={nickname}
-              ></input>
-            </div>
-            <div className='group'>
-              <label htmlFor='email'>이메일</label>
-              <input
-                type='email'
-                id='email'
-                onChange={(e) => setRegiEmail(e.target.value)}
-                required
-                value={regiEmail}
-              ></input>
-            </div>
-            <div className='group'>
-              <label htmlFor='password'>비밀번호</label>
-              <input
-                type='password'
-                id='password'
-                value={regiPassword}
-                onChange={(e) => setRegiPassword(e.target.value)}
-                required
-              ></input>
-            </div>
-            <div className='group'>
-              <label htmlFor='checkpassword'>
-                비밀번호 확인
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  className={validMatch && matchRegiPassword ? "valid" : "hide"}
-                />
-                <FontAwesomeIcon
-                  icon={faTimes}
-                  className={
-                    validMatch || !matchRegiPassword ? "hide" : "invalid"
-                  }
-                />
-              </label>
-              <input
-                type='password'
-                id='checkpassword'
-                onChange={(e) => setMatchRegiPassword(e.target.value)}
-                required
-                onFocus={() => setMatchFocus(true)}
-                onBlur={() => setMatchFocus(false)}
-              ></input>
-              <p
-                id='confirmnote'
-                className={
-                  matchFocus && !validMatch ? "instructions" : "offscreen"
-                }
-              >
-                <FontAwesomeIcon icon={faInfoCircle} />
-                비밀번호와 일치하지 않습니다.
-              </p>
-            </div>
-            <button className='btn' disabled={!validMatch ? true : false}>
-              회원가입
-            </button>
-          </form>
-        </InputForm>
-      </SignupContainer>
-    </div>
+    <>
+      {success ? (
+        <Login />
+      ) : (
+        <div>
+          <Header />
+          <SignupContainer>
+            <InputForm>
+              <h1>회원가입</h1>
+              <form onSubmit={regiSubmitHandler}>
+                <div className='group'>
+                  <label htmlFor='nickname'>닉네임</label>
+                  <input
+                    type='text'
+                    id='nickname'
+                    ref={nicknameRef}
+                    onChange={(e) => setNickname(e.target.value)}
+                    required
+                    value={nickname}
+                  ></input>
+                </div>
+                <div className='group'>
+                  <label htmlFor='email'>이메일</label>
+                  <input
+                    type='email'
+                    id='email'
+                    onChange={(e) => setRegiEmail(e.target.value)}
+                    required
+                    value={regiEmail}
+                  ></input>
+                </div>
+                <div className='group'>
+                  <label htmlFor='password'>비밀번호</label>
+                  <input
+                    type='password'
+                    id='password'
+                    value={regiPassword}
+                    onChange={(e) => setRegiPassword(e.target.value)}
+                    required
+                  ></input>
+                </div>
+                <div className='group'>
+                  <label htmlFor='checkpassword'>
+                    비밀번호 확인
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className={
+                        validMatch && matchRegiPassword ? "valid" : "hide"
+                      }
+                    />
+                    <FontAwesomeIcon
+                      icon={faTimes}
+                      className={
+                        validMatch || !matchRegiPassword ? "hide" : "invalid"
+                      }
+                    />
+                  </label>
+                  <input
+                    type='password'
+                    id='checkpassword'
+                    onChange={(e) => setMatchRegiPassword(e.target.value)}
+                    required
+                    onFocus={() => setMatchFocus(true)}
+                    onBlur={() => setMatchFocus(false)}
+                  ></input>
+                  <p
+                    id='confirmnote'
+                    className={
+                      matchFocus && !validMatch ? "instructions" : "offscreen"
+                    }
+                  >
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                    비밀번호와 일치하지 않습니다.
+                  </p>
+                </div>
+                <button className='btn' disabled={!validMatch ? true : false}>
+                  회원가입
+                </button>
+              </form>
+            </InputForm>
+          </SignupContainer>
+        </div>
+      )}
+    </>
   );
 };
 

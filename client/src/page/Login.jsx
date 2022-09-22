@@ -66,7 +66,7 @@ const Login = () => {
       url: `백엔드 구글 엔드포인트추가`,
       data: res.accessToken,
     });
-    navigate("/socialsuccess");
+    navigate("/puppyauthentication");
   };
 
   const onFailure = (res) => {

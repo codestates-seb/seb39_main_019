@@ -3,8 +3,8 @@ import Signup from "../page/Signup";
 import Main from "../page/Main";
 import Post from "../page/Post";
 import Randing from "../page/Randing";
-import SocialSuccess from "../page/SocialSuccess";
 import PuppyAuthentication from "../page/PuppyAuthentication";
+import PuppyInfo from "../page/PuppyInfo";
 
 const RouteModule = [
   {
@@ -28,12 +28,12 @@ const RouteModule = [
     element: <Randing />,
   },
   {
-    path: "/socialsuccess",
-    element: <SocialSuccess />,
-  },
-  {
     path: "/puppyauthentication",
     element: <PuppyAuthentication />,
+  },
+  {
+    path: "/puppyinfo",
+    element: <PuppyInfo />,
   },
 ];
 
