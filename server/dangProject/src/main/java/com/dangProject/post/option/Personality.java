@@ -4,9 +4,9 @@ import com.dangProject.common.EnumModel;
 
 public enum Personality implements EnumModel {
     ACTIVE("# 활발함"),
-    SHY("# 소심함"),
-    KIND("# 상냥함"),
-    GENTLE("# 온화함");
+    TIMID("# 소심함"),
+    SHY("# 겁많음"),
+    CUTE("# 애교많음");
 
     public String value;
 
