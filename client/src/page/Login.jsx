@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { postLogin } from "../api/utils";
 import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
@@ -17,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const emailRef = useRef();
+  const emailRef = useRef(null);
   const navigate = useNavigate();
   const { token } = useAuthStore();
 
@@ -27,10 +26,22 @@ const Login = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await postLogin(email, password);
-    // await signIn(email, password);
-    //≈setToken("hihhihi");
-    // console.log(token);
+
+    await axios({
+      method: "post",
+      url: "/api/auth/login",
+      // url: "http://localhost:3001/user",
+      data: {
+        email: email,
+        password: password,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        // localStorage.setItem("refresh_token", response.data);
+        // sessionStorage.setItem("access_token", response.data);
+      })
+      .catch((err) => console.log("err", err));
   };
 
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
@@ -66,7 +77,7 @@ const Login = () => {
       url: `백엔드 구글 엔드포인트추가`,
       data: res.accessToken,
     });
-    navigate("/socialsuccess");
+    navigate("/puppyauthentication");
   };
 
   const onFailure = (res) => {
