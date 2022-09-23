@@ -5,14 +5,14 @@ import useStore from "../store/globalStore";
 const ToggleContainer = styled.div`
   position: relative;
   /* left: 10%; */
-  margin-left: 10px;
+  margin-left: 20px;
   cursor: pointer;
 
   > .toggle-container {
     width: 50px;
     height: 24px;
     border-radius: 30px;
-    background-color: #3cd5aec5;
+    background-color: #59c8f0c5;
     transition: 0.5s;
     // TODO : .toggle--checked 클래스가 활성화 되었을 경우의 CSS를 구현합니다.
     &.toggle--checked {

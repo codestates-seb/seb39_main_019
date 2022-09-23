@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const emailRef = useRef();
+  const emailRef = useRef(null);
   const navigate = useNavigate();
   const { token } = useAuthStore();
 
@@ -25,9 +25,17 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-  const submitHandler = async (e) => {
+console.log(email,password)
+  const submitHandler =  (e) => {
     e.preventDefault();
-    await postLogin(email, password);
+    axios({
+      url:'api/auth/login',
+      method:'post',
+      data:{
+        email:email,
+        password:password
+      }
+    }).then((data)=>console.log(data))
     // await signIn(email, password);
     //≈setToken("hihhihi");
     // console.log(token);

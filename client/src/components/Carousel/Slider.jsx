@@ -1,10 +1,11 @@
 import React,{useState,useEffect,useRef} from 'react'
 import styled from 'styled-components'
 import Slide from './Slide'
-import dog1 from '../../assets/imgs/dog1.jpg'
-import dog2 from '../../assets/imgs/dog2.jpg'
+import secondLogo from '../../assets/imgs/secondLogo.png'
+import firstLogo from '../../assets/imgs/firstLogo.png'
+import dog1 from '../../assets/imgs/dog1.png'
 
-const dogs = [dog1,dog2]
+const dogs = [dog1,firstLogo]
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -43,7 +44,7 @@ export default Slider
 
 const Container = styled.div`
   width: 100%;
-  height: 700px;
+  height: 600px;
   overflow: hidden;
   @media screen and (max-width: 610px) {
      height: 400px;

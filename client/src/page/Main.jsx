@@ -6,6 +6,8 @@ import Filter from '../components/Main/Filter'
 import CardPart from '../components/Main/CardPart'
 
 const Main = () => {
+
+
  return (
    <Layout child={
      <MainContainer>

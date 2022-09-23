@@ -1,12 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import useScroll from '../../hooks/useScroll'
 
-const Section2 = ({scrollY}) => {
+const Section2 = () => {
+
+  const {scrollY} = useScroll()
+
 
   return (
     <TwoContainer>
       <TwoInner>
-       <div className={scrollY>350?'on':'off'}>
+       <div className={scrollY>300?'on':'off'}>
           <span>퍼피 버디만 하면</span><br/>
           <span>강아지 친구가 만들어지는</span>
           <p>원하는 동네에서 원하는 강아지 친구랑</p>
@@ -31,11 +35,11 @@ position: relative;
 
   & span{
          font-family: sans-serif;
-         background: linear-gradient(to right, #6dc0adc5, #29e2b4c5);
+         background: linear-gradient(to right, #00bbffc5, #5ccbf3c5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
          font-style: normal;
-         font-size: 45px;
+         font-size: 60px;
          font-weight: bold;
     }
     & p{
@@ -49,13 +53,13 @@ position: relative;
     position: absolute;
     opacity: 0;
     top: 50px;
-    left: 35%;
+    left: 30%;
 
   }
   .on{
     position: absolute;
     top: 0px;
     opacity: 1;
-    left: 35%;
+    left: 30%;
   }
 `

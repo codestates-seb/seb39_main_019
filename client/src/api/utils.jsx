@@ -20,7 +20,7 @@ const postLogin2 = (email, password) => {
 const postLogin = (email, password) => {
   axios({
     method: "post",
-    url: "http://localhost:3001/user",
+    url: "http://43.200.20.180:8080/auth/login",
     data: {
       email: email,
       password: password,

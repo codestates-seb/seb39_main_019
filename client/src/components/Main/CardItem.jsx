@@ -3,7 +3,7 @@ import axios from 'axios'
 import React from 'react'
 import styled from 'styled-components'
 
-const CardItem = ({title,location,id,personality,size}) => {
+const CardItem = ({title,guName,id,personality,size}) => {
 
 const img = 'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG'
 
@@ -24,7 +24,7 @@ const img = 'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcd
               {personality} {size}
             </div>
             <div>
-              {location}
+              {guName}
             </div>
           </SubTitle>
         </TextBox>
@@ -46,33 +46,45 @@ const ItemContainer = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: 0.3s;
   &:hover{
-      transform: scale(1.07);
-    }
-    @media screen and (max-width:880px){
-    transition: 0s !important;
-    width:370px;
-    height: 430px;
+  transform: scale(1.07);
+  }
+  @media screen and (max-width:880px){
+  transition: 0s !important;
+  width:370px;
+  height: 430px;
+  }
+  @media screen and (max-width:750px){
+    /* transition: 0s !important; */
+  width:100%;
+  height: 430px;
+  }
+  @media screen and (max-width:463px){
+  width: 100%;
+  height: 330px;
   }
 `
 const ItemInner = styled.div`
   padding: 20px;
-
 `
 const ImgBox =styled.div`
   & div{
-    width: 240px;
-    height: 220px;
-    /* object-fit: cover; */
-    border-radius: 5px; 
-    /* width: 100%;
-    height: 28vh; */
-     background-image: url("image-url");
-    background-repeat: no-repeat; // background-image가 컨테이너를 가득 채우지 못할 경우에도 반복하지 않는다.
-    background-size: cover; // 사이즈가 container에 맞지 않아도 꽉 차도록 채운다. 
-    background-position: center; // background-image가 컨테이너에 가운데로 오도록 한다.  
-    @media screen and (max-width:880px){
-    width:330px;
-    height: 330px;
+  width: 240px;
+  height: 220px;  
+  border-radius: 5px; 
+  background-image: url("image-url");      /* object-fit: cover; */
+  background-repeat: no-repeat; // background-image가 컨테이너를 가득 채우지 못할 경우에도 반복하지 않는다.
+  background-size: cover; // 사이즈가 container에 맞지 않아도 꽉 차도록 채운다. 
+  background-position: center; // background-image가 컨테이너에 가운데로 오도록 한다.  
+  @media screen and (max-width:880px){
+  width:330px;
+  height: 330px;
+  }
+  @media screen and (max-width:750px){
+  width:100%;
+  }
+  @media screen and (max-width:463px){
+  width: 100%;
+  height: 230px;
   }
  }
 `

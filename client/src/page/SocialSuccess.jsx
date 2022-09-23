@@ -95,6 +95,12 @@ const SocialSuccess = () => {
 
   const apiHandler = (e) => {
     e.preventDefault();
+    // axios.get("http://apis.data.go.kr/1543061/animalInfoSrvc/animalInfo",{
+    //   params: {
+    //     // encodeURIComponent("serviceKey"):`${PUPPY_API_KEY}`,
+
+    //   },
+    // })
 
     var xhr = new XMLHttpRequest();
     var url =
@@ -126,6 +132,7 @@ const SocialSuccess = () => {
     xhr.open("GET", url + queryParams);
     xhr.onreadystatechange = function () {
       if (this.readyState == 4) {
+        console.log(this.responseText.item)
         alert(
           "Status: " +
             this.status +
@@ -139,14 +146,15 @@ const SocialSuccess = () => {
     xhr.send("");
   };
 
-  // const apiHandler = () => {
+  // const apiHandler = (e) => {
+  //   e.preventDefault()
   //   axios({
-  //     method: "POST",
-  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc`,
+  //     method: "get",
+  //     url: `https://apis.data.go.kr/1543061/animalInfoSrvc/animalInfo`,
   //     data: {
-  //       dog_reg_no: regiNumber,
-  //       owner_nm: ppOwner,
-  //       serviceKey: PUPPY_API_KEY,
+  //       dog_reg_no: `${regiNumber}`,
+  //       owner_nm: `${ppOwner}`,
+  //       serviceKey: `${PUPPY_API_KEY}`,
   //     },
   //   }).then((response) => {
   //     console.log("hi");
@@ -227,7 +235,7 @@ const SocialModalContainer = styled.div`
       display: flex;
       flex-direction: column;
     } */
-  }
+  
 `;
 
 const HeaderLogo = styled.div`
