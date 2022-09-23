@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
-import { postRegister } from "../api/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -21,8 +20,7 @@ const Signup = () => {
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  const nicknameRef = useRef();
+  const nicknameRef = useRef(null);
 
   useEffect(() => {
     nicknameRef.current.focus();

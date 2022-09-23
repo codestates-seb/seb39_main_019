@@ -13,10 +13,9 @@ import { useRef } from "react";
 
 const PuppyAuthentication = () => {
   const [api, setApi] = useState("");
-
   const [ppOwner, setPpOwner] = useState("");
   const [regiNumber, setRegiNumber] = useState("");
-  const ppOwnerRef = useRef();
+  const ppOwnerRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
@@ -209,7 +208,7 @@ const PuppyAuthentication = () => {
             <div className='group'>
               <label htmlFor='regiNumber'>등록번호</label>
               <input
-                type='number'
+                type='text'
                 id='regiNumber'
                 onChange={(e) => setRegiNumber(e.target.value)}
                 required
