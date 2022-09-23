@@ -24,10 +24,12 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-  const submitHandler = async (e) => {
+console.log(email,password)
+  const submitHandler =  (e) => {
     e.preventDefault();
 
-    await axios({
+
+     axios({
       method: "post",
       url: "/api/auth/login",
       // url: "http://localhost:3001/user",
@@ -42,6 +44,7 @@ const Login = () => {
         // sessionStorage.setItem("access_token", response.data);
       })
       .catch((err) => console.log("err", err));
+
   };
 
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;

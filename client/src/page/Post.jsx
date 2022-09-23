@@ -17,16 +17,17 @@ const Post = () => {
   if(title.length===0){
     return titleRef.current.focus()
   }
-  
+  // url:'http://43.200.20.180:8080/v1/posts',
+  // url:'http://localhost:3001/content',
   return axios({
     url:'http://localhost:3001/content',
     method:'post',
     data:{
       title:title,
-      body:body,
-      location:location,
       personality:personality,
+      guName:location,
       size:size,
+      content:body,
     }
   })
   .then(()=>{

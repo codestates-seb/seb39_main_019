@@ -5,6 +5,7 @@ import GlobalStyle from "./assets/style/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./assets/style/Theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
 
 function App() {
   const { isLight,setIsLight } = useStore();
@@ -16,6 +17,11 @@ function App() {
     }else{
       setIsLight()
     }
+  },[])
+
+  React.useEffect(()=>{
+    axios.get({url:'http://43.200.20.180:8080/v1/posts'})
+    .then((data)=>console.log(data))
   },[])
    
 

@@ -6,27 +6,13 @@ import Section2 from '../components/Randing/Section2';
 
 const Randing = () => {
 
-  const [scrollY, setScrollY] = React.useState(0);
-
-  const handleScroll = () => {
-    const scrollPosition = window.pageYOffset;
-    setScrollY(scrollPosition)
-  };
-  React.useEffect( () => {
-    window.addEventListener('scroll', handleScroll);
-  
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, []);
 
   return (
     <Layout child={
       <LandingContainer>
         <Section1/>
-        <Section2 scrollY={scrollY}/>
+        <Section2/>
       </LandingContainer>
-    
     }/>
   )
 }

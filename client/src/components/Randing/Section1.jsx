@@ -3,10 +3,14 @@ import styled from 'styled-components'
 import dogImg from '../../assets/imgs/Secdog1.png' 
 import { Link } from 'react-router-dom'
 
+
 const Section1 = () => {
+
+
+
   return (
     <ContainerOne>
-      <OneInner >
+      <OneInner className='on'>
         <div>동네 주민과 강아지 산책까지</div>
         <div>모두 퍼피 버디로</div>
         <p>요즘 같이 좋은 날 강아지 친구 만들기 퍼피퍼피 해보세요!</p>
@@ -23,11 +27,11 @@ const ContainerOne = styled.div`
   position: relative;
   width: 100%;
   height: 700px;
-  background-color: #5ed8bac5;
+  background-color: #59c8f0c5;
   font-family: sans-serif;
   padding: 100px 0;
   display: flex;
-
+  transition: 0.4s;
 
   & img{
     position: absolute;
@@ -36,6 +40,22 @@ const ContainerOne = styled.div`
     bottom: 0;
     right: 0;
   }
+  .on{
+    position: absolute;
+    animation: slide 1.3s ease-out;
+    left: 100px;
+  }
+  @keyframes slide {
+    from{
+        left:-500px;
+        opacity: 0;
+    }
+    to{
+        left: 100px;
+        opacity: 1;
+    }
+    
+}
 `
 const OneInner = styled.div`
   width: 100%;
@@ -57,12 +77,14 @@ const OneInner = styled.div`
     margin-top: 40px;
     border: 1px solid white;
     background-color: #fff;
-    color: #3cd5aec5;
+    color: #59c8f0c5;
     font-size: 20px;
     padding: 10px 30px;
-    border-radius: 5px;
+    border-radius: 30px;
+    transition: 0.3s;
     &:hover{
-      color:#35927bc5;
+      background-color:#59c8f0c5;
+      color:#fff
     }
   }
 `
