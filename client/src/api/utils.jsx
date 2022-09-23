@@ -1,5 +1,5 @@
 import instance from "./core/default";
-import axios from "axios";
+
 
 // const getbody = () => {
 //   return instance({ url: "login" });
@@ -57,3 +57,4 @@ const postRegister = (nickname, regiEmail, regiPassword) => {
 };
 
 export { postLogin, postRegister };
+

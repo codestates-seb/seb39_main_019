@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { postLogin } from "../api/utils";
 import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
@@ -28,17 +27,24 @@ const Login = () => {
 console.log(email,password)
   const submitHandler =  (e) => {
     e.preventDefault();
-    axios({
-      url:'api/auth/login',
-      method:'post',
-      data:{
-        email:email,
-        password:password
-      }
-    }).then((data)=>console.log(data))
-    // await signIn(email, password);
-    //≈setToken("hihhihi");
-    // console.log(token);
+
+
+     axios({
+      method: "post",
+      url: "/api/auth/login",
+      // url: "http://localhost:3001/user",
+      data: {
+        email: email,
+        password: password,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        // localStorage.setItem("refresh_token", response.data);
+        // sessionStorage.setItem("access_token", response.data);
+      })
+      .catch((err) => console.log("err", err));
+
   };
 
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
@@ -74,7 +80,7 @@ console.log(email,password)
       url: `백엔드 구글 엔드포인트추가`,
       data: res.accessToken,
     });
-    navigate("/socialsuccess");
+    navigate("/puppyauthentication");
   };
 
   const onFailure = (res) => {
