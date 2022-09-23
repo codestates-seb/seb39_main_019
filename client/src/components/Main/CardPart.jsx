@@ -3,24 +3,25 @@ import styled from 'styled-components'
 import CardItem from './CardItem'
 import axios from 'axios'
 import useStore from '../../store/filter'
+import {TabText} from './TabText'
 
 
 
 const CardPart = () => {
   const {index} = useStore()
-  const filters = ['전체','# 대형견','# 중형견','# 소형견','# 활발함','# 소심함','# 겁많음','# 애교많음']
   const [data,setData] = React.useState([])
-
-
+  axios.get('http://localhost:3001/content')
+  // axios.get('http://43.200.20.180:8080/v1/posts')
   React.useEffect(()=>{
+    // axios.get('http://43.200.20.180:8080/v1/posts')
     axios.get('http://localhost:3001/content')
     .then((data)=>{
       if(index===0){
         setData(data.data.sort((a,b)=>b.id-a.id))
       }else if(index < 4){
-        setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.size===filters[index]))
+        setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.size===TabText[index]))
       }else{
-        setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.personality===filters[index]))
+        setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.personality===TabText[index]))
       }
     })
   },[index])
@@ -45,4 +46,14 @@ const CardContainer = styled.div`
   grid-template-columns: repeat(4,1fr);
   gap: 20px;
   row-gap: 60px;
+  @media screen and (max-width:1160px){
+    grid-template-columns: repeat(3, minmax(100px ,auto));
+  }
+  @media screen and (max-width:880px){
+    grid-template-columns: repeat(2, minmax(100px ,auto));
+  }
+  @media screen and (max-width:750px){
+    grid-template-columns: repeat(1, minmax(240px ,auto));
+    row-gap: 20px;
+  }
 `

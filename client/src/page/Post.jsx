@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+ import React,{useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
 import styled from 'styled-components'
@@ -6,7 +6,7 @@ import ImgLode from '../components/Post/ImgLode'
 import AnimalInfo from '../components/Post/AnimalInfo'
 import useStore from '../store/post'
 import axios from 'axios'
-
+  
 const Post = () => {
   const {location,personality,size,title,body,setTitle,setBody} = useStore()
   const titleRef = useRef()
@@ -17,16 +17,17 @@ const Post = () => {
   if(title.length===0){
     return titleRef.current.focus()
   }
-  
+  // url:'http://43.200.20.180:8080/v1/posts',
+  // url:'http://localhost:3001/content',
   return axios({
     url:'http://localhost:3001/content',
     method:'post',
     data:{
       title:title,
-      body:body,
-      location:location,
       personality:personality,
+      guName:location,
       size:size,
+      content:body,
     }
   })
   .then(()=>{

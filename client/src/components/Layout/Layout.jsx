@@ -20,5 +20,10 @@ const Layout = ({child}) => {
 export default Layout
 
 const LayoutWrap = styled.div`
-  
+  position: relative;
+  width: 100%;
+  .middle{
+    width: 100%;
+  }
+
 `

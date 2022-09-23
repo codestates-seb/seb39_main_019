@@ -1,14 +1,15 @@
 import instance from "./core/default";
-import axios from "axios";
+
 
 // const getbody = () => {
 //   return instance({ url: "login" });
 // };
 
+//서버 테스트용
 const postLogin2 = (email, password) => {
   instance({
     method: "post",
-    url: "http://localhost:3001/user",
+    url: "/api/auth/login",
     data: {
       email: email,
       password: password,
@@ -19,7 +20,7 @@ const postLogin2 = (email, password) => {
 const postLogin = (email, password) => {
   axios({
     method: "post",
-    url: "http://localhost:3001/user",
+    url: "http://43.200.20.180:8080/auth/login",
     data: {
       email: email,
       password: password,
@@ -27,6 +28,19 @@ const postLogin = (email, password) => {
   }).then((response) => {
     console.log(response);
     localStorage.setItem("token", response.data);
+  });
+};
+
+//서버 테스트용
+const postRegister1 = (nickname, regiEmail, regiPassword) => {
+  instance({
+    method: "post",
+    url: "/api/auth/signup",
+    data: {
+      nickname: nickname,
+      email: regiEmail,
+      password: regiPassword,
+    },
   });
 };
 
@@ -43,3 +57,4 @@ const postRegister = (nickname, regiEmail, regiPassword) => {
 };
 
 export { postLogin, postRegister };
+
