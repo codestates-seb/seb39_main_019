@@ -12,6 +12,8 @@ import { useState } from "react";
 import { useRef } from "react";
 
 const PuppyAuthentication = () => {
+  const [api, setApi] = useState("");
+
   const [ppOwner, setPpOwner] = useState("");
   const [regiNumber, setRegiNumber] = useState("");
   const ppOwnerRef = useRef();
@@ -93,8 +95,32 @@ const PuppyAuthentication = () => {
     // postKakaoToken();
   }, []);
 
+  useEffect(() => {
+    if (api.includes("item")) {
+      console.log("!");
+    } else {
+      console.log("?");
+    }
+    console.log(api);
+  }, [api]);
+
   const apiHandler = (e) => {
     e.preventDefault();
+    axios
+      .get(
+        `/dog/animalInfo?serviceKey=${PUPPY_API_KEY}`,
+        {
+          params: {
+            // [encodeURIComponent(`serviceKey`)]: `${PUPPY_API_KEY}`,
+            dog_reg_no: `${regiNumber}`,
+
+            owner_nm: `${ppOwner}`,
+          },
+        },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.warn(err));
 
     var xhr = new XMLHttpRequest();
     var url =
@@ -109,34 +135,21 @@ const PuppyAuthentication = () => {
       encodeURIComponent("dog_reg_no") +
       "=" +
       encodeURIComponent(`${regiNumber}`); /**/
-    queryParams +=
-      "&" + encodeURIComponent("rfid_cd") + "=" + encodeURIComponent(""); /**/
+    // queryParams +=
+    //   "&" + encodeURIComponent("rfid_cd") + "=" + encodeURIComponent(""); /**/
     queryParams +=
       "&" +
       encodeURIComponent("owner_nm") +
       "=" +
       encodeURIComponent(`${ppOwner}`); /**/
-    queryParams +=
-      "&" +
-      encodeURIComponent("owner_birth") +
-      "=" +
-      encodeURIComponent(""); /**/
-    queryParams +=
-      "&" + encodeURIComponent("_type") + "=" + encodeURIComponent(""); /**/
     xhr.open("GET", url + queryParams);
     xhr.onreadystatechange = function () {
       if (this.readyState == 4) {
-        alert(
-          "Status: " +
-            this.status +
-            "nHeaders: " +
-            JSON.stringify(this.getAllResponseHeaders()) +
-            "nBody: " +
-            this.responseText
-        );
+        return setApi(JSON.stringify(this.responseText));
       }
     };
-    xhr.send("");
+    const result = xhr.send("");
+    console.log(result);
   };
 
   // const apiHandler = (e) => {

@@ -40,7 +40,8 @@ const Signup = () => {
 
     await axios({
       method: "post",
-      url: "http://localhost:3001/signup",
+      url: "api/auth/signup",
+      // url: "http://localhost:3001/signup",
       data: {
         nickname: nickname,
         email: regiEmail,
