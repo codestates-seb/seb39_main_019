@@ -11,8 +11,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useRef } from "react";
 import Button from "../components/Button";
+import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
+import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PuppyAuthentication = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [api, setApi] = useState("");
   const [ppOwner, setPpOwner] = useState("");
   const [regiNumber, setRegiNumber] = useState("");
@@ -20,6 +25,10 @@ const PuppyAuthentication = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
+
+  const openModalHandler = () => {
+    setIsOpen(!isOpen);
+  };
 
   // const getKakaoToken = () => {
   //   fetch(`https://kauth.kakao.com/oauth/token`, {
@@ -160,13 +169,28 @@ const PuppyAuthentication = () => {
       url: "api/dogs/validation",
       data: { owner_nm: ppOwner, dog_reg_no: regiNumber },
     })
-      .then((response) => navigate("/PpAuthDoneMdl"))
-      .catch((err) => navigate("/ppauthovlmdl"));
+      .then((response /*navigate("/PpAuthDoneMdl")*/ /*<PpAuthDoneMdl /> */) =>
+        toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+          hideProgressBar: true,
+        })
+      )
+      .catch((err) =>
+        /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
+        toast.error("인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다", {
+          autoClose: 3000,
+          position: toast.POSITION.TOP_RIGHT,
+          hideProgressBar: true,
+        })
+      );
   };
 
   return (
     <div>
       <Header />
+      <ToastContainer />
+
       <SocialModalContainer>
         <HeaderLogo>
           <Link to={"/"}>

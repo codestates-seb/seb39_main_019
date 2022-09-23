@@ -19,13 +19,14 @@ const PpAuthDoneMdl = () => {
 export default PpAuthDoneMdl;
 
 const PpAuthDoneMdlContainer = styled.div`
-  background-color: white;
+  /* background-color: white; */
   width: 400px;
   height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 10px;
+  border: 2px solid;
 `;
 const ModalMsg = styled.div`
   display: flex;
