@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 //	implementation 'it.ozimov:embedded-redis:0.7.2'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
