@@ -24,23 +24,26 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-  console.log(email, password);
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("hi");
+
     axios({
       method: "post",
-      // url: "/api/auth/login",
-      url: "http://localhost:3001/user",
+      url: "api/auth/login",
+      // url: "http://localhost:3001/user",
       data: {
         email: email,
         password: password,
       },
+      withCredentials: true,
     })
       .then((response) => {
         console.log(response);
+        console.log("access_token:", response.data);
+        console.log(response.headers["set-cookie"]);
+
         // localStorage.setItem("refresh_token", response.data);
-        // sessionStorage.setItem("access_token", response.data);
+        sessionStorage.setItem("access_token", response.data);
       })
       .catch((err) => console.log("err", err));
   };

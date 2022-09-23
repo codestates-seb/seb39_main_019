@@ -152,33 +152,17 @@ const PuppyAuthentication = () => {
     console.log(result);
   };
 
-  // const apiHandler = (e) => {
-  //   e.preventDefault();
-  //   axios({
-  //     method: "GET",
-  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc/animalInfo`,
-  //     data: {
-  //       dog_reg_no: `${regiNumber}`,
-  //       owner_nm: `${ppOwner}`,
-  //       serviceKey: `${PUPPY_API_KEY}`,
-  //     },
-  //   }).then((response) => {
-  //     console.log("hi");
-  //     console.log(response);
-  //   });
-  // };
+  const apiBtnHandler = (e) => {
+    e.preventDefault();
 
-  // const apiHandler = (e) => {
-  //   e.preventDefault();
-  //   axios({
-  //     method: "GET",
-  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc/animalInfo`,
-  //     data: `dog_reg_no=${regiNumber}&owner_nm=${ppOwner}&serviceKey=${PUPPY_API_KEY}`,
-  //   }).then((response) => {
-  //     console.log("hi");
-  //     console.log(response);
-  //   });
-  // };
+    axios({
+      method: "POST",
+      url: "api/dogs/validation",
+      data: { owner_nm: ppOwner, dog_reg_no: regiNumber },
+    })
+      .then((response) => navigate("/PpAuthDoneMdl"))
+      .catch((err) => navigate("/ppauthovlmdl"));
+  };
 
   return (
     <div>
@@ -194,7 +178,7 @@ const PuppyAuthentication = () => {
       </div> */}
         <InputForm>
           <h1>견주 인증</h1>
-          <form onSubmit={apiHandler}>
+          <form /*</InputForm>*/ onSubmit={apiBtnHandler}>
             <div className='group'>
               <label htmlFor='ppOwner'>소유자</label>
               <input
