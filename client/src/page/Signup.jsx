@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Login from "./Login";
 import axios from "axios";
+import Button from "../components/Button";
 
 // const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
 
@@ -38,8 +39,8 @@ const Signup = () => {
 
     await axios({
       method: "post",
-      url: "api/auth/signup",
-      // url: "http://localhost:3001/signup",
+      // url: "api/auth/signup",
+      url: "http://localhost:3001/signup",
       data: {
         nickname: nickname,
         email: regiEmail,
@@ -126,6 +127,12 @@ const Signup = () => {
                     비밀번호와 일치하지 않습니다.
                   </p>
                 </div>
+                {/* <Button
+                  text={"회원가입"}
+                  type={"auth"}
+                  disabled={!validMatch ? true : false}
+                ></Button> */}
+
                 <button className='btn' disabled={!validMatch ? true : false}>
                   회원가입
                 </button>
@@ -206,17 +213,10 @@ const InputForm = styled.div`
     text-align: center;
     letter-spacing: 1px;
     border: 0;
-    border-bottom: 2px solid #2fa88ac5;
+    border-bottom: 2px solid #4dafd2c5;
     transition: all 0.15s ease;
-    background: #3cd5aec5;
+    background: #59c8f0c5;
     border-radius: 5px;
     text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
-  }
-  .btn:focus {
-    outline: 0;
-  }
-
-  .btn:hover {
-    background: #2fa88ac5;
   }
 `;

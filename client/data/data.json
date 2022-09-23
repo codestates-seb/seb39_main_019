@@ -4,6 +4,16 @@
       "email": "alsltjsals@gmail.com",
       "password": "123456789",
       "id": 2
+    },
+    {
+      "email": "test@test.com",
+      "password": "12",
+      "id": 3
+    },
+    {
+      "email": "test@test.com",
+      "password": "00",
+      "id": 4
     }
   ],
   "signup": [
@@ -12,6 +22,12 @@
       "email": "test@test.com",
       "password": "12",
       "id": 2
+    },
+    {
+      "nickname": "이선민",
+      "email": "test@test.com",
+      "password": "1",
+      "id": 3
     }
   ],
   "content": [

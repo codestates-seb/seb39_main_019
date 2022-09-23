@@ -10,6 +10,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useRef } from "react";
+import Button from "../components/Button";
 
 const PuppyAuthentication = () => {
   const [api, setApi] = useState("");
@@ -215,7 +216,7 @@ const PuppyAuthentication = () => {
                 value={regiNumber}
               ></input>
             </div>
-            <button>인증하기</button>
+            <Button text={"인증하기"} type={"auth"}></Button>
           </form>
         </InputForm>
       </SocialModalContainer>
@@ -248,11 +249,12 @@ const HeaderLogo = styled.div`
   /* padding-left: 20px; */
   margin-bottom: 20px;
   & span {
-    /* font-family: yg_jalnan; */
-    font-weight: 700;
+    font-family: KOTRAHOPE;
+    font-weight: bold;
     font-size: 35px;
     color: ${(props) => props.theme.HeLogoColor};
     cursor: pointer;
+    white-space: nowrap;
   }
 `;
 
@@ -296,31 +298,5 @@ const InputForm = styled.div`
     color: #999;
     font-size: 18px;
     font-weight: normal;
-  }
-
-  button {
-    padding: 12px 24px;
-    margin: 2px 0 20px 0;
-    width: 100%;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 20px;
-    -webkit-font-smoothing: antialiased;
-    text-align: center;
-    letter-spacing: 1px;
-    border: 0;
-    border-bottom: 2px solid #2fa88ac5;
-    transition: all 0.15s ease;
-    background: #3cd5aec5;
-    border-radius: 5px;
-    text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
-  }
-  .btn:focus {
-    outline: 0;
-  }
-
-  .btn:hover {
-    background: #2fa88ac5;
   }
 `;
