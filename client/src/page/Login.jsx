@@ -12,6 +12,8 @@ import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -92,6 +94,7 @@ const Login = () => {
   return (
     <div>
       <Header />
+      <ToastContainer />
       <LoginContainer>
         <HeaderLogo>
           <Link to={"/"}>

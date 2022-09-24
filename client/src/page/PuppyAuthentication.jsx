@@ -190,7 +190,6 @@ const PuppyAuthentication = () => {
     <div>
       <Header />
       <ToastContainer />
-
       <SocialModalContainer>
         <HeaderLogo>
           <Link to={"/"}>

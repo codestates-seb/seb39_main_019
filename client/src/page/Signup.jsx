@@ -10,8 +10,11 @@ import {
 import Login from "./Login";
 import axios from "axios";
 import Button from "../components/Button";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
-// const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
+// const PWD_REGEX = /^(?=.*[a-z])(?=.*[0-9]).{6,20}$/;
 
 const Signup = () => {
   const [nickname, setNickname] = useState("");
@@ -22,6 +25,7 @@ const Signup = () => {
   const [matchFocus, setMatchFocus] = useState(false);
   const [success, setSuccess] = useState(false);
   const nicknameRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     nicknameRef.current.focus();
@@ -39,8 +43,8 @@ const Signup = () => {
 
     await axios({
       method: "post",
-      url: "api/auth/signup",
-      // url: "http://localhost:3001/signup",
+      // url: "api/auth/signup",
+      url: "http://localhost:3001/signup",
       data: {
         nickname: nickname,
         email: regiEmail,
@@ -51,97 +55,96 @@ const Signup = () => {
     });
   };
 
+  useEffect(() => {
+    if (success) {
+      navigate("/login");
+      toast.success("회원가입을 축하합니다 !");
+    }
+  }, [success, navigate]);
+
   return (
-    <>
-      {success ? (
-        <Login />
-      ) : (
-        <div>
-          <Header />
-          <SignupContainer>
-            <InputForm>
-              <h1>회원가입</h1>
-              <form onSubmit={regiSubmitHandler}>
-                <div className='group'>
-                  <label htmlFor='nickname'>닉네임</label>
-                  <input
-                    type='text'
-                    id='nickname'
-                    ref={nicknameRef}
-                    onChange={(e) => setNickname(e.target.value)}
-                    required
-                    value={nickname}
-                  ></input>
-                </div>
-                <div className='group'>
-                  <label htmlFor='email'>이메일</label>
-                  <input
-                    type='email'
-                    id='email'
-                    onChange={(e) => setRegiEmail(e.target.value)}
-                    required
-                    value={regiEmail}
-                  ></input>
-                </div>
-                <div className='group'>
-                  <label htmlFor='password'>비밀번호</label>
-                  <input
-                    type='password'
-                    id='password'
-                    value={regiPassword}
-                    onChange={(e) => setRegiPassword(e.target.value)}
-                    required
-                  ></input>
-                </div>
-                <div className='group'>
-                  <label htmlFor='checkpassword'>
-                    비밀번호 확인
-                    <FontAwesomeIcon
-                      icon={faCheck}
-                      className={
-                        validMatch && matchRegiPassword ? "valid" : "hide"
-                      }
-                    />
-                    <FontAwesomeIcon
-                      icon={faTimes}
-                      className={
-                        validMatch || !matchRegiPassword ? "hide" : "invalid"
-                      }
-                    />
-                  </label>
-                  <input
-                    type='password'
-                    id='checkpassword'
-                    onChange={(e) => setMatchRegiPassword(e.target.value)}
-                    required
-                    onFocus={() => setMatchFocus(true)}
-                    onBlur={() => setMatchFocus(false)}
-                  ></input>
-                  <p
-                    id='confirmnote'
-                    className={
-                      matchFocus && !validMatch ? "instructions" : "offscreen"
-                    }
-                  >
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                    비밀번호와 일치하지 않습니다.
-                  </p>
-                </div>
-                {/* <Button
+    <div>
+      <Header />
+      <SignupContainer>
+        <InputForm>
+          <h1>회원가입</h1>
+          <form onSubmit={regiSubmitHandler}>
+            <div className='group'>
+              <label htmlFor='nickname'>닉네임</label>
+              <input
+                type='text'
+                id='nickname'
+                ref={nicknameRef}
+                onChange={(e) => setNickname(e.target.value)}
+                required
+                value={nickname}
+              ></input>
+            </div>
+            <div className='group'>
+              <label htmlFor='email'>이메일</label>
+              <input
+                type='email'
+                id='email'
+                onChange={(e) => setRegiEmail(e.target.value)}
+                required
+                value={regiEmail}
+              ></input>
+            </div>
+            <div className='group'>
+              <label htmlFor='password'>비밀번호</label>
+              <input
+                type='password'
+                id='password'
+                value={regiPassword}
+                onChange={(e) => setRegiPassword(e.target.value)}
+                required
+              ></input>
+            </div>
+            <div className='group'>
+              <label htmlFor='checkpassword'>
+                비밀번호 확인
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className={validMatch && matchRegiPassword ? "valid" : "hide"}
+                />
+                <FontAwesomeIcon
+                  icon={faTimes}
+                  className={
+                    validMatch || !matchRegiPassword ? "hide" : "invalid"
+                  }
+                />
+              </label>
+              <input
+                type='password'
+                id='checkpassword'
+                onChange={(e) => setMatchRegiPassword(e.target.value)}
+                required
+                onFocus={() => setMatchFocus(true)}
+                onBlur={() => setMatchFocus(false)}
+              ></input>
+              <p
+                id='confirmnote'
+                className={
+                  matchFocus && !validMatch ? "instructions" : "offscreen"
+                }
+              >
+                <FontAwesomeIcon icon={faInfoCircle} />
+                비밀번호와 일치하지 않습니다.
+              </p>
+            </div>
+            {/* <Button
                   text={"회원가입"}
                   type={"auth"}
                   disabled={!validMatch ? true : false}
                 ></Button> */}
 
-                <button className='btn' disabled={!validMatch ? true : false}>
-                  회원가입
-                </button>
-              </form>
-            </InputForm>
-          </SignupContainer>
-        </div>
-      )}
-    </>
+            <button className='btn' disabled={!validMatch ? true : false}>
+              회원가입
+            </button>
+          </form>
+        </InputForm>
+      </SignupContainer>
+    </div>
   );
 };
 
