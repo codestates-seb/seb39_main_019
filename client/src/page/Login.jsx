@@ -32,7 +32,7 @@ const Login = () => {
     axios({
       method: "post",
       url: "api/auth/login",
-      // url: "http://localhost:3001/user",
+      //  url: "http://localhost:3001/user",
       data: {
         email: email,
         password: password,
@@ -41,8 +41,15 @@ const Login = () => {
     })
       .then((response) => {
         console.log(response);
-        console.log("access_token:", response.data);
-        console.log(response.headers["set-cookie"]);
+        console.log(response.headers.cookie);
+        alert(document.cookie);
+        console.log(response.cookies);
+        // console.log("access_token:", response.data);
+
+        // console.log(response.headers);
+
+        // console.log(response.headers["cache-control"]);
+        // console.log(response.headers["set-cookie"]);
 
         // localStorage.setItem("refresh_token", response.data);
         sessionStorage.setItem("access_token", response.data);
