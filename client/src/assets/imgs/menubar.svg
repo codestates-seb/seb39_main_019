@@ -1,0 +1,5 @@
+<svg width="32px" height="32px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="40" x="80" y="96" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="500" height="40" x="80" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="500" height="40" x="80" y="384" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+</svg>
