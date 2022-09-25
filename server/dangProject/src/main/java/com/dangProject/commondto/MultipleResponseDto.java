@@ -1,6 +1,7 @@
 package com.dangProject.commondto;
 
 import lombok.Getter;
+
 import java.util.List;
 
 @Getter
