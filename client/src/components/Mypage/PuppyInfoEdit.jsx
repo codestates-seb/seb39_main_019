@@ -1,76 +1,47 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+import { ReactComponent as CloseBtn } from "../../assets/imgs/CloseBtn.svg";
 import Button from "../Button";
 import ReactDom from "react-dom";
-import { ReactComponent as CloseBtn } from "../../assets/imgs/CloseBtn.svg";
-import { useState } from "react";
-import axios from "axios";
 
-const ProfileEdit = ({
-  isProfileShow,
-  closeModal,
-  headerData,
-  setHeaderData,
-}) => {
+const PuppyInfoEdit = ({ isPuppyShow, closeModal }) => {
   const nameRef = useRef();
-  const [nickname, setNickname] = useState(headerData.nickname);
-  const [email, setEmail] = useState(headerData.email);
-
-  if (!isProfileShow) return null;
-
-  const InfoHandler = (e) => {
-    // e.preventDefault();
-
-    axios({
-      method: "patch",
-      url: "http://localhost:3001/signup",
-      data: {
-        nickname: nickname,
-      },
-    }).then((res) => setHeaderData(res));
-  };
+  if (!isPuppyShow) return null;
 
   return ReactDom.createPortal(
-    <ProfileEditContainer>
+    <PuppyInfoEditContainer>
       <Overlay onClick={closeModal}>
-        <InfoForm onClick={(e) => e.stopPropagation()} onSubmit={InfoHandler}>
+        <InfoForm onClick={(e) => e.stopPropagation()}>
           <Close onClick={closeModal}>
             <CloseBtn />
           </Close>
           <div className='group'>
-            <label htmlFor='name'>닉네임</label>
-            <input
-              type='text'
-              id='name'
-              ref={nameRef}
-              defaultValue={headerData.nickname}
-              onChange={(e) => setNickname(e.target.value)}
-            ></input>
+            <label htmlFor='name'>이름</label>
+            <input type='text' id='name' ref={nameRef}></input>
           </div>
           <div className='group'>
-            <label htmlFor='email'>이메일</label>
-            <input
-              type='email'
-              id='email'
-              defaultValue={headerData.email}
-              disabled
-            ></input>
+            <label htmlFor='breed'>견종</label>
+            <input type='text' id='breed'></input>
           </div>
           <div className='group'>
-            <label htmlFor='address'>지역</label>
-            <select></select>
+            <label htmlFor='age'>나이</label>
+            <input type='text' id='age'></input>
           </div>
-          <Button text={"수정하기"} type={"mypageBtn"}></Button>
+          <div className='group'>
+            <label htmlFor='gender'>성별</label>
+            <input type='text' id='gender'></input>
+          </div>
+          <Button text={"등록/수정하기"} type={"mypageBtn"}></Button>
         </InfoForm>
       </Overlay>
-    </ProfileEditContainer>,
+    </PuppyInfoEditContainer>,
     document.getElementById("modal")
   );
 };
 
-export default ProfileEdit;
+export default PuppyInfoEdit;
 
-const ProfileEditContainer = styled.div`
+const PuppyInfoEditContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,6 +53,7 @@ const ProfileEditContainer = styled.div`
   left: 0;
   right: 0;
 `;
+
 const Overlay = styled.div`
   width: 100%;
   height: 100%;

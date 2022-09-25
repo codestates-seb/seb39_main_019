@@ -4,7 +4,6 @@ import Main from "../page/Main";
 import Post from "../page/Post";
 import Randing from "../page/Randing";
 import PuppyAuthentication from "../page/PuppyAuthentication";
-import PuppyInfo from "../page/PuppyInfo";
 import Mypage from "../page/Mypage";
 
 import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
@@ -39,10 +38,6 @@ const RouteModule = [
   {
     path: "/mypage",
     element: <Mypage />,
-  },
-  {
-    path: "/puppyinfo",
-    element: <PuppyInfo />,
   },
   {
     path: "/ppauthdonemdl",

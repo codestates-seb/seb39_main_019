@@ -169,7 +169,9 @@ const PuppyAuthentication = () => {
       url: "api/dogs/validation",
       data: { owner_nm: ppOwner, dog_reg_no: regiNumber },
     })
-      .then((response /*navigate("/PpAuthDoneMdl")*/ /*<PpAuthDoneMdl /> */) =>
+      .then((response) =>
+        /*navigate("/PpAuthDoneMdl")*/ /*<PpAuthDoneMdl /> */
+        // navigate("/mypage"),
         toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 3000,
