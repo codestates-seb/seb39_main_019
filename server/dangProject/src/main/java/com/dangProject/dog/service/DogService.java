@@ -24,6 +24,7 @@ public class DogService {
 
     private final DogRepository dogRepository;
 
+    //견주 인증
     @Transactional
     public Dog registerRegNo(DogValidationPostDto dogValidationPostDto) {
         verifyDogRegNo(dogValidationPostDto.getDog_reg_no());
@@ -31,12 +32,6 @@ public class DogService {
         return dogRepository.save(Dog.builder()
                         .dogRegNo(dogValidationPostDto.getDog_reg_no())
                         .build());
-    }
-
-    public void verifyDogRegNo(String dog_reg_no) {
-        Optional<Dog> dog = dogRepository.findByDogRegNo(dog_reg_no);
-        if(dog.isPresent())
-            throw new BusinessLogicException(ExceptionCode.DOG_REG_NO_EXISTS);
     }
 
     //강아지 정보 등록
@@ -57,15 +52,16 @@ public class DogService {
         return findDog;
     }
 
-    @Transactional(readOnly = true)
-    public Dog findVerifiedDog(Long id) {
+    //강아지 정보 삭제
+    public void delete(Long id) {
+        dogRepository.findById(id);
+        dogRepository.deleteById(id);
+    }
 
-        Optional<Dog> optionalDog =
-                dogRepository.findById(id);
-        Dog findDog =
-                optionalDog.orElseThrow(() ->
-                        new BusinessLogicException(ExceptionCode.DOG_NOT_FOUND));
-        return findDog;
+    public void verifyDogRegNo(String dog_reg_no) {
+        Optional<Dog> dog = dogRepository.findByDogRegNo(dog_reg_no);
+        if(dog.isPresent())
+            throw new BusinessLogicException(ExceptionCode.DOG_REG_NO_EXISTS);
     }
 
 }

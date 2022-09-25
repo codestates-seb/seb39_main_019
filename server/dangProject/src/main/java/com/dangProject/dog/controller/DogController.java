@@ -104,4 +104,15 @@ public class DogController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    //강아지 정보 삭제
+    @DeleteMapping("/info/{id}")
+    public ResponseEntity deleteInfo(@PathVariable Long id) {
+        //Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        dogService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //회원 자신의 강아지 정보 조회
+
 }
