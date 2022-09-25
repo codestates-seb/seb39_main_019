@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mainTest?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url:
     username:
     password:
 
@@ -18,12 +18,8 @@ spring:
         format_sql: true
       #show-sql: true
   redis:
-    port: 6379
-    host: localhost
-
-#jwt:
-#  header:
-#  secret:
+    port:
+    host:
 
 logging:
   level:
@@ -33,11 +29,10 @@ logging:
           jpa: DEBUG
 
 server:
-  port: 8080
+  port:
   servlet:
     context-path: /
     encoding:
       charset: UTF-8
       #enabled: true
       force-response: true
-

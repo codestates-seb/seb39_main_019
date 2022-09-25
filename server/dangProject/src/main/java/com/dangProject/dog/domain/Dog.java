@@ -31,11 +31,19 @@ public class Dog extends BaseTime {
     @Column
     private String dogRegNo;
 
+//    @ManyToOne
+//    @JoinColumn(name = "memberId")
+//    private Member member;
 
     @Builder
     public Dog(String dogNm, String sexNm, String dogRegNo) {
         this.dogNm = dogNm;
         this.sexNm = sexNm;
+        this.dogRegNo = dogRegNo;
+    }
+
+    @Builder
+    public Dog(String dogRegNo) {
         this.dogRegNo = dogRegNo;
     }
 }
