@@ -32,7 +32,7 @@ public class MemberController {
         return ResponseEntity.ok(memberService.findMember(id));
     }
 
-    //회원 목록 전체 조회
+    //회원 목록 전체 조회 합니다
     @GetMapping("/api/members")
     public ResponseEntity<List<MemberResponse>> findAllMembers() {
         return ResponseEntity.ok(memberService.findAllMembers());
