@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -77,5 +76,3 @@ button{
 `;
 
 export default GlobalStyle;
-=======
->>>>>>> d405b30353d46620a0cbb65963260caae2979c14
