@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {css} from "styled-components"
 
 export const lightTheme = {
@@ -32,5 +31,3 @@ export const pad = (e) => css`
     ${e}
   }
 `
-=======
->>>>>>> d405b30353d46620a0cbb65963260caae2979c14

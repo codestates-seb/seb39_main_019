@@ -1,12 +1,28 @@
 import React from 'react'
+import Layout from '../components/Layout/Layout'
+import styled from 'styled-components'
+import Slider from '../components/Carousel/Slider'
+import Filter from '../components/Main/Filter'
+import CardPart from '../components/Main/CardPart'
 
 const Main = () => {
-  return (
-    <div>Main</div>
-  )
+
+
+ return (
+   <Layout child={
+     <MainContainer>
+       <CarouselPart>
+        <Slider/>
+       </CarouselPart>
+       <MainPart>
+         <Filter/>
+         <CardPart/>
+       </MainPart>
+     </MainContainer>
+   }/>
+ )
 }
 
-<<<<<<< HEAD
 export default Main
 
 const MainContainer = styled.div`
@@ -27,6 +43,3 @@ const MainPart = styled.div`
   display: flex;
   flex-wrap:wrap;
 `
-=======
-export default Main
->>>>>>> d405b30353d46620a0cbb65963260caae2979c14
