@@ -18,7 +18,7 @@ const MypageProfile = () => {
       .get("http://localhost:3001/signup")
       .then((response) => response.data)
       .then((data) => setHeaderData(data));
-  }, [headerData]);
+  },[]);
 
   return (
     <MypageProfileContainer>
