@@ -39,7 +39,10 @@ console.log(email,password)
       },
     })
       .then((response) => {
-        console.log(response);
+        // let jwtToken = response.headers.authorization;
+        // console.log(jwtToken)
+        console.log(response.data)
+        console.log(response.headers["set-cookie"])
         // localStorage.setItem("refresh_token", response.data);
         // sessionStorage.setItem("access_token", response.data);
       })

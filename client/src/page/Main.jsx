@@ -37,7 +37,9 @@ width: 100%;
 
 `
 const MainPart = styled.div`
-  padding: 15px 15px;
+  padding: 15px;
   max-width: 1280px;
   margin: 0 auto;
+  display: flex;
+  flex-wrap:wrap;
 `

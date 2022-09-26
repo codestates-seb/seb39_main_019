@@ -1,11 +1,12 @@
 import React from "react";
 import useStore from "./store/globalStore";
 import RouteModule from "./routes";
+import ScrollToTop from "./hooks/ScrollToTop";
 import GlobalStyle from "./assets/style/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./assets/style/Theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+
 
 function App() {
   const { isLight,setIsLight } = useStore();
@@ -19,16 +20,13 @@ function App() {
     }
   },[])
 
-  React.useEffect(()=>{
-    axios.get({url:'http://43.200.20.180:8080/v1/posts'})
-    .then((data)=>console.log(data))
-  },[])
    
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <ScrollToTop/>
         <Routes>
           {RouteModule.map((route, idx) => (
             <Route path={route.path} element={route.element} key={idx} />
