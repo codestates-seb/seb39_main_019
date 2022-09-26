@@ -22,6 +22,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder encoder;
 
+    //회원가입
     public MemberResponse register(MemberPostDto request) {
         Member newMember = Member.builder()
                 .email(request.getEmail())
@@ -46,7 +47,7 @@ public class MemberService {
     //회원 목록 조회
     public List<MemberResponse> findAllMembers() {
        return memberRepository.findAll().stream()
-                .map(member -> MemberResponse.of(member))
+                .map(MemberResponse::of)
                 .collect(Collectors.toList());
     }
 
