@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DogPostDto {
+public class DogValidationPostDto {
 
     private String dog_reg_no;
     private String owner_nm;
