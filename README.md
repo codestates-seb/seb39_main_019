@@ -5,6 +5,7 @@
 
 > 개발기간: 2022.09.07 ~ 2022.10.12
 
+
 ## 👨‍👩‍👧‍👦 Family 
 |이선민 (FE 팀장)   |김영웅 (FE 팀원)                  |이소현 (BE 팀원)               |채화담 (BE 팀원)               |
 |----------------|-------------------------------|-----------------------------|-----------------------------|
@@ -25,11 +26,13 @@
 
 <p>
   <img src="https://user-images.githubusercontent.com/61177857/188972264-ee94f10c-6959-4a1c-9b97-6330b14ce996.png" width=100 height=100>
+  <img src="https://user-images.githubusercontent.com/61264510/191139546-91539645-aecf-4ab4-9cef-92537a7ebcfb.png" width=100 height=100>
   <img src="https://logos-world.net/wp-content/uploads/2022/07/Java-Logo.png" width=100 height=100>
   <img src="https://user-images.githubusercontent.com/61177857/188973455-ecc9c549-9b23-4b00-aab7-1ef042bceeb1.png" width=100 height=100>
   <img src="https://user-images.githubusercontent.com/61177857/188973727-c87dcc33-9777-420f-bb51-11074c3bd2f4.png" width=100 height=100>
   <img src="https://user-images.githubusercontent.com/61177857/188974204-472258b0-5f49-41e2-a6d3-44bf53068bd8.png" width=100 height=100>
   <img src="https://user-images.githubusercontent.com/61177857/188974521-9bb4a55d-0e6c-49be-8b7c-04fbb516c099.png" width=100 height=100>
+  <img src="https://user-images.githubusercontent.com/61264510/191139275-f081ff5a-2b22-4ade-be2a-db2e6db79cc3.png" width=100 height=100>
 </p>
 
 ### 협업 도구
@@ -63,4 +66,6 @@
 | refactor | 코드 리팩토링                                         |
 | docs     | 문서 수정 (MD 파일)                                   |
 | test     | 테스트 코드를 생성하거나 수정 하는 경우               |
+
+
 
