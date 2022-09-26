@@ -3,17 +3,14 @@
     {
       "email": "alsltjsals@gmail.com",
       "password": "123456789",
-      "id": 2
+      "id": 1
     }
   ],
-  "signup": [
-    {
-      "nickname": "이선민",
-      "email": "test@test.com",
-      "password": "12",
-      "id": 2
-    }
-  ],
+  "signup": {
+    "nickname": "이선민",
+    "email": "test@test.com",
+    "password": "1212"
+  },
   "content": [
     {
       "id": 1,

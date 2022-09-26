@@ -10,8 +10,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useRef } from "react";
+import Button from "../components/Button";
+import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
+import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PuppyAuthentication = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [api, setApi] = useState("");
   const [ppOwner, setPpOwner] = useState("");
   const [regiNumber, setRegiNumber] = useState("");
@@ -19,6 +25,10 @@ const PuppyAuthentication = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
+
+  const openModalHandler = () => {
+    setIsOpen(!isOpen);
+  };
 
   // const getKakaoToken = () => {
   //   fetch(`https://kauth.kakao.com/oauth/token`, {
@@ -151,37 +161,37 @@ const PuppyAuthentication = () => {
     console.log(result);
   };
 
-  // const apiHandler = (e) => {
-  //   e.preventDefault();
-  //   axios({
-  //     method: "GET",
-  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc/animalInfo`,
-  //     data: {
-  //       dog_reg_no: `${regiNumber}`,
-  //       owner_nm: `${ppOwner}`,
-  //       serviceKey: `${PUPPY_API_KEY}`,
-  //     },
-  //   }).then((response) => {
-  //     console.log("hi");
-  //     console.log(response);
-  //   });
-  // };
+  const apiBtnHandler = (e) => {
+    e.preventDefault();
 
-  // const apiHandler = (e) => {
-  //   e.preventDefault();
-  //   axios({
-  //     method: "GET",
-  //     url: `http://apis.data.go.kr/1543061/animalInfoSrvc/animalInfo`,
-  //     data: `dog_reg_no=${regiNumber}&owner_nm=${ppOwner}&serviceKey=${PUPPY_API_KEY}`,
-  //   }).then((response) => {
-  //     console.log("hi");
-  //     console.log(response);
-  //   });
-  // };
+    axios({
+      method: "POST",
+      url: "api/dogs/validation",
+      data: { owner_nm: ppOwner, dog_reg_no: regiNumber },
+    })
+      .then((response) =>
+        /*navigate("/PpAuthDoneMdl")*/ /*<PpAuthDoneMdl /> */
+        // navigate("/mypage"),
+        toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+          hideProgressBar: true,
+        })
+      )
+      .catch((err) =>
+        /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
+        toast.error("인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다", {
+          autoClose: 3000,
+          position: toast.POSITION.TOP_RIGHT,
+          hideProgressBar: true,
+        })
+      );
+  };
 
   return (
     <div>
       <Header />
+      <ToastContainer />
       <SocialModalContainer>
         <HeaderLogo>
           <Link to={"/"}>
@@ -193,7 +203,7 @@ const PuppyAuthentication = () => {
       </div> */}
         <InputForm>
           <h1>견주 인증</h1>
-          <form onSubmit={apiHandler}>
+          <form /*</InputForm>*/ onSubmit={apiBtnHandler}>
             <div className='group'>
               <label htmlFor='ppOwner'>소유자</label>
               <input
@@ -215,7 +225,7 @@ const PuppyAuthentication = () => {
                 value={regiNumber}
               ></input>
             </div>
-            <button>인증하기</button>
+            <Button text={"인증하기"} type={"auth"}></Button>
           </form>
         </InputForm>
       </SocialModalContainer>
@@ -248,11 +258,12 @@ const HeaderLogo = styled.div`
   /* padding-left: 20px; */
   margin-bottom: 20px;
   & span {
-    /* font-family: yg_jalnan; */
-    font-weight: 700;
+    font-family: KOTRAHOPE;
+    font-weight: bold;
     font-size: 35px;
     color: ${(props) => props.theme.HeLogoColor};
     cursor: pointer;
+    white-space: nowrap;
   }
 `;
 
@@ -296,31 +307,5 @@ const InputForm = styled.div`
     color: #999;
     font-size: 18px;
     font-weight: normal;
-  }
-
-  button {
-    padding: 12px 24px;
-    margin: 2px 0 20px 0;
-    width: 100%;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 20px;
-    -webkit-font-smoothing: antialiased;
-    text-align: center;
-    letter-spacing: 1px;
-    border: 0;
-    border-bottom: 2px solid #2fa88ac5;
-    transition: all 0.15s ease;
-    background: #3cd5aec5;
-    border-radius: 5px;
-    text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
-  }
-  .btn:focus {
-    outline: 0;
-  }
-
-  .btn:hover {
-    background: #2fa88ac5;
   }
 `;

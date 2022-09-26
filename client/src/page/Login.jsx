@@ -6,12 +6,14 @@ import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 import axios from "axios";
-
+import Button from "../components/Button";
 import useAuthStore from "../store/authStore";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,30 +26,35 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-console.log(email,password)
-  const submitHandler =  (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
-
-     axios({
+    axios({
       method: "post",
-      url: "/api/auth/login",
-      // url: "http://localhost:3001/user",
+      url: "api/auth/login",
+      //  url: "http://localhost:3001/user",
       data: {
         email: email,
         password: password,
       },
+      withCredentials: true,
     })
       .then((response) => {
-        // let jwtToken = response.headers.authorization;
-        // console.log(jwtToken)
-        console.log(response.data)
-        console.log(response.headers["set-cookie"])
+        console.log(response);
+        console.log(response.headers.cookie);
+        alert(document.cookie);
+        console.log(response.cookies);
+        // console.log("access_token:", response.data);
+
+        // console.log(response.headers);
+
+        // console.log(response.headers["cache-control"]);
+        // console.log(response.headers["set-cookie"]);
+
         // localStorage.setItem("refresh_token", response.data);
-        // sessionStorage.setItem("access_token", response.data);
+        sessionStorage.setItem("access_token", response.data);
       })
       .catch((err) => console.log("err", err));
-
   };
 
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
@@ -94,6 +101,7 @@ console.log(email,password)
   return (
     <div>
       <Header />
+      <ToastContainer />
       <LoginContainer>
         <HeaderLogo>
           <Link to={"/"}>
@@ -125,9 +133,12 @@ console.log(email,password)
                 autoComplete='off'
               ></input>
             </div>
-            <button className='btn'>로그인</button>
+            <div>
+              <Button text={"로그인"} type={"auth"}></Button>
+            </div>
+
             <Link to={"/signup"}>
-              <button className='btn'>회원가입</button>
+              <Button text={"회원가입"} type={"auth"}></Button>
             </Link>
           </form>
           <section>
@@ -136,8 +147,6 @@ console.log(email,password)
               <span>OR</span>
               <hr />
             </div>
-            {/* <img src={kakao}></img>
-            <img src={google}></img> */}
             <div className='social_btn'>
               <button className='kakaoBtn' onClick={kakaoLogin}>
                 <Kakao />
@@ -177,13 +186,13 @@ const LoginContainer = styled.div`
 const HeaderLogo = styled.div`
   /* padding-left: 20px; */
   margin-bottom: 20px;
-
   & span {
-    /* font-family: yg_jalnan; */
-    font-weight: 700;
+    font-family: KOTRAHOPE;
+    font-weight: bold;
     font-size: 35px;
     color: ${(props) => props.theme.HeLogoColor};
     cursor: pointer;
+    white-space: nowrap;
   }
 `;
 
@@ -229,32 +238,6 @@ const InputForm = styled.div`
     font-weight: normal;
   }
 
-  button {
-    padding: 12px 24px;
-    margin: 2px 0 20px 0;
-    width: 100%;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 20px;
-    -webkit-font-smoothing: antialiased;
-    text-align: center;
-    letter-spacing: 1px;
-    border: 0;
-    border-bottom: 2px solid #2fa88ac5;
-    transition: all 0.15s ease;
-    background: #3cd5aec5;
-    border-radius: 5px;
-    text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
-  }
-  .btn:focus {
-    outline: 0;
-  }
-
-  .btn:hover {
-    background: #2fa88ac5;
-  }
-
   section {
     display: flex;
     flex-direction: column;
@@ -293,11 +276,14 @@ const InputForm = styled.div`
     }
     .kakaoBtn {
       background-color: #fafafa;
+      background: #fafafa;
+      border: 0;
       margin: 0;
       border-bottom: 0px;
       padding: 0px 0px;
       width: 48px;
       height: 48px;
+      border-color: #fafafa;
     }
     .googleBtn {
       margin: 0px 0px;
