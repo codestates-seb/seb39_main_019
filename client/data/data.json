@@ -1,0 +1,94 @@
+<<<<<<< HEAD
+{
+  "user": [
+    {
+      "email": "alsltjsals@gmail.com",
+      "password": "123456789",
+      "id": 1
+    }
+  ],
+  "signup": {
+    "nickname": "이선민",
+    "email": "test@test.com",
+    "password": "1212"
+  },
+  "content": [
+    {
+      "id": 1,
+      "title": "대공원에서 같이 산책하실분",
+      "body": "새벽 1시쯤 만나서 산책해요~!",
+      "location": "강남구",
+      "personality": "# 활발함",
+      "size": "# 대형견",
+      "picture": "urlasdasdasdawd"
+    },
+    {
+      "id": 2,
+      "title": "대공원에서 같이 산책하실분",
+      "body": "새벽 1시쯤 만나서 산책해요~!",
+      "location": "강남구",
+      "personality": "# 애교많음",
+      "size": "# 소형견"
+    },
+    {
+      "id": 3,
+      "title": "대공원에서 같이 산책하실분",
+      "body": "새벽 1시쯤 만나서 산책해요~!",
+      "location": "강남구",
+      "personality": "# 겁많음",
+      "size": "# 소형견"
+    },
+    {
+      "id": 4,
+      "title": "대공원에서 같이 산책하실분",
+      "body": "새벽 1시쯤 만나서 산책해요~!",
+      "location": "강남구",
+      "personality": "# 소심함",
+      "size": "# 중형견"
+    },
+    {
+      "title": "아찌,민트,초코,호밀이랑~ 산책하실분 나는 민우쓰",
+      "body": "빨리와~!",
+      "location": "김포시",
+      "personality": "# 활발함",
+      "size": "# 소형견",
+      "id": 5
+    },
+    {
+      "title": "빵순이 산책할사람",
+      "body": "저녁 7시 어디어디서 만나요!",
+      "location": "군산구",
+      "personality": "# 활발함",
+      "size": "# 중형견",
+      "id": 6
+    },
+    {
+      "title": "헤워닝",
+      "personality": "TIMID",
+      "guName": "",
+      "size": "MIDDLE",
+      "content": "asdasd",
+      "id": 7
+    },
+    {
+      "title": "워니불닭소스한방울",
+      "personality": "TIMID",
+      "guName": "강남구",
+      "size": "MIDDLE",
+      "content": "잘부탁드립니다 저녁 7시!",
+      "id": 8
+    }
+  ],
+  "animal": [
+    {
+      "id": 1,
+      "name": "꼬미",
+      "kind": "폼피츠",
+      "age": 2,
+      "sex": "# 암컷",
+      "size": "# 소형견"
+    }
+  ]
+}
+=======
+>>>>>>> d405b30353d46620a0cbb65963260caae2979c14
