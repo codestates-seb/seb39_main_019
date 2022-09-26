@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
@@ -223,3 +224,14 @@ const InputForm = styled.div`
     text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
   }
 `;
+=======
+import React from 'react'
+
+const Signup = () => {
+  return (
+    <div>Signup</div>
+  )
+}
+
+export default Signup
+>>>>>>> d405b30353d46620a0cbb65963260caae2979c14

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Login from "../page/Login";
 import Signup from "../page/Signup";
 import Main from "../page/Main";
@@ -9,17 +10,23 @@ import Mypage from "../page/Mypage";
 import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
 import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
 import PpAuthOvlMdl from "../components/Modal/PpAuthOvlMdl";
+=======
+import Login from '../page/Login'
+import SignUp from '../page/Signup'
+import Main from '../page/Main'
+>>>>>>> d405b30353d46620a0cbb65963260caae2979c14
 
 const RouteModule = [
   {
-    path: "/signup",
-    element: <Signup />,
+    path:"/signup",
+    element:<SignUp/>
   },
   {
-    path: "/login",
-    element: <Login />,
-  },
+    path:"/login",
+    element:<Login/>
+  }, 
   {
+<<<<<<< HEAD
     path: "/main",
     element: <Main />,
   },
@@ -56,5 +63,11 @@ const RouteModule = [
     element: <PpAuthOvlMdl />,
   },
 ];
+=======
+    path:"/",
+    element:<Main/>
+  }
+]
+>>>>>>> d405b30353d46620a0cbb65963260caae2979c14
 
 export default RouteModule;
