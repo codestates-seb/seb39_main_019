@@ -10,7 +10,7 @@ import {TabText} from './TabText'
 const CardPart = () => {
   const {index} = useStore()
   const [data,setData] = React.useState([])
-  axios.get('http://localhost:3001/content')
+  // axios.get('http://localhost:3001/content')
   // axios.get('http://43.200.20.180:8080/v1/posts')
   React.useEffect(()=>{
     // axios.get('http://43.200.20.180:8080/v1/posts')
@@ -41,19 +41,12 @@ const CardPart = () => {
 export default CardPart
 
 const CardContainer = styled.div`
+  width: 100%;
   margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 20px;
-  row-gap: 60px;
-  @media screen and (max-width:1160px){
-    grid-template-columns: repeat(3, minmax(100px ,auto));
-  }
-  @media screen and (max-width:880px){
-    grid-template-columns: repeat(2, minmax(100px ,auto));
-  }
-  @media screen and (max-width:750px){
-    grid-template-columns: repeat(1, minmax(240px ,auto));
-    row-gap: 20px;
-  }
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  row-gap: 50px;
 `

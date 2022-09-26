@@ -33,6 +33,7 @@ const Filter = () => {
 export default Filter
 
 const FilterContainer = styled.div`
+width: 100%;
 padding: 40px 0; 
 
   button{
@@ -58,6 +59,8 @@ padding: 40px 0;
 const FilterBox = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  /* padding-right: 200px; */
   @media screen and (max-width:952px){
     flex-direction:column;
     button{

@@ -2,10 +2,10 @@ import Login from "../page/Login";
 import Signup from "../page/Signup";
 import Main from "../page/Main";
 import Post from "../page/Post";
+import PostDetail from '../page/PostDetail'
 import Randing from "../page/Randing";
 import PuppyAuthentication from "../page/PuppyAuthentication";
 import Mypage from "../page/Mypage";
-
 import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
 import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
 import PpAuthOvlMdl from "../components/Modal/PpAuthOvlMdl";
@@ -26,6 +26,10 @@ const RouteModule = [
   {
     path: "/post",
     element: <Post />,
+  },
+  {
+    path: "/main/:id",
+    element: <PostDetail/>,
   },
   {
     path: "/",

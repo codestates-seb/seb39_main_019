@@ -60,6 +60,22 @@
       "personality": "# 활발함",
       "size": "# 중형견",
       "id": 6
+    },
+    {
+      "title": "헤워닝",
+      "personality": "TIMID",
+      "guName": "",
+      "size": "MIDDLE",
+      "content": "asdasd",
+      "id": 7
+    },
+    {
+      "title": "워니불닭소스한방울",
+      "personality": "TIMID",
+      "guName": "강남구",
+      "size": "MIDDLE",
+      "content": "잘부탁드립니다 저녁 7시!",
+      "id": 8
     }
   ],
   "animal": [

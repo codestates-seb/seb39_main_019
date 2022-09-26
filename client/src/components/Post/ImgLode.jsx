@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import {phone} from '../../assets/style/Theme'
 
 const ImgLode = () => {
+
   const [showImages, setShowImages] = useState([]);
   const [isImg,setIsImg] = useState(false)
 
@@ -11,16 +13,15 @@ const ImgLode = () => {
     setIsImg(!isImg)
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      console.log(currentImageUrl)
       imageUrlLists.push(currentImageUrl);
     }
-
+    
     if (imageUrlLists.length > 1) {
       imageUrlLists = imageUrlLists.slice(0, 1);
     }
     setShowImages(imageUrlLists);
   };
-
+  
 
   const handleDeleteImage = (id) => {
     setShowImages(showImages.filter((_, index) => index !== id));
@@ -32,7 +33,7 @@ const ImgLode = () => {
       {isImg?
       (showImages.map((image, id) => (
         <ImgBox key={id}>
-          <img  src={image}/>
+          <img src={image}/>
           <button onClick={() => handleDeleteImage(0)} >삭제</button>
         </ImgBox>
       ))):<div className='fakeBox'></div>}
@@ -49,13 +50,15 @@ const ImgLode = () => {
 
 export default ImgLode
 const Imgcontainer = styled.div`
+width: 100%;
 span, button:hover{
   background-color: ${(props)=>props.theme.HeLogoColor};
   color: ${(props)=>props.theme.HeaderColor}
 }
  & label{
-   display: flex;
-   align-items: center;
+   /* position: absolute;
+   top:-9999px;
+   left: -9999px; */
     & input{
       width: 0px;
   }
@@ -75,10 +78,15 @@ span, button:hover{
   }
  }
  .fakeBox{
-   width: 400px;
+   width: 100%;
    height: 400px;
    background-color:#cccccc;
    border-radius:10px;
+
+  ${phone(css`
+     width: 100%;
+     height: 300px;
+   `)}
  }
 `
 
@@ -86,9 +94,15 @@ const ImgBox = styled.div`
 display: flex;
 flex-direction: column;
  & img{
-   width: 400px;
+   width: 100%;
    height: 400px;
    border-radius: 10px;
+
+   ${phone(css`
+     width: 100%;
+     height: 300px;
+   `)}
+
  }
  & button{
    margin-top: 10px;

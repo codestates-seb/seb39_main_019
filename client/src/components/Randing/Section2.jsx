@@ -6,7 +6,6 @@ const Section2 = () => {
 
   const {scrollY} = useScroll()
 
-
   return (
     <TwoContainer>
       <TwoInner>
@@ -24,12 +23,14 @@ const Section2 = () => {
 export default Section2
 
 const TwoContainer = styled.div`
+width: 100%;
   background-color: #fff;
   height: 900px;
   text-align: center;
   padding-top: 100px;
 `
 const TwoInner = styled.div`
+width: 100%;
 position: relative;
   & div{
 
@@ -53,13 +54,15 @@ position: relative;
     position: absolute;
     opacity: 0;
     top: 50px;
-    left: 30%;
+    left: 50%;
+    transform: translate(-50%);
 
   }
   .on{
     position: absolute;
     top: 0px;
     opacity: 1;
-    left: 30%;
+    left: 50%;
+    transform: translate(-50%);
   }
 `

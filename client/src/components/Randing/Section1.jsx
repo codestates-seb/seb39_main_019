@@ -43,7 +43,7 @@ const ContainerOne = styled.div`
   .on{
     position: absolute;
     animation: slide 1.3s ease-out;
-    left: 100px;
+    left: 10%;
   }
   @keyframes slide {
     from{
@@ -51,22 +51,22 @@ const ContainerOne = styled.div`
         opacity: 0;
     }
     to{
-        left: 100px;
+        left: 10%;
         opacity: 1;
     }
     
 }
 `
 const OneInner = styled.div`
-  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   color: #fff;
   margin-top: 80px;
   & div{
+    width: 100%;
     font-size: 50px;
     font-weight: bold;
-    white-space:nowrap;
+    /* white-space:nowrap; */
   }
   & p{
     margin-top: 30px;

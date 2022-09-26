@@ -133,7 +133,7 @@ const HeaderButton = styled.div`
     border-radius: 8px;
     position: absolute;
     top: 100%;
-    right: 3%;
+    right: -1%;
     width: 120px;
     text-align: center;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
@@ -148,7 +148,7 @@ const HeaderButton = styled.div`
     transition: 0.3s;
     position: absolute;
     top: 160%;
-    right:3%;
+    right: -1%;
     width: 120px;
     text-align: center;
     border-radius: 8px;
