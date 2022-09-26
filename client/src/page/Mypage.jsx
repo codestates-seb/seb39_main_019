@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../components/Header";
 import styled from "styled-components";
 import Layout from "../components/Layout/Layout";
 import MypageProfile from "../components/Mypage/MypageProfile";
