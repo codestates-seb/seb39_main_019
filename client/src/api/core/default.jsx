@@ -18,7 +18,7 @@ instance.interceptors.request.use(
     const { token } = config.data;
     config.headers["Content-Type"] = "application/json; charset=utf-8";
     config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
-
+    axios.defaults.withCredentials = true; //
     return config;
   },
   (error) => {
