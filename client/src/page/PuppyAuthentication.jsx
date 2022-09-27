@@ -180,7 +180,7 @@ const PuppyAuthentication = () => {
             autoClose: 3000,
             hideProgressBar: true,
           }),
-        navigate("/PuppyInfoPage") // 이 부분 수정해야함
+        navigate("/PuppyInfoPost") // 이 부분 수정해야함
       )
       .catch((err) =>
         /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/

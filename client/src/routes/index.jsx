@@ -45,7 +45,7 @@ const RouteModule = [
     element: <Mypage />,
   },
   {
-    path: "/puppyinfopage",
+    path: "/PuppyInfoPage",
     element: <PuppyInfoPage />,
   },
   {

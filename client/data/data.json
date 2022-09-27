@@ -74,9 +74,9 @@
     },
     {
       "title": "워니육회비빔밥먹음요!",
-      "personality": "TIMID",
+      "personality": "CUTE",
       "guName": "서초구",
-      "size": "LARGE",
+      "size": "SMALL",
       "content": "잘부탁드립니다 저녁 7시!ㅁㅁㅁ",
       "id": 9
     }
@@ -90,5 +90,12 @@
       "sex": "# 암컷",
       "size": "# 소형견"
     }
-  ]
+  ],
+  "puppyInfo": {
+    "id": 1,
+    "dogNm": "꼬미",
+    "breed": "폼피츠",
+    "age": 2,
+    "sexNm": "# 암컷"
+  }
 }
