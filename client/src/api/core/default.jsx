@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
+  baseURL: "/api/auth/login",
   // baseURL: "http://localhost:3001/",
   // baseURL: process.env.REACT_APP_DB_HOST,
 });
@@ -9,18 +10,14 @@ const instance = axios.create({
 //   ? localStorage.getItem("token")
 //   : null;
 
+// let token = sessionStorage.getItem("access_token") || "";
+
 instance.interceptors.request.use(
   async (config) => {
+    console.log(config);
+    const { token } = config.data;
     config.headers["Content-Type"] = "application/json; charset=utf-8";
-    config.headers["Authorization"] = `Bearer ${tokens?.access}`; //여기는 accessToken
-
-    // if (token.length === 0) return config;
-    // const response = await axios.post(`${baseURL}/api/token/refresh/`, {
-    //   refresh: token.refresh,
-    // });
-    // localStorage.setItem("token", JSON.stringify(response.data));
-    // setAuthTokens(response.data);
-    // config.headers.Authorization = `Bearer ${response.data.access}`;
+    config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
 
     return config;
   },
@@ -35,10 +32,7 @@ instance.interceptors.response.use(
     return res;
   },
   (error) => {
-    const {
-      config,
-      response: { status },
-    } = error;
+    const { config, response: status } = error;
     if (status === 401) {
       if (error.response.data.message === "TokenExpiredError") {
         const originalRequest = config;

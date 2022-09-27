@@ -56,10 +56,6 @@ const ProfileEdit = ({
               disabled
             ></input>
           </div>
-          <div className='group'>
-            <label htmlFor='address'>지역</label>
-            <select></select>
-          </div>
           <Button text={"수정하기"} type={"mypageBtn"}></Button>
         </InfoForm>
       </Overlay>
