@@ -38,7 +38,7 @@ const CardPart = () => {
 }
 
 
-export default CardPart
+export default React.memo(CardPart)
 
 const CardContainer = styled.div`
   width: 100%;

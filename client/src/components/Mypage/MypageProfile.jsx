@@ -4,8 +4,6 @@ import axios from "axios";
 import Button from "../Button";
 import ProfileEdit from "./ProfileEdit";
 import PuppyInfoEdit from "./PuppyInfoEdit";
-import { ReactComponent as ProfileSmile } from "../../assets/imgs/ProfileSmile.svg";
-import { ReactComponent as ProfileSun } from "../../assets/imgs/ProfileSun.svg";
 import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
 
 const MypageProfile = () => {
