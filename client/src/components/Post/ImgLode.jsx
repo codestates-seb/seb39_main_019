@@ -1,11 +1,15 @@
-import React,{useState} from 'react'
+import React,{useState,useRef} from 'react'
 import styled, {css} from 'styled-components';
 import {phone} from '../../assets/style/Theme'
 
 const ImgLode = () => {
-
+  const inputRef = useRef(null)
   const [showImages, setShowImages] = useState([]);
   const [isImg,setIsImg] = useState(false)
+
+  const handleImgUpload = () => {
+    inputRef.current.click()
+  }
 
   const handleAddImages = (event) => {
     const imageLists = event.target.files;
@@ -32,15 +36,15 @@ const ImgLode = () => {
     <Imgcontainer>
       {isImg?
       (showImages.map((image, id) => (
-        <ImgBox key={id}>
-          <img src={image}/>
+        <ImgBox key={id} >
+          <img src={image} />
           <button onClick={() => handleDeleteImage(0)} >삭제</button>
         </ImgBox>
-      ))):<div className='fakeBox'></div>}
-      <label onChange={handleAddImages}>
+      ))):<div onClick={handleImgUpload} className='fakeBox'>+</div> }
+      <label onChange={handleAddImages} >
         <input type="file" id="input-file" multiple className='classes.addButton' />
         <div>
-          {isImg?null:<><span>사진추가</span></>}
+          {isImg?null:<><span ref={inputRef}>사진추가</span></>}
         </div>
       </label>
     </Imgcontainer>
@@ -51,16 +55,17 @@ const ImgLode = () => {
 export default ImgLode
 const Imgcontainer = styled.div`
 width: 100%;
+margin-bottom: 10px;
 span, button:hover{
   background-color: ${(props)=>props.theme.HeLogoColor};
   color: ${(props)=>props.theme.HeaderColor}
 }
  & label{
-   /* position: absolute;
+   position: absolute;
    top:-9999px;
-   left: -9999px; */
+   left: -9999px;
     & input{
-      width: 0px;
+    display: none;
   }
     & div{
       display: flex;
@@ -82,6 +87,11 @@ span, button:hover{
    height: 400px;
    background-color:#cccccc;
    border-radius:10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   font-size: 4.5rem;
 
   ${phone(css`
      width: 100%;

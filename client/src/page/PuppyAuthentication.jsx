@@ -251,8 +251,8 @@ const SocialModalContainer = styled.div`
       display: flex;
       flex-direction: column;
     } */
-  }
-`;
+  /* } */
+`
 
 const HeaderLogo = styled.div`
   /* padding-left: 20px; */

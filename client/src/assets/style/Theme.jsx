@@ -10,6 +10,7 @@ export const lightTheme = {
 }
 //'#3cd5aec5'
 //#3183f7
+//
 
 export const darkTheme = {
   bgColor : '#131213',
