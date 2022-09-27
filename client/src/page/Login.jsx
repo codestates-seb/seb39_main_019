@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// import { postLogin2 } from "../api/utils";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,11 +30,13 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    // postLogin2(email, password);
 
     axios({
       method: "post",
       url: "api/auth/login",
       //  url: "http://localhost:3001/user",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
       data: {
         email: email,
         password: password,
@@ -41,9 +45,16 @@ const Login = () => {
     })
       .then((response) => {
         console.log(response);
-        console.log(response.headers.cookie);
-        alert(document.cookie);
-        console.log(response.cookies);
+        console.log(response.data);
+        // console.log(document.cookie);
+
+        const accessToken = response.data;
+        console.log(accessToken);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+        // setCookie("refresh_token", response.headers);
+
         // console.log("access_token:", response.data);
 
         // console.log(response.headers);
@@ -51,8 +62,8 @@ const Login = () => {
         // console.log(response.headers["cache-control"]);
         // console.log(response.headers["set-cookie"]);
 
-        // localStorage.setItem("refresh_token", response.data);
-        sessionStorage.setItem("access_token", response.data);
+        // localStorage.setItem("refresh_token", name);
+        // sessionStorage.setItem("access_token", response.data);
       })
       .catch((err) => console.log("err", err));
   };

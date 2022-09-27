@@ -1,6 +1,5 @@
 import instance from "./core/default";
 
-
 // const getbody = () => {
 //   return instance({ url: "login" });
 // };
@@ -9,7 +8,7 @@ import instance from "./core/default";
 const postLogin2 = (email, password) => {
   instance({
     method: "post",
-    url: "/api/auth/login",
+    // url: "/auth/login",
     data: {
       email: email,
       password: password,
@@ -53,8 +52,8 @@ const postRegister = (nickname, regiEmail, regiPassword) => {
       email: regiEmail,
       password: regiPassword,
     },
+    withCredentials: true,
   });
 };
 
-export { postLogin, postRegister };
-
+export { postLogin, postRegister, postLogin2 };
