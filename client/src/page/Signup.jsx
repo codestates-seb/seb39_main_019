@@ -50,6 +50,7 @@ const Signup = () => {
         email: regiEmail,
         password: regiPassword,
       },
+      withCredentials: true,
     }).then(() => {
       setSuccess(true);
     });

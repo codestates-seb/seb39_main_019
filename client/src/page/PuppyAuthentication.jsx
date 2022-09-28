@@ -15,6 +15,7 @@ import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
 import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAuthStore from "../store/authStore";
 
 const PuppyAuthentication = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,7 @@ const PuppyAuthentication = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
+  const { isLogin } = useAuthStore();
 
   const openModalHandler = () => {
     setIsOpen(!isOpen);
@@ -169,14 +171,16 @@ const PuppyAuthentication = () => {
       url: "api/dogs/validation",
       data: { owner_nm: ppOwner, dog_reg_no: regiNumber },
     })
-      .then((response) =>
-        /*navigate("/PpAuthDoneMdl")*/ /*<PpAuthDoneMdl /> */
-        // navigate("/mypage"),
-        toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        })
+      .then(
+        (response) =>
+          /*navigate("/PpAuthDoneMdl")*/ /*<PpAuthDoneMdl /> */
+
+          toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 3000,
+            hideProgressBar: true,
+          }),
+        navigate("/PuppyInfoPost") // 이 부분 수정해야함
       )
       .catch((err) =>
         /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
@@ -252,7 +256,7 @@ const SocialModalContainer = styled.div`
       flex-direction: column;
     } */
   /* } */
-`
+`;
 
 const HeaderLogo = styled.div`
   /* padding-left: 20px; */

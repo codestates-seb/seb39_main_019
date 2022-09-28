@@ -80,11 +80,11 @@
       "size": "# 소형견"
     },
     {
-      "title": "아찌,민트,초코,호밀이랑~ 산책하실분 나는 민우쓰",
-      "body": "빨리와~!",
-      "guName": "배고포구",
-      "personality": "# 활발함",
-      "size": "# 소형견",
+      "title": "워니육회비빔밥먹음요!",
+      "personality": "CUTE",
+      "guName": "서초구",
+      "size": "SMALL",
+      "content": "잘부탁드립니다 저녁 7시!ㅁㅁㅁ",
       "id": 9
     },
     {
@@ -95,14 +95,6 @@
       "id": 10,
       "content": "저녁 7시에 같이 산책해요! 호수공원 정문에서 만나요! ",
       "guName": "강남구"
-    },
-    {
-      "title": "작성",
-      "personality": "ACTIVE",
-      "guName": "마포구",
-      "size": "LARGE",
-      "content": "마포구!!",
-      "id": 11
     }
   ],
   "animal": [
@@ -114,5 +106,12 @@
       "sex": "# 암컷",
       "size": "# 소형견"
     }
-  ]
+  ],
+  "puppyInfo": {
+    "id": 1,
+    "dogNm": "포도",
+    "breed": "말티즈",
+    "age": "1",
+    "sexNm": "암컷"
+  }
 }
