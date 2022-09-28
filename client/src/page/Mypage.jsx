@@ -11,7 +11,8 @@ const Mypage = () => {
             <MypageProfile />
             <Diveder />
           </MypageHeaderPart>
-          <MypageBodyPart></MypageBodyPart>
+          <MypageBodyPart>
+          </MypageBodyPart>
         </MypageContainer>
       }
     />

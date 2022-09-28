@@ -15,6 +15,7 @@ const {title,body,location,personality,size
  const [data,setData] = React.useState([])
  const [isEdit,setIsEdit] = React.useState(false)
  console.log(location)
+ 
  const handleEdit = () => {
    setIsEdit(!isEdit)
    setTitle(data.title)
@@ -151,11 +152,19 @@ const DetailTop = styled.div`
   }
 `
 const TopTitle = styled.div`
+align-items: flex-start;
+  & h1{
+    font-size: 30px;
+    flex: 9;
+    @media screen and (max-width: 800px){
+     font-size: 20px;
+  }
+  }
   & div{
       align-items: center;
     & button{
+      flex: 1;
       padding: 10px 10px;
-      height: 100%;
       border: none;
       border-radius: 5px;
       color: ${(props)=>props.theme.HeaderColor}; 
