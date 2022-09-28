@@ -7,13 +7,13 @@ import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 import axios from "axios";
 import Button from "../components/Button";
-import useAuthStore from "../store/authStore";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAuthStore from "../store/authStore";
 
 // import { postLogin2 } from "../api/utils";
 
@@ -23,6 +23,7 @@ const Login = () => {
   const emailRef = useRef(null);
   const navigate = useNavigate();
   const { token } = useAuthStore();
+  const { isLogin, setIsLogin } = useAuthStore();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -32,16 +33,26 @@ const Login = () => {
     e.preventDefault();
     // postLogin2(email, password);
 
-    // axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
 
     axios
-      .post("api/auth/login", { email, password }, { withCredentials: true })
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("refresh_token", res.headers["set-cookie"]);
-        sessionStorage.setItem("access_token", res.data);
+      .post("api/auth/login", { email, password })
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("refresh_token", response.data.refresh_token);
+        sessionStorage.setItem("access_token", response.data.access_token);
+        setIsLogin();
+        // navigate("/puppyauthentication");
+        // toast.success("로그인이 완료되었습니다!");
       })
-      .catch((err) => console.log(err));
+      .then((res) => {
+        navigate("/puppyauthentication");
+        toast.success("로그인이 완료되었습니다!");
+      })
+      .catch((err) => {
+        console.log(error);
+        window.alert("로그인 실패!");
+      });
 
     // axios({
     //   method: "post",

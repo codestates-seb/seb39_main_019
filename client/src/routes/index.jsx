@@ -10,6 +10,7 @@ import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
 import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
 import PpAuthOvlMdl from "../components/Modal/PpAuthOvlMdl";
 import PuppyInfoPage from "../page/PuppyInfoPage";
+import MypageWrote from "../components/Mypage/MypageWrote";
 
 const RouteModule = [
   {
@@ -41,11 +42,11 @@ const RouteModule = [
     element: <PuppyAuthentication />,
   },
   {
-    path: "/mypage",
+    path: "/mypage/*",
     element: <Mypage />,
   },
   {
-    path: "/puppyinfopage",
+    path: "/PuppyInfoPage",
     element: <PuppyInfoPage />,
   },
   {
