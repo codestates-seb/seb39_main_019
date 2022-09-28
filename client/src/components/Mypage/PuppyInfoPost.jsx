@@ -7,8 +7,10 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getPpinfor } from "../../api/utils";
+import { useNavigate } from "react-router-dom";
 
 import PuppyInfoMain from "./PuppyInfoMain";
+import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
 
 const PuppyInfoPost = () => {
   const [dogNm, setDogNm] = useState("");
@@ -18,6 +20,7 @@ const PuppyInfoPost = () => {
 
   const [allData, setAllData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -61,6 +64,10 @@ const PuppyInfoPost = () => {
   return (
     <PuppyInfoPostContainer>
       <ToastContainer />
+      <BackBtn onClick={() => navigate(-1)}>
+        <BackArrow />
+        <div>뒤로가기</div>
+      </BackBtn>
       <h1>반려견 정보 기입하기</h1>
       <PpInfoForm>
         <ul>
@@ -163,8 +170,16 @@ const PuppyInfoPostContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
 
-  /* text-align: center; */
+  h1 {
+    margin-top: 40px;
+  }
 `;
+const BackBtn = styled.button`
+  border: 0;
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0);
+`;
+
 const PpInfoForm = styled.form`
   /* flex-wrap: wrap; */
   display: flex;

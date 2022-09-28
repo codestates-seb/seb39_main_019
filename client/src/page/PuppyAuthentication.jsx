@@ -212,7 +212,7 @@ const PuppyAuthentication = () => {
           autoClose: 3000,
           hideProgressBar: true,
         });
-        navigate("/PuppyInfoPost"); // 이 부분 수정해야함
+        navigate("/mypage");
       })
       .catch((err) =>
         /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
