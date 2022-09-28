@@ -59,6 +59,7 @@ const ProfileEdit = ({
             ></input>
           </div>
           <Button text={"수정하기"} type={"mypageBtn"}></Button>
+          <WithdrawalBtn>회원탈퇴</WithdrawalBtn>
         </InfoForm>
       </Overlay>
     </ProfileEditContainer>,
@@ -135,4 +136,12 @@ const InfoForm = styled.form`
     font-size: 18px;
     font-weight: normal;
   }
+`;
+
+const WithdrawalBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 10px;
+  text-decoration: underline;
 `;
