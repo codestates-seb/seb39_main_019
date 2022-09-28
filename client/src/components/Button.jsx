@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
 const Button = ({ text, type, onClick }) => {
-  const types = ["basic", "auth", "mypage", "mypageBtn"].includes(type)
+  const types = [
+    "basic",
+    "auth",
+    "mypage",
+    "mypageBtn",
+    "add",
+    "delete",
+  ].includes(type)
     ? type
     : "default";
   return (
@@ -95,6 +102,49 @@ const ButtonCom = styled.button`
     &:hover {
       background-color: ${(props) => props.theme.HeaderColor};
       color: ${(props) => props.theme.textColor};
+      transform: scale(1.05);
+    }
+  }
+
+  &.myButton_add {
+    /* width: 100%; */
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    color: ${(props) => props.theme.HeaderColor};
+
+    background-color: ${(props) => props.theme.HeLogoColor};
+
+    transition: all 0.15s ease;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: ${(props) => props.theme.HeaderColor};
+      color: ${(props) => props.theme.textColor};
+      transform: scale(1.05);
+    }
+  }
+
+  &.myButton_delete {
+    /* width: 100%; */
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    /* color: ${(props) => props.theme.HeaderColor}; */
+
+    /* background-color: ${(props) => props.theme.HeLogoColor}; */
+    background-color: red;
+    /* border-bottom: 2px solid #4dafd2c5;
+    border-right: 2px solid #4dafd2c5; */
+    transition: all 0.15s ease;
+    border-radius: 5px;
+
+    &:hover {
+      /* background-color: ${(props) => props.theme.HeaderColor}; */
+      background-color: red;
+      /* color: ${(props) => props.theme.textColor}; */
       transform: scale(1.05);
     }
   }

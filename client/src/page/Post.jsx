@@ -96,18 +96,17 @@ align-items: center;
 ${pad(css`
 flex-direction: column;
   `)}
-  
 `
 const MidLeft = styled.div`
 flex: 1;
 ${pad(css`
 width: 100%;
   `)}
-
 `
 const MidRight = styled.div`
 flex:1;
 ${pad(css`
   width: 100%;
+  margin-top: -35px;
     `)}
 `

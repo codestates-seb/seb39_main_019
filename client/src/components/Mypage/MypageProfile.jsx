@@ -4,9 +4,8 @@ import axios from "axios";
 import Button from "../Button";
 import ProfileEdit from "./ProfileEdit";
 import PuppyInfoEdit from "./PuppyInfoEdit";
-import { ReactComponent as ProfileSmile } from "../../assets/imgs/ProfileSmile.svg";
-import { ReactComponent as ProfileSun } from "../../assets/imgs/ProfileSun.svg";
 import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
+import { Link } from "react-router-dom";
 
 const MypageProfile = () => {
   const [headerData, setHeaderData] = useState("");
@@ -18,7 +17,7 @@ const MypageProfile = () => {
       .get("http://localhost:3001/signup")
       .then((response) => response.data)
       .then((data) => setHeaderData(data));
-  },[]);
+  }, []);
 
   return (
     <MypageProfileContainer>
@@ -33,11 +32,13 @@ const MypageProfile = () => {
         <div>{headerData.nickname}</div>
         <div>{headerData.email}</div>
         <BtnContainer>
-          <Button
-            text={"반려견 정보 등록하기"}
-            type={"mypage"}
-            onClick={() => setIsPuppyShow((s) => !s)}
-          ></Button>
+          <Link to='/PuppyInfoPage'>
+            <Button
+              text={"반려견 정보 등록하기"}
+              type={"mypage"}
+              // onClick={() => setIsPuppyShow((s) => !s)}
+            ></Button>
+          </Link>
           <PuppyInfoEdit
             isPuppyShow={isPuppyShow}
             closeModal={() => setIsPuppyShow(false)}

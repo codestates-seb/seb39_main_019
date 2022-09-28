@@ -1,4 +1,3 @@
-
 {
   "user": [
     {
@@ -17,7 +16,7 @@
       "id": 1,
       "title": "대공원에서 같이 산책하실분",
       "body": "새벽 1시쯤 만나서 산책해요~!",
-      "location": "강남구",
+      "guName": "강남구",
       "personality": "# 활발함",
       "size": "# 대형견",
       "picture": "urlasdasdasdawd"
@@ -26,7 +25,7 @@
       "id": 2,
       "title": "대공원에서 같이 산책하실분",
       "body": "새벽 1시쯤 만나서 산책해요~!",
-      "location": "강남구",
+      "guName": "강남구",
       "personality": "# 애교많음",
       "size": "# 소형견"
     },
@@ -34,49 +33,68 @@
       "id": 3,
       "title": "대공원에서 같이 산책하실분",
       "body": "새벽 1시쯤 만나서 산책해요~!",
-      "location": "강남구",
+      "guName": "강남구",
       "personality": "# 겁많음",
       "size": "# 소형견"
     },
     {
-      "id": 4,
-      "title": "대공원에서 같이 산책하실분",
-      "body": "새벽 1시쯤 만나서 산책해요~!",
-      "location": "강남구",
-      "personality": "# 소심함",
-      "size": "# 중형견"
-    },
-    {
       "title": "아찌,민트,초코,호밀이랑~ 산책하실분 나는 민우쓰",
       "body": "빨리와~!",
-      "location": "김포시",
+      "guName": "마포구",
       "personality": "# 활발함",
-      "size": "# 소형견",
-      "id": 5
+      "size": "MIDDLE",
+      "id": 4
     },
     {
       "title": "빵순이 산책할사람",
       "body": "저녁 7시 어디어디서 만나요!",
-      "location": "군산구",
       "personality": "# 활발함",
       "size": "# 중형견",
-      "id": 6
+      "id": 5,
+      "content": "저녁 7시에 같이 산책해요! 호수공원 정문에서 만나요! ",
+      "guName": "강남구"
     },
     {
-      "title": "헤워닝",
-      "personality": "TIMID",
-      "guName": "",
-      "size": "MIDDLE",
-      "content": "asdasd",
-      "id": 7
-    },
-    {
-      "title": "워니불닭소스한방울",
-      "personality": "TIMID",
+      "id": 6,
+      "title": "대공원에서 같이 산책하실분",
+      "body": "새벽 1시쯤 만나서 산책해요~!",
       "guName": "강남구",
-      "size": "MIDDLE",
-      "content": "잘부탁드립니다 저녁 7시!",
-      "id": 8
+      "personality": "# 활발함",
+      "size": "# 대형견",
+      "picture": "urlasdasdasdawd"
+    },
+    {
+      "id": 7,
+      "title": "대공원에서 같이 산책하실분",
+      "body": "새벽 1시쯤 만나서 산책해요~!",
+      "guName": "강남구",
+      "personality": "# 애교많음",
+      "size": "# 소형견"
+    },
+    {
+      "id": 8,
+      "title": "대공원에서 같이 산책하실분",
+      "body": "새벽 1시쯤 만나서 산책해요~!",
+      "guName": "강남구",
+      "personality": "# 겁많음",
+      "size": "# 소형견"
+    },
+    {
+      "title": "워니육회비빔밥먹음요!",
+      "personality": "CUTE",
+      "guName": "서초구",
+      "size": "SMALL",
+      "content": "잘부탁드립니다 저녁 7시!ㅁㅁㅁ",
+      "id": 9
+    },
+    {
+      "title": "빵순이 산책할사람",
+      "body": "저녁 7시 어디어디서 만나요!",
+      "personality": "# 활발함",
+      "size": "# 중형견",
+      "id": 10,
+      "content": "저녁 7시에 같이 산책해요! 호수공원 정문에서 만나요! ",
+      "guName": "강남구"
     }
   ],
   "animal": [
@@ -88,5 +106,12 @@
       "sex": "# 암컷",
       "size": "# 소형견"
     }
-  ]
+  ],
+  "puppyInfo": {
+    "id": 1,
+    "dogNm": "포도",
+    "breed": "말티즈",
+    "age": "1",
+    "sexNm": "암컷"
+  }
 }

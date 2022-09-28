@@ -7,13 +7,15 @@ import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 import axios from "axios";
 import Button from "../components/Button";
-import useAuthStore from "../store/authStore";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAuthStore from "../store/authStore";
+
+// import { postLogin2 } from "../api/utils";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +23,7 @@ const Login = () => {
   const emailRef = useRef(null);
   const navigate = useNavigate();
   const { token } = useAuthStore();
+  const { isLogin, setIsLogin } = useAuthStore();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -28,33 +31,65 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    // postLogin2(email, password);
 
-    axios({
-      method: "post",
-      url: "api/auth/login",
-      //  url: "http://localhost:3001/user",
-      data: {
-        email: email,
-        password: password,
-      },
-      withCredentials: true,
-    })
+    axios.defaults.withCredentials = true;
+
+    axios
+      .post("api/auth/login", { email, password })
       .then((response) => {
         console.log(response);
-        console.log(response.headers.cookie);
-        alert(document.cookie);
-        console.log(response.cookies);
-        // console.log("access_token:", response.data);
-
-        // console.log(response.headers);
-
-        // console.log(response.headers["cache-control"]);
-        // console.log(response.headers["set-cookie"]);
-
-        // localStorage.setItem("refresh_token", response.data);
-        sessionStorage.setItem("access_token", response.data);
+        localStorage.setItem("refresh_token", response.data.refresh_token);
+        sessionStorage.setItem("access_token", response.data.access_token);
+        setIsLogin();
+        // navigate("/puppyauthentication");
+        // toast.success("로그인이 완료되었습니다!");
       })
-      .catch((err) => console.log("err", err));
+      .then((res) => {
+        navigate("/puppyauthentication");
+        toast.success("로그인이 완료되었습니다!");
+      })
+      .catch((err) => {
+        console.log(error);
+        window.alert("로그인 실패!");
+      });
+
+    // axios({
+    //   method: "post",
+    //   url: "api/auth/login",
+    //   //  url: "http://localhost:3001/user",
+    //   headers: { "content-type": "application/x-www-form-urlencoded" },
+    //   data: {
+    //     email: email,
+    //     password: password,
+    //   },
+    //   withCredentials: true,
+    // })
+    //   .then((response) => {
+    //     withCredentials: true;
+    //     console.log(response);
+    //     console.log(response.headers);
+    //     // console.log(document.cookie);
+
+    //     const accessToken = response.data;
+    //     console.log(accessToken);
+    //     axios.defaults.headers.common[
+    //       "Authorization"
+    //     ] = `Bearer ${accessToken}`;
+
+    //     // setCookie("refresh_token", response.headers);
+
+    //     // console.log("access_token:", response.data);
+
+    //     // console.log(response.headers);
+
+    //     // console.log(response.headers["cache-control"]);
+    //     // console.log(response.headers["set-cookie"]);
+
+    //     // localStorage.setItem("refresh_token", response.headers["set-cookie"]);
+    //     // sessionStorage.setItem("access_token", response.data);
+    //   })
+    //   .catch((err) => console.log("err", err));
   };
 
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;

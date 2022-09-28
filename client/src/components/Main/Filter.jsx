@@ -3,12 +3,16 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import useStore from '../../store/filter'
 import {TabText} from './TabText'
+import { GuFilter } from './GuFilter'
 
-
+ 
 const Filter = () => {
-  const {setIndex} = useStore()
+  const {setIndex,setFilter} = useStore()
   const [currentTab,setCurrentTab] = React.useState(0)
   
+  const handleGuFilter = (index) => {
+    setFilter(index.target.value)
+  }
 
   const handleFilter = (index) => {
     const find = TabText.findIndex((it)=>it === index.target.textContent)
@@ -19,11 +23,18 @@ const Filter = () => {
   return (
     <FilterContainer>
       <FilterBox>
-        <Filters>
-        {TabText.map((it,idx)=>(
-          <button className={currentTab===idx? 'buttonFocus':'button'} onClick={handleFilter} key={idx}>{it}</button>
-        ))}
-        </Filters>
+        <div>
+          <select onChange={handleGuFilter}>
+            {GuFilter.map((it,idx)=>(
+              <option key={idx}>{it}</option>
+            ))}
+          </select>
+          <Filters>
+          {TabText.map((it,idx)=>(
+            <button className={currentTab===idx? 'buttonFocus':'button'} onClick={handleFilter} key={idx}>{it}</button>
+          ))}
+          </Filters>
+        </div>
         <Link to={'/post'}><button>글 작성하기</button></Link>
       </FilterBox>
     </FilterContainer>
@@ -61,7 +72,7 @@ const FilterBox = styled.div`
   justify-content: space-between;
   width: 100%;
   /* padding-right: 200px; */
-  @media screen and (max-width:952px){
+  @media screen and (max-width:953px){
     flex-direction:column;
     button{
       margin-top: 10px;
@@ -75,12 +86,47 @@ const FilterBox = styled.div`
       padding: 3px 5px;
     }
   }
+  & >div{
+    display: flex;
+    & select{
+      border-radius: 10px;
+      margin-right: 10px;
+      border: none;
+      font-size: 16px;
+      height: 50px;
+      /* margin-top: 10px; */
+      text-align: center;
+      cursor: pointer;
+      option {
+        color: red;
+        background-color: red;
+      }
+      &:focus {outline: none}
+      @media screen and (max-width:953px){
+      margin-top: 10px;
+      height: 115px;
+     }
+     @media screen and (max-width:531px){
+      font-size: 15px;
+      height: 180px;
+     }
+     @media screen and (max-width:463px){
+      font-size: 15px;
+      height: 86px;
+     }
+     @media screen and (max-width:407px){
+      font-size: 15px;
+      height: 137px;
+     }
+    }
+  }
 `
 const Filters = styled.div`
 
   button{
     padding: 10px 15px;
     margin-right: 10px;
+    margin-bottom: 5px;
     line-height: 30px;
     font-size: 18px;
     border: none;
