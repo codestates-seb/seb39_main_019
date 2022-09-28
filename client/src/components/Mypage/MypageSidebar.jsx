@@ -46,8 +46,6 @@ const SHomeContentsLink = styled(NavLink)`
     color: #53bbe1c5;
     position: relative;
     top: 2px;
-
     font-weight: 900;
-    /* background-color: #2565d0; */
   }
 `;
