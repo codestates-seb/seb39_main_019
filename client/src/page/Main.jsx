@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Slider from '../components/Carousel/Slider'
 import Filter from '../components/Main/Filter'
 import CardPart from '../components/Main/CardPart'
+import Topbutton from '../components/Main/Topbutton'
 
 const Main = () => {
 
@@ -18,6 +19,7 @@ const Main = () => {
          <Filter/>
          <CardPart/>
        </MainPart>
+       <Topbutton/>
      </MainContainer>
    }/>
  )

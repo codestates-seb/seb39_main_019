@@ -5,13 +5,13 @@ const instance = axios.create({
   // baseURL: "http://localhost:3001/",
   // baseURL: process.env.REACT_APP_DB_HOST,
 });
-
+ 
 // let token = localStorage.getItem("token")
 //   ? localStorage.getItem("token")
 //   : null;
 
 // let token = sessionStorage.getItem("access_token") || "";
-
+  
 instance.interceptors.request.use(
   async (config) => {
     console.log(config);
