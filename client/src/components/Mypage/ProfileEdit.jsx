@@ -21,9 +21,11 @@ const ProfileEdit = ({
   const InfoHandler = (e) => {
     // e.preventDefault();
 
+    let token = sessionStorage.getItem("access_token") || "";
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "patch",
-      url: "http://localhost:3001/signup",
+      url: "api/me",
       data: {
         nickname: nickname,
       },

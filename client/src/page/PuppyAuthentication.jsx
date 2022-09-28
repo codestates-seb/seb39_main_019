@@ -16,6 +16,7 @@ import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../store/authStore";
+// import { postPpAuth } from "../api/utils";
 
 const PuppyAuthentication = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -165,31 +166,75 @@ const PuppyAuthentication = () => {
 
   const apiBtnHandler = (e) => {
     e.preventDefault();
+    // postPpAuth(ppOwner, regiNumber);
 
-    axios({
-      method: "POST",
-      url: "api/dogs/validation",
-      data: { owner_nm: ppOwner, dog_reg_no: regiNumber },
-    })
-      .then(
-        (response) =>
-          /*navigate("/PpAuthDoneMdl")*/ /*<PpAuthDoneMdl /> */
+    let token = sessionStorage.getItem("access_token") || "";
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-          toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          }),
-        navigate("/PuppyInfoPost") // 이 부분 수정해야함
-      )
+    axios
+      .post("api/v1/dogs/validation", {
+        owner_nm: ppOwner,
+        dog_reg_no: regiNumber,
+      })
+      .then((response) => {
+        console.log(response); /*<PpAuthDoneMdl /> */
+        /*navigate("/PpAuthDoneMdl")*/
+
+        toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+        navigate("/PuppyInfoPost"); // 이 부분 수정해야함
+      })
       .catch((err) =>
         /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
-        toast.error("인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다", {
-          autoClose: 3000,
-          position: toast.POSITION.TOP_RIGHT,
-          hideProgressBar: true,
-        })
+        {
+          console.log(err);
+          navigate("/main");
+          toast.error(
+            "인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다",
+            {
+              autoClose: 3000,
+              position: toast.POSITION.TOP_RIGHT,
+              hideProgressBar: true,
+            }
+          );
+        }
       );
+
+    // axios({
+    //   method: "POST",
+    //   url: "api/v1/dogs/validation",
+    //   data: { owner_nm: ppOwner, dog_reg_no: regiNumber },
+    //   headers: {`Bearer ${token}`},
+    // })
+    //   .then((response) => {
+    //     console.log(response); /*<PpAuthDoneMdl /> */
+    //     /*navigate("/PpAuthDoneMdl")*/
+
+    //     toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //       autoClose: 3000,
+    //       hideProgressBar: true,
+    //     });
+    //     navigate("/PuppyInfoPost"); // 이 부분 수정해야함
+    //   })
+    //   .catch((err) =>
+    //     /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
+    //     {
+    //       console.log(err);
+    //       navigate("/main");
+    //       toast.error(
+    //         "인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다",
+    //         {
+    //           autoClose: 3000,
+    //           position: toast.POSITION.TOP_RIGHT,
+    //           hideProgressBar: true,
+    //         }
+    //       );
+    //     }
+    //   );
   };
 
   return (

@@ -4,6 +4,9 @@ import styled from "styled-components";
 import Button from "../Button";
 import Layout from "../Layout/Layout";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { getPpinfor } from "../../api/utils";
 
 import PuppyInfoMain from "./PuppyInfoMain";
 
@@ -20,7 +23,7 @@ const PuppyInfoPost = () => {
     e.preventDefault();
     axios({
       method: "patch",
-      url: /*`api/dogs/info/${id}`*/ "http://localhost:3001/puppyInfo",
+      url: `api/v1/dogs/info/1` /*"http://localhost:3001/puppyInfo"*/,
       data: {
         dogNm,
         breed,
@@ -41,16 +44,23 @@ const PuppyInfoPost = () => {
   };
 
   useEffect(() => {
+    let token = sessionStorage.getItem("access_token") || "";
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "get",
-      url: "http://localhost:3001/puppyInfo",
-    }).then((res) => {
-      console.log(res.data), setAllData(res.data);
-    });
+      url: "api/v1/dogs/info/1",
+      // url: "http://localhost:3001/puppyInfo",
+    })
+      .then((res) => {
+        console.log(res.data);
+        setAllData(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [isEdit]);
 
   return (
     <PuppyInfoPostContainer>
+      <ToastContainer />
       <h1>반려견 정보 기입하기</h1>
       <PpInfoForm>
         <ul>
