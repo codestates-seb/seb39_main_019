@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <SContentsWrapper>
       <SHomeContentsWrapper>
-        <SHomeContentsLink to='/mypage/wrote'>관심있어요</SHomeContentsLink>
-        <SHomeContentsLink to='/mypage/like'>즐겨찾기</SHomeContentsLink>
+        <SHomeContentsLink to='/mypage/wrote'>내가 쓴 글</SHomeContentsLink>
+        <SHomeContentsLink to='/mypage/like'>관심있어요</SHomeContentsLink>
       </SHomeContentsWrapper>
       <Routes>
         <Route path='wrote' element={<MypageWrote />} />

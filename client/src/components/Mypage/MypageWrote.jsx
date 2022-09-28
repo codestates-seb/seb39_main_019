@@ -17,7 +17,7 @@ const MypageWrote = () => {
   return (
     <MypageWroteContainer>
       {wroteView.length ? (
-        <div>
+        <MypageWroteYes>
           {wroteView.map((it) => (
             <Link to={`/main/${it.id}`} key={it.id}>
               <ItemContainer>
@@ -34,11 +34,9 @@ const MypageWrote = () => {
               </ItemContainer>
             </Link>
           ))}
-        </div>
+        </MypageWroteYes>
       ) : (
-        <div className='main_content_noanswer'>
-          You have not answered any questions
-        </div>
+        <MypageWroteNo>작성한 글이 없어요</MypageWroteNo>
       )}
     </MypageWroteContainer>
   );
@@ -49,7 +47,8 @@ export default MypageWrote;
 const MypageWroteContainer = styled.div`
   margin: 20px;
 `;
-
+const MypageWroteYes = styled.div``;
+const MypageWroteNo = styled.div``;
 const ItemContainer = styled.div`
   width: 100%
   border: none;
