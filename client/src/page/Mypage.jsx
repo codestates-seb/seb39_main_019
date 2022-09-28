@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout/Layout";
 import MypageProfile from "../components/Mypage/MypageProfile";
+import MypageSidebar from "../components/Mypage/MypageSidebar";
+import { BrowserRouter } from "react-router-dom";
+
 const Mypage = () => {
   return (
     <Layout
@@ -11,7 +14,9 @@ const Mypage = () => {
             <MypageProfile />
             <Diveder />
           </MypageHeaderPart>
-          <MypageBodyPart></MypageBodyPart>
+          <MypageBodyPart>
+            <MypageSidebar />
+          </MypageBodyPart>
         </MypageContainer>
       }
     />

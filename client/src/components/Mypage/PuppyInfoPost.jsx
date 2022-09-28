@@ -16,7 +16,7 @@ const PuppyInfoPost = () => {
   const [allData, setAllData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
 
-  const onSubmit = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     axios({
       method: "patch",
@@ -130,7 +130,7 @@ const PuppyInfoPost = () => {
           </>
         ) : (
           <>
-            <Button text={"등록"} type={"add"} onClick={onSubmit}></Button>
+            <Button text={"등록"} type={"add"} onClick={submitHandler}></Button>
             <Button text={"취소"} type={"add"} onClick={handleEdit}></Button>
           </>
         )}
