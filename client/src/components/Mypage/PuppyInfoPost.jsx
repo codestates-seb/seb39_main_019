@@ -129,10 +129,10 @@ const PuppyInfoPost = () => {
             <Button text={"수정"} type={"add"} onClick={handleEdit}></Button>
           </>
         ) : (
-          <>
+          <ButtonContainer>
             <Button text={"등록"} type={"add"} onClick={submitHandler}></Button>
             <Button text={"취소"} type={"add"} onClick={handleEdit}></Button>
-          </>
+          </ButtonContainer>
         )}
       </PpInfoForm>
       {/* {Array.isArray(allData)
@@ -249,3 +249,5 @@ const PpInfoForm = styled.form`
     font-weight: normal;
   }
 `;
+
+const ButtonContainer = styled.div``;
