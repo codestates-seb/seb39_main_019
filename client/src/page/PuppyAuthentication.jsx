@@ -166,7 +166,34 @@ const PuppyAuthentication = () => {
 
   const apiBtnHandler = (e) => {
     e.preventDefault();
-    // postPpAuth(ppOwner, regiNumber);
+
+    // postPpAuth(ppOwner, regiNumber)
+    //   .then((response) => {
+    //     console.log(response); /*<PpAuthDoneMdl /> */
+    //     /*navigate("/PpAuthDoneMdl")*/
+
+    //     toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //       autoClose: 3000,
+    //       hideProgressBar: true,
+    //     });
+    //     navigate("/PuppyInfoPost"); // 이 부분 수정해야함
+    //   })
+    //   .catch((err) =>
+    //     /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
+    //     {
+    //       console.log(err);
+    //       navigate("/main");
+    //       toast.error(
+    //         "인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다",
+    //         {
+    //           autoClose: 3000,
+    //           position: toast.POSITION.TOP_RIGHT,
+    //           hideProgressBar: true,
+    //         }
+    //       );
+    //     }
+    //   );
 
     let token = sessionStorage.getItem("access_token") || "";
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

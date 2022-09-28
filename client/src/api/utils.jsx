@@ -28,28 +28,28 @@ const postPpAuth = (ppOwner, regiNumber) => {
       owner_nm: ppOwner,
       dog_reg_no: regiNumber,
     },
-  })
-    .then((response) => {
-      console.log(response);
-      navigate("/PuppyInfoPost");
-    })
-    .then((res) =>
-      toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000,
-        hideProgressBar: true,
-      })
-    )
-    .catch((err) => {
-      // const navigate = useNavigate();
-      console.log(err);
-      navigate("/main");
-      // toast.error("인증 실패! 중복되거나 유효하지 않은 반려견 정보입니다", {
-      //   autoClose: 3000,
-      //   position: toast.POSITION.TOP_RIGHT,
-      //   hideProgressBar: true,
-      // });
-    });
+  });
+  // .then((response) => {
+  //   console.log(response);
+  //   navigate("/PuppyInfoPost");
+  // })
+  // .then((res) =>
+  //   toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+  //     position: toast.POSITION.TOP_RIGHT,
+  //     autoClose: 3000,
+  //     hideProgressBar: true,
+  //   })
+  // )
+  // .catch((err) => {
+  //   // const navigate = useNavigate();
+  //   console.log(err);
+  //   navigate("/main");
+  //   // toast.error("인증 실패! 중복되거나 유효하지 않은 반려견 정보입니다", {
+  //   //   autoClose: 3000,
+  //   //   position: toast.POSITION.TOP_RIGHT,
+  //   //   hideProgressBar: true,
+  //   // });
+  // });
 };
 
 const getPpinfor = () => {

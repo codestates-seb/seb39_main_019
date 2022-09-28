@@ -6,12 +6,6 @@ const instance = axios.create({
   // baseURL: process.env.REACT_APP_DB_HOST,
 });
 
-// let token = localStorage.getItem("token")
-//   ? localStorage.getItem("token")
-//   : null;
-
-// let token = sessionStorage.getItem("access_token") || "";
-
 instance.interceptors.request.use(
   async (config) => {
     let token = sessionStorage.getItem("access_token") || "";
