@@ -64,7 +64,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='name'
                   onChange={(e) => setDogNm(e.target.value)}
-                  value={dogNm || allData.dogNm}
+                  defaultValue={dogNm || allData.dogNm || ""}
                 ></input>
               )}
             </div>
@@ -83,7 +83,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='breed'
                   onChange={(e) => setBreed(e.target.value)}
-                  value={breed || allData.breed}
+                  defaultValue={breed || allData.breed || ""}
                 ></input>
               </div>
             )}
@@ -100,7 +100,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='age'
                   onChange={(e) => setAge(e.target.value)}
-                  value={age || allData.age}
+                  defaultValue={age || allData.age || ""}
                 ></input>
               )}
             </div>
@@ -114,7 +114,7 @@ const PuppyInfoPost = () => {
                 <select
                   name='gender'
                   onChange={(e) => setSexNm(e.target.value)}
-                  value={sexNm || allData.sexNm}
+                  defaultValue={sexNm || allData.sexNm || ""}
                 >
                   <option>선택해주세요</option>
                   <option value='암컷'>암컷</option>
