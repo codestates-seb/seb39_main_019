@@ -184,9 +184,10 @@ const PuppyAuthentication = () => {
             <span>Puppy Buddy</span>
           </Link>
         </HeaderLogo>
-        {/* <div className='modalMain'>
-        축하드려요! 가입되었습니다. PuppyBuddy에서 행복한 하루되세요!
-      </div> */}
+        <InformMsg>
+          입력하신 동물 등록 번호는 해당 번호의 중복 가입을 방지하기 위한
+          용도로만 사용되며 회원 탈퇴 시 파기됩니다.
+        </InformMsg>
         <InputForm>
           <h1>견주 인증</h1>
           <form /*</InputForm>*/ onSubmit={apiBtnHandler}>
@@ -251,6 +252,10 @@ const HeaderLogo = styled.div`
     cursor: pointer;
     white-space: nowrap;
   }
+`;
+
+const InformMsg = styled.div`
+  margin-bottom: 40px;
 `;
 
 const InputForm = styled.div`
