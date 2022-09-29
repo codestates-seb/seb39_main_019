@@ -5,7 +5,7 @@ import useScroll from '../../hooks/useScroll'
 const Section2 = () => {
 
   const {scrollY} = useScroll()
-
+  
   return (
     <TwoContainer>
       <TwoInner>
