@@ -52,43 +52,6 @@ const Login = () => {
         console.log(error);
         window.alert("로그인 실패!");
       });
-
-    // axios({
-    //   method: "post",
-    //   url: "api/auth/login",
-    //   //  url: "http://localhost:3001/user",
-    //   headers: { "content-type": "application/x-www-form-urlencoded" },
-    //   data: {
-    //     email: email,
-    //     password: password,
-    //   },
-    //   withCredentials: true,
-    // })
-    //   .then((response) => {
-    //     withCredentials: true;
-    //     console.log(response);
-    //     console.log(response.headers);
-    //     // console.log(document.cookie);
-
-    //     const accessToken = response.data;
-    //     console.log(accessToken);
-    //     axios.defaults.headers.common[
-    //       "Authorization"
-    //     ] = `Bearer ${accessToken}`;
-
-    //     // setCookie("refresh_token", response.headers);
-
-    //     // console.log("access_token:", response.data);
-
-    //     // console.log(response.headers);
-
-    //     // console.log(response.headers["cache-control"]);
-    //     // console.log(response.headers["set-cookie"]);
-
-    //     // localStorage.setItem("refresh_token", response.headers["set-cookie"]);
-    //     // sessionStorage.setItem("access_token", response.data);
-    //   })
-    //   .catch((err) => console.log("err", err));
   };
 
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;

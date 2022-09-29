@@ -17,14 +17,13 @@ const ProfileEdit = ({
   const [nickname, setNickname] = useState(headerData.nickname);
   const [email, setEmail] = useState(headerData.email);
   const navigate = useNavigate();
+  let token = sessionStorage.getItem("access_token") || "";
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   if (!isProfileShow) return null;
 
-  const InfoHandler = (e) => {
-    // e.preventDefault();
-
-    let token = sessionStorage.getItem("access_token") || "";
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const InfoHandler = () => {
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "patch",
       url: "api/me",
@@ -34,22 +33,19 @@ const ProfileEdit = ({
     }).then((res) => setHeaderData(res));
   };
 
-  const WithdrawalHandler = (e) => {
-    e.preventDefault();
-    let token = sessionStorage.getItem("access_token");
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const WithdrawalHandler = () => {
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "delete",
       url: "api/me",
     })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         localStorage.clear();
         sessionStorage.clear();
         alert("그동안 이용해주셔서 감사합니다.");
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch(() => console.log("회원탈퇴가 되지 않았어요!"));
   };
 
   return ReactDom.createPortal(
