@@ -22,7 +22,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
   const navigate = useNavigate();
-  const { token } = useAuthStore();
   const { isLogin, setIsLogin } = useAuthStore();
 
   useEffect(() => {
@@ -38,7 +37,7 @@ const Login = () => {
     axios
       .post("api/auth/login", { email, password })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         localStorage.setItem("refresh_token", response.data.refresh_token);
         sessionStorage.setItem("access_token", response.data.access_token);
         setIsLogin();
@@ -119,7 +118,7 @@ const Login = () => {
     console.log(res);
     // console.log(profile);
     // console.log(userdata);
-    sessionStorage.setItem("token", res.accessToken);
+    sessionStorage.setItem("g_access_token", res.accessToken);
     axios({
       method: "post",
       url: `백엔드 구글 엔드포인트추가`,

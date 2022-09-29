@@ -4,8 +4,13 @@ import styled from "styled-components";
 import Button from "../Button";
 import Layout from "../Layout/Layout";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { getPpinfor } from "../../api/utils";
+import { useNavigate } from "react-router-dom";
 
 import PuppyInfoMain from "./PuppyInfoMain";
+import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
 
 const PuppyInfoPost = () => {
   const [dogNm, setDogNm] = useState("");
@@ -15,12 +20,13 @@ const PuppyInfoPost = () => {
 
   const [allData, setAllData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
     axios({
       method: "patch",
-      url: /*`api/dogs/info/${id}`*/ "http://localhost:3001/puppyInfo",
+      url: `api/v1/dogs/info/1` /*"http://localhost:3001/puppyInfo"*/,
       data: {
         dogNm,
         breed,
@@ -41,16 +47,27 @@ const PuppyInfoPost = () => {
   };
 
   useEffect(() => {
+    let token = sessionStorage.getItem("access_token") || "";
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "get",
-      url: "http://localhost:3001/puppyInfo",
-    }).then((res) => {
-      console.log(res.data), setAllData(res.data);
-    });
+      url: "api/v1/dogs/info/1",
+      // url: "http://localhost:3001/puppyInfo",
+    })
+      .then((res) => {
+        console.log(res.data);
+        setAllData(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [isEdit]);
 
   return (
     <PuppyInfoPostContainer>
+      <ToastContainer />
+      <BackBtn onClick={() => navigate(-1)}>
+        <BackArrow />
+        <div>뒤로가기</div>
+      </BackBtn>
       <h1>반려견 정보 기입하기</h1>
       <PpInfoForm>
         <ul>
@@ -129,10 +146,10 @@ const PuppyInfoPost = () => {
             <Button text={"수정"} type={"add"} onClick={handleEdit}></Button>
           </>
         ) : (
-          <>
+          <ButtonContainer>
             <Button text={"등록"} type={"add"} onClick={submitHandler}></Button>
             <Button text={"취소"} type={"add"} onClick={handleEdit}></Button>
-          </>
+          </ButtonContainer>
         )}
       </PpInfoForm>
       {/* {Array.isArray(allData)
@@ -153,8 +170,16 @@ const PuppyInfoPostContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
 
-  /* text-align: center; */
+  h1 {
+    margin-top: 40px;
+  }
 `;
+const BackBtn = styled.button`
+  border: 0;
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0);
+`;
+
 const PpInfoForm = styled.form`
   /* flex-wrap: wrap; */
   display: flex;
@@ -249,3 +274,5 @@ const PpInfoForm = styled.form`
     font-weight: normal;
   }
 `;
+
+const ButtonContainer = styled.div``;
