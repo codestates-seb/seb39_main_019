@@ -13,10 +13,17 @@ const MypageProfile = () => {
   const [isPuppyShow, setIsPuppyShow] = useState(false);
 
   useEffect(() => {
+    let token = sessionStorage.getItem("access_token") || "";
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios
-      .get("http://localhost:3001/signup")
-      .then((response) => response.data)
-      .then((data) => setHeaderData(data));
+      .get("api/api/me")
+      .then((response) => {
+        console.log(response);
+        setHeaderData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (

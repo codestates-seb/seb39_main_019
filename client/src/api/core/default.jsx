@@ -1,21 +1,14 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "/api/auth/login",
+  baseURL: "/api",
   // baseURL: "http://localhost:3001/",
   // baseURL: process.env.REACT_APP_DB_HOST,
 });
- 
-// let token = localStorage.getItem("token")
-//   ? localStorage.getItem("token")
-//   : null;
 
-// let token = sessionStorage.getItem("access_token") || "";
-  
 instance.interceptors.request.use(
   async (config) => {
-    console.log(config);
-    const { token } = config.data;
+    let token = sessionStorage.getItem("access_token") || "";
     config.headers["Content-Type"] = "application/json; charset=utf-8";
     config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
     axios.defaults.withCredentials = true; //

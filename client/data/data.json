@@ -127,9 +127,9 @@
   ],
   "puppyInfo": {
     "id": 1,
-    "dogNm": "포도",
-    "breed": "말티즈",
-    "age": "1",
-    "sexNm": "암컷"
+    "dogNm": "",
+    "breed": "",
+    "age": "",
+    "sexNm": ""
   }
 }
