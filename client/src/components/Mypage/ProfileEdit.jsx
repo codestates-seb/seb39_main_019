@@ -26,7 +26,7 @@ const ProfileEdit = ({
     // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "patch",
-      url: "api/me",
+      url: "api/api/me",
       data: {
         nickname: nickname,
       },
@@ -37,15 +37,19 @@ const ProfileEdit = ({
     // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "delete",
-      url: "api/me",
+      url: "api/api/me",
     })
-      .then(() => {
-        localStorage.clear();
-        sessionStorage.clear();
-        alert("그동안 이용해주셔서 감사합니다.");
-        navigate("/");
+      .then((res) => {
+        console.log(res);
+        // localStorage.clear();
+        // sessionStorage.clear();
+        // alert("그동안 이용해주셔서 감사합니다.");
+        // navigate("/");
       })
-      .catch(() => console.log("회원탈퇴가 되지 않았어요!"));
+      .catch((err) => {
+        console.log(err);
+        console.log("회원탈퇴가 되지 않았어요!");
+      });
   };
 
   return ReactDom.createPortal(
