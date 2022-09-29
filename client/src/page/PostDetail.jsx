@@ -127,7 +127,7 @@ const InnerContainer = styled.div`
   width: 60%;
   margin: 0 auto;
   @media screen and (max-width: 1200px){
-    width: 80%;
+    width: 93%;
   }
 `
 
@@ -191,7 +191,6 @@ align-items: center;
 const DetailMid = styled.div`
 width: 100%;
 margin-top: 20px;
-padding: 10px;
   & > div{
      width: 100%;
      display: flex;
