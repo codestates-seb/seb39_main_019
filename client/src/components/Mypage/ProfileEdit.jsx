@@ -41,10 +41,10 @@ const ProfileEdit = ({
     })
       .then((res) => {
         console.log(res);
-        // localStorage.clear();
-        // sessionStorage.clear();
-        // alert("그동안 이용해주셔서 감사합니다.");
-        // navigate("/");
+        localStorage.clear();
+        sessionStorage.clear();
+        alert("그동안 이용해주셔서 감사합니다.");
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
