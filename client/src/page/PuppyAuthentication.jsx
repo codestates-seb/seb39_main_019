@@ -27,7 +27,7 @@ const PuppyAuthentication = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
-  const { isLogin } = useAuthStore();
+  const { isLogin, setIsPpAuth } = useAuthStore();
 
   const openModalHandler = () => {
     setIsOpen(!isOpen);
@@ -149,18 +149,19 @@ const PuppyAuthentication = () => {
       .then((response) => {
         console.log(response); /*<PpAuthDoneMdl /> */
         /*navigate("/PpAuthDoneMdl")*/
-
-        toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
         navigate("/mypage");
+        setIsPpAuth();
+
+        // toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
       })
       .catch((err) =>
         /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
         {
-          console.log(err);
+          alert("이미 인증된 등록번호이거나 유효하지 않은 등록번호입니다.");
           navigate("/main");
           toast.error(
             "인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다",

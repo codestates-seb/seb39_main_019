@@ -11,10 +11,10 @@ const Mypage = () => {
   const { isLogin } = useAuthStore();
   const navigate = useNavigate();
 
-  if (!isLogin) {
-    alert("로그인 해주세요");
-    navigate("/main");
-  }
+  // if (!isLogin) {
+  //   alert("로그인 해주세요");
+  //   navigate("/main");
+  // }
   return (
     <Layout
       child={

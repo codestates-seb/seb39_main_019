@@ -75,7 +75,7 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='name'>이름</label>
               {isEdit ? (
-                <div>{dogNm}</div>
+                <div>{allData.dogNm}</div>
               ) : (
                 <input
                   type='text'
@@ -90,7 +90,7 @@ const PuppyInfoPost = () => {
             {isEdit ? (
               <div className='group'>
                 <label htmlFor='breed'>견종</label>
-                <div>{breed}</div>
+                <div>{allData.breed}</div>
               </div>
             ) : (
               <div className='group'>
@@ -111,7 +111,7 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='age'>나이</label>
               {isEdit ? (
-                <div>{age}</div>
+                <div>{allData.age}</div>
               ) : (
                 <input
                   type='text'
@@ -126,7 +126,7 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='gender'>성별</label>
               {isEdit ? (
-                <div>{sexNm}</div>
+                <div>{allData.sexNm}</div>
               ) : (
                 <select
                   name='gender'
@@ -174,10 +174,13 @@ const PuppyInfoPostContainer = styled.div`
     margin-top: 40px;
   }
 `;
-const BackBtn = styled.button`
+const BackBtn = styled.div`
   border: 0;
   outline: 0;
-  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const PpInfoForm = styled.form`

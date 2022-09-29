@@ -22,7 +22,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
   const navigate = useNavigate();
-  const { isLogin, setIsLogin } = useAuthStore();
+  const { setIsLogin, isPpAuth } = useAuthStore();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -45,12 +45,17 @@ const Login = () => {
         // toast.success("로그인이 완료되었습니다!");
       })
       .then((res) => {
-        navigate("/puppyauthentication");
+        // navigate("/puppyauthentication");
         toast.success("로그인이 완료되었습니다!");
+        if (isPpAuth) {
+          navigate("/main");
+        } else {
+          navigate("/puppyauthentication");
+        }
       })
       .catch((err) => {
         console.log(error);
-        window.alert("로그인 실패!");
+        toast.error("로그인 실패!");
       });
   };
 
