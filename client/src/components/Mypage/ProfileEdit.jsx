@@ -5,6 +5,7 @@ import ReactDom from "react-dom";
 import { ReactComponent as CloseBtn } from "../../assets/imgs/CloseBtn.svg";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProfileEdit = ({
   isProfileShow,
@@ -15,19 +16,40 @@ const ProfileEdit = ({
   const nameRef = useRef();
   const [nickname, setNickname] = useState(headerData.nickname);
   const [email, setEmail] = useState(headerData.email);
+  const navigate = useNavigate();
 
   if (!isProfileShow) return null;
 
   const InfoHandler = (e) => {
     // e.preventDefault();
 
+    let token = sessionStorage.getItem("access_token") || "";
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "patch",
-      url: "http://localhost:3001/signup",
+      url: "api/me",
       data: {
         nickname: nickname,
       },
     }).then((res) => setHeaderData(res));
+  };
+
+  const WithdrawalHandler = (e) => {
+    e.preventDefault();
+    let token = sessionStorage.getItem("access_token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios({
+      method: "delete",
+      url: "api/me",
+    })
+      .then((res) => {
+        console.log(res);
+        localStorage.clear();
+        sessionStorage.clear();
+        alert("그동안 이용해주셔서 감사합니다.");
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
 
   return ReactDom.createPortal(
@@ -57,6 +79,7 @@ const ProfileEdit = ({
             ></input>
           </div>
           <Button text={"수정하기"} type={"mypageBtn"}></Button>
+          <WithdrawalBtn onClick={WithdrawalHandler}>회원탈퇴</WithdrawalBtn>
         </InfoForm>
       </Overlay>
     </ProfileEditContainer>,
@@ -133,4 +156,14 @@ const InfoForm = styled.form`
     font-size: 18px;
     font-weight: normal;
   }
+`;
+
+const WithdrawalBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #636363;
 `;

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const PagiNation = () => {
+const PagiNation = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
@@ -28,14 +28,17 @@ export default PagiNation
 
 const PageUl = styled.ul`
   float: left;
+  margin-top: 30px;
   list-style: none;
   text-align: center;
   border-radius: 3px;
-  color: white;
+  color: ${(props)=>props.theme.textCloro};
   padding: 1px;
-  border-top: 3px solid #186ead;
-  border-bottom: 3px solid #186ead;
-  background-color: rgba(0, 0, 0, 0.4);
+  border-top: 3px solid ${(props)=>props.theme.HeLogoColor};
+  border-bottom: 3px solid ${(props)=>props.theme.HeLogoColor};
+  background-color: ${(props)=>props.theme.HeaderColor};
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
 `;
 
 const PageLi = styled.li`
@@ -48,11 +51,11 @@ const PageLi = styled.li`
   &:hover {
     cursor: pointer;
     color: white;
-    background-color: #263a6c;
+    background-color: ${(props)=>props.theme.HeLogoColor};
   }
   &:focus::after {
     color: white;
-    background-color: #263a6c;
+    background-color: ${(props)=>props.theme.HeLogoColor};
   }
 `;
 

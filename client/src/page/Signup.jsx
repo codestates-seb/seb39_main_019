@@ -51,9 +51,11 @@ const Signup = () => {
         password: regiPassword,
       },
       withCredentials: true,
-    }).then(() => {
-      setSuccess(true);
-    });
+    })
+      .then(() => {
+        setSuccess(true);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
