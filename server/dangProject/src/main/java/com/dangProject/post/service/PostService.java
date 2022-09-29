@@ -26,8 +26,8 @@ public class PostService {
 
     @Transactional
     public PostResponseDto updatePost(Long id, PostRequestDto postRequestDto) {
-        Post post = postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("Post does not exist"));
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Post does not exist"));
 
         post.update(postRequestDto.getTitle(),
                     postRequestDto.getPersonality(),
@@ -39,19 +39,20 @@ public class PostService {
     }
 
     public PostResponseDto findById(Long id) {
-        Post entity = postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("Post does not exist"));
+        Post entity = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Post does not exist"));
         return new PostResponseDto(entity);
     }
 
     public List<PostResponseDto> findAll() {
         return postRepository.findAll().stream()
-                .map(post -> new PostResponseDto(post)).collect(Collectors.toList());
+                .map(post -> new PostResponseDto(post))
+                .collect(Collectors.toList());
     }
 
     public void deletePost(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("Post does not exist"));
+        Post post = postRepository.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Post does not exist"));
         postRepository.delete(post);
     }
 }

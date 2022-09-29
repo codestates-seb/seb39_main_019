@@ -1,5 +1,9 @@
 package com.dangProject.security;
 
+import com.dangProject.security.handler.CustomAccessDeniedHandler;
+import com.dangProject.security.handler.CustomAuthenticationEntryPoint;
+import com.dangProject.security.jwt.JwtAuthenticationFilter;
+import com.dangProject.security.jwt.JwtAuthenticationProvider;
 import com.dangProject.security.login.LoginAuthenticationFilter;
 import com.dangProject.security.login.LoginAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +17,26 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationEntryPointFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     private final LoginAuthenticationProvider loginAuthenticationProvider;
+    private final JwtAuthenticationProvider jwtAuthenticationProvider;
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
+    private static final List<String> JWT_PATHS = List.of("/api/**", "/v1/**");
+
 
     @Bean
     public AuthenticationManager authenticationManager() throws Exception {
@@ -30,12 +46,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public LoginAuthenticationFilter loginFiler() throws Exception {
         LoginAuthenticationFilter loginFilter = new LoginAuthenticationFilter("/auth/login");
         loginFilter.setAuthenticationManager(super.authenticationManager());
+        loginFilter.setAuthenticationFailureHandler(new AuthenticationEntryPointFailureHandler(authenticationEntryPoint));
         return loginFilter;
+    }
+
+    public JwtAuthenticationFilter jwtFilter() throws Exception {
+        OrRequestMatcher matcher = new OrRequestMatcher(JWT_PATHS.stream()
+                .map(AntPathRequestMatcher::new)
+                .collect(Collectors.toList()));
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(matcher);
+        jwtAuthenticationFilter.setAuthenticationManager(super.authenticationManager());
+        jwtAuthenticationFilter.setAuthenticationFailureHandler(new AuthenticationEntryPointFailureHandler(authenticationEntryPoint));
+        return jwtAuthenticationFilter;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(loginAuthenticationProvider);
+        auth.authenticationProvider(jwtAuthenticationProvider);
     }
 
     @Override
@@ -43,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().disable()
                 .formLogin().disable()
-                .cors().disable()
+//                .cors().disable()
                 .csrf().disable()
                 .headers().frameOptions().disable()
 
@@ -51,6 +79,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
-                .addFilterBefore(loginFiler(), UsernamePasswordAuthenticationFilter.class);
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler)
+
+                .and()
+                .addFilterBefore(loginFiler(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

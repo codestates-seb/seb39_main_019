@@ -1,9 +1,13 @@
 package com.dangProject.member.domain;
 
 import com.dangProject.audit.BaseTime;
+import com.dangProject.dog.domain.Dog;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -33,6 +37,9 @@ public class Member extends BaseTime {
     @Enumerated(value = EnumType.STRING)
     private MemberRole role;
 
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Dog> dogList = new ArrayList<Dog>();
 
     @Builder
     public Member(String email, String password, String nickname, MemberStatus memberStatus, MemberType type, MemberRole role) {
@@ -56,5 +63,13 @@ public class Member extends BaseTime {
         MemberStatus(String status) {
             this.status = status;
         }
+    }
+
+    public void changeRole() {
+        this.role = MemberRole.CERTIFIED;
+    }
+
+    public void changeNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

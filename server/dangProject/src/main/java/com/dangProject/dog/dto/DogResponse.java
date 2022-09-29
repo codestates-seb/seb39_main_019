@@ -1,5 +1,7 @@
 package com.dangProject.dog.dto;
 
+import com.dangProject.dog.domain.Dog;
+import com.dangProject.member.dto.response.MemberResponse;
 import lombok.*;
 
 @Getter
@@ -8,18 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 public class DogResponse {
 
-//    private int reqNo;
-//    private int resultCode;
-//    private String resultMsg;
-//    private String errorMsg;
-    private Long dogRegNo;
-//    private Long rfidCd;
+    private Long id;
     private String dogNm;
-//    private String sexNm;
-//    private String kindNm; //품종
-//    private String neuterYn; //중성화 여부
-//    private String orgNm; //담당기관명
-//    private String officeTel; //기관 전화번호
-//    private String aprGbNm; //승인여부
+    private String breed;
+    private String sexNm;
+    private int age;
+    private MemberResponse memberResponse;
 
+    public static DogResponse of(Dog dog) {
+        return new DogResponse(dog.getId(), dog.getDogNm(), dog.getSexNm(), dog.getBreed(), dog.getAge(),
+                new MemberResponse(dog.getMember().getId(), dog.getMember().getEmail(), dog.getMember().getNickname()));
+    }
 }
