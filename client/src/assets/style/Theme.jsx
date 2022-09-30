@@ -13,13 +13,20 @@ export const lightTheme = {
 //
 
 export const darkTheme = {
-  bgColor : '#131213',
+  bgColor : '#152642',
   textColor : '#fff',
-  HeaderColor:'#202124',
+  HeaderColor:'#2F4562',
   HeLogoColor:'#ffffff',
-  Footerbg:"#090809",
-  Boder:"#000000",
+  Footerbg:"#152642",
+  Boder:"#2F4562",
 }
+// 원본 
+// bgColor : '#131213',
+// textColor : '#fff',
+// HeaderColor:'#202124',
+// HeLogoColor:'#ffffff',
+// Footerbg:"#090809",
+// Boder:"#000000",
 
 export const phone = (e) => css`
   @media screen and (max-width: 480px){

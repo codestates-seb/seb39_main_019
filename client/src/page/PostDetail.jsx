@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
-import styled,{css} from 'styled-components'
+import styled from 'styled-components'
 import axios from 'axios'
 import useStore from '../store/post'
 
@@ -14,8 +14,6 @@ const {title,body,location,personality,size
  const {id} = useParams()
  const [data,setData] = React.useState([])
  const [isEdit,setIsEdit] = React.useState(false)
- console.log(location)
- 
  const handleEdit = () => {
    setIsEdit(!isEdit)
    setTitle(data.title)
@@ -75,14 +73,15 @@ React.useEffect(() => {
             <TopSubTitle>
               <span>빵댕이팡팡</span>
               <div>
-                <img src=''/>
+                <div ></div>
+                <img src='#'/>
                 <span>관심있어요</span>
               </div>
             </TopSubTitle>
           </DetailTop>
           <DetailMid>
             <div>
-              <img src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG'></img>
+              <img src={data.url}></img>
               <div>
                 <div>이름<span>빵순이</span></div>
                 <div>나이<span>2 살</span></div>

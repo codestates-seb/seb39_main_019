@@ -11,7 +11,6 @@ const CardPart = () => {
   const [data,setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [postsPerPage, setPostsPerPage] = useState(10);
-
   // axios.get('http://localhost:3001/content')
   // axios.get('http://43.200.20.180:8080/v1/posts')
   React.useEffect(()=>{
@@ -19,24 +18,24 @@ const CardPart = () => {
     // 전체 지역일 경우
     // 지역이 선택될 경우 
     .then((data)=>{
-      if(filter==='전체 지역'||filter===''){
-        if(index===0){
-          setData(data.data.sort((a,b)=>b.id-a.id))
-        }else if(index < 4){
-          setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.size===TabText[index]))
-        }else{
-          setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.personality===TabText[index]))
+        if(filter==='전체 지역'||filter===''){
+          if(index===0){
+            setData(data.data.sort((a,b)=>b.id-a.id))
+          }else if(index < 4){
+            setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.size===TabText[index]))
+          }else{
+            setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.personality===TabText[index]))
+          }
         }
-      }
-      else if(filter!=='전체 지역'){
-        if(index===0){
-          setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id))
-        }else if(index < 4){
-          setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id).filter((it)=>it.size===TabText[index]))
-        }else{
-          setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id).filter((it)=>it.personality===TabText[index]))
+        else if(filter!=='전체 지역'){
+          if(index===0){
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id))
+          }else if(index < 4){
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id).filter((it)=>it.size===TabText[index]))
+          }else{
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id).filter((it)=>it.personality===TabText[index]))
+          }
         }
-      }
     })
 },[index,filter])
 

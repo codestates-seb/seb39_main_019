@@ -4,15 +4,16 @@ import {Link} from 'react-router-dom'
 import { Toggle } from './Toggle'
 import {ReactComponent as BlackSerch} from '../assets/imgs/BlackSerch.svg'
 import {ReactComponent as WhiteSerch} from '../assets/imgs/WhiteSerch.svg'
-import useStore from '../store/globalStore'
 import {ReactComponent as Menubar} from '../assets/imgs/menubar.svg'
+import useStore from '../store/globalStore'
+import useAuthStore from '../store/authStore'
 
 
 const Header = () => {
   const {isLight} = useStore()
+  const {isLogin} = useAuthStore()
   const dropDownRef = useRef(null)
   const [isOpen,setIsOpen] = React.useState(false)
-
 
   return (
     <HeaderCotainer>
@@ -28,9 +29,13 @@ const Header = () => {
           <Toggle/>
           <Menubar onClick={()=>setIsOpen(!isOpen)}/>
           <ul ref={dropDownRef} className={isOpen? 'active':'menu'}>
+            {isLogin?<>
+            <li><Link to="/post">글작성하기</Link></li>
+            <li>로그아웃</li>
+            </>:<>
             <li><Link to="/login">로그인</Link></li>
             <li><Link to="/signup">회원가입</Link></li> 
-            <li><Link to="/post">글작성하기</Link></li>
+            <li><Link to="/post">글작성하기</Link></li></>}
           </ul>
         </HeaderButton>
       </HeaderWrap>

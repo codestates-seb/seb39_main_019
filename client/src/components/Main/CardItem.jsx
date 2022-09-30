@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
-const CardItem = ({title,guName,id,personality,size}) => {
-
-const img = 'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG'
+const CardItem = ({title,guName,id,personality,size,url}) => {
+const img = url
 
   return (
     <ItemContainer>
