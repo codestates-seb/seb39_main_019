@@ -30,8 +30,6 @@ const MypageProfile = () => {
     <MypageProfileContainer>
       <ProfileImg>
         <PIMG>
-          {/* <ProfileSmile /> */}
-          {/* <ProfileSun /> */}
           <Profile />
         </PIMG>
       </ProfileImg>

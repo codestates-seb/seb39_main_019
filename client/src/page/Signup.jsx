@@ -182,7 +182,6 @@ const InputForm = styled.div`
   align-items: center;
   width: 400px;
   padding: 48px 32px 32px 32px;
-  /* background: #fafafa; */
   border: 1px solid #ebebeb;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
@@ -202,11 +201,8 @@ const InputForm = styled.div`
     padding: 7px 90px 10px 5px;
     -webkit-appearance: none;
     display: block;
-    /* background: #fafafa; */
     background-color: transparent;
-    /* color: #636363; */
     color: ${(props) => props.theme.textColor};
-
     width: 100%;
     border: none;
     border-radius: 0;
@@ -235,9 +231,6 @@ const InputForm = styled.div`
     text-align: center;
     letter-spacing: 1px;
     border: 0;
-    /* color: ${(props) => props.theme.HeaderColor};
-    background-color: ${(props) => props.theme.HeLogoColor}; */
-    /* border-bottom: 2px solid #4dafd2c5; */
     transition: all 0.15s ease;
     background: #59c8f0c5;
     border-radius: 5px;

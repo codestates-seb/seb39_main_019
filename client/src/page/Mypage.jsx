@@ -4,18 +4,8 @@ import Layout from "../components/Layout/Layout";
 import MypageProfile from "../components/Mypage/MypageProfile";
 import MypageSidebar from "../components/Mypage/MypageSidebar";
 import { BrowserRouter } from "react-router-dom";
-import useAuthStore from "../store/authStore";
-import { useNavigate } from "react-router-dom";
 
 const Mypage = () => {
-  const { isLogin } = useAuthStore();
-  const navigate = useNavigate();
-
-  if (!isLogin) {
-    alert("로그인 해주세요");
-    navigate("/main");
-  }
-
   return (
     <Layout
       child={

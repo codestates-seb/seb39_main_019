@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../store/authStore";
+import Swal from "sweetalert2";
 
 // import { postLogin2 } from "../api/utils";
 
@@ -96,7 +97,12 @@ const Login = () => {
   };
 
   const onFailure = (res) => {
-    // alert("구글 로그인에 실패하였습니다");
+    Swal.fire({
+      icon: "warning",
+      text: "구글 로그인에 실패하였습니다",
+      width: "400px",
+      height: "400px",
+    });
     console.log("err", res);
   };
 
@@ -205,14 +211,12 @@ const InputForm = styled.div`
   align-items: center;
   width: 380px;
   padding: 48px 32px 32px 32px;
-  /* background: #fafafa; */
   border: 1px solid #ebebeb;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
   h1 {
     margin-bottom: 50px;
-    /* color: black; */
   }
   .group {
     margin-bottom: 30px;
@@ -222,11 +226,8 @@ const InputForm = styled.div`
     padding: 10px 90px 10px 5px;
     -webkit-appearance: none;
     display: block;
-    /* background: #fafafa; */
     background-color: transparent;
     color: ${(props) => props.theme.textColor};
-
-    /* color: #636363; */
     width: 100%;
     border: none;
     border-radius: 0;
@@ -252,7 +253,6 @@ const InputForm = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      /* color: black; */
       width: 100%;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -303,8 +303,6 @@ const InputForm = styled.div`
         border-radius: 100% !important;
 
         & svg {
-          /* width: 20px;
-          height: 50px; */
           margin: 5px 1px 0px 5px;
         }
       }
