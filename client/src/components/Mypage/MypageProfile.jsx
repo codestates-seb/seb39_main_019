@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import axios from "axios";
 import Button from "../Button";
 import ProfileEdit from "./ProfileEdit";
 import PuppyInfoEdit from "./PuppyInfoEdit";
 import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
 import { Link } from "react-router-dom";
+import { phone } from "../../assets/style/Theme";
 
 const MypageProfile = () => {
   const [headerData, setHeaderData] = useState("");
@@ -86,9 +87,19 @@ const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px
+  display: flex;
+
+  ${phone(css`
+    font-size: 14px;
+  `)}
 `;
 
 const BtnContainer = styled.div`
   display: flex;
+  ${phone(css`
+    width: 220px;
+    padding: 0 0;
+    font-size: 14px;
+  `)}
 `;

@@ -1,9 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Layout from "../components/Layout/Layout";
 import MypageProfile from "../components/Mypage/MypageProfile";
 import MypageSidebar from "../components/Mypage/MypageSidebar";
 import { BrowserRouter } from "react-router-dom";
+import { phone } from "../assets/style/Theme";
 
 const Mypage = () => {
   return (
@@ -38,6 +39,9 @@ const Diveder = styled.div`
   border: none;
   height: 0.5px;
   background-color: #979797;
+  ${phone(css`
+    width: 90%;
+  `)}
 `;
 
 const MypageBodyPart = styled.div``;
