@@ -205,14 +205,14 @@ const InputForm = styled.div`
   align-items: center;
   width: 380px;
   padding: 48px 32px 32px 32px;
-  background: #fafafa;
+  /* background: #fafafa; */
   border: 1px solid #ebebeb;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
   h1 {
     margin-bottom: 50px;
-    color: black;
+    /* color: black; */
   }
   .group {
     margin-bottom: 30px;
@@ -222,8 +222,11 @@ const InputForm = styled.div`
     padding: 10px 90px 10px 5px;
     -webkit-appearance: none;
     display: block;
-    background: #fafafa;
-    color: #636363;
+    /* background: #fafafa; */
+    background-color: transparent;
+    color: ${(props) => props.theme.textColor};
+
+    /* color: #636363; */
     width: 100%;
     border: none;
     border-radius: 0;
@@ -249,7 +252,7 @@ const InputForm = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      color: black;
+      /* color: black; */
       width: 100%;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -286,6 +289,7 @@ const InputForm = styled.div`
       width: 48px;
       height: 48px;
       border-color: #fafafa;
+      border-radius: 100%;
     }
     .googleBtn {
       margin: 0px 0px;

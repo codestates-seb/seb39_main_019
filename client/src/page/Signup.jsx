@@ -182,14 +182,13 @@ const InputForm = styled.div`
   align-items: center;
   width: 400px;
   padding: 48px 32px 32px 32px;
-  background: #fafafa;
+  /* background: #fafafa; */
   border: 1px solid #ebebeb;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
   h1 {
     margin-bottom: 50px;
-    color: black;
   }
   p {
     font-size: 0.9rem;
@@ -200,11 +199,14 @@ const InputForm = styled.div`
   }
   input {
     font-size: 18px;
-    padding: 10px 90px 10px 5px;
+    padding: 7px 90px 10px 5px;
     -webkit-appearance: none;
     display: block;
-    background: #fafafa;
-    color: #636363;
+    /* background: #fafafa; */
+    background-color: transparent;
+    /* color: #636363; */
+    color: ${(props) => props.theme.textColor};
+
     width: 100%;
     border: none;
     border-radius: 0;
@@ -218,7 +220,7 @@ const InputForm = styled.div`
   label {
     color: #999;
     font-size: 18px;
-    font-weight: normal;
+    font-weight: bold;
   }
 
   button {
@@ -233,7 +235,9 @@ const InputForm = styled.div`
     text-align: center;
     letter-spacing: 1px;
     border: 0;
-    border-bottom: 2px solid #4dafd2c5;
+    /* color: ${(props) => props.theme.HeaderColor};
+    background-color: ${(props) => props.theme.HeLogoColor}; */
+    /* border-bottom: 2px solid #4dafd2c5; */
     transition: all 0.15s ease;
     background: #59c8f0c5;
     border-radius: 5px;
