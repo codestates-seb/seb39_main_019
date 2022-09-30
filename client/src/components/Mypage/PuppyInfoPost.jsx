@@ -75,7 +75,7 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='name'>이름</label>
               {isEdit ? (
-                <div>{allData.dogNm}</div>
+                <div>{dogNm}</div>
               ) : (
                 <input
                   type='text'
@@ -90,7 +90,7 @@ const PuppyInfoPost = () => {
             {isEdit ? (
               <div className='group'>
                 <label htmlFor='breed'>견종</label>
-                <div>{allData.breed}</div>
+                <div>{breed}</div>
               </div>
             ) : (
               <div className='group'>
@@ -111,7 +111,7 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='age'>나이</label>
               {isEdit ? (
-                <div>{allData.age}</div>
+                <div>{age}</div>
               ) : (
                 <input
                   type='text'
@@ -126,7 +126,7 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='gender'>성별</label>
               {isEdit ? (
-                <div>{allData.sexNm}</div>
+                <div>{sexNm}</div>
               ) : (
                 <select
                   name='gender'

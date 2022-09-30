@@ -27,7 +27,7 @@ const PuppyAuthentication = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
-  const { isLogin, setIsPpAuth } = useAuthStore();
+  const { setIsPpAuth } = useAuthStore();
 
   const openModalHandler = () => {
     setIsOpen(!isOpen);

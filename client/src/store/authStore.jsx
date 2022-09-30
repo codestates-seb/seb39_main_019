@@ -6,10 +6,7 @@ const useAuthStore = create(
     isLogin: false,
     isPpAuth: false,
     setIsLogin: () => set((state) => ({ isLogin: !state.isLogin })),
-    setIsPpAuth: () =>
-      set((state) => {
-        isPpAuth: !state.isPpAuth;
-      }),
+    setIsPpAuth: () => set((state) => ({ isPpAuth: !state.isPpAuth })),
   }))
 );
 
