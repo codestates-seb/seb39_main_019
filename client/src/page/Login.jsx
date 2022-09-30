@@ -216,7 +216,7 @@ const InputForm = styled.div`
   align-items: center;
   width: 380px;
   padding: 48px 32px 32px 32px;
-  border: 1px solid #ebebeb;
+  background-color: ${(props) => props.theme.HeaderColor};
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 

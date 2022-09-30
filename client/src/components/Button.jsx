@@ -46,7 +46,6 @@ const ButtonCom = styled.button`
     padding: 12px 24px;
     margin: 2px 0 20px 0;
     width: 100%;
-    color: #ffffff;
     font-size: 18px;
     font-weight: 600;
     line-height: 20px;
@@ -54,14 +53,15 @@ const ButtonCom = styled.button`
     text-align: center;
     letter-spacing: 1px;
     border: 0;
-    border-bottom: 2px solid #4dafd2c5;
     transition: all 0.15s ease;
-    background: #59c8f0c5;
     border-radius: 5px;
-    text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
+    background-color: ${(props) => props.theme.HeLogoColor};
+    color: ${(props) => props.theme.HeaderColor};
 
     &:hover {
-      background: #4dafd2c5;
+      color: ${(props) => props.theme.textColor};
+      background-color: ${(props) => props.theme.HeaderColor};
+      border: 0.1px solid;
     }
     &:focus {
       outline: 0;

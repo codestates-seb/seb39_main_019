@@ -181,9 +181,9 @@ const InputForm = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.HeaderColor};
   width: 400px;
   padding: 48px 32px 32px 32px;
-  border: 1px solid #ebebeb;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
@@ -224,7 +224,6 @@ const InputForm = styled.div`
     padding: 12px 24px;
     margin: 2px 0 20px 0;
     width: 100%;
-    color: #fff;
     font-size: 18px;
     font-weight: 600;
     line-height: 20px;
@@ -233,8 +232,14 @@ const InputForm = styled.div`
     letter-spacing: 1px;
     border: 0;
     transition: all 0.15s ease;
-    background: #59c8f0c5;
     border-radius: 5px;
-    text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
+    background-color: ${(props) => props.theme.HeLogoColor};
+    color: ${(props) => props.theme.HeaderColor};
+
+    &:hover {
+      color: ${(props) => props.theme.textColor};
+      background-color: ${(props) => props.theme.HeaderColor};
+      border: 0.1px solid;
+    }
   }
 `;
