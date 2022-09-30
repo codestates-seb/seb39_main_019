@@ -1,11 +1,13 @@
 import React,{useState,useRef} from 'react'
 import styled, {css} from 'styled-components';
 import {phone} from '../../assets/style/Theme'
+import useStore from '../../store/post';
 
 const ImgLode = () => {
   const inputRef = useRef(null)
   const [showImages, setShowImages] = useState([]);
   const [isImg,setIsImg] = useState(false)
+  const {setUr} = useStore()
 
   const handleImgUpload = () => {
     inputRef.current.click()
@@ -17,6 +19,7 @@ const ImgLode = () => {
     setIsImg(!isImg)
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
+      setUr(currentImageUrl)
       imageUrlLists.push(currentImageUrl);
     }
     
