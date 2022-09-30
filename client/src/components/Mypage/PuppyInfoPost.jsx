@@ -4,8 +4,6 @@ import styled from "styled-components";
 import Button from "../Button";
 import Layout from "../Layout/Layout";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { getPpinfor } from "../../api/utils";
 import { useNavigate } from "react-router-dom";
 
@@ -63,7 +61,6 @@ const PuppyInfoPost = () => {
 
   return (
     <PuppyInfoPostContainer>
-      <ToastContainer />
       <BackBtn onClick={() => navigate(-1)}>
         <BackArrow />
         <div>뒤로가기</div>

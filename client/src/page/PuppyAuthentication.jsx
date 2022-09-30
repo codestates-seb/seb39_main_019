@@ -13,8 +13,6 @@ import { useRef } from "react";
 import Button from "../components/Button";
 import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
 import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
 // import { postPpAuth } from "../api/utils";
@@ -143,7 +141,6 @@ const PuppyAuthentication = () => {
   return (
     <div>
       <Header />
-      <ToastContainer />
       <SocialModalContainer>
         <HeaderLogo>
           <Link to={"/"}>

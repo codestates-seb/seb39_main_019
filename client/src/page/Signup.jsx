@@ -10,9 +10,8 @@ import {
 import Login from "./Login";
 import axios from "axios";
 import Button from "../components/Button";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 // const PWD_REGEX = /^(?=.*[a-z])(?=.*[0-9]).{6,20}$/;
 
@@ -56,14 +55,15 @@ const Signup = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("memberId", res.data.memberId);
-
         setSuccess(true);
       })
       .catch((err) => {
         console.log(err);
-        toast.error("중복된 닉네임이나 이미 존재하는 이메일입니다", {
-          autoClose: 3000,
-          hideProgressBar: true,
+        Swal.fire({
+          icon: "error",
+          text: "중복된 닉네임이나 이미 존재하는 이메일입니다",
+          width: "290px",
+          height: "300px",
         });
       });
   };
@@ -71,16 +71,17 @@ const Signup = () => {
   useEffect(() => {
     if (success) {
       navigate("/login");
-      toast.success("회원가입을 축하합니다 !", {
-        autoClose: 3000,
-        hideProgressBar: true,
+      Swal.fire({
+        icon: "success",
+        text: "회원가입을 축하합니다!",
+        width: "290px",
+        height: "300px",
       });
     }
   }, [success, navigate]);
 
   return (
     <div>
-      <ToastContainer />
       <Header />
       <SignupContainer>
         <InputForm>

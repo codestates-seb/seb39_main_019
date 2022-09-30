@@ -11,8 +11,6 @@ import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
 
@@ -43,11 +41,14 @@ const Login = () => {
         sessionStorage.setItem("access_token", response.data.access_token);
         setIsLogin();
         // navigate("/puppyauthentication");
-        // toast.success("로그인이 완료되었습니다!");
       })
       .then((res) => {
-        // navigate("/puppyauthentication");
-        toast.success("로그인이 완료되었습니다!");
+        Swal.fire({
+          icon: "success",
+          text: "로그인이 완료되었습니다!",
+          width: "290px",
+          height: "300px",
+        });
         if (isPpAuth) {
           navigate("/main");
         } else {
@@ -56,7 +57,12 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(error);
-        toast.error("로그인 실패!");
+        Swal.fire({
+          icon: "error",
+          text: "로그인 실패!",
+          width: "290px",
+          height: "300px",
+        });
       });
   };
 
@@ -109,7 +115,6 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <ToastContainer />
       <LoginContainer>
         <HeaderLogo>
           <Link to={"/"}>
