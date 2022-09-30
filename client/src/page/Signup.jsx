@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -12,6 +12,7 @@ import axios from "axios";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { phone } from "../assets/style/Theme";
 
 // const PWD_REGEX = /^(?=.*[a-z])(?=.*[0-9]).{6,20}$/;
 
@@ -186,6 +187,11 @@ const InputForm = styled.div`
   padding: 48px 32px 32px 32px;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+
+  ${phone(css`
+    width: 300px;
+    font-size: 10px;
+  `)}
 
   h1 {
     margin-bottom: 50px;

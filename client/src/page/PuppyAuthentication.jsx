@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { REST_API_KEY, REDIRECT_URI, PUPPY_API_KEY } from "../secretData";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Signup from "./Signup";
 import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -15,6 +15,8 @@ import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
 import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
 import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
+import { phone } from "../assets/style/Theme";
+
 // import { postPpAuth } from "../api/utils";
 
 const PuppyAuthentication = () => {
@@ -229,9 +231,13 @@ const InputForm = styled.div`
   width: 380px;
   padding: 48px 32px 32px 32px;
   background-color: ${(props) => props.theme.HeaderColor};
-
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+
+  ${phone(css`
+    width: 300px;
+    font-size: 10px;
+  `)}
 
   h1 {
     margin-bottom: 50px;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { ReactComponent as Google } from "../assets/imgs/Google.svg";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
@@ -13,6 +13,7 @@ import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
+import { phone } from "../assets/style/Theme";
 
 // import { postLogin2 } from "../api/utils";
 
@@ -219,6 +220,11 @@ const InputForm = styled.div`
   background-color: ${(props) => props.theme.HeaderColor};
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+
+  ${phone(css`
+    width: 300px;
+    font-size: 10px;
+  `)}
 
   h1 {
     margin-bottom: 50px;
