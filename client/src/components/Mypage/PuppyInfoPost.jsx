@@ -81,7 +81,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='name'
                   onChange={(e) => setDogNm(e.target.value)}
-                  defaultValue={dogNm || allData.dogNm || ""}
+                  defaultValue={allData.dogNm || ""}
                 ></input>
               )}
             </div>
@@ -100,7 +100,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='breed'
                   onChange={(e) => setBreed(e.target.value)}
-                  defaultValue={breed || allData.breed || ""}
+                  defaultValue={allData.breed || ""}
                 ></input>
               </div>
             )}
@@ -117,7 +117,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='age'
                   onChange={(e) => setAge(e.target.value)}
-                  defaultValue={age || allData.age || ""}
+                  defaultValue={allData.age || ""}
                 ></input>
               )}
             </div>
@@ -131,7 +131,7 @@ const PuppyInfoPost = () => {
                 <select
                   name='gender'
                   onChange={(e) => setSexNm(e.target.value)}
-                  defaultValue={sexNm || allData.sexNm || ""}
+                  defaultValue={allData.sexNm || ""}
                 >
                   <option>선택해주세요</option>
                   <option value='암컷'>암컷</option>
@@ -148,7 +148,7 @@ const PuppyInfoPost = () => {
         ) : (
           <ButtonContainer>
             <Button text={"등록"} type={"add"} onClick={submitHandler}></Button>
-            <Button text={"취소"} type={"add"} onClick={handleEdit}></Button>
+            <Button text={"취소"} type={"cancel"} onClick={handleEdit}></Button>
           </ButtonContainer>
         )}
       </PpInfoForm>
@@ -174,10 +174,13 @@ const PuppyInfoPostContainer = styled.div`
     margin-top: 40px;
   }
 `;
-const BackBtn = styled.button`
+const BackBtn = styled.div`
   border: 0;
   outline: 0;
-  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const PpInfoForm = styled.form`

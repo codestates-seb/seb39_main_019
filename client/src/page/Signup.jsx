@@ -10,7 +10,7 @@ import {
 import Login from "./Login";
 import axios from "axios";
 import Button from "../components/Button";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
@@ -26,6 +26,7 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const nicknameRef = useRef(null);
   const navigate = useNavigate();
+  const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
     nicknameRef.current.focus();
@@ -52,21 +53,34 @@ const Signup = () => {
       },
       withCredentials: true,
     })
-      .then(() => {
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("memberId", res.data.memberId);
+
         setSuccess(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error("중복된 닉네임이나 이미 존재하는 이메일입니다", {
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      });
   };
 
   useEffect(() => {
     if (success) {
       navigate("/login");
-      toast.success("회원가입을 축하합니다 !");
+      toast.success("회원가입을 축하합니다 !", {
+        autoClose: 3000,
+        hideProgressBar: true,
+      });
     }
   }, [success, navigate]);
 
   return (
     <div>
+      <ToastContainer />
       <Header />
       <SignupContainer>
         <InputForm>

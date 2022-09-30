@@ -27,7 +27,7 @@ const PuppyAuthentication = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
-  const { isLogin } = useAuthStore();
+  const { setIsPpAuth } = useAuthStore();
 
   const openModalHandler = () => {
     setIsOpen(!isOpen);
@@ -149,18 +149,19 @@ const PuppyAuthentication = () => {
       .then((response) => {
         console.log(response); /*<PpAuthDoneMdl /> */
         /*navigate("/PpAuthDoneMdl")*/
-
-        toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
         navigate("/mypage");
+        setIsPpAuth();
+
+        // toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
       })
       .catch((err) =>
         /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
         {
-          console.log(err);
+          alert("이미 인증된 등록번호이거나 유효하지 않은 등록번호입니다.");
           navigate("/main");
           toast.error(
             "인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다",
@@ -184,9 +185,10 @@ const PuppyAuthentication = () => {
             <span>Puppy Buddy</span>
           </Link>
         </HeaderLogo>
-        {/* <div className='modalMain'>
-        축하드려요! 가입되었습니다. PuppyBuddy에서 행복한 하루되세요!
-      </div> */}
+        <InformMsg>
+          입력하신 동물 등록 번호는 해당 번호의 중복 가입을 방지하기 위한
+          용도로만 사용되며 회원 탈퇴 시 파기됩니다.
+        </InformMsg>
         <InputForm>
           <h1>견주 인증</h1>
           <form /*</InputForm>*/ onSubmit={apiBtnHandler}>
@@ -251,6 +253,10 @@ const HeaderLogo = styled.div`
     cursor: pointer;
     white-space: nowrap;
   }
+`;
+
+const InformMsg = styled.div`
+  margin-bottom: 40px;
 `;
 
 const InputForm = styled.div`

@@ -8,6 +8,7 @@ const Button = ({ text, type, onClick }) => {
     "mypageBtn",
     "add",
     "delete",
+    "cancel",
   ].includes(type)
     ? type
     : "default";
@@ -115,6 +116,25 @@ const ButtonCom = styled.button`
     color: ${(props) => props.theme.HeaderColor};
 
     background-color: ${(props) => props.theme.HeLogoColor};
+
+    transition: all 0.15s ease;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: ${(props) => props.theme.HeaderColor};
+      color: ${(props) => props.theme.textColor};
+      transform: scale(1.05);
+    }
+  }
+  &.myButton_cancel {
+    /* width: 100%; */
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    color: ${(props) => props.theme.HeaderColor};
+
+    background-color: ${(props) => props.theme.HeLogoColor2};
 
     transition: all 0.15s ease;
     border-radius: 5px;
