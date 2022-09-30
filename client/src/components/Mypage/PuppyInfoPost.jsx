@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Button from "../Button";
 import Layout from "../Layout/Layout";
 import axios from "axios";
 import { getPpinfor } from "../../api/utils";
 import { useNavigate } from "react-router-dom";
-
+import { pad } from "../../assets/style/Theme";
 import PuppyInfoMain from "./PuppyInfoMain";
 import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
 
@@ -166,6 +166,11 @@ const PuppyInfoPostContainer = styled.div`
   align-items: center;
   max-width: 1280px;
   margin: 0 auto;
+  width: 100%;
+
+  ${pad(css`
+    font-size: 13px;
+  `)}
 
   h1 {
     margin-top: 40px;
@@ -190,14 +195,19 @@ const PpInfoForm = styled.form`
   padding: 32px;
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
-  width: 700px;
+  /* width: 700px; */
   margin-top: 30px;
   flex-wrap: wrap;
 
   ul {
     display: flex;
     grid-gap: 30px;
-    flex-wrap: wrap;
+
+    ${pad(css`
+      flex-wrap: wrap;
+      flex-direction: column;
+      grid-gap: 10px;
+    `)}
 
     & li {
       list-style: none;
