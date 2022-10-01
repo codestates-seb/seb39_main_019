@@ -6,11 +6,7 @@ import PostDetail from "../page/PostDetail";
 import Randing from "../page/Randing";
 import PuppyAuthentication from "../page/PuppyAuthentication";
 import Mypage from "../page/Mypage";
-import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
-import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
-import PpAuthOvlMdl from "../components/Modal/PpAuthOvlMdl";
 import PuppyInfoPage from "../page/PuppyInfoPage";
-import MypageWrote from "../components/Mypage/MypageWrote";
 import PuppyInfoPost from "../components/Mypage/PuppyInfoPost";
 
 const RouteModule = [
@@ -53,14 +49,6 @@ const RouteModule = [
   {
     path: "/PuppyInfoPost",
     element: <PuppyInfoPost />,
-  },
-  {
-    path: "/ppauthfailmdl",
-    element: <PpAuthFailMdl />,
-  },
-  {
-    path: "/ppauthovlmdl",
-    element: <PpAuthOvlMdl />,
   },
 ];
 

@@ -22,7 +22,6 @@
     "react-google-login": "^5.2.2",
     "react-loading": "^2.0.3",
     "react-router-dom": "^6.3.0",
-    "react-toastify": "^9.0.8",
     "styled-components": "^5.3.5",
     "zustand": "^4.1.1"
   },
