@@ -24,7 +24,7 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const nicknameRef = useRef(null);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     nicknameRef.current.focus();
   }, []);
@@ -241,8 +241,7 @@ const InputForm = styled.div`
 
     &:hover {
       color: ${(props) => props.theme.textColor};
-      background-color: ${(props) => props.theme.HeaderColor};
-      border: 0.1px solid;
+      background-color: ${(props) => props.theme.bgColor};
     }
   }
 `;

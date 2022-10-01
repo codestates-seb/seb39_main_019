@@ -60,8 +60,7 @@ const ButtonCom = styled.button`
 
     &:hover {
       color: ${(props) => props.theme.textColor};
-      background-color: ${(props) => props.theme.HeaderColor};
-      border: 0.1px solid;
+      background-color: ${(props) => props.theme.bgColor};
     }
     &:focus {
       outline: 0;
@@ -132,7 +131,7 @@ const ButtonCom = styled.button`
     font-weight: 500;
     line-height: 20px;
     -webkit-font-smoothing: antialiased;
-    color: ${(props) => props.theme.HeaderColor};
+    color: ${(props) => props.theme.textColor};
 
     background-color: ${(props) => props.theme.HeLogoColor2};
 
