@@ -16,7 +16,7 @@ const ToggleContainer = styled.div`
     transition: 0.5s;
     // TODO : .toggle--checked 클래스가 활성화 되었을 경우의 CSS를 구현합니다.
     &.toggle--checked {
-      background-color: #7d7d7d;
+      background-color: #152642;
     }
   }
 
