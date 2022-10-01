@@ -7,6 +7,7 @@ import PuppyInfoEdit from "./PuppyInfoEdit";
 import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
 import { Link } from "react-router-dom";
 import { phone } from "../../assets/style/Theme";
+import instance from "../../api/core/default";
 
 const MypageProfile = () => {
   const [headerData, setHeaderData] = useState("");
@@ -14,17 +15,29 @@ const MypageProfile = () => {
   const [isPuppyShow, setIsPuppyShow] = useState(false);
 
   useEffect(() => {
-    let token = sessionStorage.getItem("access_token") || "";
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    axios
-      .get("api/api/me")
+    instance({
+      method: "get",
+      url: "/api/me",
+    })
       .then((response) => {
         console.log(response);
-        setHeaderData(response.data);
+        setHeaderData(response);
       })
       .catch((err) => {
         console.log(err);
       });
+
+    // let token = sessionStorage.getItem("access_token") || "";
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    // axios
+    //   .get("api/api/me")
+    //   .then((response) => {
+    //     console.log(response);
+    //     setHeaderData(response.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
 
   return (
