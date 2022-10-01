@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
 
 // import { postLogin2 } from "../api/utils";
+// 안쓰는 방향으로 선민님이 생각하시는 것 !
 
 const Login = () => {
   const [email, setEmail] = useState("");

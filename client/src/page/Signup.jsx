@@ -24,7 +24,7 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const nicknameRef = useRef(null);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     nicknameRef.current.focus();
   }, []);

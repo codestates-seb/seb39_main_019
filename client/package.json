@@ -23,6 +23,7 @@
     "react-loading": "^2.0.3",
     "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5",
+    "sweetalert2": "^11.4.35",
     "zustand": "^4.1.1"
   },
   "devDependencies": {

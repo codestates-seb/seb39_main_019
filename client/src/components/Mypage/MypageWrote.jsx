@@ -60,7 +60,7 @@ const ItemContainer = styled.div`
   &:hover {
     transform: scale(1.07);
   }
-`;
+`
 const ItemInner = styled.div`
   padding: 10px;
 `;
