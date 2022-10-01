@@ -1,18 +1,10 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { REST_API_KEY, REDIRECT_URI, PUPPY_API_KEY } from "../secretData";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { REST_API_KEY, REDIRECT_URI } from "../secretData";
 import styled, { css } from "styled-components";
-import Signup from "./Signup";
-import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useRef } from "react";
 import Button from "../components/Button";
-import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
-import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
 import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
@@ -20,8 +12,6 @@ import { phone } from "../assets/style/Theme";
 // import { postPpAuth } from "../api/utils";
 
 const PuppyAuthentication = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [api, setApi] = useState("");
   const [ppOwner, setPpOwner] = useState("");
   const [regiNumber, setRegiNumber] = useState("");
   const ppOwnerRef = useRef(null);
@@ -29,10 +19,6 @@ const PuppyAuthentication = () => {
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
   const { setIsPpAuth } = useAuthStore();
-
-  const openModalHandler = () => {
-    setIsOpen(!isOpen);
-  };
 
   // const getKakaoToken = () => {
   //   fetch(`https://kauth.kakao.com/oauth/token`, {

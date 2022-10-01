@@ -2,12 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import Button from "../Button";
-import Layout from "../Layout/Layout";
 import axios from "axios";
-import { getPpinfor } from "../../api/utils";
 import { useNavigate } from "react-router-dom";
 import { pad } from "../../assets/style/Theme";
-import PuppyInfoMain from "./PuppyInfoMain";
 import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
 
 const PuppyInfoPost = () => {

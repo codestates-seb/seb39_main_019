@@ -7,9 +7,7 @@ import {
   faTimes,
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import Login from "./Login";
 import axios from "axios";
-import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
@@ -26,7 +24,6 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const nicknameRef = useRef(null);
   const navigate = useNavigate();
-  const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
     nicknameRef.current.focus();

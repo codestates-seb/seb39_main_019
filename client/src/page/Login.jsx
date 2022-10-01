@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
-import { ReactComponent as Google } from "../assets/imgs/Google.svg";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
-import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 import axios from "axios";
 import Button from "../components/Button";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
-import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";

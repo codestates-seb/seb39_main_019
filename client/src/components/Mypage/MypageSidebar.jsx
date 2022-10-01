@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
 import MypageWrote from "./MypageWrote";
 import MypageLike from "./MypageLike";
-import Button from "../Button";
 
 export default function Home() {
   return (
