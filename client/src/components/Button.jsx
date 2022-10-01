@@ -131,7 +131,7 @@ const ButtonCom = styled.button`
     font-weight: 500;
     line-height: 20px;
     -webkit-font-smoothing: antialiased;
-    color: ${(props) => props.theme.HeaderColor};
+    color: ${(props) => props.theme.textColor};
 
     background-color: ${(props) => props.theme.HeLogoColor2};
 
