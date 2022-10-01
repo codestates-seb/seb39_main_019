@@ -15,7 +15,6 @@ const IMG = styled.div`
   width: 100%;
 
 & div{
-  display: block;
   width: 100vw;
   height: 100%;
   background-size: cover;

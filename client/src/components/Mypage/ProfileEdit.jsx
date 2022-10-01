@@ -1,9 +1,8 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState,useRef } from "react";
 import styled from "styled-components";
 import Button from "../Button";
 import ReactDom from "react-dom";
 import { ReactComponent as CloseBtn } from "../../assets/imgs/CloseBtn.svg";
-import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +14,6 @@ const ProfileEdit = ({
 }) => {
   const nameRef = useRef();
   const [nickname, setNickname] = useState(headerData.nickname);
-  const [email, setEmail] = useState(headerData.email);
   const navigate = useNavigate();
   let token = sessionStorage.getItem("access_token") || "";
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

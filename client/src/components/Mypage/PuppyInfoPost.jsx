@@ -2,14 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Button from "../Button";
-import Layout from "../Layout/Layout";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { getPpinfor } from "../../api/utils";
 import { useNavigate } from "react-router-dom";
-
-import PuppyInfoMain from "./PuppyInfoMain";
 import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
 
 const PuppyInfoPost = () => {

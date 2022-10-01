@@ -50,7 +50,7 @@ const MypageWroteContainer = styled.div`
 const MypageWroteYes = styled.div``;
 const MypageWroteNo = styled.div``;
 const ItemContainer = styled.div`
-  width: 100%
+  width: 100%;
   border: none;
   cursor: pointer;
   color: ${(props) => props.theme.textColor};
@@ -60,7 +60,7 @@ const ItemContainer = styled.div`
   &:hover {
     transform: scale(1.07);
   }
-`;
+`
 const ItemInner = styled.div`
   padding: 10px;
 `;

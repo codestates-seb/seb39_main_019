@@ -1,21 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { ReactComponent as Google } from "../assets/imgs/Google.svg";
+import { Link ,useNavigate} from "react-router-dom";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
-import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 import axios from "axios";
 import Button from "../components/Button";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
-import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../store/authStore";
 
 // import { postLogin2 } from "../api/utils";
+// 안쓰는 방향으로 선민님이 생각하시는 것 !
 
 const Login = () => {
   const [email, setEmail] = useState("");

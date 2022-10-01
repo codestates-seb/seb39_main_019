@@ -1,7 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react'
 import styled from 'styled-components'
 import Slide from './Slide'
-import secondLogo from '../../assets/imgs/secondLogo.png'
 import firstLogo from '../../assets/imgs/firstLogo.png'
 import dog1 from '../../assets/imgs/dog1.png'
 

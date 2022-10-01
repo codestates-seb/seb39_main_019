@@ -7,9 +7,7 @@ import {
   faTimes,
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import Login from "./Login";
 import axios from "axios";
-import Button from "../components/Button";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -26,8 +24,7 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const nicknameRef = useRef(null);
   const navigate = useNavigate();
-  const [errMsg, setErrMsg] = useState("");
-
+  
   useEffect(() => {
     nicknameRef.current.focus();
   }, []);
