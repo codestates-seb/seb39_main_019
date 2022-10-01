@@ -69,14 +69,14 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='name'>이름</label>
               {isEdit ? (
-                <div>{dogNm}</div>
-              ) : (
                 <input
                   type='text'
                   id='name'
                   onChange={(e) => setDogNm(e.target.value)}
                   defaultValue={allData.dogNm || ""}
                 ></input>
+              ) : (
+                <div>{allData.dogNm}</div>
               )}
             </div>
           </li>
@@ -84,18 +84,17 @@ const PuppyInfoPost = () => {
             {isEdit ? (
               <div className='group'>
                 <label htmlFor='breed'>견종</label>
-                <div>{breed}</div>
-              </div>
-            ) : (
-              <div className='group'>
-                <label htmlFor='breed'>견종</label>
-
                 <input
                   type='text'
                   id='breed'
                   onChange={(e) => setBreed(e.target.value)}
                   defaultValue={allData.breed || ""}
                 ></input>
+              </div>
+            ) : (
+              <div className='group'>
+                <label htmlFor='breed'>견종</label>
+                <div>{allData.breed}</div>
               </div>
             )}
           </li>
@@ -105,14 +104,14 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='age'>나이</label>
               {isEdit ? (
-                <div>{age}</div>
-              ) : (
                 <input
                   type='text'
                   id='age'
                   onChange={(e) => setAge(e.target.value)}
                   defaultValue={allData.age || ""}
                 ></input>
+              ) : (
+                <div>{allData.age}</div>
               )}
             </div>
           </li>
@@ -120,8 +119,6 @@ const PuppyInfoPost = () => {
             <div className='group'>
               <label htmlFor='gender'>성별</label>
               {isEdit ? (
-                <div>{sexNm}</div>
-              ) : (
                 <select
                   name='gender'
                   onChange={(e) => setSexNm(e.target.value)}
@@ -131,19 +128,21 @@ const PuppyInfoPost = () => {
                   <option value='암컷'>암컷</option>
                   <option value='수컷'>수컷</option>
                 </select>
+              ) : (
+                <div>{allData.sexNm}</div>
               )}
             </div>
           </li>
         </ul>
         {isEdit ? (
-          <>
-            <Button text={"수정"} type={"add"} onClick={handleEdit}></Button>
-          </>
-        ) : (
           <ButtonContainer>
             <Button text={"등록"} type={"add"} onClick={submitHandler}></Button>
             <Button text={"취소"} type={"cancel"} onClick={handleEdit}></Button>
           </ButtonContainer>
+        ) : (
+          <>
+            <Button text={"수정"} type={"add"} onClick={handleEdit}></Button>
+          </>
         )}
       </PpInfoForm>
       {/* {Array.isArray(allData)
