@@ -1,26 +1,17 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { REST_API_KEY, REDIRECT_URI, PUPPY_API_KEY } from "../secretData";
-import styled from "styled-components";
-import Signup from "./Signup";
-import { faDisplay } from "@fortawesome/free-solid-svg-icons";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { REST_API_KEY, REDIRECT_URI } from "../secretData";
+import styled, { css } from "styled-components";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useRef } from "react";
 import Button from "../components/Button";
-import PpAuthDoneMdl from "../components/Modal/PpAuthDoneMdl";
-import PpAuthFailMdl from "../components/Modal/PpAuthFailMdl";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../store/authStore";
+import Swal from "sweetalert2";
+import { phone } from "../assets/style/Theme";
+
 // import { postPpAuth } from "../api/utils";
 
 const PuppyAuthentication = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [api, setApi] = useState("");
   const [ppOwner, setPpOwner] = useState("");
   const [regiNumber, setRegiNumber] = useState("");
   const ppOwnerRef = useRef(null);
@@ -28,10 +19,6 @@ const PuppyAuthentication = () => {
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
   const { setIsPpAuth } = useAuthStore();
-
-  const openModalHandler = () => {
-    setIsOpen(!isOpen);
-  };
 
   // const getKakaoToken = () => {
   //   fetch(`https://kauth.kakao.com/oauth/token`, {
@@ -110,34 +97,6 @@ const PuppyAuthentication = () => {
   const apiBtnHandler = (e) => {
     e.preventDefault();
 
-    // postPpAuth(ppOwner, regiNumber)
-    //   .then((response) => {
-    //     console.log(response); /*<PpAuthDoneMdl /> */
-    //     /*navigate("/PpAuthDoneMdl")*/
-
-    //     toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
-    //       position: toast.POSITION.TOP_RIGHT,
-    //       autoClose: 3000,
-    //       hideProgressBar: true,
-    //     });
-    //     navigate("/PuppyInfoPost"); // 이 부분 수정해야함
-    //   })
-    //   .catch((err) =>
-    //     /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
-    //     {
-    //       console.log(err);
-    //       navigate("/main");
-    //       toast.error(
-    //         "인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다",
-    //         {
-    //           autoClose: 3000,
-    //           position: toast.POSITION.TOP_RIGHT,
-    //           hideProgressBar: true,
-    //         }
-    //       );
-    //     }
-    //   );
-
     let token = sessionStorage.getItem("access_token") || "";
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
@@ -147,38 +106,29 @@ const PuppyAuthentication = () => {
         dog_reg_no: regiNumber,
       })
       .then((response) => {
-        console.log(response); /*<PpAuthDoneMdl /> */
-        /*navigate("/PpAuthDoneMdl")*/
+        Swal.fire({
+          icon: "success",
+          text: "반려견 정보를 입력해주세요",
+          width: "300px",
+          height: "250px",
+        });
         navigate("/mypage");
         setIsPpAuth();
-
-        // toast.success("인증 완료 🎉 반려견 정보를 등록해주세요", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        console.log(response);
       })
-      .catch((err) =>
-        /*navigate("/ppauthfailmdl")*/ /* <PpAuthFailMdl />*/
-        {
-          alert("이미 인증된 등록번호이거나 유효하지 않은 등록번호입니다.");
-          navigate("/main");
-          toast.error(
-            "인증 실패🚫 중복되거나 유효하지 않은 반려견 정보입니다",
-            {
-              autoClose: 3000,
-              position: toast.POSITION.TOP_RIGHT,
-              hideProgressBar: true,
-            }
-          );
-        }
-      );
+      .catch((err) => {
+        Swal.fire({
+          icon: "warning",
+          text: "이미 인증된 등록번호이거나 유효하지 않은 등록번호입니다.",
+          width: "300px",
+          height: "250px",
+        });
+      });
   };
 
   return (
     <div>
       <Header />
-      <ToastContainer />
       <SocialModalContainer>
         <HeaderLogo>
           <Link to={"/"}>
@@ -266,14 +216,17 @@ const InputForm = styled.div`
   align-items: center;
   width: 380px;
   padding: 48px 32px 32px 32px;
-  background: #fafafa;
-  border: 1px solid #ebebeb;
+  background-color: ${(props) => props.theme.HeaderColor};
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
+  ${phone(css`
+    width: 300px;
+    font-size: 10px;
+  `)}
+
   h1 {
     margin-bottom: 50px;
-    color: black;
   }
   .group {
     margin-bottom: 30px;
@@ -283,8 +236,8 @@ const InputForm = styled.div`
     padding: 10px 90px 10px 5px;
     -webkit-appearance: none;
     display: block;
-    background: #fafafa;
-    color: #636363;
+    background-color: transparent;
+    color: ${(props) => props.theme.textColor};
     width: 100%;
     border: none;
     border-radius: 0;

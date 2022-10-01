@@ -11,3 +11,5 @@ const useAuthStore = create(
 );
 
 export default useAuthStore;
+
+// 파일 이름을 userInfo 로 하면되지않을까 합니다. const useUserInfo

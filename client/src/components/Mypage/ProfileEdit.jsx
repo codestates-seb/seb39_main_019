@@ -1,11 +1,12 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Button from "../Button";
 import ReactDom from "react-dom";
 import { ReactComponent as CloseBtn } from "../../assets/imgs/CloseBtn.svg";
-import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuthStore from "../../store/authStore";
 
 const ProfileEdit = ({
   isProfileShow,
@@ -15,15 +16,14 @@ const ProfileEdit = ({
 }) => {
   const nameRef = useRef();
   const [nickname, setNickname] = useState(headerData.nickname);
-  const [email, setEmail] = useState(headerData.email);
   const navigate = useNavigate();
+  const { setIsLogin, isPpAuth } = useAuthStore();
   let token = sessionStorage.getItem("access_token") || "";
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   if (!isProfileShow) return null;
 
   const InfoHandler = () => {
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios({
       method: "patch",
       url: "api/api/me",
@@ -34,22 +34,33 @@ const ProfileEdit = ({
   };
 
   const WithdrawalHandler = () => {
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    axios({
-      method: "delete",
-      url: "api/api/me",
-    })
-      .then((res) => {
-        console.log(res);
-        localStorage.clear();
-        sessionStorage.clear();
-        alert("그동안 이용해주셔서 감사합니다.");
+    Swal.fire({
+      icon: "warning",
+      title: "회원탈퇴하시겠습니까?",
+      text: "다시 되돌릴 수 없습니다.",
+      showDenyButton: true,
+      confirmButtonText: "네",
+      denyButtonText: "아니요",
+      width: "400px",
+      height: "400px",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        axios({
+          method: "delete",
+          url: "api/api/me",
+        }).then((res) => {
+          console.log(res);
+          localStorage.clear();
+          sessionStorage.clear();
+        });
+        Swal.fire("그동안 이용해주셔서 감사합니다.", "", "success");
+        setIsLogin();
         navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("회원탈퇴가 되지 않았어요!");
-      });
+      } else if (result.isDenied) {
+        Swal.fire("회원탈퇴가 되지 않았어요.", "", "info");
+      }
+    });
   };
 
   return ReactDom.createPortal(

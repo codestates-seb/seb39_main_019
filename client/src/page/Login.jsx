@@ -1,21 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { ReactComponent as Google } from "../assets/imgs/Google.svg";
+import styled, { css } from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
-import { ReactComponent as Naver } from "../assets/imgs/Naver.svg";
 import axios from "axios";
 import Button from "../components/Button";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
-import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../store/authStore";
+import Swal from "sweetalert2";
+import { phone } from "../assets/style/Theme";
 
 // import { postLogin2 } from "../api/utils";
+// 안쓰는 방향으로 선민님이 생각하시는 것 !
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -42,11 +40,14 @@ const Login = () => {
         sessionStorage.setItem("access_token", response.data.access_token);
         setIsLogin();
         // navigate("/puppyauthentication");
-        // toast.success("로그인이 완료되었습니다!");
       })
       .then((res) => {
-        // navigate("/puppyauthentication");
-        toast.success("로그인이 완료되었습니다!");
+        Swal.fire({
+          icon: "success",
+          text: "로그인이 완료되었습니다!",
+          width: "290px",
+          height: "300px",
+        });
         if (isPpAuth) {
           navigate("/main");
         } else {
@@ -55,7 +56,12 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(error);
-        toast.error("로그인 실패!");
+        Swal.fire({
+          icon: "error",
+          text: "로그인 실패!",
+          width: "290px",
+          height: "300px",
+        });
       });
   };
 
@@ -96,14 +102,18 @@ const Login = () => {
   };
 
   const onFailure = (res) => {
-    // alert("구글 로그인에 실패하였습니다");
+    Swal.fire({
+      icon: "warning",
+      text: "구글 로그인에 실패하였습니다",
+      width: "400px",
+      height: "400px",
+    });
     console.log("err", res);
   };
 
   return (
     <div>
       <Header />
-      <ToastContainer />
       <LoginContainer>
         <HeaderLogo>
           <Link to={"/"}>
@@ -205,14 +215,17 @@ const InputForm = styled.div`
   align-items: center;
   width: 380px;
   padding: 48px 32px 32px 32px;
-  background: #fafafa;
-  border: 1px solid #ebebeb;
+  background-color: ${(props) => props.theme.HeaderColor};
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
+  ${phone(css`
+    width: 300px;
+    font-size: 10px;
+  `)}
+
   h1 {
     margin-bottom: 50px;
-    color: black;
   }
   .group {
     margin-bottom: 30px;
@@ -222,8 +235,8 @@ const InputForm = styled.div`
     padding: 10px 90px 10px 5px;
     -webkit-appearance: none;
     display: block;
-    background: #fafafa;
-    color: #636363;
+    background-color: transparent;
+    color: ${(props) => props.theme.textColor};
     width: 100%;
     border: none;
     border-radius: 0;
@@ -249,7 +262,6 @@ const InputForm = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      color: black;
       width: 100%;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -286,6 +298,7 @@ const InputForm = styled.div`
       width: 48px;
       height: 48px;
       border-color: #fafafa;
+      border-radius: 100%;
     }
     .googleBtn {
       margin: 0px 0px;
@@ -299,8 +312,6 @@ const InputForm = styled.div`
         border-radius: 100% !important;
 
         & svg {
-          /* width: 20px;
-          height: 50px; */
           margin: 5px 1px 0px 5px;
         }
       }

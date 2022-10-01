@@ -12,7 +12,7 @@ const ImgLode = () => {
   const handleImgUpload = () => {
     inputRef.current.click()
   }
-
+ 
   const handleAddImages = (event) => {
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
@@ -20,6 +20,7 @@ const ImgLode = () => {
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
       setUr(currentImageUrl)
+      console.log(currentImageUrl)
       imageUrlLists.push(currentImageUrl);
     }
     

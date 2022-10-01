@@ -4,14 +4,17 @@ const instance = axios.create({
   baseURL: "",
   // baseURL: "http://localhost:3001/",
   // baseURL: process.env.REACT_APP_DB_HOST,
+  headers: {
+    "Content-Type": "application/json; charset=utf-8",
+  },
+  // config.headers["Content-Type"] = "application/json; charset=utf-8";
+  withCredentials: true,
 });
 
 instance.interceptors.request.use(
   async (config) => {
     let token = sessionStorage.getItem("access_token") || "";
-    config.headers["Content-Type"] = "application/json; charset=utf-8";
     config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
-    axios.defaults.withCredentials = true; //
     return config;
   },
   (error) => {
@@ -25,10 +28,10 @@ instance.interceptors.response.use(
     return res;
   },
   (error) => {
-    const { config, response: status } = error;
+    const { config, response, status } = error;
     if (status === 401) {
       if (error.response.data.message === "TokenExpiredError") {
-        const originalRequest = config;
+        const originalRequest = config; // 어떤 요청이 실패
         const refreshToken = localStorage.getItem("refreshToken");
         // token refresh 요청
         const { data } = axios.post(
@@ -38,19 +41,27 @@ instance.interceptors.response.use(
           }
         );
         // 새로운 토큰 저장
-        const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-          data;
-        localStorage.multiSet([
-          ["accessToken", newAccessToken],
-          ["refreshToken", newRefreshToken],
-        ]);
-        axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+        sessionStorage.setItem("newAccessToken", data.accessToken);
+        localStorage.setItem("newRefreshToken", data.refreshToken);
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
-        return axios(originalRequest);
+        return instance.request(originalRequest);
+        // // 새로운 토큰 저장
+        // const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+        //   data;
+        // localStorage.multiSet([
+        //   ["accessToken", newAccessToken],
+        //   ["refreshToken", newRefreshToken],
+        // ]);
+        // axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+        // originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        // // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
+        // return axios(originalRequest);
+      } else {
+        return Promise.reject(error);
       }
+    } else {
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
   }
 );
 
