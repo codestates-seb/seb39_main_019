@@ -3,5 +3,4 @@ export const REDIRECT_URI = "http://127.0.0.1:5173/puppyauthentication";
 export const GOOGLE_CLIENT_ID =
   "1066203673720-r1jd9pdto9ilufmov7gfn4fpc93jnfan.apps.googleusercontent.com";
 
-
 // env 파일로 변환 

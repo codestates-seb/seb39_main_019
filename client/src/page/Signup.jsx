@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -8,9 +8,9 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { phone } from "../assets/style/Theme";
 
 // const PWD_REGEX = /^(?=.*[a-z])(?=.*[0-9]).{6,20}$/;
 
@@ -53,14 +53,15 @@ const Signup = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("memberId", res.data.memberId);
-
         setSuccess(true);
       })
       .catch((err) => {
         console.log(err);
-        toast.error("중복된 닉네임이나 이미 존재하는 이메일입니다", {
-          autoClose: 3000,
-          hideProgressBar: true,
+        Swal.fire({
+          icon: "error",
+          text: "중복된 닉네임이나 이미 존재하는 이메일입니다",
+          width: "290px",
+          height: "300px",
         });
       });
   };
@@ -68,16 +69,17 @@ const Signup = () => {
   useEffect(() => {
     if (success) {
       navigate("/login");
-      toast.success("회원가입을 축하합니다 !", {
-        autoClose: 3000,
-        hideProgressBar: true,
+      Swal.fire({
+        icon: "success",
+        text: "회원가입을 축하합니다!",
+        width: "290px",
+        height: "300px",
       });
     }
   }, [success, navigate]);
 
   return (
     <div>
-      <ToastContainer />
       <Header />
       <SignupContainer>
         <InputForm>
@@ -177,16 +179,19 @@ const InputForm = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.HeaderColor};
   width: 400px;
   padding: 48px 32px 32px 32px;
-  background: #fafafa;
-  border: 1px solid #ebebeb;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 
+  ${phone(css`
+    width: 300px;
+    font-size: 10px;
+  `)}
+
   h1 {
     margin-bottom: 50px;
-    color: black;
   }
   p {
     font-size: 0.9rem;
@@ -197,11 +202,11 @@ const InputForm = styled.div`
   }
   input {
     font-size: 18px;
-    padding: 10px 90px 10px 5px;
+    padding: 7px 90px 10px 5px;
     -webkit-appearance: none;
     display: block;
-    background: #fafafa;
-    color: #636363;
+    background-color: transparent;
+    color: ${(props) => props.theme.textColor};
     width: 100%;
     border: none;
     border-radius: 0;
@@ -215,14 +220,13 @@ const InputForm = styled.div`
   label {
     color: #999;
     font-size: 18px;
-    font-weight: normal;
+    font-weight: bold;
   }
 
   button {
     padding: 12px 24px;
     margin: 2px 0 20px 0;
     width: 100%;
-    color: #fff;
     font-size: 18px;
     font-weight: 600;
     line-height: 20px;
@@ -230,10 +234,15 @@ const InputForm = styled.div`
     text-align: center;
     letter-spacing: 1px;
     border: 0;
-    border-bottom: 2px solid #4dafd2c5;
     transition: all 0.15s ease;
-    background: #59c8f0c5;
     border-radius: 5px;
-    text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
+    background-color: ${(props) => props.theme.HeLogoColor};
+    color: ${(props) => props.theme.HeaderColor};
+
+    &:hover {
+      color: ${(props) => props.theme.textColor};
+      background-color: ${(props) => props.theme.HeaderColor};
+      border: 0.1px solid;
+    }
   }
 `;

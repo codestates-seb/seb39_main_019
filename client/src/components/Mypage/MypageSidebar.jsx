@@ -44,7 +44,7 @@ const SHomeContentsLink = styled(NavLink)`
   &.active {
     color: #53bbe1c5;
     position: relative;
-    top: 2px;
+    /* top: 2px; */
     font-weight: 900;
   }
 `;
