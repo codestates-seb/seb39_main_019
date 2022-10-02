@@ -52,7 +52,7 @@ const Signup = () => {
     })
       .then((res) => {
         console.log(res);
-        localStorage.setItem("memberId", res.data.memberId);
+        // localStorage.setItem("memberId", res.data.memberId);
         setSuccess(true);
       })
       .catch((err) => {

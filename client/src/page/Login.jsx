@@ -17,7 +17,7 @@ import jwt_decode from "jwt-decode";
 // 안쓰는 방향으로 선민님이 생각하시는 것 !
 
 const Login = () => {
-  const { setUserInfo } = useUserInfo();
+  const { setUserInfo, setUserId } = useUserInfo();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
@@ -41,8 +41,9 @@ const Login = () => {
         localStorage.setItem("refresh_token", response.data.refresh_token);
         sessionStorage.setItem("access_token", response.data.access_token);
         const jwt = jwt_decode(response.data.access_token);
-        console.log(jwt.authorities);
+        console.log(jwt);
         setUserInfo(jwt.authorities);
+        setUserId(jwt.sub);
 
         if (jwt.authorities === "CERTIFIED") {
           navigate("/main");

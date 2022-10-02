@@ -8,6 +8,8 @@ import { pad } from "../../assets/style/Theme";
 import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
 import usePuppyPost from "../../store/puppyPost";
 import instance from "../../api/core/default";
+import useUserInfo from "../../store/userinfo";
+import Swal from "sweetalert2";
 
 const PuppyInfoPost = () => {
   const { dogNm, breed, age, sexNm, setDogNm, setBreed, setAge, setSexNm } =
@@ -20,9 +22,10 @@ const PuppyInfoPost = () => {
   const [allData, setAllData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const navigate = useNavigate();
+  const id = localStorage.getItem("memberId");
+  const { userInfo, userId } = useUserInfo();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = () => {
     instance({
       method: "patch",
       url: "v1/dogs/info/1",
@@ -47,31 +50,51 @@ const PuppyInfoPost = () => {
     setSexNm(allData.sexNm);
   };
 
+  if (dogNm && breed && age && sexNm && userInfo === "UNCERTIFIED") {
+    Swal.fire({
+      icon: "warning",
+      title: "로그아웃 부탁드립니다. ",
+      text: "원활한 서비스 제공을 위해 로그아웃 후 로그인 부탁드립니다. ",
+      showDenyButton: true,
+      confirmButtonText: "네",
+      denyButtonText: "아니요",
+      width: "400px",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        instance({
+          method: "get",
+          url: "api/me/logout",
+        })
+          .then((res) => {
+            console.log(res);
+            localStorage.clear();
+            sessionStorage.clear();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        Swal.fire("재로그인 해주세요", "", "success");
+        navigate("/main");
+        setUserInfo(0);
+      } else if (result.isDenied) {
+        Swal.fire("로그아웃 되지 않았어요.", "", "info");
+      }
+    });
+  }
+
   useEffect(() => {
     instance({
       method: "get",
-      url: "/api/members/dogs/1",
+      url: `/api/members/dogs/${userId}`,
     })
       .then((response) => {
         console.log(response);
-        // setHeaderData(response);
+        setAllData(response);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    // let token = sessionStorage.getItem("access_token") || "";
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    // axios({
-    //   method: "get",
-    //   url: "/v1/dogs/info/1",
-    //   // url: "http://localhost:3001/puppyInfo",
-    // })
-    //   .then((res) => {
-    //     console.log(res);
-    //     setAllData(res.data);
-    //   })
-    //   .catch((err) => console.log(err));
   }, [isEdit]);
 
   return (
