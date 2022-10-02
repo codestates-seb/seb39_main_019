@@ -19,14 +19,14 @@
 ### **Front-end** 
 
 <p>
-<img src='https://user-images.githubusercontent.com/103996469/189812990-0697f50e-ac79-4b9f-9c3f-2676ed0a2321.svg' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189813078-21b761bf-7724-46c4-bb15-f71d7923f9f6.png' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814228-102ccb6b-f1df-432b-8ba4-b827a92c60f5.png' width='100'/>  <img src='https://user-images.githubusercontent.com/103996469/189813611-bdf90e19-d6fb-4c4c-ab6d-fc684c88719c.png' width='100'/> <img src='https://seeklogo.com/images/P/prettier-logo-D5C5197E37-seeklogo.com.png' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814460-5b760d15-c7e0-451c-8643-6df8dc11bd6e.png' width='100' height='100'/> <img src='https://user-images.githubusercontent.com/103996469/189813177-e1647bb9-7500-4643-b3cc-9af74768107a.png' width='100' height='100'/>
+<img src='https://user-images.githubusercontent.com/103996469/189812990-0697f50e-ac79-4b9f-9c3f-2676ed0a2321.svg' width='100'/> <img src='https://user-images.githubusercontent.com/61264510/193440604-0cfc19fd-014a-45d6-acba-a5c322658a92.svg' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814228-102ccb6b-f1df-432b-8ba4-b827a92c60f5.png' width='100'/>  <img src='https://user-images.githubusercontent.com/103996469/189813611-bdf90e19-d6fb-4c4c-ab6d-fc684c88719c.png' width='100'/> <img src='https://seeklogo.com/images/P/prettier-logo-D5C5197E37-seeklogo.com.png' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814460-5b760d15-c7e0-451c-8643-6df8dc11bd6e.png' width='100' height='100'/> <img src='https://user-images.githubusercontent.com/103996469/189813177-e1647bb9-7500-4643-b3cc-9af74768107a.png' width='100' height='100'/>
 </p>
 
 ### **Back-end** 
 
 <p>
   <img src="https://user-images.githubusercontent.com/61177857/188972264-ee94f10c-6959-4a1c-9b97-6330b14ce996.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/193440604-0cfc19fd-014a-45d6-acba-a5c322658a92.svg" width=100 height=100>
+  <img src="https://user-images.githubusercontent.com/61264510/191139546-91539645-aecf-4ab4-9cef-92537a7ebcfb.png" width=100 height=100>
   <img src="https://logos-world.net/wp-content/uploads/2022/07/Java-Logo.png" width=100 height=100>
   <img src="https://user-images.githubusercontent.com/61177857/188973455-ecc9c549-9b23-4b00-aab7-1ef042bceeb1.png" width=100 height=100>
   <img src="https://user-images.githubusercontent.com/61177857/188973727-c87dcc33-9777-420f-bb51-11074c3bd2f4.png" width=100 height=100>
