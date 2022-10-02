@@ -6,9 +6,9 @@ import { ReactComponent as CloseBtn } from "../../assets/imgs/CloseBtn.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuthStore from "../../store/authStore";
 import instance from "../../api/core/default";
 import { memo } from "react";
+import useUserInfo from "../../store/userinfo";
 
 const ProfileEdit = ({
   isProfileShow,
@@ -19,7 +19,7 @@ const ProfileEdit = ({
   const nameRef = useRef();
   const [nickname, setNickname] = useState(headerData.nickname);
   const navigate = useNavigate();
-  const { setIsLogin, isPpAuth } = useAuthStore();
+  const { userInfo, setUserInfo } = useUserInfo();
 
   if (!isProfileShow) return null;
 
@@ -67,7 +67,7 @@ const ProfileEdit = ({
           });
 
         Swal.fire("그동안 이용해주셔서 감사합니다.", "", "success");
-        setIsLogin();
+        setUserInfo(0);
         navigate("/");
       } else if (result.isDenied) {
         Swal.fire("회원탈퇴가 되지 않았어요.", "", "info");

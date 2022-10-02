@@ -8,7 +8,6 @@ import Button from "../components/Button";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
-import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
 import useUserInfo from "../store/userinfo";
@@ -23,7 +22,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
   const navigate = useNavigate();
-  const { setIsLogin, isPpAuth } = useAuthStore();
 
   useEffect(() => {
     emailRef.current.focus();
@@ -46,7 +44,6 @@ const Login = () => {
         console.log(jwt.authorities);
         setUserInfo(jwt.authorities);
 
-        setIsLogin();
         if (jwt.authorities === "CERTIFIED") {
           navigate("/main");
         } else {

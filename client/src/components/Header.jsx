@@ -11,9 +11,8 @@ import useUserInfo from "../store/userinfo";
 import instance from "../api/core/default";
 
 const Header = () => {
-  const { userInfo } = useUserInfo();
+  const { userInfo, setUserInfo } = useUserInfo();
   const { isLight } = useStore();
-  const { isLogin } = useAuthStore();
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -27,6 +26,7 @@ const Header = () => {
         console.log(response);
         localStorage.clear();
         sessionStorage.clear();
+        setUserInfo(0);
         navigate("/main");
       })
       .catch((err) => {
