@@ -39,7 +39,7 @@
 
 <p>
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" width=100 height=100>
-<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width=100 height=100>
+<img src="https://user-images.githubusercontent.com/61264510/193440791-7753c5f4-d2f6-44ae-931d-99e43e434a13.svg" width=100 height=100>
 <img src="https://www.svgrepo.com/show/331368/discord-v2.svg" width=100 height=100>
 </p>
 
