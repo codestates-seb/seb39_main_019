@@ -26,7 +26,7 @@
 
 <p>
   <img src="https://user-images.githubusercontent.com/61177857/188972264-ee94f10c-6959-4a1c-9b97-6330b14ce996.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/191139546-91539645-aecf-4ab4-9cef-92537a7ebcfb.png" width=100 height=100>
+  <img src="https://user-images.githubusercontent.com/61264510/193440604-0cfc19fd-014a-45d6-acba-a5c322658a92.svg" width=100 height=100>
   <img src="https://logos-world.net/wp-content/uploads/2022/07/Java-Logo.png" width=100 height=100>
   <img src="https://user-images.githubusercontent.com/61177857/188973455-ecc9c549-9b23-4b00-aab7-1ef042bceeb1.png" width=100 height=100>
   <img src="https://user-images.githubusercontent.com/61177857/188973727-c87dcc33-9777-420f-bb51-11074c3bd2f4.png" width=100 height=100>
