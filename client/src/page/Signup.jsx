@@ -184,6 +184,7 @@ const InputForm = styled.div`
   padding: 48px 32px 32px 32px;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+  border-radius: 10px;
 
   ${phone(css`
     width: 300px;

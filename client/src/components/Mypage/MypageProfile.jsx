@@ -26,18 +26,6 @@ const MypageProfile = () => {
       .catch((err) => {
         console.log(err);
       });
-
-    // let token = sessionStorage.getItem("access_token") || "";
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    // axios
-    //   .get("api/api/me")
-    //   .then((response) => {
-    //     console.log(response);
-    //     setHeaderData(response.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }, []);
 
   return (
@@ -96,10 +84,9 @@ const PIMG = styled.div`
 
 const ProfileInfo = styled.div`
   width: 100%;
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 20px
   display: flex;
 

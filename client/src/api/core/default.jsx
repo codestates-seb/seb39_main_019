@@ -5,16 +5,23 @@ const instance = axios.create({
   // baseURL: "http://localhost:3001/",
   // baseURL: process.env.REACT_APP_DB_HOST,
   headers: {
+    Accept: "application/json",
     "Content-Type": "application/json; charset=utf-8",
+    "Access-Control-Allow-Origin": "*",
   },
+  // headers: {
+  //   "Content-Type": "application/json; charset=utf-8",
+  // },
   // config.headers["Content-Type"] = "application/json; charset=utf-8";
   withCredentials: true,
 });
 
 instance.interceptors.request.use(
   async (config) => {
-    let token = sessionStorage.getItem("access_token") || "";
-    config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
+    const token = sessionStorage.getItem("access_token");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
+    }
     return config;
   },
   (error) => {
