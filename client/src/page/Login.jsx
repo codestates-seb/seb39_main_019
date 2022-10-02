@@ -11,10 +11,7 @@ import GoogleLogin from "react-google-login";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
 import useUserInfo from "../store/userinfo";
-import jwt_decode from "jwt-decode";
-
-// import { postLogin2 } from "../api/utils";
-// 안쓰는 방향으로 선민님이 생각하시는 것 !
+import instance from "../api/core/default";
 
 const Login = () => {
   const { setUserInfo, setUserId } = useUserInfo();
@@ -29,27 +26,34 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // postLogin2(email, password);
 
     axios.defaults.withCredentials = true;
 
     axios
       .post("api/auth/login", { email, password })
       .then((response) => {
-        // console.log(response);
-
         localStorage.setItem("refresh_token", response.data.refresh_token);
         sessionStorage.setItem("access_token", response.data.access_token);
-        const jwt = jwt_decode(response.data.access_token);
-        console.log(jwt);
-        setUserInfo(jwt.authorities);
-        setUserId(jwt.sub);
 
-        if (jwt.authorities === "CERTIFIED") {
-          navigate("/main");
-        } else {
-          navigate("/puppyauthentication");
-        }
+        instance({
+          method: "get",
+          url: "/api/me",
+        })
+          .then((response) => {
+            console.log(response);
+            // setUserInfo(response.memberRole);
+            setUserId(response.memberId);
+            console.log(response.memberId);
+
+            if (response.memberCertificate === "DOG_OWNER") {
+              navigate("/main");
+            } else {
+              navigate("/puppyauthentication");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -60,10 +64,19 @@ const Login = () => {
       });
   };
 
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const kakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
+
+    // let code = new URL(window.location.href).searchParams.get("code");
+    // // let code = new URL(window.location.href);
+
+    // console.log(code);
+    // axios
+    //   .get(`/oauth2/login/callback/kakao?code=${code}`)
+    //   .then((res) => console.log(res));
   };
 
   useEffect(() => {
@@ -101,7 +114,6 @@ const Login = () => {
       icon: "warning",
       text: "구글 로그인에 실패하였습니다",
       width: "400px",
-      height: "400px",
     });
     console.log("err", res);
   };

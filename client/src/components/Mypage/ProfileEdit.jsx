@@ -49,7 +49,6 @@ const ProfileEdit = ({
       confirmButtonText: "네",
       denyButtonText: "아니요",
       width: "400px",
-      height: "400px",
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {

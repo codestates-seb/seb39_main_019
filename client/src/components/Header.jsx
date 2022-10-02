@@ -9,9 +9,10 @@ import useStore from "../store/globalStore";
 import useAuthStore from "../store/authStore";
 import useUserInfo from "../store/userinfo";
 import instance from "../api/core/default";
+import Swal from "sweetalert2";
 
 const Header = () => {
-  const { userInfo, setUserInfo } = useUserInfo();
+  const { userId, setUserId } = useUserInfo();
   const { isLight } = useStore();
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -26,8 +27,13 @@ const Header = () => {
         console.log(response);
         localStorage.clear();
         sessionStorage.clear();
-        setUserInfo(0);
+        setUserId(0);
         navigate("/main");
+        Swal.fire({
+          icon: "success",
+          text: "로그아웃이 완료되었습니다",
+          width: "290px",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +56,7 @@ const Header = () => {
           <Toggle />
           <Menubar onClick={() => setIsOpen(!isOpen)} />
           <ul ref={dropDownRef} className={isOpen ? "active" : "menu"}>
-            {userInfo ? (
+            {userId ? (
               <>
                 <li>
                   <Link to='/post'>글작성하기</Link>

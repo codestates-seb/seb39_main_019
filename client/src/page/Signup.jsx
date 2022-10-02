@@ -61,7 +61,6 @@ const Signup = () => {
           icon: "error",
           text: "중복된 닉네임이나 이미 존재하는 이메일입니다",
           width: "290px",
-          height: "300px",
         });
       });
   };

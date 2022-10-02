@@ -110,7 +110,6 @@ const PuppyAuthentication = () => {
           icon: "success",
           text: "반려견 정보를 입력해주세요",
           width: "300px",
-          height: "250px",
         });
         navigate("/mypage");
         setIsPpAuth();

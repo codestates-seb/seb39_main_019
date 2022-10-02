@@ -14,16 +14,14 @@ import Swal from "sweetalert2";
 const PuppyInfoPost = () => {
   const { dogNm, breed, age, sexNm, setDogNm, setBreed, setAge, setSexNm } =
     usePuppyPost();
-  // const [dogNm, setDogNm] = useState("");
-  // const [breed, setBreed] = useState("");
-  // const [age, setAge] = useState("");
-  // const [sexNm, setSexNm] = useState("");
 
   const [allData, setAllData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const navigate = useNavigate();
   const id = localStorage.getItem("memberId");
   const { userInfo, userId } = useUserInfo();
+
+  console.log(allData);
 
   const submitHandler = () => {
     instance({
@@ -50,47 +48,14 @@ const PuppyInfoPost = () => {
     setSexNm(allData.sexNm);
   };
 
-  if (dogNm && breed && age && sexNm && userInfo === "UNCERTIFIED") {
-    Swal.fire({
-      icon: "warning",
-      title: "로그아웃 부탁드립니다. ",
-      text: "원활한 서비스 제공을 위해 로그아웃 후 로그인 부탁드립니다. ",
-      showDenyButton: true,
-      confirmButtonText: "네",
-      denyButtonText: "아니요",
-      width: "400px",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        instance({
-          method: "get",
-          url: "api/me/logout",
-        })
-          .then((res) => {
-            console.log(res);
-            localStorage.clear();
-            sessionStorage.clear();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-
-        Swal.fire("재로그인 해주세요", "", "success");
-        navigate("/main");
-        setUserInfo(0);
-      } else if (result.isDenied) {
-        Swal.fire("로그아웃 되지 않았어요.", "", "info");
-      }
-    });
-  }
-
   useEffect(() => {
     instance({
       method: "get",
       url: `/api/members/dogs/${userId}`,
     })
       .then((response) => {
-        console.log(response);
-        setAllData(response);
+        console.log(response.dogs);
+        setAllData(response.dogs);
       })
       .catch((err) => {
         console.log(err);
@@ -116,7 +81,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='name'
                   onChange={(e) => setDogNm(e.target.value)}
-                  defaultValue={dogNm}
+                  defaultValue={dogNm || allData.dogNm || ""}
                 ></input>
               )}
             </div>
@@ -134,7 +99,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='breed'
                   onChange={(e) => setBreed(e.target.value)}
-                  value={breed}
+                  value={breed || allData.breed || ""}
                 ></input>
               </div>
             )}
@@ -151,7 +116,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='age'
                   onChange={(e) => setAge(e.target.value)}
-                  value={age}
+                  value={age || allData.age || ""}
                 ></input>
               )}
             </div>
@@ -165,7 +130,7 @@ const PuppyInfoPost = () => {
                 <select
                   name='gender'
                   onChange={(e) => setSexNm(e.target.value)}
-                  value={sexNm}
+                  value={sexNm || allData.sexNm || ""}
                 >
                   <option>선택해주세요</option>
                   <option value='암컷'>암컷</option>
