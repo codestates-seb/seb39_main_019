@@ -6,7 +6,9 @@ import { ReactComponent as CloseBtn } from "../../assets/imgs/CloseBtn.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuthStore from "../../store/authStore";
+import instance from "../../api/core/default";
+import { memo } from "react";
+import useUserInfo from "../../store/userinfo";
 
 const ProfileEdit = ({
   isProfileShow,
@@ -15,22 +17,28 @@ const ProfileEdit = ({
   setHeaderData,
 }) => {
   const nameRef = useRef();
-  const [nickname, setNickname] = useState(headerData.nickname);
+  const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
-  const { setIsLogin, isPpAuth } = useAuthStore();
-  let token = sessionStorage.getItem("access_token") || "";
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const { userInfo, setUserInfo, userNickName, userEmail, setUserNickName } =
+    useUserInfo();
 
   if (!isProfileShow) return null;
-
+  console.log(nickname);
   const InfoHandler = () => {
-    axios({
+    instance({
       method: "patch",
-      url: "api/api/me",
+      url: "/api/me",
       data: {
         nickname: nickname,
       },
-    }).then((res) => setHeaderData(res));
+    })
+      .then((response) => {
+        console.log(response);
+        setUserNickName(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const WithdrawalHandler = () => {
@@ -42,20 +50,24 @@ const ProfileEdit = ({
       confirmButtonText: "네",
       denyButtonText: "아니요",
       width: "400px",
-      height: "400px",
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        axios({
+        instance({
           method: "delete",
-          url: "api/api/me",
-        }).then((res) => {
-          console.log(res);
-          localStorage.clear();
-          sessionStorage.clear();
-        });
+          url: "/api/me",
+        })
+          .then((res) => {
+            console.log(res);
+            localStorage.clear();
+            sessionStorage.clear();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
         Swal.fire("그동안 이용해주셔서 감사합니다.", "", "success");
-        setIsLogin();
+        setUserInfo(0);
         navigate("/");
       } else if (result.isDenied) {
         Swal.fire("회원탈퇴가 되지 않았어요.", "", "info");
@@ -76,7 +88,7 @@ const ProfileEdit = ({
               type='text'
               id='name'
               ref={nameRef}
-              defaultValue={headerData.nickname}
+              defaultValue={userNickName}
               onChange={(e) => setNickname(e.target.value)}
             ></input>
           </div>
@@ -85,7 +97,7 @@ const ProfileEdit = ({
             <input
               type='email'
               id='email'
-              defaultValue={headerData.email}
+              defaultValue={userEmail}
               disabled
             ></input>
           </div>
@@ -98,7 +110,7 @@ const ProfileEdit = ({
   );
 };
 
-export default ProfileEdit;
+export default memo(ProfileEdit);
 
 const ProfileEditContainer = styled.div`
   display: flex;

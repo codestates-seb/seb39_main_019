@@ -1,19 +1,44 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Toggle } from "./Toggle";
 import { ReactComponent as BlackSerch } from "../assets/imgs/BlackSerch.svg";
 import { ReactComponent as WhiteSerch } from "../assets/imgs/WhiteSerch.svg";
 import { ReactComponent as Menubar } from "../assets/imgs/menubar.svg";
 import useStore from "../store/globalStore";
 import useAuthStore from "../store/authStore";
+import useUserInfo from "../store/userinfo";
+import instance from "../api/core/default";
+import Swal from "sweetalert2";
 
 const Header = () => {
-  const {isLight} = useStore()
-  const {isLogin} = useAuthStore()
-  // const {userInfro} = useUserInfe()
-  const dropDownRef = useRef(null)
-  const [isOpen,setIsOpen] = React.useState(false)
+  const { userId, setUserId } = useUserInfo();
+  const { isLight } = useStore();
+  const dropDownRef = useRef(null);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    instance({
+      method: "get",
+      url: "api/me/logout",
+    })
+      .then((response) => {
+        console.log(response);
+        localStorage.clear();
+        sessionStorage.clear();
+        setUserId(0);
+        navigate("/main");
+        Swal.fire({
+          icon: "success",
+          text: "로그아웃이 완료되었습니다",
+          width: "290px",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <HeaderCotainer>
@@ -28,17 +53,32 @@ const Header = () => {
           {isLight ? <BlackSerch /> : <WhiteSerch />}
         </HeaderSerch>
         <HeaderButton>
-          <Toggle/>
-          <Menubar onClick={()=>setIsOpen(!isOpen)}/>
-          <ul ref={dropDownRef} className={isOpen? 'active':'menu'}>
-            {isLogin?<>
-            <li><Link to="/post">글작성하기</Link></li>
-            <li><Link to="/mypage">마이페이지</Link></li>
-            <li>로그아웃</li>
-            </>:<>
-            <li><Link to="/login">로그인</Link></li>
-            <li><Link to="/signup">회원가입</Link></li> 
-            <li><Link to="/post">글작성하기</Link></li></>}
+          <Toggle />
+          <Menubar onClick={() => setIsOpen(!isOpen)} />
+          <ul ref={dropDownRef} className={isOpen ? "active" : "menu"}>
+            {userId ? (
+              <>
+                <li>
+                  <Link to='/post'>글작성하기</Link>
+                </li>
+                <li>
+                  <Link to='/mypage'>마이페이지</Link>
+                </li>
+                <li onClick={logoutHandler}>로그아웃</li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to='/login'>로그인</Link>
+                </li>
+                <li>
+                  <Link to='/signup'>회원가입</Link>
+                </li>
+                <li>
+                  <Link to='/post'>글작성하기</Link>
+                </li>
+              </>
+            )}
           </ul>
         </HeaderButton>
       </HeaderWrap>
