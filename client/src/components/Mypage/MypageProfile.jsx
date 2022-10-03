@@ -7,20 +7,24 @@ import PuppyInfoEdit from "./PuppyInfoEdit";
 import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
 import { Link } from "react-router-dom";
 import { phone } from "../../assets/style/Theme";
+import instance from "../../api/core/default";
+import useUserInfo from "../../store/userinfo";
 
 const MypageProfile = () => {
   const [headerData, setHeaderData] = useState("");
   const [isProfileShow, setIsProfileShow] = useState(false);
   const [isPuppyShow, setIsPuppyShow] = useState(false);
+  const { userInfo, setUserInfo, userNickName, userEmail, setUserNickName } =
+    useUserInfo();
 
   useEffect(() => {
-    let token = sessionStorage.getItem("access_token") || "";
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    axios
-      .get("api/api/me")
+    instance({
+      method: "get",
+      url: "/api/me",
+    })
       .then((response) => {
         console.log(response);
-        setHeaderData(response.data);
+        setUserNickName(response.nickname);
       })
       .catch((err) => {
         console.log(err);
@@ -35,8 +39,8 @@ const MypageProfile = () => {
         </PIMG>
       </ProfileImg>
       <ProfileInfo>
-        <div>{headerData.nickname}</div>
-        <div>{headerData.email}</div>
+        <div>{userNickName}</div>
+        <div>{userEmail}</div>
         <BtnContainer>
           <Link to='/PuppyInfoPage'>
             <Button
@@ -57,8 +61,8 @@ const MypageProfile = () => {
           <ProfileEdit
             isProfileShow={isProfileShow}
             closeModal={() => setIsProfileShow(false)}
-            headerData={headerData}
-            setHeaderData={setHeaderData}
+            // headerData={headerData}
+            // setHeaderData={setHeaderData}
           />
         </BtnContainer>
       </ProfileInfo>
@@ -84,17 +88,16 @@ const PIMG = styled.div`
 
 const ProfileInfo = styled.div`
   width: 100%;
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 20px;
   display: flex;
 
   ${phone(css`
     font-size: 14px;
   `)}
-`;
+`
 
 const BtnContainer = styled.div`
   display: flex;
