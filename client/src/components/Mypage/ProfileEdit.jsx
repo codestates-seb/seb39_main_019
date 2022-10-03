@@ -17,12 +17,13 @@ const ProfileEdit = ({
   setHeaderData,
 }) => {
   const nameRef = useRef();
-  const [nickname, setNickname] = useState(headerData.nickname);
+  const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
-  const { userInfo, setUserInfo } = useUserInfo();
+  const { userInfo, setUserInfo, userNickName, userEmail, setUserNickName } =
+    useUserInfo();
 
   if (!isProfileShow) return null;
-
+  console.log(nickname);
   const InfoHandler = () => {
     instance({
       method: "patch",
@@ -33,7 +34,7 @@ const ProfileEdit = ({
     })
       .then((response) => {
         console.log(response);
-        setHeaderData(response);
+        setUserNickName(response);
       })
       .catch((err) => {
         console.log(err);
@@ -87,7 +88,7 @@ const ProfileEdit = ({
               type='text'
               id='name'
               ref={nameRef}
-              defaultValue={headerData.nickname}
+              defaultValue={userNickName}
               onChange={(e) => setNickname(e.target.value)}
             ></input>
           </div>
@@ -96,7 +97,7 @@ const ProfileEdit = ({
             <input
               type='email'
               id='email'
-              defaultValue={headerData.email}
+              defaultValue={userEmail}
               disabled
             ></input>
           </div>

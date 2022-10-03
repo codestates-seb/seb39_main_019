@@ -14,7 +14,8 @@ import useUserInfo from "../store/userinfo";
 import instance from "../api/core/default";
 
 const Login = () => {
-  const { setUserInfo, setUserId } = useUserInfo();
+  const { setUserInfo, setUserId, setUserNickName, setUserEmail } =
+    useUserInfo();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
@@ -23,6 +24,44 @@ const Login = () => {
   useEffect(() => {
     emailRef.current.focus();
   }, []);
+
+  const kakaoLogin2 = (e) => {
+    e.preventDefault();
+    window.location.href =
+      "http://43.200.20.180:8080/oauth2/login/callback/kakao";
+    navigate("/oauth2/login/callback/kakao");
+    let accessToken = new URL(location.href).searchParams.get("access_token");
+    let refreshToken = new URL(location.href).searchParams.get("refresh_token");
+    console.log(accessToken);
+    console.log(refreshToken);
+    console.log(response.headers);
+
+    // useEffect(() => {}, []);
+    // fetch(`api/oauth2/login/callback/kakao`)
+    //   .then((res) => res.json())
+    //   .then((res) => console.log(res))
+    //   .then((err) => console.log(err));
+    // axios
+    //   .get(`api/oauth2/login/callback/kakao`)
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
+    // axios
+    //   .get(
+    //     `http://43.200.20.180:8080/oauth2/login/callback/kakao?code=hBrjkBXjmwVZJ0XQ2ONbK1PugI9jqqpeqrwKQF3hY5ZrcVRuehbno94GUzw9N75YV13jQwopb1QAAAGDnhqqAw&state=0m0HkhI8uF9mdER1ULPoVLuleVUPzWoOY2NupSfpHpg%3D`
+    //   )
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
+    // window.location.href =
+    //   "http://43.200.20.180:8080/oauth2/login/callback/kakao";
+    // expected output: ReferenceError: nonExistentFunction is not defined
+    // Note - error messages will vary depending on browser
+    // let accessToken = new URL(location.href).searchParams.get("access_token");
+    // let refreshToken = new URL(location.href).searchParams.get("refresh_token");
+    // console.log(accessToken);
+    // console.log(refreshToken);
+    // localStorage.setItem("accessToken", accessToken);
+    // localStorage.setItem("refreshToken", refreshToken);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -41,9 +80,11 @@ const Login = () => {
         })
           .then((response) => {
             console.log(response);
-            // setUserInfo(response.memberRole);
+            setUserNickName(response.nickname);
+            setUserEmail(response.email);
             setUserId(response.memberId);
-            console.log(response.memberId);
+
+            console.log(response.nickname, response.email, response.memberId);
 
             if (response.memberCertificate === "DOG_OWNER") {
               navigate("/main");
@@ -167,9 +208,12 @@ const Login = () => {
               <hr />
             </div>
             <div className='social_btn'>
-              <button className='kakaoBtn' onClick={kakaoLogin}>
+              <button className='kakaoBtn' onClick={kakaoLogin2}>
                 <Kakao />
               </button>
+              {/* <button className='kakaoBtn' onClick={kakaoLogin}>
+                <Kakao />
+              </button> */}
               {/* <button className='social'>
                 <Naver />
               </button> */}

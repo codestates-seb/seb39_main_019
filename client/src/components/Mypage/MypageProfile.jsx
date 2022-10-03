@@ -8,11 +8,14 @@ import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
 import { Link } from "react-router-dom";
 import { phone } from "../../assets/style/Theme";
 import instance from "../../api/core/default";
+import useUserInfo from "../../store/userinfo";
 
 const MypageProfile = () => {
   const [headerData, setHeaderData] = useState("");
   const [isProfileShow, setIsProfileShow] = useState(false);
   const [isPuppyShow, setIsPuppyShow] = useState(false);
+  const { userInfo, setUserInfo, userNickName, userEmail, setUserNickName } =
+    useUserInfo();
 
   useEffect(() => {
     instance({
@@ -21,7 +24,7 @@ const MypageProfile = () => {
     })
       .then((response) => {
         console.log(response);
-        setHeaderData(response);
+        setUserNickName(response.nickname);
       })
       .catch((err) => {
         console.log(err);
@@ -36,8 +39,8 @@ const MypageProfile = () => {
         </PIMG>
       </ProfileImg>
       <ProfileInfo>
-        <div>{headerData.nickname}</div>
-        <div>{headerData.email}</div>
+        <div>{userNickName}</div>
+        <div>{userEmail}</div>
         <BtnContainer>
           <Link to='/PuppyInfoPage'>
             <Button
@@ -58,8 +61,8 @@ const MypageProfile = () => {
           <ProfileEdit
             isProfileShow={isProfileShow}
             closeModal={() => setIsProfileShow(false)}
-            headerData={headerData}
-            setHeaderData={setHeaderData}
+            // headerData={headerData}
+            // setHeaderData={setHeaderData}
           />
         </BtnContainer>
       </ProfileInfo>
