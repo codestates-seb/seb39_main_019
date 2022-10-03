@@ -7,8 +7,10 @@ import { ReactComponent as WhiteSerch } from "../assets/imgs/WhiteSerch.svg";
 import { ReactComponent as Menubar } from "../assets/imgs/menubar.svg";
 import useStore from "../store/globalStore";
 import useAuthStore from "../store/authStore";
+import useUserInfo from "../store/userinfo";
 
 const Header = () => {
+  const {userInfo} = useUserInfo()
   const {isLight} = useStore()
   const {isLogin} = useAuthStore()
   // const {userInfro} = useUserInfe()
@@ -31,7 +33,7 @@ const Header = () => {
           <Toggle/>
           <Menubar onClick={()=>setIsOpen(!isOpen)}/>
           <ul ref={dropDownRef} className={isOpen? 'active':'menu'}>
-            {isLogin?<>
+            {userInfo?<>
             <li><Link to="/post">글작성하기</Link></li>
             <li><Link to="/mypage">마이페이지</Link></li>
             <li>로그아웃</li>
@@ -46,7 +48,7 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
 
 const HeaderCotainer = styled.div`
   position: fixed;

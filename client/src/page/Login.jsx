@@ -11,11 +11,13 @@ import GoogleLogin from "react-google-login";
 import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
+import useUserInfo from "../store/userinfo";
 
 // import { postLogin2 } from "../api/utils";
 // 안쓰는 방향으로 선민님이 생각하시는 것 !
 
 const Login = () => {
+  const {setUserInfo} = useUserInfo()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
@@ -25,13 +27,10 @@ const Login = () => {
   useEffect(() => {
     emailRef.current.focus();
   }, []);
-
   const submitHandler = (e) => {
     e.preventDefault();
     // postLogin2(email, password);
-
     axios.defaults.withCredentials = true;
-
     axios
       .post("api/auth/login", { email, password })
       .then((response) => {
@@ -39,16 +38,8 @@ const Login = () => {
         localStorage.setItem("refresh_token", response.data.refresh_token);
         sessionStorage.setItem("access_token", response.data.access_token);
         setIsLogin();
-        // navigate("/puppyauthentication");
-      })
-      .then((res) => {
-        Swal.fire({
-          icon: "success",
-          text: "로그인이 완료되었습니다!",
-          width: "290px",
-          height: "300px",
-        });
-        if (isPpAuth) {
+        setUserInfo(sessionStorage.getItem('access_token'))
+        if (response==false) {
           navigate("/main");
         } else {
           navigate("/puppyauthentication");
@@ -218,7 +209,7 @@ const InputForm = styled.div`
   background-color: ${(props) => props.theme.HeaderColor};
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
-
+  border-radius: 10px;
   ${phone(css`
     width: 300px;
     font-size: 10px;

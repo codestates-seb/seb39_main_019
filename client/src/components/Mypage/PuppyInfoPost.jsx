@@ -179,6 +179,9 @@ const BackBtn = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  & div{
+    margin-top: 10px;
+  }
 `;
 
 const PpInfoForm = styled.form`

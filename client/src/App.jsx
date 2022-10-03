@@ -8,10 +8,11 @@ import { darkTheme, lightTheme } from "./assets/style/Theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
+
 function App() {
   const { isLight,setIsLight } = useStore();
   const theme = isLight === false?  darkTheme :lightTheme 
-  
+
   React.useEffect(()=>{
     if(localStorage.getItem('theme')==='light'){
       return

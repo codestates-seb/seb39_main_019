@@ -18,8 +18,8 @@ const Section3 = () => {
       </ImgBox>
       <TextBox>
         <span>견주인증 & 강아지를</span>
-        <span>간편한 등록으로 안전하게 신속하게 신속항원검사</span>
-        <span>feat:covid19</span>
+        <span>간편한 등록으로 안전하게 </span>
+        <span> 신속하게</span>
         <p>누구보다 편리하게 강아지들의 산책메이트를 찾아보세요 !</p>
         <div>
           <Link to={'/main'}><button>게시글 보기</button></Link>
@@ -83,7 +83,7 @@ padding-left: 10px;
 color:#fff;
 & span{
   font-family:GmarketSansMedium;
-  font-size:3.5vw;
+  font-size:50px;
   font-weight: 700;
 }
 & p{
@@ -93,7 +93,7 @@ color:#fff;
 & button{
   background-color: #fff;
   color: #59c8f0c5;
-  font-size: 1.5vw;
+  font-size: 20px;
   border: none;
   border-radius: 20px;
   padding: 10px 15px;

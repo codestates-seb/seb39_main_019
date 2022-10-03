@@ -14,32 +14,31 @@ const CardPart = () => {
   // axios.get('http://localhost:3001/content')
   // axios.get('http://43.200.20.180:8080/v1/posts')
   React.useEffect(()=>{
-    axios.get('http://localhost:3001/content')
-    // 전체 지역일 경우
-    // 지역이 선택될 경우 
+    axios.get('api/posts?page=0&size=12')
     .then((data)=>{
+        console.log(data.data)
         if(filter==='전체 지역'||filter===''){
           if(index===0){
-            setData(data.data.sort((a,b)=>b.id-a.id))
+            setData(data.data.sort((a,b)=>b.postId-a.postId))
           }else if(index < 4){
-            setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.size===TabText[index]))
+            setData(data.data.sort((a,b)=>b.postId-a.postId).filter((it)=>it.size===TabText[index]))
           }else{
-            setData(data.data.sort((a,b)=>b.id-a.id).filter((it)=>it.personality===TabText[index]))
+            setData(data.data.sort((a,b)=>b.postId-a.postId).filter((it)=>it.personality===TabText[index]))
           }
         }
         else if(filter!=='전체 지역'){
           if(index===0){
-            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id))
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.postId-a.postId))
           }else if(index < 4){
-            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id).filter((it)=>it.size===TabText[index]))
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.postId-a.postId).filter((it)=>it.size===TabText[index]))
           }else{
-            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.id-a.id).filter((it)=>it.personality===TabText[index]))
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.postId-a.postId).filter((it)=>it.personality===TabText[index]))
           }
         }
     })
 },[index,filter])
 
-const indexOfLast = currentPage * postsPerPage;
+  const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
   const currentPosts = (data) => {
     let currentPosts = 0;
@@ -51,7 +50,8 @@ const indexOfLast = currentPage * postsPerPage;
     <CardContainer>
       <div className='dataBox'>
       {data && currentPosts(data).map((it)=>(
-        <CardItem {...it} key={it.id}/>
+        <CardItem {...it} key={it.postId
+        }/>
       ))}
       </div>
       <PageContainer>
