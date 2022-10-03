@@ -2,6 +2,7 @@ import React,{useState,useRef} from 'react'
 import styled, {css} from 'styled-components';
 import {phone} from '../../assets/style/Theme'
 import useStore from '../../store/post';
+import axios from 'axios';
 
 const ImgLode = () => {
   const inputRef = useRef(null)
@@ -14,12 +15,26 @@ const ImgLode = () => {
   }
  
   const handleAddImages = (event) => {
+    let token = sessionStorage.getItem("access_token") || "";
+    console.log(token)
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    const formData = new FormData()
+    formData.append('files',event.target.files[0])
+    axios({
+      url:'api/v1/images',
+      method:'post',
+      data:formData,
+      headers:{
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((res)=> setUr(res.data[0].imageId))
+  
     const imageLists = event.target.files;
     let imageUrlLists = [...showImages];
     setIsImg(!isImg)
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      setUr(currentImageUrl)
       console.log(currentImageUrl)
       imageUrlLists.push(currentImageUrl);
     }

@@ -6,29 +6,36 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { pad } from "../../assets/style/Theme";
 import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
+import usePuppyPost from "../../store/puppyPost";
+import instance from "../../api/core/default";
+import useUserInfo from "../../store/userinfo";
+import Swal from "sweetalert2";
 
 const PuppyInfoPost = () => {
-  const [dogNm, setDogNm] = useState("");
-  const [breed, setBreed] = useState("");
-  const [age, setAge] = useState("");
-  const [sexNm, setSexNm] = useState("");
+  const { dogNm, breed, age, sexNm, setDogNm, setBreed, setAge, setSexNm } =
+    usePuppyPost();
 
   const [allData, setAllData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const navigate = useNavigate();
+  const id = localStorage.getItem("memberId");
+  const { userInfo, userId } = useUserInfo();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    axios({
+  console.log(allData);
+
+  const submitHandler = () => {
+    instance({
       method: "patch",
-      url: `api/v1/dogs/info/1` /*"http://localhost:3001/puppyInfo"*/,
+      url: "v1/dogs/info/1",
       data: {
-        dogNm,
-        breed,
-        age,
-        sexNm,
+        dogNm: dogNm,
+        breed: breed,
+        sexNm: sexNm,
+        age: age,
       },
-    });
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
     setIsEdit(!isEdit);
   };
 
@@ -42,18 +49,17 @@ const PuppyInfoPost = () => {
   };
 
   useEffect(() => {
-    let token = sessionStorage.getItem("access_token") || "";
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    axios({
+    instance({
       method: "get",
-      url: "api/v1/dogs/info/1",
-      // url: "http://localhost:3001/puppyInfo",
+      url: `/api/members/dogs/${userId}`,
     })
-      .then((res) => {
-        console.log(res.data);
-        setAllData(res.data);
+      .then((response) => {
+        console.log(response.dogs);
+        setAllData(response.dogs);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   }, [isEdit]);
 
   return (
@@ -75,7 +81,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='name'
                   onChange={(e) => setDogNm(e.target.value)}
-                  defaultValue={allData.dogNm || ""}
+                  defaultValue={dogNm || allData.dogNm || ""}
                 ></input>
               )}
             </div>
@@ -89,12 +95,11 @@ const PuppyInfoPost = () => {
             ) : (
               <div className='group'>
                 <label htmlFor='breed'>견종</label>
-
                 <input
                   type='text'
                   id='breed'
                   onChange={(e) => setBreed(e.target.value)}
-                  defaultValue={allData.breed || ""}
+                  value={breed || allData.breed || ""}
                 ></input>
               </div>
             )}
@@ -111,7 +116,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='age'
                   onChange={(e) => setAge(e.target.value)}
-                  defaultValue={allData.age || ""}
+                  value={age || allData.age || ""}
                 ></input>
               )}
             </div>
@@ -125,7 +130,7 @@ const PuppyInfoPost = () => {
                 <select
                   name='gender'
                   onChange={(e) => setSexNm(e.target.value)}
-                  defaultValue={allData.sexNm || ""}
+                  value={sexNm || allData.sexNm || ""}
                 >
                   <option>선택해주세요</option>
                   <option value='암컷'>암컷</option>
@@ -180,6 +185,9 @@ const BackBtn = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  & div{
+    margin-top: 10px;
+  }
 `;
 
 const PpInfoForm = styled.form`
@@ -215,6 +223,9 @@ const PpInfoForm = styled.form`
 
   .group {
     margin-bottom: 30px;
+    div {
+      color: black;
+    }
 
     #gender {
       border-bottom: 1px solid white;

@@ -14,6 +14,7 @@ const {title,body,location,personality,size
  const {id} = useParams()
  const [data,setData] = React.useState([])
  const [isEdit,setIsEdit] = React.useState(false)
+ 
  const handleEdit = () => {
    setIsEdit(!isEdit)
    setTitle(data.title)

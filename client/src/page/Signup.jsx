@@ -24,7 +24,7 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const nicknameRef = useRef(null);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     nicknameRef.current.focus();
   }, []);
@@ -52,7 +52,7 @@ const Signup = () => {
     })
       .then((res) => {
         console.log(res);
-        localStorage.setItem("memberId", res.data.memberId);
+        // localStorage.setItem("memberId", res.data.memberId);
         setSuccess(true);
       })
       .catch((err) => {
@@ -61,7 +61,6 @@ const Signup = () => {
           icon: "error",
           text: "중복된 닉네임이나 이미 존재하는 이메일입니다",
           width: "290px",
-          height: "300px",
         });
       });
   };
@@ -184,6 +183,7 @@ const InputForm = styled.div`
   padding: 48px 32px 32px 32px;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+  border-radius: 10px;
 
   ${phone(css`
     width: 300px;
@@ -241,8 +241,7 @@ const InputForm = styled.div`
 
     &:hover {
       color: ${(props) => props.theme.textColor};
-      background-color: ${(props) => props.theme.HeaderColor};
-      border: 0.1px solid;
+      background-color: ${(props) => props.theme.bgColor};
     }
   }
 `;

@@ -15,7 +15,6 @@ const useStore = create((set)=>({
   setSi: (input) =>set(()=>({size:input})),
   setUr: (input) =>set(()=>({url:input})),
   
-
 }))
 
 
