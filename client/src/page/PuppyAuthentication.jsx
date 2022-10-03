@@ -106,13 +106,14 @@ const PuppyAuthentication = () => {
         dog_reg_no: regiNumber,
       })
       .then((response) => {
+        console.log(response)
         Swal.fire({
           icon: "success",
           text: "반려견 정보를 입력해주세요",
           width: "300px",
         });
         navigate("/mypage");
-        setIsPpAuth();
+        // setIsPpAuth();
         console.log(response);
       })
       .catch((err) => {

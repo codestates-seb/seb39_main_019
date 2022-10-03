@@ -67,7 +67,6 @@ const Login = () => {
     e.preventDefault();
 
     axios.defaults.withCredentials = true;
-
     axios
       .post("api/auth/login", { email, password })
       .then((response) => {
@@ -270,7 +269,6 @@ const InputForm = styled.div`
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
   border-radius: 10px;
-
   ${phone(css`
     width: 300px;
     font-size: 10px;

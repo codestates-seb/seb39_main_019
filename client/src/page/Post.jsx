@@ -13,10 +13,10 @@ const Post = () => {
   const navigate = useNavigate()
   const onSubmit = () => {
    console.log(url)
-  // url:'http://43.200.20.180:8080/v1/posts',
+  // url:'api/v1/posts',
   // url:'http://localhost:3001/content',
   return axios({
-    url:'http://localhost:3001/content',
+    url:'api/v1/posts',
     method:'post',
     data:{
       title:title,
@@ -24,7 +24,7 @@ const Post = () => {
       guName:location,
       size:size,
       content:body,
-      url:url
+      imageId:[url]
     }
   })
   .then(()=>{
@@ -32,6 +32,7 @@ const Post = () => {
     setBody('')
     setTitle('')
   })
+  .catch((error)=>console.log(error))
   }
 
   return (

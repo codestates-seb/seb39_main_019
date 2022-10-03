@@ -77,6 +77,7 @@ const MypageProfileContainer = styled.div`
   flex-direction: row;
   padding-top: 60px;
 `;
+
 const ProfileImg = styled.div`
   /* border: 1px solid black; */
 `;
@@ -90,13 +91,13 @@ const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 20px
+  padding: 20px;
   display: flex;
 
   ${phone(css`
     font-size: 14px;
   `)}
-`;
+`
 
 const BtnContainer = styled.div`
   display: flex;
