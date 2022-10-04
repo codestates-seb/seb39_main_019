@@ -8,6 +8,7 @@ export const lightTheme = {
   HeLogoColor2: "#f95c5c",
   Footerbg: "#fdfdfd",
   Boder: "#ececec",
+  bgInput : '#fff'
 };
 //'#3cd5aec5'
 //#3183f7
@@ -21,6 +22,7 @@ export const darkTheme = {
   HeLogoColor:'#ffffff',
   Footerbg:"#152642",
   Boder:"#2F4562",
+  bgInput : '#dbdbdb'
 }
 // 원본 
 // bgColor : '#131213',

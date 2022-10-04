@@ -46,13 +46,17 @@ const {title,body,location,personality,size
   })
   setIsEdit(!isEdit)
 }
-
+// http://localhost:3001/content/${id}
 React.useEffect(() => {
+  let token = sessionStorage.getItem("access_token") || "";
+    console.log(token)
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
    axios({
      method:'get',
-     url:`http://localhost:3001/content/${id}`
+     url:`api/v1/posts/${id}`
    }).then((data)=>{
-     setData(data.data)
+     console.log(data)
+    //  setData(data.data)
     })
   },[isEdit])
 
