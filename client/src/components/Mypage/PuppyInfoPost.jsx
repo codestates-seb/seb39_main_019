@@ -122,7 +122,7 @@ const PuppyInfoPost = () => {
                 <div>{age}</div>
               ) : (
                 <input
-                  type='text'
+                  type='number'
                   id='age'
                   onChange={(e) => setAge(e.target.value)}
                   value={age || allData.age || ""}

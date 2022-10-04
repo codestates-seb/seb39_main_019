@@ -6,13 +6,13 @@ import instance from "../../api/core/default";
 
 const MypageWrote = () => {
   const [wroteView, setwroteView] = useState([]);
-  const img =
-    "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG";
+  // const img =
+  //   "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG";
 
   useEffect(() => {
     instance({
       method: "get",
-      url: "/api/me/posts",
+      url: "/api/me/posts?page=0&size=4",
     })
       .then((response) => {
         console.log(response);
