@@ -92,6 +92,7 @@ const Signup = () => {
                 ref={nicknameRef}
                 onChange={(e) => setNickname(e.target.value)}
                 required
+                autoComplete='username'
                 value={nickname}
               ></input>
             </div>
@@ -102,6 +103,7 @@ const Signup = () => {
                 id='email'
                 onChange={(e) => setRegiEmail(e.target.value)}
                 required
+                autoComplete='username'
                 value={regiEmail}
               ></input>
             </div>
@@ -112,6 +114,7 @@ const Signup = () => {
                 id='password'
                 value={regiPassword}
                 onChange={(e) => setRegiPassword(e.target.value)}
+                autoComplete='new-password'
                 required
               ></input>
             </div>
@@ -134,6 +137,7 @@ const Signup = () => {
                 id='checkpassword'
                 onChange={(e) => setMatchRegiPassword(e.target.value)}
                 required
+                autoComplete='new-password'
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
               ></input>

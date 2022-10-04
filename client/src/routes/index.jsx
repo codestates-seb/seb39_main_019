@@ -9,6 +9,7 @@ import Mypage from "../page/Mypage";
 import PuppyInfoPage from "../page/PuppyInfoPage";
 import PuppyInfoPost from "../components/Mypage/PuppyInfoPost";
 import Kakao from "../page/Kakao";
+import MypageWroteItem from "../components/Mypage/MypageWroteItem";
 
 const RouteModule = [
   {
@@ -50,6 +51,10 @@ const RouteModule = [
   {
     path: "/PuppyInfoPost",
     element: <PuppyInfoPost />,
+  },
+  {
+    path: "/mypagewroteitem",
+    element: <MypageWroteItem />,
   },
   {
     path: "/oauth2/login/callback/kakao",
