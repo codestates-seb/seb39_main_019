@@ -4,8 +4,22 @@ import Layout from "../components/Layout/Layout";
 import MypageProfile from "../components/Mypage/MypageProfile";
 import MypageSidebar from "../components/Mypage/MypageSidebar";
 import { phone } from "../assets/style/Theme";
+import axios from "axios";
 
 const Mypage = () => {
+
+  React.useEffect(() => {
+    let token = sessionStorage.getItem("access_token") || "";
+      console.log(token)
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+     axios({
+       method:'get',
+       url:`api/v1/posts/1`
+     }).then((data)=>{console.log(data)
+      //  setData(data.data)
+      })
+    },[])
+
   return (
     <Layout
       child={

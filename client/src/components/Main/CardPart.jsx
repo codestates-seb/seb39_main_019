@@ -13,6 +13,19 @@ const CardPart = () => {
   const [postsPerPage, setPostsPerPage] = useState(10);
   // axios.get('http://localhost:3001/content')
   // axios.get('http://43.200.20.180:8080/v1/posts')
+
+  React.useEffect(() => {
+    let token = sessionStorage.getItem("access_token") || "";
+      console.log(token)
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+     axios({
+       method:'get',
+       url:`api/v1/posts/1`
+     }).then((data)=>{console.log(data)
+      //  setData(data.data)
+      })
+    },[])
+
   React.useEffect(()=>{
     axios.get('api/posts?page=0&size=12')
     .then((data)=>{

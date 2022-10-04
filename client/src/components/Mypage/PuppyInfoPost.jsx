@@ -26,7 +26,7 @@ const PuppyInfoPost = () => {
   const submitHandler = () => {
     instance({
       method: "patch",
-      url: "v1/dogs/info/1",
+      url: `v1/dogs/info/1`,
       data: {
         dogNm: dogNm,
         breed: breed,

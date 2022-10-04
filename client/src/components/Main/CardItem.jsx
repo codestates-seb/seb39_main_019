@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
-const CardItem = ({title,guName,id,personality,size,imgUrl}) => {
+const CardItem = ({title,guName,postId,personality,size,imgUrl}) => {
 const img = imgUrl
 
  return (
     <ItemContainer>
-     <Link to={`/main/${id}`}>
+     <Link to={`/main/${postId}`}>
       <ItemInner>
         <ImgBox>
           {/* <img src="https://via.placeholder.com/240x220"/> */}

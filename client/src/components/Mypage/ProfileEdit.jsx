@@ -19,7 +19,7 @@ const ProfileEdit = ({
   const nameRef = useRef();
   const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
-  const { userInfo, setUserInfo, userNickName, userEmail, setUserNickName } =
+  const { userNickName, userEmail, setUserNickName ,setUserId} =
     useUserInfo();
 
   if (!isProfileShow) return null;
@@ -69,7 +69,7 @@ const ProfileEdit = ({
           });
 
         Swal.fire("그동안 이용해주셔서 감사합니다.", "", "success");
-        setUserInfo(0);
+        setUserId(0);
         navigate("/");
       } else if (result.isDenied) {
         Swal.fire("회원탈퇴가 되지 않았어요.", "", "info");
