@@ -222,7 +222,7 @@ const Login = () => {
                 clientId={GOOGLE_CLIENT_ID}
                 buttonText='' // 버튼에 뜨는 텍스트
                 onSuccess={onSuccess}
-                onFailure={onFailure}
+                // onFailure={onFailure}
                 // cookiePolicy={"single_host_origin"}//
               />
             </div>

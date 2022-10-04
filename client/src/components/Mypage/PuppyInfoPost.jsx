@@ -12,8 +12,18 @@ import useUserInfo from "../../store/userinfo";
 import Swal from "sweetalert2";
 
 const PuppyInfoPost = () => {
-  const { dogNm, breed, age, sexNm, setDogNm, setBreed, setAge, setSexNm } =
-    usePuppyPost();
+  const {
+    dogNm,
+    breed,
+    age,
+    sexNm,
+    ppId,
+    setDogNm,
+    setBreed,
+    setAge,
+    setSexNm,
+    setPpId,
+  } = usePuppyPost();
 
   const [allData, setAllData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
@@ -21,12 +31,10 @@ const PuppyInfoPost = () => {
   const id = localStorage.getItem("memberId");
   const { userInfo, userId } = useUserInfo();
 
-  console.log(allData);
-
   const submitHandler = () => {
     instance({
       method: "patch",
-      url: "v1/dogs/info/1",
+      url: `v1/dogs/info/${ppId}`,
       data: {
         dogNm: dogNm,
         breed: breed,
@@ -54,13 +62,14 @@ const PuppyInfoPost = () => {
       url: `/api/members/dogs/${userId}`,
     })
       .then((response) => {
-        console.log(response.dogs);
-        setAllData(response.dogs);
+        console.log(response);
+        setPpId(response.dogs[0].id);
+        setAllData(response.dogs[0]);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [isEdit]);
+  }, []);
 
   return (
     <PuppyInfoPostContainer>
