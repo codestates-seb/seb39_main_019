@@ -27,29 +27,30 @@ const MypageWroteItem = ({ title, imgUrl, postId }) => {
 
 export default MypageWroteItem;
 
-const MypageWroteItemContainer = styled.div``;
-
-const ItemContainer = styled.div`
+const MypageWroteItemContainer = styled.div`
   width: 100%;
   border: none;
   cursor: pointer;
   color: ${(props) => props.theme.textColor};
-  /* background-color: ${(props) => props.theme.HeaderColor};
-   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
+  /* background-color: ${(props) => props.theme.HeaderColor}; 
+ box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   transition: 0.3s;
   &:hover {
     transform: scale(1.07);
   }
 `;
+
+const ItemContainer = styled.div``;
 const ItemInner = styled.div`
   padding: 10px;
 `;
 const ImgBox = styled.div`
-  & div {
+  & img {
     width: 100%;
-    height: 220px;
+    height: 300px;
     border-radius: 5px;
-    background-image: url("image-url"); /* object-fit: cover; */
+    background-image: url("image-url");
+    object-fit: cover;
     background-repeat: no-repeat; // background-image가 컨테이너를 가득 채우지 못할 경우에도 반복하지 않는다.
     background-size: cover; // 사이즈가 container에 맞지 않아도 꽉 차도록 채운다.
     background-position: center; // background-image가 컨테이너에 가운데로 오도록 한다.
