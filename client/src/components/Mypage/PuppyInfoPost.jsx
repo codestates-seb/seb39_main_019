@@ -185,7 +185,7 @@ const BackBtn = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  & div{
+  & div {
     margin-top: 10px;
   }
 `;

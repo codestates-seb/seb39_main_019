@@ -56,7 +56,7 @@ const Signup = () => {
         setSuccess(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err); //409에러는 중복되면 회원 정보 이미 존재 // 회원정보 찾을 수 없으면 404
         Swal.fire({
           icon: "error",
           text: "중복된 닉네임이나 이미 존재하는 이메일입니다",
