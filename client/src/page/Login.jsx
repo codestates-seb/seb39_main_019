@@ -29,8 +29,8 @@ const Login = () => {
     e.preventDefault();
     window.location.href =
       "http://43.200.20.180:8080/oauth2/login/callback/kakao";
-    navigate("/oauth2/login/callback/kakao");
-    console.log(document.header);
+    // navigate("/oauth2/login/callback/kakao");
+    console.log(response.headers);
     // let accessToken = new URL(location.href).searchParams.get("access_token");
     // let refreshToken = new URL(location.href).searchParams.get("refresh_token");
     // console.log(accessToken);
@@ -189,7 +189,7 @@ const Login = () => {
                 id='password'
                 onChange={(e) => setPassword(e.target.value)}
                 // value={password}
-                required
+                // required
                 autoComplete='off'
               ></input>
             </div>
@@ -222,7 +222,7 @@ const Login = () => {
                 clientId={GOOGLE_CLIENT_ID}
                 buttonText='' // 버튼에 뜨는 텍스트
                 onSuccess={onSuccess}
-                onFailure={onFailure}
+                // onFailure={onFailure}
                 // cookiePolicy={"single_host_origin"}//
               />
             </div>
