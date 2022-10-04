@@ -15,7 +15,7 @@ const CardPart = () => {
   // axios.get('http://43.200.20.180:8080/v1/posts')
 
   React.useEffect(() => {
-    axios.get("api/posts").then((data) => {
+    axios.get("/api/list/posts").then((data) => {
       console.log(data.data);
       if (filter === "전체 지역" || filter === "") {
         if (index === 0) {

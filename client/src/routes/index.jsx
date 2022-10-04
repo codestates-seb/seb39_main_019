@@ -10,6 +10,10 @@ import PuppyInfoPage from "../page/PuppyInfoPage";
 import PuppyInfoPost from "../components/Mypage/PuppyInfoPost";
 import Kakao from "../page/Kakao";
 import MypageWroteItem from "../components/Mypage/MypageWroteItem";
+import PrivateRoute from "./PrivateRoute";
+import IsLogin from "./IsLogin";
+import useUserInfo from "../store/userinfo";
+import NotFoundPage from "../page/NotFoundPage";
 
 const RouteModule = [
   {
@@ -40,9 +44,13 @@ const RouteModule = [
     path: "/puppyauthentication",
     element: <PuppyAuthentication />,
   },
+  // {
+  //   path: "/mypage/*",
+  //   element: <Mypage />,
+  // },
   {
     path: "/mypage/*",
-    element: <Mypage />,
+    element: <PrivateRoute authenticated={IsLogin} component={<Mypage />} />,
   },
   {
     path: "/PuppyInfoPage",
@@ -59,6 +67,10 @@ const RouteModule = [
   {
     path: "/oauth2/login/callback/kakao",
     element: <Kakao />,
+  },
+  {
+    path: "/*",
+    element: <NotFoundPage />,
   },
 ];
 

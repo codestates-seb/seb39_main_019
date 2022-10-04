@@ -3,10 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const MypageWroteItem = ({ title, imgUrl, postId }) => {
-  console.log(title);
-  console.log(imgUrl);
-  console.log(postId);
-
   return (
     <MypageWroteItemContainer>
       <Link to={`/main/${postId}`}>
