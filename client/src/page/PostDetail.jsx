@@ -6,6 +6,9 @@ import axios from 'axios'
 import useStore from '../store/post'
 
 
+
+
+
 const PostDetail = () => {
 
 const {title,body,location,personality,size
@@ -14,7 +17,7 @@ const {title,body,location,personality,size
  const {id} = useParams()
  const [data,setData] = React.useState([])
  const [isEdit,setIsEdit] = React.useState(false)
- 
+
  const handleEdit = () => {
    setIsEdit(!isEdit)
    setTitle(data.title)
@@ -47,18 +50,18 @@ const {title,body,location,personality,size
   setIsEdit(!isEdit)
 }
 // http://localhost:3001/content/${id}
+
 React.useEffect(() => {
   let token = sessionStorage.getItem("access_token") || "";
-    console.log(token)
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
    axios({
      method:'get',
-     url:`api/v1/posts/${id}`
+     url:`/api/v1/posts/${id}`
    }).then((data)=>{
-     console.log(data)
-    //  setData(data.data)
-    })
-  },[isEdit])
+     setData(data.data)
+    }).catch((error)=>console.log(error))
+  },[])
+  console.log(data)
 
   return (
     <Layout child ={
@@ -78,20 +81,17 @@ React.useEffect(() => {
             <TopSubTitle>
               <span>빵댕이팡팡</span>
               <div>
-                <div ></div>
-                <img src='#'/>
-                <span>관심있어요</span>
               </div>
             </TopSubTitle>
           </DetailTop>
           <DetailMid>
             <div>
-              <img src={data.url}></img>
+              <img src={data.imgUrlList}></img>
               <div>
-                <div>이름<span>빵순이</span></div>
-                <div>나이<span>2 살</span></div>
-                <div>성별<span>암컷</span></div>
-                <div>견종<span>시고르자브종</span></div>
+                <div>이름<span>{data.dogNm}</span></div>
+                <div>나이<span>{data.age} 살</span></div>
+                <div>성별<span>{data.sexNm}</span></div>
+                <div>견종<span>{data.breed}</span></div>
                 {isEdit?<div>크기<select onChange={(e)=>setSi(e.target.value)}>
                   <option>선택해주세요</option>
                   <option value='LARGE'>대형견</option>

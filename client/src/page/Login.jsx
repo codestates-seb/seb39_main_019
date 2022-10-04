@@ -120,15 +120,15 @@ const Login = () => {
     //   .then((res) => console.log(res));
   };
 
-  useEffect(() => {
-    function start() {
-      gapi.auth2.init({
-        clientId: GOOGLE_CLIENT_ID,
-        scope: "email",
-      });
-    }
-    gapi.load("client:auth2", start);
-  }, []);
+  // useEffect(() => {
+  //   function start() {
+  //     gapi.auth2.init({
+  //       clientId: GOOGLE_CLIENT_ID,
+  //       scope: "email",
+  //     });
+  //   }
+  //   gapi.load("client:auth2", start);
+  // }, []);
 
   const onSuccess = (res) => {
     const profile = res.getBasicProfile();
@@ -150,15 +150,15 @@ const Login = () => {
     navigate("/puppyauthentication");
   };
 
-  const onFailure = (res) => {
-    Swal.fire({
-      icon: "warning",
-      text: "구글 로그인에 실패하였습니다",
-      width: "400px",
-    });
-    console.log("err", res);
-  };
-
+  // const onFailure = (res) => {
+  //   Swal.fire({
+  //     icon: "warning",
+  //     text: "구글 로그인에 실패하였습니다",
+  //     width: "400px",
+  //   });
+  //   console.log("err", res);
+  // };
+ 
   return (
     <div>
       <Header />
