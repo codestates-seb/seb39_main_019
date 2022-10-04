@@ -30,11 +30,12 @@ const Login = () => {
     window.location.href =
       "http://43.200.20.180:8080/oauth2/login/callback/kakao";
     navigate("/oauth2/login/callback/kakao");
-    let accessToken = new URL(location.href).searchParams.get("access_token");
-    let refreshToken = new URL(location.href).searchParams.get("refresh_token");
-    console.log(accessToken);
-    console.log(refreshToken);
-    console.log(response.headers);
+    console.log(document.header);
+    // let accessToken = new URL(location.href).searchParams.get("access_token");
+    // let refreshToken = new URL(location.href).searchParams.get("refresh_token");
+    // console.log(accessToken);
+    // console.log(refreshToken);
+    // console.log(response.headers);
 
     // useEffect(() => {}, []);
     // fetch(`api/oauth2/login/callback/kakao`)

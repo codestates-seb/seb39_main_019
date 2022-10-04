@@ -23,7 +23,7 @@ const ProfileEdit = ({
     useUserInfo();
 
   if (!isProfileShow) return null;
-  console.log(nickname);
+
   const InfoHandler = () => {
     instance({
       method: "patch",
