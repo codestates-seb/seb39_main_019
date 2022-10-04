@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import instance from "../../api/core/default";
 
 const MypageWrote = () => {
   const [wroteView, setwroteView] = useState([]);
@@ -9,10 +10,21 @@ const MypageWrote = () => {
     "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG";
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/content")
-      .then((response) => response.data)
-      .then((data) => setwroteView(data));
+    instance({
+      method: "get",
+      url: "/api/me/posts",
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // axios
+    //   .get("http://localhost:3001/content")
+    //   .then((response) => response.data)
+    //   .then((data) => setwroteView(data));
   }, []);
   return (
     <MypageWroteContainer>
@@ -60,7 +72,7 @@ const ItemContainer = styled.div`
   &:hover {
     transform: scale(1.07);
   }
-`
+`;
 const ItemInner = styled.div`
   padding: 10px;
 `;
