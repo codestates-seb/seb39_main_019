@@ -43,4 +43,6 @@ const Diveder = styled.div`
   `)}
 `;
 
-const MypageBodyPart = styled.div``;
+const MypageBodyPart = styled.div`
+padding-bottom: 90px;
+`;

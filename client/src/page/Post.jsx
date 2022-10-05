@@ -13,25 +13,26 @@ const Post = () => {
     useStore();
   const navigate = useNavigate();
   const onSubmit = () => {
-    return axios({
-      url: "api/v1/posts",
-      method: "post",
-      data: {
-        title: title,
-        personality: personality,
-        guName: location,
-        size: size,
-        content: body,
-        imageId: [url],
-      },
-    })
-      .then(() => {
-        navigate("/main");
-        setBody("");
-        setTitle("");
-      })
-      .catch((error) => console.log(error));
-  };
+    
+  return axios({
+    url:'api/v1/posts',
+    method:'post',
+    data:{
+      title:title,
+      personality:personality,
+      guName:location,
+      size:size,
+      content:body,
+      imageId:[url]
+    }
+  })
+  .then(()=>{
+    navigate('/main')
+    setBody('')
+    setTitle('')
+  })
+  .catch((error)=>console.log(error))
+  }
 
   return (
     <Layout

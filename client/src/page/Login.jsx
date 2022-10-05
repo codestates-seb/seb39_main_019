@@ -144,7 +144,6 @@ const LoginContainer = styled.div`
 `;
 
 const HeaderLogo = styled.div`
-  /* padding-left: 20px; */
   margin-bottom: 20px;
   & span {
     font-family: KOTRAHOPE;
