@@ -1,6 +1,6 @@
 import create from "zustand";
 
-const useStore = create((set) => ({
+const useGlobal = create((set) => ({
 
 
   isLight : true,
@@ -9,5 +9,5 @@ const useStore = create((set) => ({
 }))
 
 
-export default useStore
+export default useGlobal
 

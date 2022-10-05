@@ -7,12 +7,14 @@ import { ReactComponent as WhiteSerch } from "../assets/imgs/WhiteSerch.svg";
 import { ReactComponent as Menubar } from "../assets/imgs/menubar.svg";
 import useStore from "../store/filter";
 import useUserInfo from "../store/userinfo";
+import useGlobal from "../store/globalStore";
 import instance from "../api/core/default";
 import Swal from "sweetalert2";
 
 const Header = () => {
   const { userId, setUserId, setUserNickName, setUserEmail } = useUserInfo();
-  const { isLight, setSearch } = useStore();
+  const { setSearch } = useStore();
+  const {isLight } = useGlobal();
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
