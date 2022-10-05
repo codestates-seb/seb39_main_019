@@ -9,11 +9,20 @@ import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
 import usePuppyPost from "../../store/puppyPost";
 import instance from "../../api/core/default";
 import useUserInfo from "../../store/userinfo";
-import Swal from "sweetalert2";
 
 const PuppyInfoPost = () => {
-  const { dogNm, breed, age, sexNm, setDogNm, setBreed, setAge, setSexNm } =
-    usePuppyPost();
+  const {
+    dogNm,
+    breed,
+    age,
+    sexNm,
+    ppId,
+    setDogNm,
+    setBreed,
+    setAge,
+    setSexNm,
+    setPpId,
+  } = usePuppyPost();
 
   const [allData, setAllData] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
@@ -21,21 +30,17 @@ const PuppyInfoPost = () => {
   const id = localStorage.getItem("memberId");
   const { userInfo, userId } = useUserInfo();
 
-  console.log(allData);
-
   const submitHandler = () => {
     instance({
       method: "patch",
-      url: "v1/dogs/info/1",
+      url: `v1/dogs/info/${ppId}`,
       data: {
         dogNm: dogNm,
         breed: breed,
         sexNm: sexNm,
         age: age,
       },
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
     setIsEdit(!isEdit);
   };
 
@@ -54,13 +59,13 @@ const PuppyInfoPost = () => {
       url: `/api/members/dogs/${userId}`,
     })
       .then((response) => {
-        console.log(response.dogs);
-        setAllData(response.dogs);
+        setPpId(response.dogs[0].id);
+        setAllData(response.dogs[0]);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [isEdit]);
+  }, []);
 
   return (
     <PuppyInfoPostContainer>
@@ -81,7 +86,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='name'
                   onChange={(e) => setDogNm(e.target.value)}
-                  defaultValue={dogNm || allData.dogNm || ""}
+                  defaultValue={allData.dogNm || ""}
                 ></input>
               )}
             </div>
@@ -99,7 +104,7 @@ const PuppyInfoPost = () => {
                   type='text'
                   id='breed'
                   onChange={(e) => setBreed(e.target.value)}
-                  value={breed || allData.breed || ""}
+                  defaultValue={allData.breed || ""}
                 ></input>
               </div>
             )}
@@ -113,10 +118,10 @@ const PuppyInfoPost = () => {
                 <div>{age}</div>
               ) : (
                 <input
-                  type='text'
+                  type='number'
                   id='age'
                   onChange={(e) => setAge(e.target.value)}
-                  value={age || allData.age || ""}
+                  defaultValue={allData.age || ""}
                 ></input>
               )}
             </div>
@@ -130,7 +135,7 @@ const PuppyInfoPost = () => {
                 <select
                   name='gender'
                   onChange={(e) => setSexNm(e.target.value)}
-                  value={sexNm || allData.sexNm || ""}
+                  defaultValue={allData.sexNm || ""}
                 >
                   <option>선택해주세요</option>
                   <option value='암컷'>암컷</option>
@@ -185,7 +190,7 @@ const BackBtn = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  & div{
+  & div {
     margin-top: 10px;
   }
 `;

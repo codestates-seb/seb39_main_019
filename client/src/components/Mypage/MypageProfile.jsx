@@ -3,12 +3,13 @@ import styled, { css } from "styled-components";
 import axios from "axios";
 import Button from "../Button";
 import ProfileEdit from "./ProfileEdit";
-import PuppyInfoEdit from "./PuppyInfoEdit";
 import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
 import { Link } from "react-router-dom";
 import { phone } from "../../assets/style/Theme";
 import instance from "../../api/core/default";
 import useUserInfo from "../../store/userinfo";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MypageProfile = () => {
   const [headerData, setHeaderData] = useState("");
@@ -16,6 +17,7 @@ const MypageProfile = () => {
   const [isPuppyShow, setIsPuppyShow] = useState(false);
   const { userInfo, setUserInfo, userNickName, userEmail, setUserNickName } =
     useUserInfo();
+  const navigate = useNavigate();
 
   useEffect(() => {
     instance({
@@ -23,11 +25,15 @@ const MypageProfile = () => {
       url: "/api/me",
     })
       .then((response) => {
-        console.log(response);
         setUserNickName(response.nickname);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          icon: "error",
+          text: "로그인 후 이용가능합니다",
+          width: "290px",
+        });
+        navigate("/main");
       });
   }, []);
 
@@ -43,16 +49,8 @@ const MypageProfile = () => {
         <div>{userEmail}</div>
         <BtnContainer>
           <Link to='/PuppyInfoPage'>
-            <Button
-              text={"반려견 정보 등록하기"}
-              type={"mypage"}
-              // onClick={() => setIsPuppyShow((s) => !s)}
-            ></Button>
+            <Button text={"반려견 정보 등록하기"} type={"mypage"}></Button>
           </Link>
-          <PuppyInfoEdit
-            isPuppyShow={isPuppyShow}
-            closeModal={() => setIsPuppyShow(false)}
-          />
           <Button
             text={"내 정보 수정하기"}
             type={"mypage"}
@@ -61,8 +59,6 @@ const MypageProfile = () => {
           <ProfileEdit
             isProfileShow={isProfileShow}
             closeModal={() => setIsProfileShow(false)}
-            // headerData={headerData}
-            // setHeaderData={setHeaderData}
           />
         </BtnContainer>
       </ProfileInfo>
@@ -78,9 +74,7 @@ const MypageProfileContainer = styled.div`
   padding-top: 60px;
 `;
 
-const ProfileImg = styled.div`
-  /* border: 1px solid black; */
-`;
+const ProfileImg = styled.div``;
 
 const PIMG = styled.div`
   margin: 20px 15px 20px 30px;
@@ -97,7 +91,7 @@ const ProfileInfo = styled.div`
   ${phone(css`
     font-size: 14px;
   `)}
-`
+`;
 
 const BtnContainer = styled.div`
   display: flex;
