@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import axios from "axios";
 import Button from "../Button";
 import ProfileEdit from "./ProfileEdit";
-import PuppyInfoEdit from "./PuppyInfoEdit";
 import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
 import { Link } from "react-router-dom";
 import { phone } from "../../assets/style/Theme";
@@ -58,10 +57,6 @@ const MypageProfile = () => {
               // onClick={() => setIsPuppyShow((s) => !s)}
             ></Button>
           </Link>
-          <PuppyInfoEdit
-            isPuppyShow={isPuppyShow}
-            closeModal={() => setIsPuppyShow(false)}
-          />
           <Button
             text={"내 정보 수정하기"}
             type={"mypage"}

@@ -138,7 +138,7 @@ const PuppyInfoPost = () => {
                 <select
                   name='gender'
                   onChange={(e) => setSexNm(e.target.value)}
-                  value={allData.sexNm || ""}
+                  defaultValue={allData.sexNm || ""}
                 >
                   <option>선택해주세요</option>
                   <option value='암컷'>암컷</option>
