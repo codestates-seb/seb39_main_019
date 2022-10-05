@@ -4,10 +4,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import instance from "../../api/core/default";
 import MypageWroteItem from "../Mypage/MypageWroteItem";
+import Swal from "sweetalert2";
 
 const MypageWrote = () => {
   const [wroteView, setwroteView] = useState([]);
-  // const img = wroteView.imgUrl;
 
   useEffect(() => {
     instance({
@@ -15,17 +15,17 @@ const MypageWrote = () => {
       url: "/api/me/posts",
     })
       .then((response) => {
-        console.log(response);
-        setwroteView(response);
-        // console.log(response.imgUrl);
+        setwroteView(response.sort((a, b) => b.postId - a.postId));
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: "error",
+          text: "글을 불러올 수 없습니다.",
+          width: "290px",
+        });
       });
   }, []);
-
-  // console.log(wroteView[0].imgUrl);
-  // console.log(wroteView[1].imgUrl);
 
   return (
     <MypageWroteContainer>

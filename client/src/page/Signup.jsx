@@ -37,12 +37,9 @@ const Signup = () => {
   const regiSubmitHandler = async (e) => {
     e.preventDefault();
 
-    // await postRegister(nickname, regiEmail, regiPassword);
-
     await axios({
       method: "post",
       url: "api/auth/signup",
-      // url: "http://localhost:3001/signup",
       data: {
         nickname: nickname,
         email: regiEmail,
@@ -52,11 +49,10 @@ const Signup = () => {
     })
       .then((res) => {
         console.log(res);
-        // localStorage.setItem("memberId", res.data.memberId);
         setSuccess(true);
       })
       .catch((err) => {
-        console.log(err); //409에러는 중복되면 회원 정보 이미 존재 // 회원정보 찾을 수 없으면 404
+        console.log(err); // 모든 에러코드 500으로 동일
         Swal.fire({
           icon: "error",
           text: "중복된 닉네임이나 이미 존재하는 이메일입니다",

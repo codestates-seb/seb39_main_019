@@ -9,7 +9,6 @@ import { ReactComponent as BackArrow } from "../../assets/imgs/BackArrow.svg";
 import usePuppyPost from "../../store/puppyPost";
 import instance from "../../api/core/default";
 import useUserInfo from "../../store/userinfo";
-import Swal from "sweetalert2";
 
 const PuppyInfoPost = () => {
   const {
