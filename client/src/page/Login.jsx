@@ -6,7 +6,7 @@ import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import axios from "axios";
 import Button from "../components/Button";
 import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
-import { gapi } from "gapi-script";
+// import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
@@ -24,45 +24,6 @@ const Login = () => {
   useEffect(() => {
     emailRef.current.focus();
   }, []);
-
-  const kakaoLogin2 = (e) => {
-    e.preventDefault();
-    window.location.href =
-      "http://43.200.20.180:8080/oauth2/login/callback/kakao";
-    // navigate("/oauth2/login/callback/kakao");
-    console.log(response.headers);
-    // let accessToken = new URL(location.href).searchParams.get("access_token");
-    // let refreshToken = new URL(location.href).searchParams.get("refresh_token");
-    // console.log(accessToken);
-    // console.log(refreshToken);
-    // console.log(response.headers);
-
-    // useEffect(() => {}, []);
-    // fetch(`api/oauth2/login/callback/kakao`)
-    //   .then((res) => res.json())
-    //   .then((res) => console.log(res))
-    //   .then((err) => console.log(err));
-    // axios
-    //   .get(`api/oauth2/login/callback/kakao`)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
-    // axios
-    //   .get(
-    //     `http://43.200.20.180:8080/oauth2/login/callback/kakao?code=hBrjkBXjmwVZJ0XQ2ONbK1PugI9jqqpeqrwKQF3hY5ZrcVRuehbno94GUzw9N75YV13jQwopb1QAAAGDnhqqAw&state=0m0HkhI8uF9mdER1ULPoVLuleVUPzWoOY2NupSfpHpg%3D`
-    //   )
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
-    // window.location.href =
-    //   "http://43.200.20.180:8080/oauth2/login/callback/kakao";
-    // expected output: ReferenceError: nonExistentFunction is not defined
-    // Note - error messages will vary depending on browser
-    // let accessToken = new URL(location.href).searchParams.get("access_token");
-    // let refreshToken = new URL(location.href).searchParams.get("refresh_token");
-    // console.log(accessToken);
-    // console.log(refreshToken);
-    // localStorage.setItem("accessToken", accessToken);
-    // localStorage.setItem("refreshToken", refreshToken);
-  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -105,21 +66,21 @@ const Login = () => {
       });
   };
 
-  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+  //카카오 소셜 로그인 시도1
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const kakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
-
-    // let code = new URL(window.location.href).searchParams.get("code");
-    // // let code = new URL(window.location.href);
-
-    // console.log(code);
-    // axios
-    //   .get(`/oauth2/login/callback/kakao?code=${code}`)
-    //   .then((res) => console.log(res));
+  };
+  //카카오 소셜 로그인 시도2
+  const kakaoLogin2 = (e) => {
+    e.preventDefault();
+    window.location.href = "/api/oauth2/login/callback/kakao";
+    navigate("/oauth2/login/callback/kakao");
+    console.log(response.headers);
   };
 
+  //구글 소셜로그인
   // useEffect(() => {
   //   function start() {
   //     gapi.auth2.init({
@@ -130,25 +91,22 @@ const Login = () => {
   //   gapi.load("client:auth2", start);
   // }, []);
 
-  const onSuccess = (res) => {
-    const profile = res.getBasicProfile();
-    const userdata = {
-      email: profile.getEmail(),
-      image: profile.getImageUrl(),
-      name: profile.getName(),
-    };
-    // 로그인 성공 후 실행하기 원하는 코드 작성.
-    console.log(res);
-    // console.log(profile);
-    // console.log(userdata);
-    sessionStorage.setItem("g_access_token", res.accessToken);
-    axios({
-      method: "post",
-      url: `백엔드 구글 엔드포인트추가`,
-      data: res.accessToken,
-    });
-    navigate("/puppyauthentication");
-  };
+  // const onSuccess = (res) => {
+  //   const profile = res.getBasicProfile();
+  //   const userdata = {
+  //     email: profile.getEmail(),
+  //     image: profile.getImageUrl(),
+  //     name: profile.getName(),
+  //   };
+  //   // 로그인 성공 후 실행하기 원하는 코드 작성.
+  //   sessionStorage.setItem("g_access_token", res.accessToken);
+  //   axios({
+  //     method: "post",
+  //     url: `백엔드 구글 엔드포인트추가`,
+  //     data: res.accessToken,
+  //   });
+  //   navigate("/puppyauthentication");
+  // };
 
   // const onFailure = (res) => {
   //   Swal.fire({
@@ -158,7 +116,7 @@ const Login = () => {
   //   });
   //   console.log("err", res);
   // };
- 
+
   return (
     <div>
       <Header />
@@ -211,17 +169,11 @@ const Login = () => {
               <button className='kakaoBtn' onClick={kakaoLogin2}>
                 <Kakao />
               </button>
-              {/* <button className='kakaoBtn' onClick={kakaoLogin}>
-                <Kakao />
-              </button> */}
-              {/* <button className='social'>
-                <Naver />
-              </button> */}
               <GoogleLogin
                 className='googleBtn'
-                clientId={GOOGLE_CLIENT_ID}
+                // clientId={GOOGLE_CLIENT_ID}
                 buttonText='' // 버튼에 뜨는 텍스트
-                onSuccess={onSuccess}
+                // onSuccess={onSuccess}
                 // onFailure={onFailure}
                 // cookiePolicy={"single_host_origin"}//
               />

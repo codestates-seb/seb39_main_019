@@ -44,14 +44,14 @@ const RouteModule = [
     path: "/puppyauthentication",
     element: <PuppyAuthentication />,
   },
-  // {
-  //   path: "/mypage/*",
-  //   element: <Mypage />,
-  // },
   {
     path: "/mypage/*",
-    element: <PrivateRoute authenticated={IsLogin} component={<Mypage />} />,
+    element: <Mypage />,
   },
+  // {
+  //   path: "/mypage/*",
+  //   element: <PrivateRoute authenticated={IsLogin} component={<Mypage />} />,
+  // },
   {
     path: "/PuppyInfoPage",
     element: <PuppyInfoPage />,
