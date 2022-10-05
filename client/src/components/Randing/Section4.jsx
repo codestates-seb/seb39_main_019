@@ -79,12 +79,14 @@ const TextBox = styled.div`
     font-size: 50px;
     font-weight: 700;
     white-space: nowrap;
+    color:black;
     @media screen and (max-width: 543px){
       font-size: 40px;
     }
   }
   & p {
     margin-top: 10px;
+    color:black;
     @media screen and (max-width: 543px){
       font-size: 15px;
     }
@@ -117,15 +119,17 @@ const TextImg = styled.div`
   margin-top: 30px;
   @media screen and (max-width: 741px){
   justify-content: center;
- }
-  & div {
-    margin-right: 10px;
-    & img{
-      @media screen and (max-width: 543px){
+  color:black;
+}
+& div {
+  margin-right: 10px;
+  & img{
+    @media screen and (max-width: 543px){
       width: 40px;
     }
-    }
-    & p {
+  }
+  & p {
+      color:black;
       font-size: 16px;
       font-weight: bold;
       margin-bottom: 10px;
@@ -134,6 +138,7 @@ const TextImg = styled.div`
      }
     }
     & span {
+      color:black;
       display: block;
       white-space: nowrap;
       font-size: 14px;

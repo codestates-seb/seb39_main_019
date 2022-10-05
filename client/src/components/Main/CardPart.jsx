@@ -7,16 +7,17 @@ import useStore from '../../store/filter'
 import {TabText} from './TabText'
 
 const CardPart = () => {
-  const {index,filter} = useStore()
+  const {index,filter,search,setSearch} = useStore()
   const [data,setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [postsPerPage, setPostsPerPage] = useState(10);
- 
+  const [postsPerPage, setPostsPerPage] = useState(12);
 
   React.useEffect(()=>{
     axios.get('api/list/posts')
     .then((data)=>{
-        console.log(data.data)
+      if(search !== ''){
+      return setData(data.data.sort((a,b)=>b.postId-a.postId).filter((it)=>it.title.includes(search)))
+      }else{
         if(filter==='전체 지역'||filter===''){
           if(index===0){
             setData(data.data.sort((a,b)=>b.postId-a.postId))
@@ -35,8 +36,10 @@ const CardPart = () => {
             setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.postId-a.postId).filter((it)=>it.personality===TabText[index]))
           }
         }
+      }
+      setSearch('')
     })
-},[index,filter,data.length])
+},[index,filter,data.length,search])
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
