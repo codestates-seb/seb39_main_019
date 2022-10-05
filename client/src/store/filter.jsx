@@ -12,7 +12,7 @@ const useStore = create((set)=>({
     set({data: response.data})
   },
   setSearch : (input) => set(()=>({search:input})),
-  setIndex:((input)=>set({index:input}))
+  setIndex:((input)=>set({index:input})),
 }))
 
   
