@@ -8,9 +8,6 @@ import useUserInfo from '../store/userinfo'
 import Swal from "sweetalert2";
 
 
-
-
-
 const PostDetail = () => {
 
 const {title,body,location,personality,size
@@ -32,7 +29,7 @@ const {title,body,location,personality,size
   if(window.confirm('정말 삭제 하시겠슴까?')){
     axios({
       method:'delete',
-      url:`/api/v1/posts/${id}`
+      url:`${import.meta.env.VITE_API_KEY}/v1/posts/${id}`
     })
     navigate('/main')
    }
@@ -40,7 +37,7 @@ const {title,body,location,personality,size
  const onSubmit =() =>{
   axios({
     method:'patch',
-    url:`/api/v1/posts/${id}`,
+    url:`${import.meta.env.VITE_API_KEY}/v1/posts/${id}`,
     data:{
       title:title,
       content:body,
@@ -61,7 +58,7 @@ React.useEffect(() => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
    axios({
      method:'get',
-     url:`/api/v1/posts/${id}`
+     url:`${import.meta.env.VITE_API_KEY}/v1/posts/${id}`
    }).then((data)=>{
      setData(data.data)
     }).catch(()=>
