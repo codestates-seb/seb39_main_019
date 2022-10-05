@@ -15,7 +15,7 @@ const Post = () => {
   const onSubmit = () => {
     
   return axios({
-    url:'api/v1/posts',
+    url:`${import.meta.env.VITE_API_KEY}/v1/posts`,
     method:'post',
     data:{
       title:title,

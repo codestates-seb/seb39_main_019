@@ -26,7 +26,7 @@ const Login = () => {
 
     axios.defaults.withCredentials = true;
     axios
-      .post("api/auth/login", { email, password })
+      .post(`${import.meta.env.VITE_API_KEY}/auth/login`, { email, password })
       .then((response) => {
         localStorage.setItem("refresh_token", response.data.refresh_token);
         sessionStorage.setItem("access_token", response.data.access_token);
