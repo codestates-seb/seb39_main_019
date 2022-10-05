@@ -1,21 +1,41 @@
-import React from 'react'
-import RouteModule from './routes'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import React from "react";
+import useStore from "./store/globalStore";
+import RouteModule from "./routes";
+import ScrollToTop from "./hooks/ScrollToTop";
+import GlobalStyle from "./assets/style/GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./assets/style/Theme";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 
 function App() {
+  const { isLight,setIsLight } = useStore();
+  const theme = isLight === false?  darkTheme :lightTheme 
 
+  React.useEffect(()=>{
+    if(localStorage.getItem('theme')==='light'){
+      return
+    }else{
+      setIsLight()
+    }
+  },[])
+
+   
 
   return (
     <BrowserRouter>
-     <div className='App'>
-      <Routes>
-        {RouteModule.map((route,idx) => (
-          <Route path={route.path} element={route.element} key={idx}></Route>
-        ))}
-      </Routes>
-      </div>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <ScrollToTop/>
+        <Routes>
+          {RouteModule.map((route, idx) => (
+            <Route path={route.path} element={route.element} key={idx} />
+          ))}
+        </Routes>
+      </ThemeProvider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
