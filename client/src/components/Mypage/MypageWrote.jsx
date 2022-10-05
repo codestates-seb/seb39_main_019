@@ -47,5 +47,8 @@ export default MypageWrote;
 const MypageWroteContainer = styled.div`
   margin: 20px;
 `;
-const MypageWroteYes = styled.div``;
+const MypageWroteYes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 const MypageWroteNo = styled.div``;

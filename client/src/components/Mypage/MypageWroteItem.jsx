@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import { phone } from "../../assets/style/Theme";
 
 const MypageWroteItem = ({ title, imgUrl, postId }) => {
   return (
@@ -24,7 +25,8 @@ const MypageWroteItem = ({ title, imgUrl, postId }) => {
 export default MypageWroteItem;
 
 const MypageWroteItemContainer = styled.div`
-  width: 100%;
+  width: calc(50% - 30px);
+  /* width: 100%; */
   border: none;
   cursor: pointer;
   color: ${(props) => props.theme.textColor};
@@ -34,6 +36,10 @@ const MypageWroteItemContainer = styled.div`
   &:hover {
     transform: scale(1.07);
   }
+
+  ${phone(css`
+    width: 100%;
+  `)}
 `;
 
 const ItemContainer = styled.div``;
