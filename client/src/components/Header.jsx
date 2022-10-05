@@ -5,17 +5,24 @@ import { Toggle } from "./Toggle";
 import { ReactComponent as BlackSerch } from "../assets/imgs/BlackSerch.svg";
 import { ReactComponent as WhiteSerch } from "../assets/imgs/WhiteSerch.svg";
 import { ReactComponent as Menubar } from "../assets/imgs/menubar.svg";
-import useStore from "../store/globalStore";
+import useStore from "../store/filter";
 import useUserInfo from "../store/userinfo";
 import instance from "../api/core/default";
 import Swal from "sweetalert2";
 
 const Header = () => {
-  const { userId, setUserId, setUserNickName, setUserEmail } = useUserInfo();
-  const { isLight } = useStore();
+  const { userId, setUserId, setUserNgickName, setUserEmail } = useUserInfo();
+  const { isLight ,setSearch } = useStore();
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
+  
+  const getSearch = (e) => {
+    if(e.code === 'Enter'){
+      setSearch(e.target.value)
+      e.target.value = '';
+    }
+  }
 
   const logoutHandler = () => {
     instance({
@@ -50,7 +57,7 @@ const Header = () => {
           </Link>
         </HeaderLogo>
         <HeaderSerch>
-          <input placeholder='검색어를 입력해 주세요!' />
+          <input onKeyPress={getSearch} placeholder='검색어를 입력해 주세요!' />
           {isLight ? <BlackSerch /> : <WhiteSerch />}
         </HeaderSerch>
         <HeaderButton>

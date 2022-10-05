@@ -1,22 +1,23 @@
-import React, { useState } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import CardItem from "./CardItem";
-import PagiNation from "./PagiNation";
-import useStore from "../../store/filter";
-import { TabText } from "./TabText";
+import React,{useState} from 'react'
+import axios from 'axios'
+import styled from 'styled-components'
+import CardItem from './CardItem'
+import PagiNation from './PagiNation'
+import useStore from '../../store/filter'
+import {TabText} from './TabText'
 
 const CardPart = () => {
-  const { index, filter } = useStore();
-  const [data, setData] = useState([]);
+  const {index,filter,search,setSearch} = useStore()
+  const [data,setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [postsPerPage, setPostsPerPage] = useState(10);
- 
+  const [postsPerPage, setPostsPerPage] = useState(12);
 
   React.useEffect(()=>{
     axios.get('api/list/posts')
     .then((data)=>{
-        console.log(data.data)
+      if(search !== ''){
+      return setData(data.data.sort((a,b)=>b.postId-a.postId).filter((it)=>it.title.includes(search)))
+      }else{
         if(filter==='전체 지역'||filter===''){
           if(index===0){
             setData(data.data.sort((a,b)=>b.postId-a.postId))
@@ -26,30 +27,19 @@ const CardPart = () => {
             setData(data.data.sort((a,b)=>b.postId-a.postId).filter((it)=>it.personality===TabText[index]))
           }
         }
-      } else if (filter !== "전체 지역") {
-        if (index === 0) {
-          setData(
-            data.data
-              .filter((it) => it.guName === filter)
-              .sort((a, b) => b.postId - a.postId)
-          );
-        } else if (index < 4) {
-          setData(
-            data.data
-              .filter((it) => it.guName === filter)
-              .sort((a, b) => b.postId - a.postId)
-              .filter((it) => it.size === TabText[index])
-          );
-        } else {
-          setData(
-            data.data
-              .filter((it) => it.guName === filter)
-              .sort((a, b) => b.postId - a.postId)
-              .filter((it) => it.personality === TabText[index])
-          );
+        else if(filter!=='전체 지역'){
+          if(index===0){
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.postId-a.postId))
+          }else if(index < 4){
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.postId-a.postId).filter((it)=>it.size===TabText[index]))
+          }else{
+            setData(data.data.filter((it)=>it.guName === filter).sort((a,b)=>b.postId-a.postId).filter((it)=>it.personality===TabText[index]))
+          }
         }
+      }
+      setSearch('')
     })
-},[index,filter,data.length])
+},[index,filter,data.length,search])
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
@@ -63,8 +53,10 @@ const CardPart = () => {
     <CardContainer>
       {data.length?
       <div className='dataBox'>
-        {data &&
-          currentPosts(data).map((it) => <CardItem {...it} key={it.postId} />)}
+      {data && currentPosts(data).map((it)=>(
+        <CardItem {...it} key={it.postId
+        }/>
+      ))}
       </div>
       :<div className='Xbox'>
        ｡°(°.◜ᯅ◝°)°｡ 등록된 글이 없어요 ㅜ,,ㅜ </div>}
@@ -76,13 +68,19 @@ const CardPart = () => {
         ></PagiNation>
       </PageContainer>
     </CardContainer>
-  );
-};
+  )
+}
 
-export default React.memo(CardPart);
+
+export default React.memo(CardPart)
 
 const CardContainer = styled.div`
+width: 100%;
+display:flex;
+flex-direction: column;
+& .dataBox{
   width: 100%;
+  margin-top: 20px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -113,4 +111,5 @@ const CardContainer = styled.div`
 const PageContainer = styled.div`
   display: flex;
   justify-content: center;
-`;
+  
+`
