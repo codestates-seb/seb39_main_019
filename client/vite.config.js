@@ -23,11 +23,6 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/kakao/, ""),
       },
-      "/dog": {
-        target: "http://apis.data.go.kr/1543061/animalInfoSrvc",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/dog/, ""),
-      },
     },
   },
 });

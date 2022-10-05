@@ -1,98 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
-import { useLocation, useNavigate, Link } from "react-router-dom";
-import { REST_API_KEY, REDIRECT_URI } from "../secretData";
+import { useNavigate, Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import axios from "axios";
 import Button from "../components/Button";
-import useAuthStore from "../store/authStore";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
-
-// import { postPpAuth } from "../api/utils";
 
 const PuppyAuthentication = () => {
   const [ppOwner, setPpOwner] = useState("");
   const [regiNumber, setRegiNumber] = useState("");
   const ppOwnerRef = useRef(null);
-  const location = useLocation();
   const navigate = useNavigate();
-  const KAKAO_CODE = location.search.split("=")[1];
-  const { setIsPpAuth } = useAuthStore();
-
-  // const getKakaoToken = () => {
-  //   fetch(`https://kauth.kakao.com/oauth/token`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //     body: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data) {
-  //         sessionStorage.setItem("token", data.access_token);
-  //         localStorage.setItem("token", data.refresh_token);
-  //       } else {
-  //         navigate("/");
-  //       }
-  //     });
-  // };
-
-  // //1 토큰 보내기
-  const getKakaoToken = () => {
-    axios({
-      method: "post",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      url: `https://kauth.kakao.com/oauth/token`,
-      data: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
-    }).then((response) => {
-      console.log("kakaotoken:", response);
-      if (response.data) {
-        sessionStorage.setItem("token", response.data.access_token);
-        localStorage.setItem("token", response.data.refresh_token);
-        const kakaoAccessToken = response.data.access_token;
-        const kakaoRefreshToken = response.data.refresh_token;
-      } else {
-        navigate("/");
-      }
-    });
-  };
-
-  // const postKakaoToken = () => {
-  //   axios({
-  //     method: "post",
-  //     url: `백엔드 엔드포인트추가`,
-  //     data: kakaoAccessToken, kakaoRefreshToken,
-  //   });
-  // };
-
-  //2 토큰보내기
-  const getKakaoToken2 = () => {
-    axios({
-      method: "post",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      url: `https://kauth.kakao.com/oauth/token`,
-      data: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
-    }).then((response) => {
-      console.log(response);
-      if (response.data) {
-        const kakaoAccessToken = response.data.access_token;
-        const kakaoRefreshToken = response.data.refresh_token;
-
-        axios.post("백엔드 엔드포인트", {
-          kakaoAccessToken,
-          kakaoRefreshToken,
-        });
-      } else {
-        navigate("/");
-      }
-    });
-  };
-
-  useEffect(() => {
-    if (!location.search) return;
-    getKakaoToken();
-    // postKakaoToken();
-  }, []);
 
   const apiBtnHandler = (e) => {
     e.preventDefault();
@@ -106,14 +25,13 @@ const PuppyAuthentication = () => {
         dog_reg_no: regiNumber,
       })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         Swal.fire({
           icon: "success",
           text: "반려견 정보를 입력해주세요",
           width: "300px",
         });
         navigate("/mypage");
-        // setIsPpAuth();
         console.log(response);
       })
       .catch((err) => {
