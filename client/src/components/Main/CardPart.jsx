@@ -11,23 +11,10 @@ const CardPart = () => {
   const [data,setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [postsPerPage, setPostsPerPage] = useState(10);
-  // axios.get('http://localhost:3001/content')
-  // axios.get('http://43.200.20.180:8080/v1/posts')
-
-  React.useEffect(() => {
-    let token = sessionStorage.getItem("access_token") || "";
-      console.log(token)
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-     axios({
-       method:'get',
-       url:`api/v1/posts/1`
-     }).then((data)=>{console.log(data)
-      //  setData(data.data)
-      })
-    },[])
+ 
 
   React.useEffect(()=>{
-    axios.get('api/posts?page=0&size=12')
+    axios.get('api/list/posts')
     .then((data)=>{
         console.log(data.data)
         if(filter==='전체 지역'||filter===''){
@@ -49,7 +36,7 @@ const CardPart = () => {
           }
         }
     })
-},[index,filter])
+},[index,filter,data.length])
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
@@ -61,12 +48,15 @@ const CardPart = () => {
 
   return (
     <CardContainer>
+      {data.length?
       <div className='dataBox'>
       {data && currentPosts(data).map((it)=>(
         <CardItem {...it} key={it.postId
         }/>
       ))}
       </div>
+      :<div className='Xbox'>
+       ｡°(°.◜ᯅ◝°)°｡ 등록된 글이 없어요 ㅜ,,ㅜ </div>}
       <PageContainer>
         <PagiNation
           postsPerPage={postsPerPage}
@@ -94,6 +84,24 @@ flex-direction: column;
   flex-wrap: wrap;
   gap: 30px;
   row-gap: 50px;
+}
+& .Xbox{
+  margin: 0 auto;
+  margin-top: 15px;
+  text-align: center;
+  line-height: 150px;
+  font-size: 30px;
+  width: 80%;
+  height: 150px;
+  border-radius: 10px;
+  background-color: ${(props)=>props.theme.HeaderColor};
+  color: ${(props)=>props.theme.textColor};
+  @media screen and (max-width:692px ){
+    font-size: 20px;
+  }
+  @media screen and (max-width:490px ){
+    font-size: 14.5px;
+  }
 }
 `
 
