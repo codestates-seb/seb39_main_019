@@ -55,10 +55,10 @@ const FourContainer = styled.div`
   position: relative;
   margin-bottom: -100px;
   width: 100%;
-  padding: 0 15vw;
+  padding: 0 5vw;
   height: 800px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: #fff;
 `;
 const TextBox = styled.div`
@@ -66,16 +66,28 @@ const TextBox = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-right: 10px;
+  padding-right: 100px;
+  text-align: center;
+  @media screen and (max-width: 741px){
+    text-align: center;
+    width: 100%;
+    padding-right: 0px;
+  }
 
   & > span {
     font-family: GmarketSansMedium;
     font-size: 50px;
     font-weight: 700;
     white-space: nowrap;
+    @media screen and (max-width: 543px){
+      font-size: 40px;
+    }
   }
   & p {
     margin-top: 10px;
+    @media screen and (max-width: 543px){
+      font-size: 15px;
+    }
   }
   button {
     margin-top: 20px;
@@ -91,6 +103,9 @@ const TextBox = styled.div`
       background-color: #62bbdb;
       /* border: 1px solid #8bd5f0; */
     }
+    @media screen and (max-width: 741px){
+    width: 90%;
+    }
   }
   .on {
   }
@@ -100,17 +115,31 @@ const TextBox = styled.div`
 const TextImg = styled.div`
   display: flex;
   margin-top: 30px;
-  justify-content: flex-end;
+  @media screen and (max-width: 741px){
+  justify-content: center;
+ }
   & div {
+    margin-right: 10px;
+    & img{
+      @media screen and (max-width: 543px){
+      width: 40px;
+    }
+    }
     & p {
       font-size: 16px;
       font-weight: bold;
       margin-bottom: 10px;
+      @media screen and (max-width: 543px){
+      font-size: 14px;
+     }
     }
     & span {
       display: block;
       white-space: nowrap;
-      font-size: 12px;
+      font-size: 14px;
+      @media screen and (max-width: 543px){
+      font-size: 11px;
+    }
     }
   }
 `;
@@ -122,16 +151,30 @@ const ImgBox = styled.div`
   & img {
     max-width: 350px;
     width: 30%;
+    @media screen and (max-width: 1300px){
+      width: 25%;
+    }
+    @media screen and (max-width: 741px){
+    display: none;
+    }
   }
   .img1 {
     position: absolute;
-    right: 30vw;
+    right: 25vw;
     top: 10%;
+    @media screen and (max-width: 1300px){
+      right: 10vw;
+      top: 20%;
+    }
   }
   .img2 {
     position: absolute;
-    right:20vw;
+    right:15vw;
     top: 20%;
     z-index: 10;
+    @media screen and (max-width: 1300px){
+      right: 0vw;
+      top: 30%;
+    }
   }
 `;

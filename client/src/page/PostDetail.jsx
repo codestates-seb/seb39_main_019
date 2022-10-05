@@ -4,6 +4,8 @@ import Layout from '../components/Layout/Layout'
 import styled from 'styled-components'
 import axios from 'axios'
 import useStore from '../store/post'
+import useUserInfo from '../store/userinfo'
+import Swal from "sweetalert2";
 
 
 
@@ -13,11 +15,11 @@ const PostDetail = () => {
 
 const {title,body,location,personality,size
 ,setTitle,setBody,setLo,setPe,setSi} = useStore()
+ const {userId} = useUserInfo()
  const navigate = useNavigate()
  const {id} = useParams()
  const [data,setData] = React.useState([])
  const [isEdit,setIsEdit] = React.useState(false)
-
  const handleEdit = () => {
    setIsEdit(!isEdit)
    setTitle(data.title)
@@ -30,15 +32,16 @@ const {title,body,location,personality,size
   if(window.confirm('정말 삭제 하시겠슴까?')){
     axios({
       method:'delete',
-      url:`http://localhost:3001/content/${id}`
+      url:`/api/v1/posts/${id}`
     })
     navigate('/main')
    }
   }
+  console.log(title,body,personality,location,size)
  const onSubmit =() =>{
   axios({
     method:'patch',
-    url:`http://localhost:3001/content/${id}`,
+    url:`/api/v1/posts/${id}`,
     data:{
       title:title,
       content:body,
@@ -46,12 +49,15 @@ const {title,body,location,personality,size
       personality:personality,
       size:size,
     }
+  }).then(()=>{
+
+    setIsEdit(!isEdit)
   })
-  setIsEdit(!isEdit)
 }
 // http://localhost:3001/content/${id}
 
 React.useEffect(() => {
+
   let token = sessionStorage.getItem("access_token") || "";
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
    axios({
@@ -59,9 +65,13 @@ React.useEffect(() => {
      url:`/api/v1/posts/${id}`
    }).then((data)=>{
      setData(data.data)
-    }).catch((error)=>console.log(error))
-  },[])
-  console.log(data)
+    }).catch(()=>
+      Swal.fire({
+      icon: "error",
+      text: "견주,동물 인증이 필요합니다.",
+    })
+    )
+  },[isEdit])
 
   return (
     <Layout child ={
@@ -72,16 +82,14 @@ React.useEffect(() => {
             <TopTitle>
               <h1>{isEdit?<input value={title} onChange={(e)=>setTitle(e.target.value)}></input>:data.title}</h1>
               <div>
-                {isEdit?<><button onClick={onSubmit}>저장</button>
+                {data.memberId === userId?<>{isEdit?<><button onClick={onSubmit}>저장</button>
                 <button onClick={handleEdit}>취소</button></>:
                 <><button onClick={handleEdit}>수정</button>
-                <button onClick={onDelete}>삭제</button></>}
+                <button onClick={onDelete}>삭제</button></>}</>:null}
               </div>
             </TopTitle>
             <TopSubTitle>
-              <span>빵댕이팡팡</span>
-              <div>
-              </div>
+              <span>{data.nickname}</span>
             </TopSubTitle>
           </DetailTop>
           <DetailMid>
@@ -92,14 +100,14 @@ React.useEffect(() => {
                 <div>나이<span>{data.age} 살</span></div>
                 <div>성별<span>{data.sexNm}</span></div>
                 <div>견종<span>{data.breed}</span></div>
-                {isEdit?<div>크기<select onChange={(e)=>setSi(e.target.value)}>
+                {isEdit?<div>크기<select defaultValue={size} onChange={(e)=>setSi(e.target.value)}>
                   <option>선택해주세요</option>
                   <option value='LARGE'>대형견</option>
                   <option value='MIDDLE'>중형견</option>
                   <option value='SMALL'>소형견</option>
                   </select></div>:
                 <div>크기<span>{data.size}</span></div>}
-                {isEdit?<div>성격<select name='Pe' onChange={(e)=>setPe(e.target.value)}>
+                {isEdit?<div>성격<select value={personality} name='Pe' onChange={(e)=>setPe(e.target.value)}>
                   <option>선택해주세요</option>
                   <option value='ACTIVE'>활발함</option>
                   <option value='TIMID'>소심함</option>
@@ -145,11 +153,12 @@ const DetailTop = styled.div`
     display: flex;
     justify-content: space-between;
     & input{
-      width: 100%;
+      width: 80%;
       height: 100%;
       font-size: 30px;
       border: none;
       border-bottom: 1px solid #ddd;
+      border-radius: 5px;
       text-indent: 5px;
       &:focus {outline: none;}
     }
@@ -185,6 +194,11 @@ align-items: flex-start;
 const TopSubTitle =styled.div`
 margin-top: 20px;
 align-items: center;
+
+  & span{
+    font-size: 16px;
+    font-family: GmarketSansMedium;
+  }
   & div{
     display: flex;
     flex-direction: column;
@@ -233,8 +247,8 @@ margin-top: 20px;
         display: inline-block;
         font-size: 16px;
         margin-left: 15px;
-        color: #6b6b6b;
         font-family: S_CoreDream_3Light;
+        ${(props)=>props.theme.subTitle}
       }
     }
   }
