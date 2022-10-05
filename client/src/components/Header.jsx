@@ -11,7 +11,7 @@ import instance from "../api/core/default";
 import Swal from "sweetalert2";
 
 const Header = () => {
-  const { userId, setUserId, setUserNgickName, setUserEmail } = useUserInfo();
+  const { userId, setUserId, setUserNickName, setUserEmail } = useUserInfo();
   const { isLight ,setSearch } = useStore();
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -30,7 +30,6 @@ const Header = () => {
       url: "api/me/logout",
     })
       .then((response) => {
-        console.log(response);
         localStorage.clear();
         sessionStorage.clear();
         setUserId("");

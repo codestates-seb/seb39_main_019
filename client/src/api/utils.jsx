@@ -2,11 +2,6 @@ import instance from "./core/default";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-// const getbody = () => {
-//   return instance({ url: "login" });
-// };
-
-//서버 테스트용
 const postLogin2 = (email, password) => {
   axios({
     method: "post",

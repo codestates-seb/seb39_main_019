@@ -16,7 +16,6 @@ const ImgLode = () => {
  
   const handleAddImages = (event) => {
     let token = sessionStorage.getItem("access_token") || "";
-    console.log(token)
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const formData = new FormData()
     formData.append('files',event.target.files[0])
@@ -35,7 +34,6 @@ const ImgLode = () => {
     setIsImg(!isImg)
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      console.log(currentImageUrl)
       imageUrlLists.push(currentImageUrl);
     }
     

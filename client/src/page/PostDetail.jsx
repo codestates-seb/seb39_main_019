@@ -6,7 +6,6 @@ import axios from 'axios'
 import useStore from '../store/post'
 import useUserInfo from '../store/userinfo'
 import Swal from "sweetalert2";
-import instance from '../api/core/default'
 
 
 
@@ -60,18 +59,16 @@ React.useEffect(() => {
 
   let token = sessionStorage.getItem("access_token") || "";
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-   instance({
+   axios({
      method:'get',
-     url:`baseURL/v1/posts/${id}`
+     url:`/api/v1/posts/${id}`
    }).then((data)=>{
      setData(data.data)
-    }).catch((error)=>{
-      console.log(error)
+    }).catch(()=>
       Swal.fire({
       icon: "error",
       text: "견주,동물 인증이 필요합니다.",
     })
-    }
     )
   },[isEdit])
 
@@ -87,10 +84,7 @@ React.useEffect(() => {
                 {data.memberId === userId?<>{isEdit?<><button onClick={onSubmit}>저장</button>
                 <button onClick={handleEdit}>취소</button></>:
                 <><button onClick={handleEdit}>수정</button>
-                <button onClick={onDelete}>삭제</button></>}</>:<>{isEdit?<><button onClick={onSubmit}>저장</button>
-                <button onClick={handleEdit}>취소</button></>:
-                <><button onClick={handleEdit}>수정</button>
-                <button onClick={onDelete}>삭제</button></>}</>}
+                <button onClick={onDelete}>삭제</button></>}</>:null}
               </div>
             </TopTitle>
             <TopSubTitle>

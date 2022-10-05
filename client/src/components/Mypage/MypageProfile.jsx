@@ -25,7 +25,6 @@ const MypageProfile = () => {
       url: "/api/me",
     })
       .then((response) => {
-        console.log(response);
         setUserNickName(response.nickname);
       })
       .catch((err) => {

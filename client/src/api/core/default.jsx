@@ -20,7 +20,7 @@ instance.interceptors.request.use(
   async (config) => {
     let token = sessionStorage.getItem("access_token");
     if (token) {
-      axios.config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
+      config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
     }
     return config;
   },

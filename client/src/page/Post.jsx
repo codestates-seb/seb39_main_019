@@ -12,9 +12,7 @@ const Post = () => {
   const {location,personality,size,title,body,setBody,setTitle,url} = useStore()
   const navigate = useNavigate()
   const onSubmit = () => {
-   console.log(url)
-  // url:'api/v1/posts',
-  // url:'http://localhost:3001/content',
+    
   return axios({
     url:'api/v1/posts',
     method:'post',

@@ -23,8 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
-#key
-secretData.js
 
 
 # production
