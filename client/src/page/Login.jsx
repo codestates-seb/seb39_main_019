@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import axios from "axios";
 import Button from "../components/Button";
-// import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import GoogleLogin from "react-google-login";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
@@ -13,8 +12,7 @@ import useUserInfo from "../store/userinfo";
 import instance from "../api/core/default";
 
 const Login = () => {
-  const { setUserInfo, setUserId, setUserNickName, setUserEmail } =
-    useUserInfo();
+  const { setUserId, setUserNickName, setUserEmail } = useUserInfo();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
@@ -39,12 +37,9 @@ const Login = () => {
           url: "/api/me",
         })
           .then((response) => {
-            console.log(response);
             setUserNickName(response.nickname);
             setUserEmail(response.email);
             setUserId(response.memberId);
-
-            console.log(response.nickname, response.email, response.memberId);
 
             if (response.memberCertificate === "DOG_OWNER") {
               navigate("/main");
@@ -73,57 +68,6 @@ const Login = () => {
     });
   };
 
-  // //카카오 소셜 로그인 시도1
-  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-  // const kakaoLogin = () => {
-  //   window.location.href = KAKAO_AUTH_URL;
-  // };
-  // //카카오 소셜 로그인 시도2
-  // const kakaoLogin2 = (e) => {
-  //   e.preventDefault();
-  //   window.location.href = "/api/oauth2/login/callback/kakao";
-  //   navigate("/oauth2/login/callback/kakao");
-  //   console.log(response.headers);
-  // };
-
-  // 구글 소셜로그인
-  // useEffect(() => {
-  //   function start() {
-  //     gapi.auth2.init({
-  //       clientId: GOOGLE_CLIENT_ID,
-  //       scope: "email",
-  //     });
-  //   }
-  //   gapi.load("client:auth2", start);
-  // }, []);
-
-  // const onSuccess = (res) => {
-  //   const profile = res.getBasicProfile();
-  //   const userdata = {
-  //     email: profile.getEmail(),
-  //     image: profile.getImageUrl(),
-  //     name: profile.getName(),
-  //   };
-  //   // 로그인 성공 후 실행하기 원하는 코드 작성.
-  //   sessionStorage.setItem("g_access_token", res.accessToken);
-  //   axios({
-  //     method: "post",
-  //     url: `백엔드 구글 엔드포인트추가`,
-  //     data: res.accessToken,
-  //   });
-  //   navigate("/puppyauthentication");
-  // };
-
-  // const onFailure = (res) => {
-  //   Swal.fire({
-  //     icon: "warning",
-  //     text: "구글 로그인에 실패하였습니다",
-  //     width: "400px",
-  //   });
-  //   console.log("err", res);
-  // };
-
   return (
     <div>
       <Header />
@@ -143,7 +87,6 @@ const Login = () => {
                 id='email'
                 ref={emailRef}
                 onChange={(e) => setEmail(e.target.value)}
-                // value={email}
                 required
               ></input>
             </div>
@@ -153,8 +96,7 @@ const Login = () => {
                 type='password'
                 id='password'
                 onChange={(e) => setPassword(e.target.value)}
-                // value={password}
-                // required
+                required
                 autoComplete='off'
               ></input>
             </div>
@@ -173,20 +115,12 @@ const Login = () => {
               <hr />
             </div>
             <div className='social_btn'>
-              <button
-                className='kakaoBtn'
-                onClick={socialAlert} /*onClick={kakaoLogin2}*/
-              >
+              <button className='kakaoBtn' onClick={socialAlert}>
                 <Kakao />
               </button>
               <GoogleLogin
                 className='googleBtn'
-                onClick={socialAlert}
-                // clientId={GOOGLE_CLIENT_ID}
                 buttonText='' // 버튼에 뜨는 텍스트
-                // onSuccess={onSuccess}
-                // onFailure={onFailure}
-                // cookiePolicy={"single_host_origin"}//
               />
             </div>
           </section>

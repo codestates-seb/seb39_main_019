@@ -40,9 +40,7 @@ const PuppyInfoPost = () => {
         sexNm: sexNm,
         age: age,
       },
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
     setIsEdit(!isEdit);
   };
 
@@ -61,7 +59,6 @@ const PuppyInfoPost = () => {
       url: `/api/members/dogs/${userId}`,
     })
       .then((response) => {
-        console.log(response);
         setPpId(response.dogs[0].id);
         setAllData(response.dogs[0]);
       })

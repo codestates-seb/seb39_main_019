@@ -11,18 +11,18 @@ import instance from "../api/core/default";
 import Swal from "sweetalert2";
 
 const Header = () => {
-  const { userId, setUserId, setUserNgickName, setUserEmail } = useUserInfo();
-  const { isLight ,setSearch } = useStore();
+  const { userId, setUserId, setUserNickName, setUserEmail } = useUserInfo();
+  const { isLight, setSearch } = useStore();
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
-  
+
   const getSearch = (e) => {
-    if(e.code === 'Enter'){
-      setSearch(e.target.value)
-      e.target.value = '';
+    if (e.code === "Enter") {
+      setSearch(e.target.value);
+      e.target.value = "";
     }
-  }
+  };
 
   const logoutHandler = () => {
     instance({
@@ -30,7 +30,6 @@ const Header = () => {
       url: "api/me/logout",
     })
       .then((response) => {
-        console.log(response);
         localStorage.clear();
         sessionStorage.clear();
         setUserId("");
