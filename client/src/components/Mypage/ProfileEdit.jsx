@@ -33,7 +33,6 @@ const ProfileEdit = ({
       },
     })
       .then((response) => {
-        console.log(response);
         setUserNickName(response);
       })
       .catch((err) => {
@@ -58,13 +57,10 @@ const ProfileEdit = ({
           url: "/api/me",
         })
           .then((res) => {
-            console.log("성공");
-            console.log(res);
             localStorage.clear();
             sessionStorage.clear();
           })
           .catch((err) => {
-            console.log("실패");
             console.log(err);
           });
 

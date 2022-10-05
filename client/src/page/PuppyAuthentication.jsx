@@ -25,14 +25,12 @@ const PuppyAuthentication = () => {
         dog_reg_no: regiNumber,
       })
       .then((response) => {
-        console.log(response);
         Swal.fire({
           icon: "success",
           text: "반려견 정보를 입력해주세요",
           width: "300px",
         });
         navigate("/mypage");
-        console.log(response);
       })
       .catch((err) => {
         Swal.fire({
@@ -59,7 +57,7 @@ const PuppyAuthentication = () => {
         </InformMsg>
         <InputForm>
           <h1>견주 인증</h1>
-          <form /*</InputForm>*/ onSubmit={apiBtnHandler}>
+          <form onSubmit={apiBtnHandler}>
             <div className='group'>
               <label htmlFor='ppOwner'>소유자</label>
               <input
@@ -67,7 +65,6 @@ const PuppyAuthentication = () => {
                 id='ppOwner'
                 onChange={(e) => setPpOwner(e.target.value)}
                 required
-                // value={ppOwner}
                 ref={ppOwnerRef}
               ></input>
             </div>
@@ -97,21 +94,9 @@ const SocialModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-
-  /* form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    div {
-      display: flex;
-      flex-direction: column;
-    } */
-  /* } */
 `;
 
 const HeaderLogo = styled.div`
-  /* padding-left: 20px; */
   margin-bottom: 20px;
   & span {
     font-family: KOTRAHOPE;
