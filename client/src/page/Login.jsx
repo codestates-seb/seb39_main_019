@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import axios from "axios";
 import Button from "../components/Button";
-import GoogleLogin from "react-google-login";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
 import useUserInfo from "../store/userinfo";
@@ -118,10 +117,6 @@ const Login = () => {
               <button className='kakaoBtn' onClick={socialAlert}>
                 <Kakao />
               </button>
-              <GoogleLogin
-                className='googleBtn'
-                buttonText='' // 버튼에 뜨는 텍스트
-              />
             </div>
           </section>
         </InputForm>

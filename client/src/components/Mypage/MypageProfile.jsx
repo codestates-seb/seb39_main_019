@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import axios from "axios";
 import Button from "../Button";
 import ProfileEdit from "./ProfileEdit";
 import { ReactComponent as Profile } from "../../assets/imgs/Profile.svg";
