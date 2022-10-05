@@ -36,7 +36,7 @@ const MypageWrote = () => {
           ))}
         </MypageWroteYes>
       ) : (
-        <MypageWroteNo>작성한 글이 없어요</MypageWroteNo>
+        <MypageWroteNo>작성한 글이 아직 없어요</MypageWroteNo>
       )}
     </MypageWroteContainer>
   );
