@@ -11,8 +11,8 @@ import instance from "../api/core/default";
 import Swal from "sweetalert2";
 
 const Header = () => {
-  const { userId, setUserId } = useUserInfo();
-  const { isLight,setSearch } = useStore();
+  const { userId, setUserId, setUserNgickName, setUserEmail } = useUserInfo();
+  const { isLight ,setSearch } = useStore();
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -33,7 +33,9 @@ const Header = () => {
         console.log(response);
         localStorage.clear();
         sessionStorage.clear();
-        setUserId(0);
+        setUserId("");
+        setUserNickName("");
+        setUserEmail("");
         navigate("/main");
         Swal.fire({
           icon: "success",
@@ -59,17 +61,32 @@ const Header = () => {
           {isLight ? <BlackSerch /> : <WhiteSerch />}
         </HeaderSerch>
         <HeaderButton>
-          <Toggle/>
-          <Menubar onClick={()=>setIsOpen(!isOpen)}/>
-          <ul ref={dropDownRef} className={isOpen? 'active':'menu'}>
-            {userId?<>
-            <li><Link to="/post">글작성하기</Link></li>
-            <li><Link to="/mypage">마이페이지</Link></li>
-            <li onClick={logoutHandler}>로그아웃</li>
-            </>:<>
-            <li><Link to="/login">로그인</Link></li>
-            <li><Link to="/signup">회원가입</Link></li> 
-            <li><Link to="/post">글작성하기</Link></li></>}
+          <Toggle />
+          <Menubar onClick={() => setIsOpen(!isOpen)} />
+          <ul ref={dropDownRef} className={isOpen ? "active" : "menu"}>
+            {userId ? (
+              <>
+                <li>
+                  <Link to='/post'>글작성하기</Link>
+                </li>
+                <li>
+                  <Link to='/mypage'>마이페이지</Link>
+                </li>
+                <li onClick={logoutHandler}>로그아웃</li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to='/login'>로그인</Link>
+                </li>
+                <li>
+                  <Link to='/signup'>회원가입</Link>
+                </li>
+                <li>
+                  <Link to='/post'>글작성하기</Link>
+                </li>
+              </>
+            )}
           </ul>
         </HeaderButton>
       </HeaderWrap>
