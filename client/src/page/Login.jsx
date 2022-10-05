@@ -37,12 +37,9 @@ const Login = () => {
           url: "/api/me",
         })
           .then((response) => {
-            console.log(response);
             setUserNickName(response.nickname);
             setUserEmail(response.email);
             setUserId(response.memberId);
-
-            console.log(response.nickname, response.email, response.memberId);
 
             if (response.memberCertificate === "DOG_OWNER") {
               navigate("/main");
@@ -99,6 +96,7 @@ const Login = () => {
                 type='password'
                 id='password'
                 onChange={(e) => setPassword(e.target.value)}
+                required
                 autoComplete='off'
               ></input>
             </div>
@@ -117,15 +115,12 @@ const Login = () => {
               <hr />
             </div>
             <div className='social_btn'>
-              <button
-                className='kakaoBtn'
-                onClick={socialAlert}
-              >
+              <button className='kakaoBtn' onClick={socialAlert}>
                 <Kakao />
               </button>
               <GoogleLogin
                 className='googleBtn'
-                buttonText='' 
+                buttonText='' // 버튼에 뜨는 텍스트
               />
             </div>
           </section>

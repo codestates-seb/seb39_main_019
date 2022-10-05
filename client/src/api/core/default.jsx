@@ -18,7 +18,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config) => {
-    let token = sessionStorage.getItem("access_token");
+    const token = sessionStorage.getItem("access_token");
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`; //여기는 accessToken
     }
