@@ -5,8 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Kakao } from "../assets/imgs/Kakao.svg";
 import axios from "axios";
 import Button from "../components/Button";
-import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
-// import { gapi } from "gapi-script";
+// import { REST_API_KEY, REDIRECT_URI, GOOGLE_CLIENT_ID } from "../secretData";
 import GoogleLogin from "react-google-login";
 import Swal from "sweetalert2";
 import { phone } from "../assets/style/Theme";
@@ -62,25 +61,33 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           text: "로그인 실패!",
+          width: "290px",
         });
       });
   };
 
-  //카카오 소셜 로그인 시도1
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-  const kakaoLogin = () => {
-    window.location.href = KAKAO_AUTH_URL;
-  };
-  //카카오 소셜 로그인 시도2
-  const kakaoLogin2 = (e) => {
-    e.preventDefault();
-    window.location.href = "/api/oauth2/login/callback/kakao";
-    navigate("/oauth2/login/callback/kakao");
-    console.log(response.headers);
+  const socialAlert = () => {
+    Swal.fire({
+      icon: "info",
+      text: "미완성 기능입니다",
+    });
   };
 
-  //구글 소셜로그인
+  // //카카오 소셜 로그인 시도1
+  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+  // const kakaoLogin = () => {
+  //   window.location.href = KAKAO_AUTH_URL;
+  // };
+  // //카카오 소셜 로그인 시도2
+  // const kakaoLogin2 = (e) => {
+  //   e.preventDefault();
+  //   window.location.href = "/api/oauth2/login/callback/kakao";
+  //   navigate("/oauth2/login/callback/kakao");
+  //   console.log(response.headers);
+  // };
+
+  // 구글 소셜로그인
   // useEffect(() => {
   //   function start() {
   //     gapi.auth2.init({
@@ -166,11 +173,15 @@ const Login = () => {
               <hr />
             </div>
             <div className='social_btn'>
-              <button className='kakaoBtn' onClick={kakaoLogin2}>
+              <button
+                className='kakaoBtn'
+                onClick={socialAlert} /*onClick={kakaoLogin2}*/
+              >
                 <Kakao />
               </button>
               <GoogleLogin
                 className='googleBtn'
+                onClick={socialAlert}
                 // clientId={GOOGLE_CLIENT_ID}
                 buttonText='' // 버튼에 뜨는 텍스트
                 // onSuccess={onSuccess}
