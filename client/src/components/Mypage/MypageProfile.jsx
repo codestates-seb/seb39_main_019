@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { phone } from "../../assets/style/Theme";
 import instance from "../../api/core/default";
 import useUserInfo from "../../store/userinfo";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MypageProfile = () => {
   const [headerData, setHeaderData] = useState("");
@@ -16,6 +18,7 @@ const MypageProfile = () => {
   const [isPuppyShow, setIsPuppyShow] = useState(false);
   const { userInfo, setUserInfo, userNickName, userEmail, setUserNickName } =
     useUserInfo();
+  const navigate = useNavigate();
 
   useEffect(() => {
     instance({
@@ -28,6 +31,12 @@ const MypageProfile = () => {
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          icon: "error",
+          text: "로그인 후 이용가능합니다",
+          width: "290px",
+        });
+        navigate("/main");
       });
   }, []);
 
@@ -97,7 +106,7 @@ const ProfileInfo = styled.div`
   ${phone(css`
     font-size: 14px;
   `)}
-`
+`;
 
 const BtnContainer = styled.div`
   display: flex;
