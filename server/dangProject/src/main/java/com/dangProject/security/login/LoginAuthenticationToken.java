@@ -47,7 +47,7 @@ public class LoginAuthenticationToken extends UsernamePasswordAuthenticationToke
 
     public static LoginAuthenticationToken afterOf(String accessToken, String refreshToken) {
         JwtDto jwt = new JwtDto(accessToken, refreshToken);
-        return new LoginAuthenticationToken(jwt,"" ,List.of());
+        return new LoginAuthenticationToken(jwt, "" , List.of());
     }
 
     @Data

@@ -5,21 +5,16 @@ import com.dangProject.member.repository.RefreshTokenRedisRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.GrantedAuthority;
 
-import java.security.Key;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class JwtHelper {
     private static RefreshTokenRedisRepository redisRepository;
-    private static final int ACCESS_TOKEN_VALIDITY = 15 * 60 * 1000; //15분
-    private static final int REFRESH_TOKEN_VALIDITY = 60 * 60 * 1000; //1시간
+    private static final int ACCESS_TOKEN_VALIDITY = 60 * 60 * 1000; //1시간
+    private static final int REFRESH_TOKEN_VALIDITY = 2 * 60 * 60 * 1000; //2시간
     //24 * 60 * 60 * 1000; //하루
 
     private static final String secretKey = "puppyBuddy";

@@ -1,8 +1,7 @@
-package com.dangProject.image.domain;
+package com.dangProject.post.image.domain;
 
 import com.dangProject.audit.BaseTime;
 import com.dangProject.post.domain.Post;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +10,8 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Image extends BaseTime {
+@NoArgsConstructor
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
@@ -23,19 +22,22 @@ public class Image extends BaseTime {
     private Post post;
 
     @Column
-    private String originalName;
+    private String fileName;
 
     @Column
-    private String uniqueName;
+    private String s3Url;
 
     @Column
-    private String path;
-
+    private String s3FilePath;
 
     @Builder
-    public Image(String originalName, String uniqueName, String path) {
-        this.originalName = originalName;
-        this.uniqueName = uniqueName;
-        this.path = path;
+    public Image(String fileName, String s3Url, String s3FilePath) {
+        this.fileName = fileName;
+        this.s3Url = s3Url;
+        this.s3FilePath = s3FilePath;
+    }
+
+    public void updatePost(Post post) {
+        this.post = post;
     }
 }

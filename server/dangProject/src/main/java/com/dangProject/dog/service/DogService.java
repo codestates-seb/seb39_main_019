@@ -7,6 +7,10 @@ import com.dangProject.dog.dto.DogValidationPostDto;
 import com.dangProject.dog.repository.DogRepository;
 import com.dangProject.exception.BusinessLogicException;
 import com.dangProject.exception.ExceptionCode;
+import com.dangProject.member.domain.Member;
+import com.dangProject.member.domain.MemberRole;
+import com.dangProject.member.domain.MemberType;
+import com.dangProject.member.repository.MemberRepository;
 import com.dangProject.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
@@ -25,7 +29,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Optional;
 
-@Transactional
+//@Transactional
 @Service
 @RequiredArgsConstructor
 public class DogService {
@@ -90,8 +94,8 @@ public class DogService {
         return null;
     }
 
-
     //강아지 정보 등록
+    @Transactional
     public Dog addDog(DogInfoPatchDto dogInfoPatchDto) {
 
         Dog findDog = dogRepository.getById(dogInfoPatchDto.getId());

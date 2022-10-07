@@ -17,11 +17,12 @@ import java.io.OutputStream;
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+
         CustomAuthenticationException exception = (CustomAuthenticationException) authException;
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
-        //try - with - resource -> JAVA 8
+        //try - with - resource
         try (OutputStream os = response.getOutputStream()) {
             new ObjectMapper().writeValue(os, exception.getMessage());
             os.flush();

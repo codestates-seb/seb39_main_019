@@ -20,19 +20,12 @@ public class Dog extends BaseTime {
     @Column(name = "dog_id")
     private Long id;
 
-    @Column
     private String dogNm;
-
-    @Column
     private String breed;
-
-    @Column
     private String sexNm;
-
-    @Column
     private int age;
 
-    @Column
+    @Column(nullable = false)
     private String dogRegNo;
 
     @ManyToOne
@@ -48,10 +41,5 @@ public class Dog extends BaseTime {
         this.breed = breed;
         this.age = age;
         this.member = member;
-    }
-
-    @Builder
-    public Dog(String dogRegNo) {
-        this.dogRegNo = dogRegNo;
     }
 }

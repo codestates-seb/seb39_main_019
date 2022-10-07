@@ -20,6 +20,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
             if (!JwtHelper.validateJwt(accessToken)) {
                 throw new CustomAuthenticationException("유효하지 않은 액세스 토큰입니다.");
             }
+            //여기에 블랙리스트 검증 작업 추가할 예정
             long memberId = Long.parseLong(JwtHelper.getClaim(accessToken, Claims::getSubject));
             String role = (String) JwtHelper.getClaim(accessToken, claims -> claims.get("authorities"));
             MemberRole parsedRole = MemberRole.valueOf(role);

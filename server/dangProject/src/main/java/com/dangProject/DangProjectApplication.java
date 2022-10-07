@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 public class DangProjectApplication {
 
+	static {  System.setProperty("com.amazonaws.sdk.disableEc2Metadata", "true"); }
+
 	public static void main(String[] args) {
 		SpringApplication.run(DangProjectApplication.class, args);
 	}

@@ -1,10 +1,7 @@
 package com.dangProject.dog.dto;
 
 import com.dangProject.dog.domain.Dog;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
