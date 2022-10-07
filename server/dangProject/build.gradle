@@ -21,11 +21,12 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-<<<<<<< HEAD
+
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-//	implementation 'it.ozimov:embedded-redis:0.7.2'
+
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
@@ -36,16 +37,16 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
 	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
 	testImplementation 'org.springframework.security:spring-security-test'
-=======
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
->>>>>>> 4fcfbe144bbdd3f19d8e6c6eca5f16f2dd868806
+
+
+//	implementation"io.netty:netty-resolver-dns-native-macos:4.1.79.Final:osx-aarch_64"
+
 }
 
 tasks.named('test') {

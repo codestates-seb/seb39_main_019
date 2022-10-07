@@ -11,8 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-
 @Component
 @RequiredArgsConstructor
 public class LoginAuthenticationProvider implements AuthenticationProvider {
@@ -22,7 +20,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        //DownCasting
+
         LoginAuthenticationToken beforeToken = (LoginAuthenticationToken) authentication;
 
         try {
@@ -32,9 +30,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
             redisRepository.save(member.getId(), refreshToken);
 
             return LoginAuthenticationToken.afterOf(accessToken, refreshToken);
-
         } catch (Exception e) {
-            //인증 실패의 경우
             throw new CustomAuthenticationException("사용자 인증에 실패했습니다.", e);
         }
     }
