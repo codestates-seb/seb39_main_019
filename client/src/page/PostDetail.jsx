@@ -6,6 +6,7 @@ import axios from 'axios'
 import useStore from '../store/post'
 import useUserInfo from '../store/userinfo'
 import Swal from "sweetalert2";
+import instance from '../api/core/default'
 
 
 const PostDetail = () => {
@@ -54,19 +55,19 @@ const {title,body,location,personality,size
 
 React.useEffect(() => {
 
-  let token = sessionStorage.getItem("access_token") || "";
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-   axios({
+    // const token = sessionStorage.getItem("access_token") || "";
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    instance({
      method:'get',
-     url:`${import.meta.env.VITE_API_KEY}/v1/posts/${id}`
+     url:`v1/posts/${id}`
    }).then((data)=>{
-     setData(data.data)
+     setData(data)
     }).catch(()=>
       Swal.fire({
       icon: "error",
       text: "견주,동물 인증이 필요합니다.",
     })
-    )
+   )
   },[isEdit])
 
   return (

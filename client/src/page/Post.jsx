@@ -9,8 +9,7 @@ import useStore from "../store/post";
 import axios from "axios";
 
 const Post = () => {
-  const { location, personality, size, title, body, setBody, setTitle, url } =
-    useStore();
+  const {location,personality,size,title,body,setBody,setTitle,url } =useStore();
   const navigate = useNavigate();
   const onSubmit = () => {
     
