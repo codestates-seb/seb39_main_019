@@ -20,7 +20,7 @@ const PuppyAuthentication = () => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
     axios
-      .post("api/v1/dogs/validation", {
+      .post(`${import.meta.env.VITE_API_KEY}/v1/dogs/validation`, {
         owner_nm: ppOwner,
         dog_reg_no: regiNumber,
       })
