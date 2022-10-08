@@ -1,16 +1,17 @@
-## 💫seb39_pre_019의 main-project
+## 💫W-bone의 🐶PuppyBuddy(퍼피버디)🐶
 
-![자산 10@4x-100](https://user-images.githubusercontent.com/103437860/194542875-9261ac6b-ba6d-4aa5-b764-e1b90038617d.jpg)
-
-
-
-## 🐶PuppyBuddy(퍼피버디)🐶
 ### 우리 사랑스러운 멍멍이의 산책 친구를 만들어 주고 싶다면 PuppyBuddy(퍼피버디)와 함께해요!
+![자산 10@4x-100](https://user-images.githubusercontent.com/103437860/194542875-9261ac6b-ba6d-4aa5-b764-e1b90038617d.jpg)
+---
 
-> 개발기간: 2022.09.07 ~ 2022.10.12
 
-## 배포주소 : http://seb39-main-019-front.s3-website.ap-northeast-2.amazonaws.com/
+### 개발기간: 2022.09.07 ~ 2022.10.12
 
+### 배포주소 : http://seb39-main-019-front.s3-website.ap-northeast-2.amazonaws.com/
+
+---
+
+<br>
 
 ## 👨‍👩‍👧‍👦 Family 
 |이선민 (FE 팀장)   |김영웅 (FE 팀원)                  |이소현 (BE 팀원)               |채화담 (BE 팀원)               |
@@ -19,6 +20,7 @@
 |[@HelloHailie](https://github.com/HelloHailie)        |[@houndhollis](https://github.com/houndhollis)           |[@shotny](https://github.com/shotny)           |[@Damm06](https://github.com/Damm06)       |
 
 
+<br>
 
 ## 👩‍💻Tech Stack
 
@@ -27,6 +29,8 @@
 <p>
 <img src='https://user-images.githubusercontent.com/103996469/189812990-0697f50e-ac79-4b9f-9c3f-2676ed0a2321.svg' width='100'/> <img src='https://user-images.githubusercontent.com/61264510/193440604-0cfc19fd-014a-45d6-acba-a5c322658a92.svg' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814228-102ccb6b-f1df-432b-8ba4-b827a92c60f5.png' width='100'/>  <img src='https://user-images.githubusercontent.com/103996469/189813611-bdf90e19-d6fb-4c4c-ab6d-fc684c88719c.png' width='100'/> <img src='https://user-images.githubusercontent.com/61264510/193440701-79515327-2f9f-4a4c-8232-c91cc28f6842.svg' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814460-5b760d15-c7e0-451c-8643-6df8dc11bd6e.png' width='100' height='100'/> <img src='https://user-images.githubusercontent.com/103996469/189813177-e1647bb9-7500-4643-b3cc-9af74768107a.png' width='100' height='100'/>
 
+ <br>
+ 
 ### **Back-end** 
 
 <p>
