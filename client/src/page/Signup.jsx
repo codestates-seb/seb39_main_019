@@ -39,7 +39,7 @@ const Signup = () => {
 
     await axios({
       method: "post",
-      url: "api/auth/signup",
+      url: `${import.meta.env.VITE_API_KEY}/auth/signup`,
       data: {
         nickname: nickname,
         email: regiEmail,

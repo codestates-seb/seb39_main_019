@@ -20,7 +20,7 @@ const ImgLode = () => {
     const formData = new FormData();
     formData.append("files", event.target.files[0]);
     axios({
-      url: "api/v1/images",
+      url: `${import.meta.env.VITE_API_KEY}/v1/images`,
       method: "post",
       data: formData,
       headers: {
@@ -33,7 +33,6 @@ const ImgLode = () => {
     setIsImg(!isImg);
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
-
       imageUrlLists.push(currentImageUrl);
     }
 

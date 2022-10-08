@@ -11,9 +11,9 @@ const CardPart = () => {
   const [data,setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [postsPerPage, setPostsPerPage] = useState(12);
-
+  
   React.useEffect(()=>{
-    axios.get('api/list/posts')
+    axios.get(`${import.meta.env.VITE_API_KEY}/list/posts`)
     .then((data)=>{
       if(search !== ''){
       return setData(data.data.sort((a,b)=>b.postId-a.postId).filter((it)=>it.title.includes(search)))

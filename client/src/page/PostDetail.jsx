@@ -9,9 +9,6 @@ import Swal from "sweetalert2";
 import instance from '../api/core/default'
 
 
-
-
-
 const PostDetail = () => {
 
 const {title,body,location,personality,size
@@ -33,7 +30,7 @@ const {title,body,location,personality,size
   if(window.confirm('정말 삭제 하시겠슴까?')){
     axios({
       method:'delete',
-      url:`/api/v1/posts/${id}`
+      url:`${import.meta.env.VITE_API_KEY}/v1/posts/${id}`
     })
     navigate('/main')
    }
@@ -41,7 +38,7 @@ const {title,body,location,personality,size
  const onSubmit =() =>{
   axios({
     method:'patch',
-    url:`/api/v1/posts/${id}`,
+    url:`${import.meta.env.VITE_API_KEY}/v1/posts/${id}`,
     data:{
       title:title,
       content:body,
@@ -58,21 +55,19 @@ const {title,body,location,personality,size
 
 React.useEffect(() => {
 
-  let token = sessionStorage.getItem("access_token") || "";
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-   instance({
+    // const token = sessionStorage.getItem("access_token") || "";
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    instance({
      method:'get',
-     url:`baseURL/v1/posts/${id}`
+     url:`v1/posts/${id}`
    }).then((data)=>{
-     setData(data.data)
-    }).catch((error)=>{
-      console.log(error)
+     setData(data)
+    }).catch(()=>
       Swal.fire({
       icon: "error",
       text: "견주,동물 인증이 필요합니다.",
     })
-    }
-    )
+   )
   },[isEdit])
 
   return (
@@ -87,10 +82,7 @@ React.useEffect(() => {
                 {data.memberId === userId?<>{isEdit?<><button onClick={onSubmit}>저장</button>
                 <button onClick={handleEdit}>취소</button></>:
                 <><button onClick={handleEdit}>수정</button>
-                <button onClick={onDelete}>삭제</button></>}</>:<>{isEdit?<><button onClick={onSubmit}>저장</button>
-                <button onClick={handleEdit}>취소</button></>:
-                <><button onClick={handleEdit}>수정</button>
-                <button onClick={onDelete}>삭제</button></>}</>}
+                <button onClick={onDelete}>삭제</button></>}</>:null}
               </div>
             </TopTitle>
             <TopSubTitle>

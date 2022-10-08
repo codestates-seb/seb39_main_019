@@ -9,29 +9,29 @@ import useStore from "../store/post";
 import axios from "axios";
 
 const Post = () => {
-  const { location, personality, size, title, body, setBody, setTitle, url } =
-    useStore();
+  const {location,personality,size,title,body,setBody,setTitle,url } =useStore();
   const navigate = useNavigate();
   const onSubmit = () => {
-    return axios({
-      url: "api/v1/posts",
-      method: "post",
-      data: {
-        title: title,
-        personality: personality,
-        guName: location,
-        size: size,
-        content: body,
-        imageId: [url],
-      },
-    })
-      .then(() => {
-        navigate("/main");
-        setBody("");
-        setTitle("");
-      })
-      .catch((error) => console.log(error));
-  };
+    
+  return axios({
+    url:`${import.meta.env.VITE_API_KEY}/v1/posts`,
+    method:'post',
+    data:{
+      title:title,
+      personality:personality,
+      guName:location,
+      size:size,
+      content:body,
+      imageId:[url]
+    }
+  })
+  .then(()=>{
+    navigate('/main')
+    setBody('')
+    setTitle('')
+  })
+  .catch((error)=>console.log(error))
+  }
 
   return (
     <Layout
