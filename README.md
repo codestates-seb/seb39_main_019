@@ -52,6 +52,11 @@
 <img src="https://www.svgrepo.com/show/331368/discord-v2.svg" width=100 height=100>
 </p>
 
+<br>
+## :memo: 문서 정리
+
+### [ERD 문서](https://github.com/codestates-seb/seb39_main_019.wiki.git)
+### [System Architecture](https://github.com/codestates-seb/seb39_main_019.wiki.git)
 
 <br>
 
