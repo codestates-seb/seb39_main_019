@@ -53,10 +53,11 @@
 </p>
 
 <br>
+
 ## :memo: 문서 정리
 
-### [ERD 문서](https://github.com/codestates-seb/seb39_main_019.wiki.git)
-### [System Architecture](https://github.com/codestates-seb/seb39_main_019.wiki.git)
+### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
+### [System Architecture](https://github.com/codestates-seb/seb39_main_019/wiki/System-Architecture)
 
 <br>
 
