@@ -33,11 +33,12 @@
  <br>
 
 
+
 ### 협업 도구
 
 <p>
-  <img src="https://user-images.githubusercontent.com/61264510/194801739-bf6ce112-bafe-49a4-a53a-7f4a72c9c91d.svg" width='400' height='500'>
-
+  <img src="https://user-images.githubusercontent.com/61264510/194802015-8823f450-9df6-48dd-9474-dec2c331cfe5.svg">
+</p>
 <br>
 
 ## :memo: 문서 정리
