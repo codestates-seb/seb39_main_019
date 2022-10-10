@@ -22,7 +22,6 @@
 
 <br>
 
- #### 웹서비스 랜딩페이지
 <p>
 <img src="https://user-images.githubusercontent.com/61264510/194817246-1d258f89-d211-463c-b454-a1fc5c9d80a4.gif">
 </p>
