@@ -48,7 +48,7 @@
 ### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
 ### [System Architecture](https://github.com/codestates-seb/seb39_main_019/wiki/System-Architecture)
 ### [User Flow](https://github.com/codestates-seb/seb39_main_019/wiki/User-Flow)
-### [Tech Stack](https://github.com/codestates-seb/seb39_main_019/wiki/Tech-Stack)
+### [API 문서]
 
 
 <br>
