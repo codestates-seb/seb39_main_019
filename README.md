@@ -69,10 +69,9 @@
 ## :memo: Documents
 
 ### [Wireframe](https://github.com/codestates-seb/seb39_main_019/wiki/Wireframe)
-### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
-### [System Architecture](https://github.com/codestates-seb/seb39_main_019/wiki/System-Architecture)
-### [User Flow](https://github.com/codestates-seb/seb39_main_019/wiki/User-Flow)
 ### [API 문서](https://github.com/codestates-seb/seb39_main_019/wiki/API-%EB%AC%B8%EC%84%9C)
+### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
+### [User Flow](https://github.com/codestates-seb/seb39_main_019/wiki/User-Flow)
 
 <br>
 
