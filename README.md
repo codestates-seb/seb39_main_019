@@ -27,7 +27,7 @@
 ### **Front-end** 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/61264510/194798581-71dc2926-b7c0-4764-8442-4a3a791fa1f8.pngg"> 
+  <img src="https://user-images.githubusercontent.com/61264510/194798581-71dc2926-b7c0-4764-8442-4a3a791fa1f8.png"> 
 </p>
 
 
