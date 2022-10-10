@@ -24,19 +24,14 @@
 
 ## 👩‍💻Tech Stack
 
-### **Front-end** 
+### **Back-end & Front-end** 
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/61264510/194798581-71dc2926-b7c0-4764-8442-4a3a791fa1f8.png"> 
 </p>
 
-
  <br>
  
-### **Back-end** 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/61264510/194798066-9450e0c1-73b6-460b-86cf-d4275c5be02e.png">
-</p>
 
 ### 협업 도구
 
