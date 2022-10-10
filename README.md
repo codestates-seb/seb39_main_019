@@ -15,10 +15,8 @@
 
 ## 🐶About PuppyBuddy
 
-### **PuppyBuddy를 소개합니다** 
-
 <p>
-  PuppyBuddy는 강아지의 산책 친구를 만들어주고 싶은 분들을 위한 서비스입니다.
+  **PuppyBuddy**는 강아지의 산책 친구를 만들어주고 싶은 분들을 위한 서비스입니다.
 </p>
 
 <br>
@@ -55,8 +53,7 @@
 ### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
 ### [System Architecture](https://github.com/codestates-seb/seb39_main_019/wiki/System-Architecture)
 ### [User Flow](https://github.com/codestates-seb/seb39_main_019/wiki/User-Flow)
-### [API 문서]
-
+### [API 문서] 추가예정
 
 <br>
 
