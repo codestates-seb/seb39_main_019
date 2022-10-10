@@ -36,7 +36,7 @@
 ### 협업 도구
 
 <p>
-  <img src="https://user-images.githubusercontent.com/61264510/194801739-bf6ce112-bafe-49a4-a53a-7f4a72c9c91d.svg" width='200' height='200'>
+  <img src="https://user-images.githubusercontent.com/61264510/194801739-bf6ce112-bafe-49a4-a53a-7f4a72c9c91d.svg" width='800' height='800'>
 </p>
 
 <br>
