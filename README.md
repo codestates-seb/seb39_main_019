@@ -13,7 +13,7 @@
 
 <br>
 
-## 👨‍👩‍👧‍👦 Our Team 
+## 👨‍👩‍👧‍👦 Team Members 
 |이선민 (FE 팀장)   |김영웅 (FE 팀원)                  |이소현 (BE 팀원)               |채화담 (BE 팀원)               |
 |----------------|-------------------------------|-----------------------------|-----------------------------|
 |<img src='https://user-images.githubusercontent.com/103996469/189809521-92e91dab-b8de-45f6-a417-34e1b0bad969.jpeg' width='150'>|<img src='https://user-images.githubusercontent.com/103996469/192595845-36d99b8c-ec46-41ff-98f7-aef452181093.png' width='150'/>|<img src='https://user-images.githubusercontent.com/103996469/189811184-98777d18-1927-4373-b92e-399e38d82081.jpeg' width='150'/>|<img src='https://user-images.githubusercontent.com/103996469/189815473-71a3e481-4c9a-4001-9679-82affc220044.png' width='150'/>|                  
