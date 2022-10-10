@@ -27,18 +27,15 @@
 ### **Back-end & Front-end** 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/61264510/194801511-15252fe9-ee29-4db4-b2b8-87a8e4638ccb.png"> 
-  
+  <img src="https://user-images.githubusercontent.com/61264510/194801593-e5503ae6-f7dd-4958-8373-c85eeb036843.png"> 
 </p>
 
  <br>
 
-
-
 ### 협업 도구
 
 <p>
-  <img src="https://user-images.githubusercontent.com/61264510/194801345-f42d0c65-94c3-4d32-85c3-1caf3ca44b32.png">
+  <img src="https://user-images.githubusercontent.com/61264510/194801511-15252fe9-ee29-4db4-b2b8-87a8e4638ccb.png">
 </p>
 
 <br>
