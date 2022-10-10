@@ -53,7 +53,18 @@
 <p>
   <img src="https://user-images.githubusercontent.com/61264510/194802015-8823f450-9df6-48dd-9474-dec2c331cfe5.svg">
 </p>
+
 <br>
+
+
+## 👩‍💻Project Architecture
+
+
+<p align="center">
+  
+</p>
+
+ <br>
 
 ## :memo: Documents
 
@@ -61,7 +72,7 @@
 ### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
 ### [System Architecture](https://github.com/codestates-seb/seb39_main_019/wiki/System-Architecture)
 ### [User Flow](https://github.com/codestates-seb/seb39_main_019/wiki/User-Flow)
-### [API 문서] 추가예정
+### [API 문서](https://github.com/codestates-seb/seb39_main_019/wiki/API-%EB%AC%B8%EC%84%9C)
 
 <br>
 
