@@ -27,7 +27,8 @@
 ### **Back-end & Front-end** 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/61264510/194798581-71dc2926-b7c0-4764-8442-4a3a791fa1f8.png"> 
+  <img src="https://user-images.githubusercontent.com/61264510/194801511-15252fe9-ee29-4db4-b2b8-87a8e4638ccb.png"> 
+  
 </p>
 
  <br>
