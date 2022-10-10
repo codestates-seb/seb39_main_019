@@ -35,7 +35,7 @@
 ### **Back-end** 
 
 <p>
-  <img src="https://user-images.githubusercontent.com/61264510/194797770-d928290e-a291-4c50-962b-b0ead9308290.png">
+  <img src="https://user-images.githubusercontent.com/61264510/194797979-249ed3a6-f39c-4425-8f55-3213aae6508f.png">
 </p>
 
 ### 협업 도구
