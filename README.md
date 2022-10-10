@@ -41,6 +41,7 @@
 
 ## :memo: Documents
 
+### [Wireframe](https://github.com/codestates-seb/seb39_main_019/wiki/Wireframe)
 ### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
 ### [System Architecture](https://github.com/codestates-seb/seb39_main_019/wiki/System-Architecture)
 ### [User Flow](https://github.com/codestates-seb/seb39_main_019/wiki/User-Flow)
@@ -54,6 +55,7 @@
 - 매일 오전 11시에 모여서 merge 및 각자 진행상황 브리핑을 한다.
 - 매주 금요일은 KPT 회고를 진행한다.
 - 정한 컨벤션을 준수한다.
+- 
 
 <br>
 
