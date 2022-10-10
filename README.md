@@ -27,21 +27,15 @@
 ### **Front-end** 
 
 <p>
-<img src='https://user-images.githubusercontent.com/103996469/189812990-0697f50e-ac79-4b9f-9c3f-2676ed0a2321.svg' width='100'/> <img src='https://user-images.githubusercontent.com/61264510/193440604-0cfc19fd-014a-45d6-acba-a5c322658a92.svg' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814228-102ccb6b-f1df-432b-8ba4-b827a92c60f5.png' width='100'/>  <img src='https://user-images.githubusercontent.com/103996469/189813611-bdf90e19-d6fb-4c4c-ab6d-fc684c88719c.png' width='100'/> <img src='https://user-images.githubusercontent.com/61264510/193440701-79515327-2f9f-4a4c-8232-c91cc28f6842.svg' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814460-5b760d15-c7e0-451c-8643-6df8dc11bd6e.png' width='100' height='100'/> <img src='https://user-images.githubusercontent.com/103996469/189813177-e1647bb9-7500-4643-b3cc-9af74768107a.png' width='100' height='100'/>
+  <img src="https://user-images.githubusercontent.com/61264510/194797867-979495a6-99da-4106-96cc-e65964a516bb.png"> 
+</p>
 
  <br>
  
 ### **Back-end** 
 
 <p>
-  <img src="https://user-images.githubusercontent.com/61177857/188972264-ee94f10c-6959-4a1c-9b97-6330b14ce996.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/191139546-91539645-aecf-4ab4-9cef-92537a7ebcfb.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/193440738-0dffd5c4-b07b-4a80-a195-345657debe2e.svg" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61177857/188973455-ecc9c549-9b23-4b00-aab7-1ef042bceeb1.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61177857/188973727-c87dcc33-9777-420f-bb51-11074c3bd2f4.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61177857/188974204-472258b0-5f49-41e2-a6d3-44bf53068bd8.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/193440765-d11c994a-f1d8-4764-bf04-b51c0a6deb00.svg" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/191139275-f081ff5a-2b22-4ade-be2a-db2e6db79cc3.png" width=100 height=100>
+  <img src="https://user-images.githubusercontent.com/61264510/194797770-d928290e-a291-4c50-962b-b0ead9308290.png">
 </p>
 
 ### 협업 도구
