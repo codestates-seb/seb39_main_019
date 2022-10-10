@@ -32,14 +32,14 @@
 
  <br>
 
-### 협업 도구
+### Collaboration Tools
 
 <p>
   <img src="https://user-images.githubusercontent.com/61264510/194802015-8823f450-9df6-48dd-9474-dec2c331cfe5.svg">
 </p>
 <br>
 
-## :memo: 문서 정리
+## :memo: Documents
 
 ### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
 ### [System Architecture](https://github.com/codestates-seb/seb39_main_019/wiki/System-Architecture)
@@ -49,7 +49,7 @@
 
 <br>
 
-## 🗣팀 커뮤니케이션 방식
+## 🗣Team Culture
 
 - 매일 오전 11시에 모여서 merge 및 각자 진행상황 브리핑을 한다.
 - 매주 금요일은 KPT 회고를 진행한다.
