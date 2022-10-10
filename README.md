@@ -33,8 +33,8 @@
  <br>
  
 ### **Back-end** 
-<p>
-  <img src="https://user-images.githubusercontent.com/61264510/194798066-9450e0c1-73b6-460b-86cf-d4275c5be02e.png" width=800 height=800>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/61264510/194798066-9450e0c1-73b6-460b-86cf-d4275c5be02e.png">
 </p>
 
 ### 협업 도구
