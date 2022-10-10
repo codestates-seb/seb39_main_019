@@ -16,8 +16,12 @@
 ## 🐶About PuppyBuddy
 
 <p>
-  ##PuppyBuddy## 는 강아지의 산책 친구를 만들어주고 싶은 분들을 위한 서비스입니다.
+  PuppyBuddy 는 강아지의 산책 친구를 만들어주고 싶은 분들을 위한 서비스입니다.
+  <img src="https://user-images.githubusercontent.com/61264510/194813517-58d3d645-c5cf-4420-95ef-422a285a5def.png">
 </p>
+
+
+
 
 <br>
 
