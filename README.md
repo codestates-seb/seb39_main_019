@@ -57,7 +57,7 @@
 <br>
 
 
-## 👩‍💻Project Architecture
+## 🏡Project Architecture
 
 
 <p align="center">
@@ -75,7 +75,7 @@
 
 <br>
 
-## 🗣Team Culture
+## 🍵Team Culture
 
 - 매일 오전 11시에 모여서 merge 및 각자 진행상황 브리핑을 한다.
 - 매주 금요일 오후 4시 30분에 KPT 회고를 진행한다.
