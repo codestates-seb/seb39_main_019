@@ -5,7 +5,7 @@
 ---
 
 
-### 개발기간: 2022.09.07 ~ 2022.10.12
+### 개발기간: 2022.09.07 ~ 2022.10.05
 
 ### 배포주소 : http://seb39-main-019-front.s3-website.ap-northeast-2.amazonaws.com/
 
