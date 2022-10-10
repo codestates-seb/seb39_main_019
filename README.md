@@ -13,7 +13,23 @@
 
 <br>
 
-## 👨‍👩‍👧‍👦 Family 
+## 🐶About PuppyBuddy
+
+ #### PuppyBuddy 는 강아지의 산책 친구를 만들어주고 싶은 분들을 위한 서비스입니다.
+<p>
+  <img src="https://user-images.githubusercontent.com/61264510/194813517-58d3d645-c5cf-4420-95ef-422a285a5def.png">
+</p>
+
+<br>
+
+<p>
+<img src="https://user-images.githubusercontent.com/61264510/194817246-1d258f89-d211-463c-b454-a1fc5c9d80a4.gif">
+</p>
+
+
+<br>
+
+## 👨‍👩‍👧‍👦 Team Members 
 |이선민 (FE 팀장)   |김영웅 (FE 팀원)                  |이소현 (BE 팀원)               |채화담 (BE 팀원)               |
 |----------------|-------------------------------|-----------------------------|-----------------------------|
 |<img src='https://user-images.githubusercontent.com/103996469/189809521-92e91dab-b8de-45f6-a417-34e1b0bad969.jpeg' width='150'>|<img src='https://user-images.githubusercontent.com/103996469/192595845-36d99b8c-ec46-41ff-98f7-aef452181093.png' width='150'/>|<img src='https://user-images.githubusercontent.com/103996469/189811184-98777d18-1927-4373-b92e-399e38d82081.jpeg' width='150'/>|<img src='https://user-images.githubusercontent.com/103996469/189815473-71a3e481-4c9a-4001-9679-82affc220044.png' width='150'/>|                  
@@ -24,42 +40,51 @@
 
 ## 👩‍💻Tech Stack
 
-### **Front-end** 
+### **Back-end & Front-end** 
 
-<p>
-<img src='https://user-images.githubusercontent.com/103996469/189812990-0697f50e-ac79-4b9f-9c3f-2676ed0a2321.svg' width='100'/> <img src='https://user-images.githubusercontent.com/61264510/193440604-0cfc19fd-014a-45d6-acba-a5c322658a92.svg' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814228-102ccb6b-f1df-432b-8ba4-b827a92c60f5.png' width='100'/>  <img src='https://user-images.githubusercontent.com/103996469/189813611-bdf90e19-d6fb-4c4c-ab6d-fc684c88719c.png' width='100'/> <img src='https://user-images.githubusercontent.com/61264510/193440701-79515327-2f9f-4a4c-8232-c91cc28f6842.svg' width='100'/> <img src='https://user-images.githubusercontent.com/103996469/189814460-5b760d15-c7e0-451c-8643-6df8dc11bd6e.png' width='100' height='100'/> <img src='https://user-images.githubusercontent.com/103996469/189813177-e1647bb9-7500-4643-b3cc-9af74768107a.png' width='100' height='100'/>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/61264510/194845555-cc443c16-96cc-45ca-9327-b591770e03e9.svg">
+</p>
 
  <br>
- 
-### **Back-end** 
+
+### Collaboration Tools
 
 <p>
-  <img src="https://user-images.githubusercontent.com/61177857/188972264-ee94f10c-6959-4a1c-9b97-6330b14ce996.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/191139546-91539645-aecf-4ab4-9cef-92537a7ebcfb.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/193440738-0dffd5c4-b07b-4a80-a195-345657debe2e.svg" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61177857/188973455-ecc9c549-9b23-4b00-aab7-1ef042bceeb1.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61177857/188973727-c87dcc33-9777-420f-bb51-11074c3bd2f4.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61177857/188974204-472258b0-5f49-41e2-a6d3-44bf53068bd8.png" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/193440765-d11c994a-f1d8-4764-bf04-b51c0a6deb00.svg" width=100 height=100>
-  <img src="https://user-images.githubusercontent.com/61264510/191139275-f081ff5a-2b22-4ade-be2a-db2e6db79cc3.png" width=100 height=100>
+  <img src="https://user-images.githubusercontent.com/61264510/194802015-8823f450-9df6-48dd-9474-dec2c331cfe5.svg">
 </p>
-
-### 협업 도구
-
-<p>
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" width=100 height=100>
-<img src="https://user-images.githubusercontent.com/61264510/193440791-7753c5f4-d2f6-44ae-931d-99e43e434a13.svg" width=100 height=100>
-<img src="https://www.svgrepo.com/show/331368/discord-v2.svg" width=100 height=100>
-</p>
-
 
 <br>
 
-## 🗣팀 커뮤니케이션 방식
+
+## 🏡Project Architecture
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/104314701/194876039-6a1775b6-6380-4f36-9255-657c77d9750e.svg">
+</p>
+
+ <br>
+
+## :memo: Documents
+
+### [Wireframe](https://github.com/codestates-seb/seb39_main_019/wiki/Wireframe)
+### [API 문서](https://github.com/codestates-seb/seb39_main_019/wiki/API-%EB%AC%B8%EC%84%9C)
+### [ERD 문서](https://github.com/codestates-seb/seb39_main_019/wiki/ERD)
+### [User Flow](https://github.com/codestates-seb/seb39_main_019/wiki/User-Flow)
+
+<br>
+
+## 🍵Team Culture
 
 - 매일 오전 11시에 모여서 merge 및 각자 진행상황 브리핑을 한다.
-- 매주 금요일은 KPT 회고를 진행한다.
+- 매주 금요일 오후 4시 30분에 KPT 회고를 진행한다.
+- 프로젝트 기간 동안 평일 오전 11시 ~ 오후 5시 사이에는 응답을 30분 이내에 하도록 한다.
+- 패키징 구조와 네이밍 규칙을 팀원과 맞춰서 정한다.
+- 모르면 혼자 고민하지 않고 같은 파트 팀원에게라도 우선 공유한다.
 - 정한 컨벤션을 준수한다.
+- 오버 커뮤니케이션을 지향한다.
+- GitHub Issues 탭에 기능별 구현 내용과 일정을 수시로 업데이트 한다.
 
 <br>
 
