@@ -27,12 +27,10 @@
 ### **Back-end & Front-end** 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/61264510/194801593-e5503ae6-f7dd-4958-8373-c85eeb036843.png"> 
+  <img src="https://user-images.githubusercontent.com/61264510/194802115-386f556b-5b3f-48cc-8c35-eb55047afd10.svg">   
 </p>
 
  <br>
-
-
 
 ### 협업 도구
 
