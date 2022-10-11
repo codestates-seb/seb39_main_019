@@ -1,6 +1,6 @@
 ## 💫W-bone의 🐶PuppyBuddy(퍼피버디)🐶
 
-### 우리 사랑스러운 멍멍이의 산책 친구를 만들어 주고 싶다면 PuppyBuddy(퍼피버디)와 함께해요!
+### 우리 사랑스러운 멍멍이의 산책 친구를 만들어 주고 싶다면 PuppyBuddy(퍼피버디)와 함께해요!!
 ![자산 10@4x-100](https://user-images.githubusercontent.com/103437860/194542875-9261ac6b-ba6d-4aa5-b764-e1b90038617d.jpg)
 ---
 
