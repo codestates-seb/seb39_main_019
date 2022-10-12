@@ -43,7 +43,7 @@
 ### **Back-end & Front-end** 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/61264510/194845555-cc443c16-96cc-45ca-9327-b591770e03e9.svg">
+  <img src="https://user-images.githubusercontent.com/61264510/195244688-7efa2b0a-e0a8-41ce-a850-e7ae87b0bb05.svg">
 </p>
 
  <br>
