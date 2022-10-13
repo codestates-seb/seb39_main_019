@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { phone } from "../assets/style/Theme";
 
 const Button = ({ text, type, onClick }) => {
   const types = [
@@ -84,6 +85,14 @@ const ButtonCom = styled.button`
       color: ${(props) => props.theme.textColor};
       transform: scale(1.05);
     }
+
+    ${phone(
+      css`
+        font-size: 14px;
+        width: 75px;
+        padding: 0;
+      `
+    )}
   }
 
   &.myButton_mypageBtn {

@@ -88,7 +88,7 @@ const ProfileInfo = styled.div`
   display: flex;
 
   ${phone(css`
-    font-size: 14px;
+    font-size: 16px;
   `)}
 `;
 
@@ -100,3 +100,5 @@ const BtnContainer = styled.div`
     font-size: 14px;
   `)}
 `;
+
+// const Button = styled.div``;

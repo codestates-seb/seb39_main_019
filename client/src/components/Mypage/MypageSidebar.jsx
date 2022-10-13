@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Route, Routes, NavLink } from "react-router-dom";
 import MypageWrote from "./MypageWrote";
 import MypageLike from "./MypageLike";
+import { phone } from "../../assets/style/Theme";
 
 export default function Home() {
   return (
@@ -26,6 +27,10 @@ const SContentsWrapper = styled.div`
 const SHomeContentsWrapper = styled.div`
   margin: 30px 0 0 0;
   display: flex;
+
+  ${phone(css`
+    justify-content: space-around;
+  `)}
 `;
 
 const SHomeContentsLink = styled(NavLink)`
@@ -47,4 +52,8 @@ const SHomeContentsLink = styled(NavLink)`
     /* top: 2px; */
     font-weight: 900;
   }
+
+  ${phone(css`
+    font-size: 18px;
+  `)}
 `;
