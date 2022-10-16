@@ -24,9 +24,13 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    axios.defaults.withCredentials = true;
+    // axios.defaults.withCredentials = true;
     axios
-      .post(`${import.meta.env.VITE_API_KEY}/auth/login`, { email, password })
+      .post(
+        `${import.meta.env.VITE_API_KEY}/auth/login`,
+        { email, password },
+        { withCredentials: true }
+      )
       .then((response) => {
         localStorage.setItem("refresh_token", response.data.refresh_token);
         sessionStorage.setItem("access_token", response.data.access_token);

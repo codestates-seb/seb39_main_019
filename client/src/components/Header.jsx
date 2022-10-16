@@ -14,10 +14,11 @@ import Swal from "sweetalert2";
 const Header = () => {
   const { userId, setUserId, setUserNickName, setUserEmail } = useUserInfo();
   const { setSearch } = useStore();
-  const {isLight } = useGlobal();
+  const { isLight } = useGlobal();
   const dropDownRef = useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const navigate = useNavigate();
+  const accessToken = sessionStorage.getItem("access_token");
 
   const getSearch = (e) => {
     if (e.code === "Enter") {
@@ -65,7 +66,7 @@ const Header = () => {
           <Toggle />
           <Menubar onClick={() => setIsOpen(!isOpen)} />
           <ul ref={dropDownRef} className={isOpen ? "active" : "menu"}>
-            {userId ? (
+            {accessToken ? (
               <>
                 <li>
                   <Link to='/post'>글작성하기</Link>

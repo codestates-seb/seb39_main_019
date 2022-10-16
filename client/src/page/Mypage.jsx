@@ -39,10 +39,11 @@ const Diveder = styled.div`
   height: 0.5px;
   background-color: #979797;
   ${phone(css`
-    width: 90%;
+    width: 95%;
+    margin: 0 20px;
   `)}
 `;
 
 const MypageBodyPart = styled.div`
-padding-bottom: 90px;
+  padding-bottom: 90px;
 `;

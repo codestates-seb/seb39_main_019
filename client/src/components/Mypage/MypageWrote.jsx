@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import instance from "../../api/core/default";
 import MypageWroteItem from "../Mypage/MypageWroteItem";
 import Swal from "sweetalert2";
+import { phone } from "../../assets/style/Theme";
 
 const MypageWrote = () => {
   const [wroteView, setwroteView] = useState([]);
@@ -46,6 +47,10 @@ export default MypageWrote;
 
 const MypageWroteContainer = styled.div`
   margin: 20px;
+
+  ${phone(css`
+    margin: 20px 0;
+  `)}
 `;
 const MypageWroteYes = styled.div`
   display: flex;
