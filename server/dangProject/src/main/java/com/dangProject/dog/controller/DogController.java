@@ -6,7 +6,6 @@ import com.dangProject.dog.dto.DogValidationPostDto;
 import com.dangProject.dog.service.DogService;
 import com.dangProject.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.parser.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,7 +25,7 @@ public class DogController {
     private final MemberService memberService;
 
     @PostMapping("/validation")
-    public ResponseEntity registerDogNum(@RequestBody DogValidationPostDto dogValidationPostDto) throws IOException, ParseException {
+    public ResponseEntity registerDogNum(@Valid @RequestBody DogValidationPostDto dogValidationPostDto) throws IOException {
         dogService.registerRegNo(dogValidationPostDto);
         return new ResponseEntity<>("견주 인증이 완료되었습니다.", HttpStatus.OK);
     }

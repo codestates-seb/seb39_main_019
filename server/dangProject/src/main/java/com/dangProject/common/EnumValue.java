@@ -1,4 +1,6 @@
-package com.dangProject.post.option;
+package com.dangProject.common;
+
+import com.dangProject.common.EnumModel;
 
 public class EnumValue {
     private String key;

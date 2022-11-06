@@ -1,4 +1,4 @@
-package com.dangProject.security;
+package com.dangProject.security.config;
 
 import com.dangProject.security.handler.CustomAccessDeniedHandler;
 import com.dangProject.security.handler.CustomAuthenticationEntryPoint;
@@ -82,7 +82,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().disable()
                 .formLogin().disable()
-//                .cors().disable()
                 .csrf().disable()
                 .headers().frameOptions().disable()
 
@@ -121,7 +120,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 
-    @Override
+/*    @Override
     public void configure(WebSecurity web) throws Exception {
         web.httpFirewall(defaultHttpFirewall());
     }
@@ -129,5 +128,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public HttpFirewall defaultHttpFirewall() {
         return new DefaultHttpFirewall();
-    }
+    }*/
 }

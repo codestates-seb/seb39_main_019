@@ -9,9 +9,15 @@ import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler
+
+    @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ExceptionResponse handleConstraintViolationException(ConstraintViolationException e) {
         return ExceptionResponse.of(400, e.getMessage());
+    }
+
+    @ExceptionHandler(BusinessLogicException.class)
+    public ExceptionResponse handleBusinessLogicException(BusinessLogicException e) {
+        return ExceptionResponse.of(e.getExceptionCode().getStatus(), e.getMessage());
     }
 }

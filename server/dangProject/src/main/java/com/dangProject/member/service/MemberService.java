@@ -128,7 +128,6 @@ public class MemberService {
         //refresh token 삭제
         Long memberId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         redisRepository.deleteValue(String.valueOf(memberId));
-
     }
 
     //회원 정보 검증
@@ -144,16 +143,31 @@ public class MemberService {
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
+    //이메일로 멤버 정보 찾기
     public MemberResponse findMemberByEmail(String email) {
         return memberRepository.findByEmail(email)
                 .map(MemberResponse::of)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
+    //이메일 존재 여부 확인
     public boolean existsByEmail(String email) {
         return memberRepository.existsByEmail(email);
     }
 
+    //이메일 중복 검사
+    public void verifyExistsEmail(String email) {
+        if (memberRepository.existsByEmail(email)) {
+            throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
+        }
+    }
+
+    //닉네임 중복 검사
+    public void verifyExistsNickname(String nickname) {
+        if (memberRepository.existsByNickname(nickname)) {
+            throw new BusinessLogicException(ExceptionCode.NICKNAME_EXISTS);
+        }
+    }
     //내가 작성한 게시글 불러오기
     public List<PostPageResponseDto> getMyPosts(Long id) {
         List<PostPageResponseDto> postDtoList = new ArrayList<>();
