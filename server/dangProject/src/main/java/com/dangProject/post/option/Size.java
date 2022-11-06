@@ -3,9 +3,9 @@ package com.dangProject.post.option;
 import com.dangProject.common.EnumModel;
 
 public enum Size implements EnumModel {
-    SMALL("# 소형견"),
-    MIDDLE("# 중형견"),
-    LARGE("# 대형견");
+    SMALL("소형견"),
+    MIDDLE("중형견"),
+    LARGE("대형견");
 
     public String value;
 

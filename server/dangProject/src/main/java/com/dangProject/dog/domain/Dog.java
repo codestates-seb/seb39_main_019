@@ -25,7 +25,7 @@ public class Dog extends BaseTime {
     private String sexNm;
     private int age;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String dogRegNo;
 
     @ManyToOne
