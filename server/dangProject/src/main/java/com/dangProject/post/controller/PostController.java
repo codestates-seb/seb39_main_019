@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +31,6 @@ public class PostController {
     }
 
     // 게시글 상세조회
-    //견주 인증 한 회원 권한은 CERTIFIED
-    //견주 인증 하지 않은 회원 권한은 UNCERTIFIED
     @PreAuthorize("hasAuthority('CERTIFIED')")
     @GetMapping({"/v1/posts/{id}"})
     public ResponseEntity<PostTotalResponseDto> findPost(@PathVariable Long id) {
@@ -49,5 +48,12 @@ public class PostController {
     public ResponseEntity deletePost(@PathVariable Long id) {
         postService.deletePost(id);
         return new ResponseEntity("게시글 삭제 완료.",HttpStatus.NO_CONTENT);
+    }
+
+    //로그인 한 사용자가 자신이 작성한 게시글 조회
+    @GetMapping("/v1/posts/me")
+    public ResponseEntity<List<PostPageResponseDto>> getMyPosts() {
+        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(postService.getMyPosts(id));
     }
 }

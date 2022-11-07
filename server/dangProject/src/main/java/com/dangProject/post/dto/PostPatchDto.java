@@ -16,7 +16,7 @@ public class PostPatchDto {
     private String guName;
     private String content;
 
-    @Builder
+    //@Builder
     public PostPatchDto(String title, Personality personality, Size size, String guName, String content) {
         this.title = title;
         this.personality = personality;

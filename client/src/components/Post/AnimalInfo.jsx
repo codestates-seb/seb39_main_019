@@ -44,6 +44,7 @@ height: 100%;
       margin: 0px;
       border: none;
       border-bottom: 1px solid #ddd;
+      border-radius: 5px;
       text-indent: 5px;
       &:focus {outline: none;}
      }
@@ -66,6 +67,7 @@ height: 100%;
      }
      & input,select,textarea{
     margin-left: 15px;
+    background-color: ${(props)=>props.theme.bgInput};
    }
    }
 

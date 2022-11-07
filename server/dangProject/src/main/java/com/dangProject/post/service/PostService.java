@@ -1,5 +1,8 @@
 package com.dangProject.post.service;
 
+import com.dangProject.comment.domain.Comment;
+import com.dangProject.comment.dto.CommentResponseDto;
+import com.dangProject.comment.repository.CommentRepository;
 import com.dangProject.dog.domain.Dog;
 import com.dangProject.exception.BusinessLogicException;
 import com.dangProject.exception.ExceptionCode;
@@ -25,6 +28,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final ImageService imageService;
     private final MemberRepository memberRepository;
+    private final CommentRepository commentRepository;
 
     public PostResponseDto savePost(PostRequestDto postRequestDto) {
         // 로그인한 사용자 id Post에 저장 -> Post 저장 -> postId Image에 저장
@@ -42,27 +46,41 @@ public class PostService {
 
     // patchDto 사용
     public PostResponseDto patchPost(PostPatchDto patch, Long id) {
-        Post post = postRepository.findById(id).orElseThrow(()-> new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
+        Post post = postRepository.findById(id).orElseThrow(()-> new BusinessLogicException(ExceptionCode.POST_NOT_CHANGE));
         post.update(id, patch);
         postRepository.save(post);
         List<String> imgUrlList = imageService.findUrlByPostId(id);
-        return new PostResponseDto(post, imgUrlList);
+        return new PostResponseDto(post, post.getModifiedAt(), imgUrlList);
     }
 
 
     public PostTotalResponseDto findById(Long id) {
-        // 1. postId 로 post 정보 가지고오기
-        // 2. post에서 회원정보, 회원강아지 정보 가지고오기
-        // 3. post에 저장된 이미지 url 리스트 가지고 오기
-        Post post = postRepository.findById(id).get();  // 1
 
-        // 특정 강아지 정보를 조회할 수 있어야함. 그러려면 member에서 등록된 강아지를 리스트로 받는게 아니라 특정 강아지 정보를 받아야함
+        Post postBeforeCount = postRepository.findById(id).get();
+
+        int viewCount = postBeforeCount.getView() + 1;
+        postBeforeCount.updateView(viewCount);
+        postRepository.save(postBeforeCount);
+
+        Post post = postRepository.findById(id).get();
         List<Dog> dogList = post.getMember().getDogList();
+
         if(dogList.size() != 0){
             Dog dog = dogList.get(0);
             Long memberId = post.getMember().getId();
 
-            List<String> imgUrlList = imageService.findUrlByPostId(post.getId());
+            List<String> imgUrlList = imageService.findUrlByPostId(id);
+            List<Comment> commentList = commentRepository.findAllByPostId(id);
+            List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
+            for (Comment comment : commentList) {
+                commentResponseDtoList.add(
+                        CommentResponseDto.builder()
+                                .id(comment.getId())
+                                .nickname(comment.getMember().getNickname())
+                                .content(comment.getContent())
+                                .date(comment.getCreatedAt())
+                                .build());
+            }
 
             PostTotalResponseDto response = PostTotalResponseDto.builder()
                     .id(post.getId())
@@ -77,7 +95,10 @@ public class PostService {
                     .size(post.getSize().getValue())
                     .guName(post.getGuName())
                     .content(post.getContent())
+                    .view(post.getView())
+                    .date(post.getCreatedAt())
                     .imgUrlList(imgUrlList)
+                    .commentList(commentResponseDtoList)
                     .build();
 
             return response;
@@ -121,7 +142,8 @@ public class PostService {
 
 
     public void deletePost(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post does not exist"));
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Post does not exist"));
         postRepository.delete(post);
     }
 
@@ -129,5 +151,24 @@ public class PostService {
     public Post verifyPost(Long id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
+    }
+
+    // 로그인한 사용자가 작성한 게시글 조회2
+    public List<PostPageResponseDto> getMyPosts(Long id) {
+        List<PostPageResponseDto> postDtoList = new ArrayList<>();
+        List<Post> postList = postRepository.findAllByMemberId(id);
+
+        for (Post post : postList) {
+            postDtoList.add(
+                    PostPageResponseDto.builder()
+                            .postId(post.getId())
+                            .title(post.getTitle())
+                            .personality(post.getPersonality().getValue())
+                            .size(post.getSize().getValue())
+                            .guName(post.getGuName())
+                            .imgUrl(imageService.findThmUrlByPostId(post.getId()))
+                            .build());
+        }
+        return postDtoList;
     }
 }

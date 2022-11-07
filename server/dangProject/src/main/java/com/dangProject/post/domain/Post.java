@@ -1,6 +1,7 @@
 package com.dangProject.post.domain;
 
 import com.dangProject.audit.BaseTime;
+import com.dangProject.comment.domain.Comment;
 import com.dangProject.post.image.domain.Image;
 import com.dangProject.member.domain.Member;
 import com.dangProject.post.dto.PostPatchDto;
@@ -43,8 +44,14 @@ public class Post extends BaseTime {
     @Column(nullable = false)
     private String content;
 
+    @Column(nullable = false)
+    private int view;
+
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Image> images = new ArrayList<>();
+    private List<Image> imageList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> commentList = new ArrayList<>();
 
     @ManyToOne
     @JsonBackReference
@@ -67,6 +74,10 @@ public class Post extends BaseTime {
         this.size = patch.getSize();
         this.guName = patch.getGuName();
         this.content = patch.getContent();
+    }
+
+    public void updateView(int viewCount) {
+        this.view = viewCount;
     }
 
     public void saveMember(Member member) {

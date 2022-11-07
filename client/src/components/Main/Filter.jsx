@@ -45,8 +45,10 @@ export default Filter
 
 const FilterContainer = styled.div`
 width: 100%;
-padding: 40px 0; 
-
+padding: 30px 0; 
+@media screen and (max-width:425px){
+      padding: 20px 0 10px 0;
+  }
   button{
     padding: 10px 15px;
     margin-right: 10px;
@@ -65,26 +67,35 @@ padding: 40px 0;
       transform: scale(1.05);
     }
   }
-  
 `
 const FilterBox = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  /* padding-right: 200px; */
+
   @media screen and (max-width:953px){
-    flex-direction:column;
+
     button{
       margin-top: 10px;
+      font-size: 15px;
+        padding: 10px;
     }
   }
-  @media screen and (max-width:463px){
-    flex-direction:column;
-    margin: -30px 0;
+  @media screen and (max-width:772px){
     button{
-      font-size: 15px;
-      padding: 3px 5px;
+      font-size: 13px;
+      padding:5px;
     }
+  }
+  @media screen and (max-width:425px){
+       button{
+      font-size: 15px;
+      font-weight: 700;
+      padding:10px;
+      }
+     }
+  @media screen and (max-width:425px){
+      justify-content: start; 
   }
   & >div{
     display: flex;
@@ -94,7 +105,7 @@ const FilterBox = styled.div`
       border: none;
       font-size: 16px;
       height: 50px;
-      /* margin-top: 10px; */
+      margin-bottom: 5px;
       text-align: center;
       cursor: pointer;
       option {
@@ -104,19 +115,16 @@ const FilterBox = styled.div`
       &:focus {outline: none}
       @media screen and (max-width:953px){
       margin-top: 10px;
-      height: 115px;
-     }
-     @media screen and (max-width:531px){
+      height: 50px;
       font-size: 15px;
-      height: 180px;
      }
-     @media screen and (max-width:463px){
-      font-size: 15px;
-      height: 86px;
+     @media screen and (max-width:772px){
+      font-size: 13px;
+      height: 40px;
      }
-     @media screen and (max-width:407px){
-      font-size: 15px;
-      height: 137px;
+     @media screen and (max-width:425px){
+      font-size :15px ;
+      height: 50px;
      }
     }
   }
@@ -140,10 +148,21 @@ const Filters = styled.div`
       color: ${(props)=>props.theme.textColor}; 
       background-color: ${(props)=>props.theme.HeaderColor};
     }
-    @media screen and (max-width:463px){
+    @media screen and (max-width:953px){
       button{
         font-size: 15px;
-        padding: 3px 5px;
+        padding: 10px;
+      }
+    }
+    @media screen and (max-width:772px){
+      button{
+        font-size: 13px;
+        padding: 5px;
+      }
+    }
+    @media screen and (max-width:416px){
+      button{
+        display: none;
       }
     }
 `

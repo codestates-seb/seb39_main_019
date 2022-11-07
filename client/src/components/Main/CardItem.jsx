@@ -2,17 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
-const CardItem = ({title,guName,id,personality,size,imgUrl}) => {
-const img = imgUrl
+const CardItem = ({title,guName,postId,personality,size,imgUrl}) => {
+
 
  return (
     <ItemContainer>
-     <Link to={`/main/${id}`}>
+     <Link to={`/main/${postId}`}>
       <ItemInner>
         <ImgBox>
           {/* <img src="https://via.placeholder.com/240x220"/> */}
           {/* <img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG"/> */}
-          <div style={{backgroundImage: `url(${img})`}}/>  
+          <div style={{backgroundImage: `url(${imgUrl})`}}/>  
         </ImgBox>
         <TextBox>
           <Title>
@@ -93,5 +93,5 @@ const SubTitle = styled.div`
   font-size: 11px;
   display: flex;
   justify-content: space-between;
-  color: #535353;
+  color: ${(props)=>props.theme.subTitle}
 `

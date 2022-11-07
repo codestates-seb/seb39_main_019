@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import useStore from "../store/globalStore";
+import useGlobal from "../store/globalStore";
 
 const ToggleContainer = styled.div`
   position: relative;
@@ -42,7 +42,8 @@ const ToggleContainer = styled.div`
 `;
 
 export const Toggle = () => {
-  const { isLight, setIsLight } = useStore();
+  const { isLight, setIsLight } = useGlobal();
+
 
   const toggleHandler = () => {
      if(isLight===true){

@@ -54,13 +54,6 @@ public class MemberController {
         return ResponseEntity.ok(memberService.findMember(id));
     }
 
-    //로그인한 사용자가 작성한 게시글 조회
-    @GetMapping("/me/posts")
-    public ResponseEntity<List<PostPageResponseDto>> getMyPosts() {
-        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return ResponseEntity.ok(memberService.getMyPosts(id));
-    }
-
     //회원탈퇴
     @DeleteMapping("/me")
     public ResponseEntity deleteMember() {

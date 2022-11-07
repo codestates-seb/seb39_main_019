@@ -37,12 +37,9 @@ const Signup = () => {
   const regiSubmitHandler = async (e) => {
     e.preventDefault();
 
-    // await postRegister(nickname, regiEmail, regiPassword);
-
     await axios({
       method: "post",
-      url: "api/auth/signup",
-      // url: "http://localhost:3001/signup",
+      url: `${import.meta.env.VITE_API_KEY}/auth/signup`,
       data: {
         nickname: nickname,
         email: regiEmail,
@@ -51,12 +48,10 @@ const Signup = () => {
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res);
-        // localStorage.setItem("memberId", res.data.memberId);
         setSuccess(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err); // 모든 에러코드 500으로 동일
         Swal.fire({
           icon: "error",
           text: "중복된 닉네임이나 이미 존재하는 이메일입니다",
@@ -92,6 +87,7 @@ const Signup = () => {
                 ref={nicknameRef}
                 onChange={(e) => setNickname(e.target.value)}
                 required
+                autoComplete='username'
                 value={nickname}
               ></input>
             </div>
@@ -102,6 +98,7 @@ const Signup = () => {
                 id='email'
                 onChange={(e) => setRegiEmail(e.target.value)}
                 required
+                autoComplete='username'
                 value={regiEmail}
               ></input>
             </div>
@@ -112,6 +109,7 @@ const Signup = () => {
                 id='password'
                 value={regiPassword}
                 onChange={(e) => setRegiPassword(e.target.value)}
+                autoComplete='new-password'
                 required
               ></input>
             </div>
@@ -134,6 +132,7 @@ const Signup = () => {
                 id='checkpassword'
                 onChange={(e) => setMatchRegiPassword(e.target.value)}
                 required
+                autoComplete='new-password'
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
               ></input>
