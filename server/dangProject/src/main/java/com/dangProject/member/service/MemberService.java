@@ -168,22 +168,4 @@ public class MemberService {
             throw new BusinessLogicException(ExceptionCode.NICKNAME_EXISTS);
         }
     }
-    //내가 작성한 게시글 불러오기
-    public List<PostPageResponseDto> getMyPosts(Long id) {
-        List<PostPageResponseDto> postDtoList = new ArrayList<>();
-        List<Post> postList = postRepository.findAllByMemberId(id);
-
-        for (Post post : postList) {
-            postDtoList.add(
-                    PostPageResponseDto.builder()
-                            .postId(post.getId())
-                            .title(post.getTitle())
-                            .personality(post.getPersonality().getValue())
-                            .size(post.getSize().getValue())
-                            .guName(post.getGuName())
-                            .imgUrl(imageService.findThmUrlByPostId(post.getId()))
-                            .build());
-        }
-        return postDtoList;
-    }
 }
