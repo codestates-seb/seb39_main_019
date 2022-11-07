@@ -19,11 +19,11 @@ const ProfileEdit = ({
   const nameRef = useRef();
   const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
-  const { userInfo, setUserInfo, userNickName, userEmail, setUserNickName } =
+  const { setUserId, userNickName, userEmail, setUserNickName, setUserEmail } =
     useUserInfo();
 
   if (!isProfileShow) return null;
-  console.log(nickname);
+
   const InfoHandler = () => {
     instance({
       method: "patch",
@@ -33,7 +33,6 @@ const ProfileEdit = ({
       },
     })
       .then((response) => {
-        console.log(response);
         setUserNickName(response);
       })
       .catch((err) => {
@@ -58,7 +57,6 @@ const ProfileEdit = ({
           url: "/api/me",
         })
           .then((res) => {
-            console.log(res);
             localStorage.clear();
             sessionStorage.clear();
           })
@@ -67,7 +65,9 @@ const ProfileEdit = ({
           });
 
         Swal.fire("그동안 이용해주셔서 감사합니다.", "", "success");
-        setUserInfo(0);
+        setUserId("");
+        setUserNickName("");
+        setUserEmail("");
         navigate("/");
       } else if (result.isDenied) {
         Swal.fire("회원탈퇴가 되지 않았어요.", "", "info");

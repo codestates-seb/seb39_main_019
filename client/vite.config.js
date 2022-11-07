@@ -10,24 +10,4 @@ export default defineConfig({
       this: "window",
     },
   },
-  server: {
-    proxy: {
-      // with options
-      "/api": {
-        target: "http://43.200.20.180:8080",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-      "/kakao": {
-        target: "http://43.200.20.180:8080/oauth2/login/callback/kakao",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/kakao/, ""),
-      },
-      "/dog": {
-        target: "http://apis.data.go.kr/1543061/animalInfoSrvc",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/dog/, ""),
-      },
-    },
-  },
 });

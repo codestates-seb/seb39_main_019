@@ -5,12 +5,14 @@ const useStore = create((set)=>({
   data:[],
   index:0,
   filter:'',
+  search: '',
   setFilter:(input) =>set(()=>({filter:input})),
   setData: async()=>{
     const response = await axios.get(`http://localhost:3001/content`)
     set({data: response.data})
   },
-  setIndex:((input)=>set({index:input}))
+  setSearch : (input) => set(()=>({search:input})),
+  setIndex:((input)=>set({index:input})),
 }))
 
   

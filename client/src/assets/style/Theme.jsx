@@ -8,10 +8,10 @@ export const lightTheme = {
   HeLogoColor2: "#f95c5c",
   Footerbg: "#fdfdfd",
   Boder: "#ececec",
+  bgInput : '#fff',
+  subTitle : '#686868',
 };
-//'#3cd5aec5'
-//#3183f7
-//
+
 
 export const darkTheme = {
 
@@ -21,20 +21,21 @@ export const darkTheme = {
   HeLogoColor:'#ffffff',
   Footerbg:"#152642",
   Boder:"#2F4562",
+  bgInput : '#dbdbdb' ,
+  subTitle : '#b4b4b4' ,
 }
-// 원본 
-// bgColor : '#131213',
-// textColor : '#fff',
-// HeaderColor:'#202124',
-// HeLogoColor:'#ffffff',
-// Footerbg:"#090809",
-// Boder:"#000000",
 
 
 
 
 export const phone = (e) => css`
   @media screen and (max-width: 480px) {
+    ${e}
+  }
+`;
+
+export const middle = (e) => css`
+  @media screen and (max-width:680px){
     ${e}
   }
 `;
