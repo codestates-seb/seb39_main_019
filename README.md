@@ -38,6 +38,10 @@
 
 <br>
 
+### [기능시연 및 팀원 역할 소개](https://flint-quasar-e24.notion.site/Puppy-Buddy-6ae1f6c4694649dab1d0eec02d4cb8cd)
+
+<br>
+
 ## 👩‍💻Tech Stack
 
 ### **Back-end & Front-end** 
