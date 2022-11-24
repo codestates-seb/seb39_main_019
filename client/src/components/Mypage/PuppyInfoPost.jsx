@@ -65,7 +65,7 @@ const PuppyInfoPost = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [allData]);
+  }, []);
 
   return (
     <PuppyInfoPostContainer>
