@@ -2,17 +2,11 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: `${import.meta.env.VITE_API_KEY}`,
-  // baseURL: "http://localhost:3001/",
-  // baseURL: process.env.REACT_APP_DB_HOST,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": "*",
   },
-  // headers: {
-  //   "Content-Type": "application/json; charset=utf-8",
-  // },
-  // config.headers["Content-Type"] = "application/json; charset=utf-8";
   withCredentials: true,
 });
 
