@@ -55,7 +55,6 @@ const Login = () => {
           });
       })
       .catch((err) => {
-        console.log(err);
         Swal.fire({
           icon: "error",
           text: "로그인 실패!",
