@@ -19,7 +19,6 @@ const MypageWrote = () => {
         setwroteView(response.sort((a, b) => b.postId - a.postId));
       })
       .catch((err) => {
-        console.log(err);
         Swal.fire({
           icon: "error",
           text: "글을 불러올 수 없습니다.",

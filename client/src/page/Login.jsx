@@ -55,7 +55,6 @@ const Login = () => {
           });
       })
       .catch((err) => {
-        console.log(err);
         Swal.fire({
           icon: "error",
           text: "로그인 실패!",
@@ -67,7 +66,7 @@ const Login = () => {
   const socialAlert = () => {
     Swal.fire({
       icon: "info",
-      text: "미완성 기능입니다",
+      text: "준비중인 기능입니다",
     });
   };
 
