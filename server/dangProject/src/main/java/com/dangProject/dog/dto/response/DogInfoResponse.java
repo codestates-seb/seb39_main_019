@@ -1,4 +1,4 @@
-package com.dangProject.dog.dto;
+package com.dangProject.dog.dto.response;
 
 import com.dangProject.dog.domain.Dog;
 import lombok.*;
@@ -18,5 +18,4 @@ public class DogInfoResponse {
     public static DogInfoResponse of(Dog dog) {
         return new DogInfoResponse(dog.getId(), dog.getDogNm(), dog.getBreed(), dog.getSexNm(), dog.getAge());
     }
-
 }

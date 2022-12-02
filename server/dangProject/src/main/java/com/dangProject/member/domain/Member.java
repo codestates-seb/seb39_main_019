@@ -1,7 +1,9 @@
 package com.dangProject.member.domain;
 
 import com.dangProject.audit.BaseTime;
+import com.dangProject.comment.domain.Comment;
 import com.dangProject.dog.domain.Dog;
+import com.dangProject.likes.domain.Likes;
 import com.dangProject.post.domain.Post;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -22,7 +24,6 @@ public class Member extends BaseTime {
     @Column(unique = true, nullable = false, length = 150)
     private String email;
 
-    //    @Column(nullable = false) -> 소셜 회원 가입 하려면 빈 값으로 들어오게 해야함
     private String password;
 
     @Column(unique = true, nullable = false, length = 50)
@@ -38,13 +39,21 @@ public class Member extends BaseTime {
     @Enumerated(value = EnumType.STRING)
     private MemberRole role;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL) //한 번에 삭제되게 하기 위해, 정보도 한 번에 불러오려고 이렇게 설정.
     @JsonManagedReference
-    private List<Dog> dogList = new ArrayList<>();
+    private List<Dog> dogList = new ArrayList<Dog>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Post> postList = new ArrayList<>();
+    private List<Post> postList = new ArrayList<Post>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Comment> commentList = new ArrayList<Comment>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Likes> likesList = new ArrayList<Likes>();
 
     @Builder
     public Member(String email, String password, String nickname, MemberStatus memberStatus, MemberType type, MemberRole role) {

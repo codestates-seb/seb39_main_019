@@ -1,7 +1,7 @@
 package com.dangProject.security.oauth;
 
 import com.dangProject.member.domain.MemberType;
-import com.dangProject.member.dto.request.MemberPostDto;
+import com.dangProject.member.dto.request.MemberRequestDto;
 import com.dangProject.member.dto.response.MemberResponse;
 import com.dangProject.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class CustomOauth2UserService implements OAuth2UserService<OAuth2UserRequ
         if (memberService.existsByEmail(oAuth2Attribute.getEmail())) {
             member = memberService.findMemberByEmail(oAuth2Attribute.getEmail());
         } else {
-            MemberPostDto registerRequest =  new MemberPostDto(oAuth2Attribute.getEmail(), "", oAuth2Attribute.getNickname());
+            MemberRequestDto registerRequest =  new MemberRequestDto(oAuth2Attribute.getEmail(), "", oAuth2Attribute.getNickname());
             MemberType memberType = MemberType.valueOf(oAuth2Attribute.getProvider().toUpperCase());
             member = memberService.registerSocial(registerRequest, memberType);
             oAuth2AttributeRepository.save(oAuth2Attribute);

@@ -1,6 +1,7 @@
-package com.dangProject.post.dto;
+package com.dangProject.post.dto.response;
 
 import com.dangProject.comment.dto.CommentResponseDto;
+import com.dangProject.post.domain.Post;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -27,6 +28,7 @@ public class PostTotalResponseDto {
     private int view;
 
     private String date;
+    private String status;
 
     private List<String> imgUrlList;
 
@@ -34,7 +36,7 @@ public class PostTotalResponseDto {
 
 
     @Builder
-    public PostTotalResponseDto(Long id, Long memberId, String nickname, String dogNm, String breed, String sexNm, int age, String title, String personality, String size, String guName, String content, int view, LocalDateTime date, List<String> imgUrlList, List<CommentResponseDto> commentList) {
+    public PostTotalResponseDto(Long id, Long memberId, String nickname, String dogNm, String breed, String sexNm, int age, String title, String personality, String size, String guName, String content, int view, LocalDateTime date, List<String> imgUrlList, Post.PostStatus status, List<CommentResponseDto> commentList) {
         this.id = id;
         this.memberId = memberId;
         this.nickname = nickname;
@@ -49,6 +51,7 @@ public class PostTotalResponseDto {
         this.content = content;
         this.view = view;
         this.date = date.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        this.status = status.getStatus();
         this.imgUrlList = imgUrlList;
         this.commentList = commentList;
     }

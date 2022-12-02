@@ -46,16 +46,7 @@ public class CommentService {
         comment.update(id, commentRequestDto.getComment());
         commentRepository.save(comment);
 
-        Comment savedComment = commentRepository.findById(id).get();
-
-        CommentResponseDto response = CommentResponseDto.builder()
-                .id(id)
-                .nickname(savedComment.getMember().getNickname())
-                .content(savedComment.getContent())
-                .date(savedComment.getModifiedAt())
-                .build();
-
-        return response;
+        return new CommentResponseDto(comment);
     }
 
     public void deleteComment(Long id) {

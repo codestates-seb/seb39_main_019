@@ -1,9 +1,11 @@
 package com.dangProject.dog.service;
 
 import com.dangProject.dog.domain.Dog;
-import com.dangProject.dog.dto.DogInfoPatchDto;
-import com.dangProject.dog.dto.DogResponse;
-import com.dangProject.dog.dto.DogValidationPostDto;
+import com.dangProject.dog.dto.request.DogInfoRequestDto;
+import com.dangProject.dog.dto.request.DogInfoUpdateDto;
+import com.dangProject.dog.dto.response.DogInfoResponse;
+import com.dangProject.dog.dto.response.DogResponse;
+import com.dangProject.dog.dto.request.DogValidationRequestDto;
 import com.dangProject.dog.repository.DogRepository;
 import com.dangProject.exception.BusinessLogicException;
 import com.dangProject.exception.ExceptionCode;
@@ -19,9 +21,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.time.LocalDate;
 import java.util.Optional;
 
-//@Transactional
 @Service
 @RequiredArgsConstructor
 public class DogService {
@@ -36,9 +38,10 @@ public class DogService {
     private final MemberService memberService;
 
     //견주 인증
-    public Dog registerRegNo(DogValidationPostDto dogValidationPostDto) throws UnsupportedEncodingException {
-        String regNo = dogValidationPostDto.getDog_reg_no();
-        String owner = dogValidationPostDto.getOwner_nm();
+    @Transactional
+    public Dog registerRegNo(DogValidationRequestDto dogValidationRequestDto) throws UnsupportedEncodingException {
+        String regNo = dogValidationRequestDto.getDog_reg_no();
+        String owner = dogValidationRequestDto.getOwner_nm();
 
         String decodeServiceKey = URLDecoder.decode(key, "UTF-8");
 
@@ -51,39 +54,56 @@ public class DogService {
         JSONObject jsonObject = new JSONObject(result);
         JSONObject response = jsonObject.getJSONObject("response");
         JSONObject body = response.getJSONObject("body");
-        Long memberId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (!body.isEmpty()) {
-            verifyDogRegNo(dogValidationPostDto.getDog_reg_no());
+            verifyDogRegNo(dogValidationRequestDto.getDog_reg_no());
             return dogRepository.save(Dog.builder()
-                    .dogRegNo(dogValidationPostDto.getDog_reg_no())
-                    .member(memberService.verifyMember(memberId))
+                    .dogRegNo(dogValidationRequestDto.getDog_reg_no())
+                    .member(memberService.verifyMember(dogValidationRequestDto.getMemberId()))
                     .build());
         } else throw new BusinessLogicException(ExceptionCode.DOG_INFO_NOT_VALID);
     }
 
     //강아지 정보 등록
     @Transactional
-    public Dog addDog(DogInfoPatchDto dogInfoPatchDto) {
+    public Dog editDog(DogInfoRequestDto dogInfoRequestDto) {
 
-        Dog findDog = dogRepository.getById(dogInfoPatchDto.getId());
+        Dog findDog = dogRepository.getById(dogInfoRequestDto.getId());
 
-        Optional.ofNullable(dogInfoPatchDto.getDogNm())
+        Optional.ofNullable(dogInfoRequestDto.getDogNm())
                 .ifPresent(findDog::setDogNm);
-        Optional.ofNullable(dogInfoPatchDto.getBreed())
+        Optional.ofNullable(dogInfoRequestDto.getBreed())
                 .ifPresent(findDog::setBreed);
-        Optional.ofNullable(dogInfoPatchDto.getSexNm())
+        Optional.ofNullable(dogInfoRequestDto.getSexNm())
                 .ifPresent(findDog::setSexNm);
-        Optional.of(dogInfoPatchDto.getAge())
+        Optional.of((LocalDate.now().getYear() - dogInfoRequestDto.getAge() + 1))
                 .ifPresent(findDog::setAge);
 
         return findDog;
     }
 
+    //로그인 후 강아지 정보 수정
+    @Transactional
+    public Dog updateDog(DogInfoUpdateDto dogInfoUpdateDto) {
+
+        Dog myDog = dogRepository.getById(dogInfoUpdateDto.getId());
+
+        Optional.ofNullable(dogInfoUpdateDto.getDogNm())
+                .ifPresent(myDog::setDogNm);
+        Optional.ofNullable(dogInfoUpdateDto.getBreed())
+                .ifPresent(myDog::setBreed);
+        Optional.ofNullable(dogInfoUpdateDto.getSexNm())
+                .ifPresent(myDog::setSexNm);
+        Optional.of((LocalDate.now().getYear() - dogInfoUpdateDto.getAge() + 1))
+                .ifPresent(myDog::setAge);
+
+        return myDog;
+    }
+
     //특정 강아지 정보 조회
-    public DogResponse findDog(Long id) {
+    public DogInfoResponse findDog(Long id) {
         return dogRepository.findById(id)
-                .map(DogResponse::of)
+                .map(DogInfoResponse::of)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.DOG_NOT_FOUND));
     }
 
@@ -94,7 +114,8 @@ public class DogService {
 
     //동물등록번호 중복검사
     public void verifyDogRegNo(String dog_reg_no) {
-        if(dogRepository.existsByDogRegNo(dog_reg_no))
+        Optional<Dog> dog = dogRepository.findByDogRegNo(dog_reg_no);
+        if(dog.isPresent())
             throw new BusinessLogicException(ExceptionCode.DOG_REG_NO_EXISTS);
     }
 

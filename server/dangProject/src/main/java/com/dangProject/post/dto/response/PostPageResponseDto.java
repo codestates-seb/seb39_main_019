@@ -1,4 +1,4 @@
-package com.dangProject.post.dto;
+package com.dangProject.post.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,16 +10,18 @@ public class PostPageResponseDto {
     private String personality;
     private String size;
     private String guName;
+    private String status;
     private String imgUrl;
 
 
     @Builder
-    public PostPageResponseDto(Long postId, String title, String personality, String size, String guName, String imgUrl) {
+    public PostPageResponseDto(Long postId, String title, String personality, String size, String guName, String status, String imgUrl) {
         this.postId = postId;
         this.title = title;
         this.personality = personality;
         this.size = size;
         this.guName = guName;
+        this.status = status;
         this.imgUrl = imgUrl;
     }
 }

@@ -1,7 +1,7 @@
 package com.dangProject.post.image.domain;
 
-import com.dangProject.audit.BaseTime;
 import com.dangProject.post.domain.Post;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +12,13 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class Image {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;

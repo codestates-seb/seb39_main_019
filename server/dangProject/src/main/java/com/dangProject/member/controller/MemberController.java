@@ -1,10 +1,9 @@
 package com.dangProject.member.controller;
 
-import com.dangProject.member.dto.request.MemberPatchDto;
+import com.dangProject.member.dto.request.MemberUpdateDto;
 import com.dangProject.member.dto.response.MemberDogResponse;
 import com.dangProject.member.dto.response.MemberResponse;
 import com.dangProject.member.service.MemberService;
-import com.dangProject.post.dto.PostPageResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ public class MemberController {
 
     //닉네임 변경
     @PatchMapping("/me")
-    public ResponseEntity<MemberResponse> update(@Valid @RequestBody MemberPatchDto request) {
+    public ResponseEntity<MemberResponse> update(@Valid @RequestBody MemberUpdateDto request) {
         Long memberId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return ResponseEntity.ok(memberService.editProfile(request, memberId));
     }

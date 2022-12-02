@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpServerErrorException;
 
 import javax.validation.ConstraintViolationException;
 
@@ -17,7 +18,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BusinessLogicException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ExceptionResponse handleBusinessLogicException(BusinessLogicException e) {
         return ExceptionResponse.of(e.getExceptionCode().getStatus(), e.getMessage());
     }
+
 }

@@ -1,6 +1,6 @@
 package com.dangProject.member.dto.response;
 
-import com.dangProject.dog.dto.DogInfoResponse;
+import com.dangProject.dog.dto.response.DogInfoResponse;
 import com.dangProject.member.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -6,10 +6,15 @@ import com.dangProject.comment.repository.CommentRepository;
 import com.dangProject.dog.domain.Dog;
 import com.dangProject.exception.BusinessLogicException;
 import com.dangProject.exception.ExceptionCode;
+import com.dangProject.likes.repository.LikesRepository;
 import com.dangProject.member.domain.Member;
 import com.dangProject.member.repository.MemberRepository;
 import com.dangProject.post.domain.Post;
-import com.dangProject.post.dto.*;
+import com.dangProject.post.dto.request.PostRequestDto;
+import com.dangProject.post.dto.request.PostUpdateDto;
+import com.dangProject.post.dto.response.PostPageResponseDto;
+import com.dangProject.post.dto.response.PostResponseDto;
+import com.dangProject.post.dto.response.PostTotalResponseDto;
 import com.dangProject.post.image.service.ImageService;
 import com.dangProject.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,9 +34,11 @@ public class PostService {
     private final ImageService imageService;
     private final MemberRepository memberRepository;
     private final CommentRepository commentRepository;
+    private final LikesRepository likesRepository;
+
 
     public PostResponseDto savePost(PostRequestDto postRequestDto) {
-        // 로그인한 사용자 id Post에 저장 -> Post 저장 -> postId Image에 저장
+
         Long memberId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Member member = memberRepository.findById(memberId).get();
         Post newPost = postRequestDto.toEntity();
@@ -44,18 +51,33 @@ public class PostService {
         return new PostResponseDto(savedPost, savedImgUrlList);
     }
 
-    // patchDto 사용
-    public PostResponseDto patchPost(PostPatchDto patch, Long id) {
-        Post post = postRepository.findById(id).orElseThrow(()-> new BusinessLogicException(ExceptionCode.POST_NOT_CHANGE));
+    // 모집 상태 변경
+    public PostResponseDto updatePostStatus(Long id) {
+        Post post = postRepository.findById(id).get();
+        Post.PostStatus status = post.getStatus();
+
+        if (status.equals(Post.PostStatus.UNCOMPLETED)){
+            post.updateStatus(Post.PostStatus.COMPLETED);
+        } else {
+            post.updateStatus(Post.PostStatus.UNCOMPLETED);
+        }
+
+        Post savedPost = postRepository.save(post);
+        List<String> imgUrlList = imageService.findUrlByPostId(id);
+
+        return new PostResponseDto(savedPost, imgUrlList);
+    }
+
+
+    public PostResponseDto patchPost(PostUpdateDto patch, Long id) {
+        Post post = postRepository.findById(id).orElseThrow(()-> new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
         post.update(id, patch);
         postRepository.save(post);
         List<String> imgUrlList = imageService.findUrlByPostId(id);
         return new PostResponseDto(post, post.getModifiedAt(), imgUrlList);
     }
 
-
     public PostTotalResponseDto findById(Long id) {
-
         Post postBeforeCount = postRepository.findById(id).get();
 
         int viewCount = postBeforeCount.getView() + 1;
@@ -63,8 +85,9 @@ public class PostService {
         postRepository.save(postBeforeCount);
 
         Post post = postRepository.findById(id).get();
-        List<Dog> dogList = post.getMember().getDogList();
 
+        // 특정 강아지 정보를 조회
+        List<Dog> dogList = post.getMember().getDogList();
         if(dogList.size() != 0){
             Dog dog = dogList.get(0);
             Long memberId = post.getMember().getId();
@@ -97,6 +120,7 @@ public class PostService {
                     .content(post.getContent())
                     .view(post.getView())
                     .date(post.getCreatedAt())
+                    .status(post.getStatus())
                     .imgUrlList(imgUrlList)
                     .commentList(commentResponseDtoList)
                     .build();
@@ -117,6 +141,7 @@ public class PostService {
                         .personality(m.getPersonality().getValue())
                         .size(m.getSize().getValue())
                         .guName(m.getGuName())
+                        .status(m.getStatus().getStatus())
                         .imgUrl(imageService.findThmUrlByPostId(m.getId()))
                         .build()
         );
@@ -134,6 +159,7 @@ public class PostService {
                     .personality(post.getPersonality().getValue())
                     .size(post.getSize().getValue())
                     .guName(post.getGuName())
+                    .status(post.getStatus().getStatus())
                     .imgUrl(imageService.findThmUrlByPostId(post.getId()))
                     .build());
         }
@@ -143,7 +169,7 @@ public class PostService {
 
     public void deletePost(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Post does not exist"));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
         postRepository.delete(post);
     }
 
@@ -153,10 +179,12 @@ public class PostService {
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
     }
 
-    // 로그인한 사용자가 작성한 게시글 조회2
-    public List<PostPageResponseDto> getMyPosts(Long id) {
+
+    //로그인한 사용자가 작성한 게시글 조회
+    public List<PostPageResponseDto> findMyPost(Long memberId) {
+
         List<PostPageResponseDto> postDtoList = new ArrayList<>();
-        List<Post> postList = postRepository.findAllByMemberId(id);
+        List<Post> postList = postRepository.findByMemberId(memberId);
 
         for (Post post : postList) {
             postDtoList.add(
@@ -166,9 +194,11 @@ public class PostService {
                             .personality(post.getPersonality().getValue())
                             .size(post.getSize().getValue())
                             .guName(post.getGuName())
+                            .status(post.getStatus().getStatus())
                             .imgUrl(imageService.findThmUrlByPostId(post.getId()))
                             .build());
         }
+
         return postDtoList;
     }
 }

@@ -1,6 +1,11 @@
 package com.dangProject.post.controller;
 
-import com.dangProject.post.dto.*;
+import com.dangProject.likes.service.LikesService;
+import com.dangProject.post.dto.request.PostRequestDto;
+import com.dangProject.post.dto.request.PostUpdateDto;
+import com.dangProject.post.dto.response.PostPageResponseDto;
+import com.dangProject.post.dto.response.PostResponseDto;
+import com.dangProject.post.dto.response.PostTotalResponseDto;
 import com.dangProject.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,22 +17,41 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/posts")
+@RequestMapping
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
+    private final LikesService likesService;
 
     // 게시글 등록
+    //견주 인증 한 회원 권한은 CERTIFIED
+    //견주 인증 하지 않은 회원 권한은 UNCERTIFIED
     @PreAuthorize("hasAuthority('CERTIFIED')")
     @PostMapping("/v1/posts")
     public ResponseEntity<PostResponseDto> savePost(@RequestBody PostRequestDto postRequestDto) {
         return ResponseEntity.ok(postService.savePost(postRequestDto));
     }
 
+    // 모집상태 변경
+    @PatchMapping("v1/posts/status/{id}")
+    @PreAuthorize("hasAuthority('CERTIFIED')")
+    public ResponseEntity<PostResponseDto> updatePostStatus(@PathVariable Long id) {
+        return ResponseEntity.ok(postService.updatePostStatus(id));
+    }
+
+    // 좋아요 클릭
+    @PatchMapping("v1/like/{id}")
+    @PreAuthorize("hasAuthority('CERTIFIED')")
+    public ResponseEntity<Integer> updateLikes(@PathVariable Long id){
+        Long memberId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(likesService.updateLikes(id, memberId));
+    }
+
     // 게시글 수정
     @PatchMapping("/v1/posts/{id}")
-    public ResponseEntity<PostResponseDto> updatePost(@RequestBody PostPatchDto postPatchDto, @PathVariable Long id) {
-        return ResponseEntity.ok(postService.patchPost(postPatchDto, id));
+    @PreAuthorize("hasAuthority('CERTIFIED')")
+    public ResponseEntity<PostResponseDto> updatePost(@RequestBody PostUpdateDto postUpdateDto, @PathVariable Long id) {
+        return ResponseEntity.ok(postService.patchPost(postUpdateDto, id));
     }
 
     // 게시글 상세조회
@@ -45,15 +69,16 @@ public class PostController {
 
     // 게시글 삭제
     @DeleteMapping({"/v1/posts/{id}"})
+    @PreAuthorize("hasAuthority('CERTIFIED')")
     public ResponseEntity deletePost(@PathVariable Long id) {
         postService.deletePost(id);
-        return new ResponseEntity("게시글 삭제 완료.",HttpStatus.NO_CONTENT);
+        return new ResponseEntity("게시글 삭제 완료.",HttpStatus.OK);
     }
 
-    //로그인 한 사용자가 자신이 작성한 게시글 조회
     @GetMapping("/v1/posts/me")
+    @PreAuthorize("hasAuthority('CERTIFIED')")
     public ResponseEntity<List<PostPageResponseDto>> getMyPosts() {
         Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return ResponseEntity.ok(postService.getMyPosts(id));
+        return ResponseEntity.ok(postService.findMyPost(id));
     }
 }

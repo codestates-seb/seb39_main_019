@@ -40,6 +40,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final List<String> JWT_PATHS = List.of("/api/**", "/v1/**");
     private final LoginAuthenticationProvider loginAuthenticationProvider;
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
     private final CustomAuthenticationEntryPoint authenticationEntryPoint;
@@ -47,7 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomOauth2UserService oauth2UserService;
     private final OAuth2MemberSuccessHandler oAuth2SuccessHandler;
     private final ClientRegistrationRepository clientRegistrationRepository;
-    private static final List<String> JWT_PATHS = List.of("/api/**", "/v1/**");
 
     @Bean
     public AuthenticationManager authenticationManager() throws Exception {
@@ -101,7 +101,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .userInfoEndpoint().userService(oauth2UserService)
                 .and().successHandler(oAuth2SuccessHandler)
-
                 .and()
                 .cors();
     }
@@ -120,13 +119,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 
-/*    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.httpFirewall(defaultHttpFirewall());
-    }
-
-    @Bean
-    public HttpFirewall defaultHttpFirewall() {
-        return new DefaultHttpFirewall();
-    }*/
 }

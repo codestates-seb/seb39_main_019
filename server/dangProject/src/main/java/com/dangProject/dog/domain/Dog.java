@@ -16,16 +16,24 @@ import javax.persistence.*;
 @Entity
 public class Dog extends BaseTime {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dog_id")
     private Long id;
 
+    @Column
     private String dogNm;
+
+    @Column
     private String breed;
+
+    @Column
     private String sexNm;
+
+    @Column
     private int age;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String dogRegNo;
 
     @ManyToOne
@@ -41,5 +49,21 @@ public class Dog extends BaseTime {
         this.breed = breed;
         this.age = age;
         this.member = member;
+    }
+
+    public void changeDogName(String dogNm) {
+        this.dogNm = dogNm;
+    }
+
+    public void changeBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void changeSexNm(String sexNm) {
+        this.sexNm = sexNm;
+    }
+
+    public void changeAge(int age) {
+        this.age = age;
     }
 }

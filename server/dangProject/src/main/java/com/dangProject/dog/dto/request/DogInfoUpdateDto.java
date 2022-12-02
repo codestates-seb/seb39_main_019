@@ -1,13 +1,14 @@
-package com.dangProject.dog.dto;
+package com.dangProject.dog.dto.request;
 
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DogInfoPatchDto {
-
+public class DogInfoUpdateDto {
     private Long id;
     private String dogNm;
     private String breed;
@@ -15,7 +16,7 @@ public class DogInfoPatchDto {
     private int age;
 
     @Builder
-    public DogInfoPatchDto(String dogNm, String breed, String sexNm, int age) {
+    public DogInfoUpdateDto(String dogNm, String breed, String sexNm, int age) {
         this.dogNm = dogNm;
         this.breed = breed;
         this.sexNm = sexNm;

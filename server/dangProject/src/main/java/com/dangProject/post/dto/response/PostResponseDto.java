@@ -1,4 +1,4 @@
-package com.dangProject.post.dto;
+package com.dangProject.post.dto.response;
 
 import com.dangProject.post.domain.Post;
 import lombok.Getter;
@@ -17,11 +17,10 @@ public class PostResponseDto {
     private String guName;
     private String content;
     private int view;
-
     private String date;
+    private String status;
     private List<String> imgUrl;
 
-//    private List<Comment> commentList;
 
     public PostResponseDto(Post entity, List<String> savedImgUrlList) {
         this.id = entity.getId();
@@ -32,6 +31,7 @@ public class PostResponseDto {
         this.content = entity.getContent();
         this.view = entity.getView();
         this.date = entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        this.status = entity.getStatus().getStatus();
         this.imgUrl = savedImgUrlList;
     }
 
@@ -44,6 +44,7 @@ public class PostResponseDto {
         this.content = entity.getContent();
         this.view = entity.getView();
         this.date = modifiedAt.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        this.status = entity.getStatus().getStatus();
         this.imgUrl = savedImgUrlList;
     }
 }

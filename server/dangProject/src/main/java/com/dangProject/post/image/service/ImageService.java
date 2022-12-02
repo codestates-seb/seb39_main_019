@@ -40,6 +40,7 @@ public class ImageService {
 
         for (MultipartFile multipartFile : multipartFiles) {
             ImageResponseDto imageResponseDto = saveFile(multipartFile);
+
             imageResponseDtoList.add(imageResponseDto);
         }
         return imageResponseDtoList;
@@ -57,10 +58,12 @@ public class ImageService {
         return savedImageUrlList;
     }
 
+
     public Image findById(Long id) {
         return imageRepository.findById(id)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.FILE_NOT_FOUND));
     }
+
 
     public String findUrlById(Long id) {
         Image image = imageRepository.findById(id)
@@ -69,7 +72,7 @@ public class ImageService {
         return image.getS3Url();
     }
 
-    //    @Query("select i from Image i where i.post.id = :post_id")
+
     public List<String> findUrlByPostId(Long id) {
         List<Image> imgList = imageRepository.findByPostId(id);
         List<String> postImageUrlList = imgList.stream().map(i -> i.getS3Url()).collect(Collectors.toList());
@@ -87,14 +90,12 @@ public class ImageService {
     }
 
     public void removeFile(Long id) {
-        Image image = imageRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Image1 does not exist"));
+        Image image = imageRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Image1 does not exist"));
 
         String bucketKey = image.getS3FilePath();
         amazonS3.deleteObject(bucket, bucketKey);
         imageRepository.delete(image);
     }
-
 
     public ImageResponseDto saveFile(MultipartFile multipartFile) throws IOException {
 
@@ -138,6 +139,7 @@ public class ImageService {
                 file.delete();
 
                 return imageResponseDto;
+
             }
         }
     }
@@ -145,8 +147,6 @@ public class ImageService {
     public boolean verifyContentType (String contentType) {
         if(contentType.contains("jpg") || contentType.contains("jpeg") || contentType.contains("png") || contentType.contains("gif")) {
             return true;
-        } else {
-            return false;
-        }
+        } else { return false; }
     }
 }

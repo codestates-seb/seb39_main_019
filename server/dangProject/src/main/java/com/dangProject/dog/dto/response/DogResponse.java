@@ -1,4 +1,4 @@
-package com.dangProject.dog.dto;
+package com.dangProject.dog.dto.response;
 
 import com.dangProject.dog.domain.Dog;
 import com.dangProject.member.dto.response.MemberResponse;

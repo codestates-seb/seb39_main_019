@@ -26,7 +26,8 @@ public class Comment extends BaseTime {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @OneToOne
+    @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -38,13 +39,11 @@ public class Comment extends BaseTime {
         this.content = comment;
     }
 
-    public void savePost(Post post) {
-        this.post = post;
-    }
+    public void savePost(Post post){
+        this.post = post; }
 
     public void saveMember(Member member) {
-        this.member = member;
-    }
+        this.member = member; }
 
     public void update(Long id, String comment) {
         this.id = id;

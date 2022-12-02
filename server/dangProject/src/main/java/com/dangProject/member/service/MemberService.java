@@ -5,14 +5,12 @@ import com.dangProject.exception.ExceptionCode;
 import com.dangProject.member.domain.Member;
 import com.dangProject.member.domain.MemberRole;
 import com.dangProject.member.domain.MemberType;
-import com.dangProject.member.dto.request.MemberPatchDto;
-import com.dangProject.member.dto.request.MemberPostDto;
+import com.dangProject.member.dto.request.MemberUpdateDto;
+import com.dangProject.member.dto.request.MemberRequestDto;
 import com.dangProject.member.dto.response.MemberDogResponse;
 import com.dangProject.member.dto.response.MemberResponse;
 import com.dangProject.member.repository.MemberRepository;
 import com.dangProject.member.repository.RefreshTokenRedisRepository;
-import com.dangProject.post.domain.Post;
-import com.dangProject.post.dto.PostPageResponseDto;
 import com.dangProject.post.image.service.ImageService;
 import com.dangProject.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,12 +29,13 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder encoder;
     private final RefreshTokenRedisRepository redisRepository;
-    private final PostRepository postRepository;
-    private final ImageService imageService;
     private static final String HEADER_PREFIX = "Bearer ";
 
     //일반 회원가입
-    public MemberResponse registerGeneral(MemberPostDto request) {
+    public MemberResponse register(MemberRequestDto request) {
+        verifyExistsEmail(request.getEmail());
+        verifyExistsNickname(request.getNickname());
+
         Member newMember = Member.builder()
                 .email(request.getEmail())
                 .password(encoder.encode(request.getPassword()))
@@ -52,7 +50,7 @@ public class MemberService {
     }
 
     //소셜 회원가입용
-    public MemberResponse registerSocial(MemberPostDto request, MemberType type) {
+    public MemberResponse registerSocial(MemberRequestDto request, MemberType type) {
         Member newMember = Member.builder()
                 .email(request.getEmail())
                 .password(encoder.encode(request.getPassword()))
@@ -68,10 +66,11 @@ public class MemberService {
 
 
     //닉네임 변경
-    public MemberResponse editProfile(MemberPatchDto request, Long id) {
+    public MemberResponse editProfile(MemberUpdateDto request, Long id) {
         return memberRepository.findById(id)
                 .map(member -> {
                     member.changeNickname(request.getNickname());
+                    verifyExistsNickname(request.getNickname());
                     return memberRepository.save(member);
                 })
                 .map(MemberResponse::of)
@@ -105,7 +104,7 @@ public class MemberService {
 
     //회원 목록 조회
     public List<MemberResponse> findAllMembers() {
-       return memberRepository.findAll().stream()
+        return memberRepository.findAll().stream()
                 .map(MemberResponse::of)
                 .collect(Collectors.toList());
     }
@@ -137,7 +136,7 @@ public class MemberService {
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
-    //회원 id로 조회
+    //멤버 아이디 찾기
     public Member verifyMember(Long id) {
         return memberRepository.findById(id)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
